@@ -1,0 +1,11 @@
+@use '../common/var';
+
+.root {
+  color: var.$color-green-black;
+
+  .title {
+    color: var.$color-black-hover;
+    cursor: pointer;
+  }
+
+}

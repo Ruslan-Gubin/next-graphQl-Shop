@@ -1,0 +1,1 @@
+export { ALL_MOVIES, ADD_MOVIES, UPDATE_MOVIES, DELETE_MOVIES, ONE_MOVIE } from "./moviesRequest";

@@ -1,0 +1,65 @@
+@use "./color.scss";
+
+$header-gradient-message: linear-gradient(
+  to right,
+  #a64545,
+  #8a3131,
+  #a44343,
+  #740f0f,
+  #771717,
+  #570a0a,
+  #8a3131
+);
+
+$header-gradient: linear-gradient(
+  to right,
+  #c04dfd,
+  #fbcd08,
+  #fbcd08,
+  #fbcd08,
+  #ead161,
+  #fbcd08,
+  #c04dfd
+);
+
+$linear-gradient-grey: linear-gradient(
+  to right,
+  #5c5c5c,
+  #6d6f67,
+  #585858,
+  #5b5b5b,
+  #585858,
+  #6d6f67,
+  #5c5c5c
+);
+
+$linear-gradient-violet: linear-gradient(
+  to bottom,
+  #e4bcf8,
+  #aa1ff5,
+  #aa1ff5,
+  #aa1ff5,
+  #aa1ff5,
+  #aa1ff5,
+  #aa1ff5,
+  #aa1ff5,
+  #e4bcf8
+);
+
+$liner-gradient-post-singelpage: linear-gradient(-45deg, #eecfba, #c5dde8);
+
+$liner-gradient-post-card: linear-gradient(to right, #ffffff, #ece9e6);
+$liner-gradient-visa-card: linear-gradient(to right, #40a1bf, #006280);
+$liner-gradient-visa-button: linear-gradient(to left, #40a1bf, #006280);
+
+$liner-gradient-basket-goods: linear-gradient(
+  to top,
+  color.$color-blue-black,
+  color.$ccb
+);
+$liner-gradient-basket-info: linear-gradient(
+  to bottom,
+  color.$color-blue-black,
+  color.$ccb
+);
+$liner-gradient-button-game: linear-gradient(to bottom, #c0f401, #7da100);

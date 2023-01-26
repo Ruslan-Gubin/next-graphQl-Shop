@@ -1,0 +1,1 @@
+export { UserSettingsInfo } from "./ProductSettingsInfo";
