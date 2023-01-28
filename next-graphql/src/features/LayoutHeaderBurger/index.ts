@@ -2,5 +2,5 @@ export { LayoutHeaderBurger } from "./components";
 export {
   burgerLayoutAction,
   burgerLayoutReducer,
-  selectProduct,
-} from "./models/burgerLayoutShop";
+  selectLayoutBurger,
+} from "./lib/store/burgerLayoutSlice";

@@ -1,0 +1,26 @@
+@use '../../styles/common/var';
+
+%line {
+  top: 0px;
+  left: 0px;
+  width: 18px;
+  height: 3px;
+  border-radius: var.$spasing-small;
+  rotate: (-90deg); 
+}
+
+.root {
+  rotate: (-45deg);
+  & .line {
+    position: relative;
+    background-color: rgb(143, 143, 143);
+    @extend %line;
+    
+    &::before {
+      content: "";
+      position: absolute;
+      background-color: rgb(143, 143, 143);
+      @extend %line;
+    }
+  }
+}

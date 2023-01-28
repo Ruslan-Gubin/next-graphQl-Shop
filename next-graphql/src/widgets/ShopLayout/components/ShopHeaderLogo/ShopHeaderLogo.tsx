@@ -10,8 +10,8 @@ const ShopHeaderLogo: FC<IShopHeaderLogo> = () => {
     <div>
       <div className={styles.root} data-testid='logo-testid'>
     <div className={styles.container}>
-      <span className={styles.firstString}>Online</span>
-      <span className={styles.tailString}>Shop</span>
+      <span className={styles.nameLogo}>onlineshop</span>
+      
     </div>
       </div>
     </div>

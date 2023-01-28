@@ -1,0 +1,25 @@
+.root {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  border-radius: 15px;
+  padding: 10px;
+
+
+  &:hover {
+    background-color: rgba(204, 204, 204, 0.165);
+  }
+
+  & .imag {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+  }
+
+  & p {
+    padding-left: 40px;
+    font-size: 1.2rem;
+    color: rgb(93, 93, 93);
+  }
+}

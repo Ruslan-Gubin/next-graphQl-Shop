@@ -1,29 +1,36 @@
-
 .root {
   width: 200px;
   border-radius: 20px;
   padding: 2px;
-  border-bottom: 1px solid rgb(233, 254, 0);
-  border-top: 1px solid rgb(255, 47, 0);
-  border-left: 1px solid rgb(255, 47, 0);
-  border-right: 1px solid rgb(233, 254, 0);
   & .container {
-display: flex;
-align-items: center;
-justify-content: center;
-    border: 1px solid rgb(255, 255, 255);
-    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
     text-align: center;
     font-size: 30px;
-    text-shadow: 0px 1px 2px ;
-    border-radius: 20px;
-    & .firstString {
+    // text-shadow: 0px 1px 2px;
+    rotate: (-3deg);
+    border-radius: 30px;
+    padding-bottom: 10px;
+    position: relative;
+    &::after {
+      content: "";
+      border: 2px solid rgb(0, 251, 192);
+      border-top: none;
+      // border-left: none;
+      position: absolute;
+      top: 20px;
+      left: -7px;
+      border-radius: 50%;
+      width: 220px;
+      height: 30px;
+      overflow: hidden;
+    }
+
+    & .nameLogo {
       color: rgb(255, 255, 255);
+      text-transform: uppercase;
     }
-    & .tailString {
-      color: rgb(0, 251, 255);
-    }
-    
-    
   }
 }

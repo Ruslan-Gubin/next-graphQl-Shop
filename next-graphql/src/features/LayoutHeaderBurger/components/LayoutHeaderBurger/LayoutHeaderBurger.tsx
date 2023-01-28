@@ -1,5 +1,5 @@
-import { useDispatch } from "react-redux";
-import { burgerLayoutAction } from "../../models/burgerLayoutShop";
+import { useDispatch  } from "react-redux";
+import { burgerLayoutAction } from "../../lib/store/burgerLayoutSlice";
 import { LayoutBurgerButton } from "../LayoutBurgerButton";
 
 

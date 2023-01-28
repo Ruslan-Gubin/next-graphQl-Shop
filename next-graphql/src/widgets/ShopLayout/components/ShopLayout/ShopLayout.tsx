@@ -1,10 +1,13 @@
+import React from "react";
+import { HeaderStoreNavbar } from "@/entities/HeaderStoreNavbar";
 import { LayoutHeaderBurger } from "@/features/LayoutHeaderBurger";
-import {  CustomLink } from "@/shared/components";
+import { LayoutHeaderSearch } from "@/features/LayoutHeaderSearch";
 import Head from "next/head";
 import Link from "next/link";
-import React, { FC } from "react";
 import { ShopHeaderLogo } from "../ShopHeaderLogo";
-import styles from './ShopLayout.module.scss';
+import styles from "./ShopLayout.module.scss";
+import { FooterShop } from "@/widgets/FooterShop";
+import { FooterButtonHelpers } from "@/features/FooterButtonHelpers";
 
 interface IShopLayout {
   children: React.ReactNode;
@@ -12,11 +15,10 @@ interface IShopLayout {
   keywords: string;
 }
 
-const ShopLayout: FC<IShopLayout> = ({ children, title, keywords }) => {
-
+const ShopLayout: React.FC<IShopLayout> = ({ children, title, keywords }) => {
   return (
     <>
-    <Head>
+      <Head>
         <title>{title ? title : "Home page"}</title>
         <meta name="description" content="It is first project next app" />
         <meta
@@ -26,39 +28,41 @@ const ShopLayout: FC<IShopLayout> = ({ children, title, keywords }) => {
         />
         <meta name="keywords" content={keywords} />
       </Head>
-      <header>
-        <nav data-testid="mainLayout-test-nav">
-        <CustomLink href="/" name="Home" />
-          <CustomLink href="/catalog/elektronika" name="Electronika" />
-          <CustomLink href="/catalog/elektronika/igrovye-konsoli" name="Igrovy Konsoli" />
-          <CustomLink href="/catalog/elektronika/aksessuary-dlya-smartfonov" name="aksessuary" />
-          <CustomLink href="/hits" name="Hits" />
-        </nav>
-      <div className={styles.logoBlock}>
-       <LayoutHeaderBurger />
-       <nav>
-       <Link href={'/'}><ShopHeaderLogo /></Link>
-       </nav>
+      <div className={styles.root}>
+        <div className={styles.container}>
+          <header className={styles.header}>
+            <div className={styles.headerMenu}>
+              <div className={styles.headerBurger}>
+                <LayoutHeaderBurger />
+              </div>
+              <div className={styles.headerLogo}>
+                <nav>
+                  <Link href={"/"}>
+                    <ShopHeaderLogo />
+                  </Link>
+                </nav>
+              </div>
+            </div>
+            <div className={styles.search}>
+              <LayoutHeaderSearch />
+            </div>
+            <nav className={styles.headerNavbar}>
+              <HeaderStoreNavbar shopingCount={0} />
+            </nav>
+          </header>
+        </div>
+        <main>
+          <div className={styles.container}>{children}</div>
+        </main>
+        <footer>
+          <div className={styles.container}>
+         <FooterShop />
+          </div>
+        </footer>
+          <FooterButtonHelpers />
       </div>
-
-      <div className={styles.search}>
-
-      </div>
-
-      <div className={styles.navLink}>
-      <CustomLink href="/services/dostavka" name="Адреса" />
-      <CustomLink href="/security/login" name="Войти" />
-      <CustomLink href="/basket" name="Корзина" />
-      </div>
-
-
-      </header>
-    <div className={styles.root}>
-    <main>{children}</main>
-    </div>
-    <footer>Footer</footer>
     </>
-  )
+  );
 };
 
 export { ShopLayout };

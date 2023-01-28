@@ -1,11 +1,12 @@
 import { FC } from "react";
 import { ApolloProvider } from "@apollo/client";
-import { client } from "../apollo";
+import { client } from "../apps/apollo";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import type { AppProps } from "next/app";
-import "@/app/styles/globals.scss";
-import store, { persistor } from "@/app/store/srote";
+import "@/apps/styles/globals.scss";
+import store, { persistor } from "@/apps/store/srote";
+
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   return (

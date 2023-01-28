@@ -1,0 +1,27 @@
+
+
+.root {
+  font-size: 1.3rem;
+  margin-bottom: 60px;
+  & .title {
+    color: rgb(255, 255, 255);
+    margin-bottom: 15px;
+    font-weight: 600;
+  }
+  
+  & .linkItem {
+    
+    margin-bottom: 15px;
+  }
+  
+  & .link {
+    line-height: 24px;
+    padding-bottom: 13px;
+    color: rgba(255,255,255,.7);
+    &:hover {
+      color: rgb(255, 255, 255);
+    }
+  }
+
+  
+}

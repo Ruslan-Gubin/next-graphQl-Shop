@@ -1,1 +1,6 @@
-export { BurgerButton } from "./components";
+export {
+  CustomLink,
+  ImageSearch,
+  CustomClose,
+  SearchItemAutocomplete,
+} from "./components";

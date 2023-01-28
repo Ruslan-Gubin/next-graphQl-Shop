@@ -1,6 +1,6 @@
 import { CustomLink } from '@/shared/components';
 import { ShopLayout } from '@/widgets/ShopLayout';
-import styles from '@/app/styles/pages/Error.module.scss';
+import styles from '@/apps/styles/pages/Error.module.scss';
 
 const ErrorPage = () => {
   return (

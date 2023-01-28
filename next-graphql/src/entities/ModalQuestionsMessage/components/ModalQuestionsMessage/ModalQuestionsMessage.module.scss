@@ -1,0 +1,127 @@
+
+%comment {
+  border-radius: 15px;
+  padding: 15px;
+  max-width: 294px;
+  margin-bottom: 15px;
+  position: relative;
+  
+  & .text {
+    margin-bottom: 15px;
+  }
+  & .date {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+  }
+}
+
+.root {
+  background-color: rgb(255, 255, 255);
+  border-radius: 15px;
+  position: absolute;
+  right: 25px;
+  bottom: 25px;
+  box-shadow: 1px 2px 5px -2px;
+  width: 370px;
+  & .container {
+    & header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 1.2rem;
+      padding: 20px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.119);
+
+      & .title {
+        font-weight: 600;
+        color: #cb11ab;
+      }
+
+      & .closeBtn {
+        &:hover {
+          color: #cb11ab;
+          text-decoration: underline;
+        }
+      }
+    }
+
+    & .main {
+      padding: 20px;
+      background-image: linear-gradient(to bottom, (white, rgb(242, 242, 242)));
+      font-size: 1.2rem;
+      text-align: start;
+      max-height: 430px;
+      overflow: auto;
+
+      &::-webkit-scrollbar {
+        width: 8px;
+        height: 10px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: rgb(204, 204, 204);
+        border-radius: 10px;
+      }
+      &::-webkit-scrollbar-track {
+        background-color: rgb(252, 252, 252);
+      }
+
+      & .firstComment {
+        background-color: #ebebeb;
+        @extend %comment;
+
+        & .name {
+          color: rgb(247, 57, 244);
+          font-weight: 700;
+        }
+        & .text {
+          font-weight: 600;
+        }
+      }
+
+      & .question {
+        color: white;
+        background-color: rgb(212, 37, 209);
+        @extend %comment;
+        top: 0;
+        left: 30px;
+        margin-top: 10px;
+      }
+
+      & .answer {
+        background-color: #ebebeb;
+
+        @extend %comment;
+        color: rgb(90, 90, 90);
+        & .name {
+          color: rgb(247, 57, 244);
+          font-weight: 700;
+        }
+      }
+    }
+
+    & footer {
+      background-color: rgba(255, 255, 255, 0);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      padding: 20px;
+
+      & .paperclip {
+        width: 27px;
+        position: absolute;
+        top: 33px;
+        left: 30px;
+      }
+
+      & .input {
+        background-color: rgb(240, 240, 240);
+        font-size: 1.3rem;
+        padding: 15px;
+        border-radius: 20px;
+        padding-left: 43px;
+      }
+    }
+  }
+}

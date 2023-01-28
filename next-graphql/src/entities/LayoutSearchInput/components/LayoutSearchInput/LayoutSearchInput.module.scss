@@ -1,0 +1,43 @@
+@use "../../../../apps/styles/common/var";
+
+
+.root {
+  padding: 16px 0px 16px 54px;
+  position: relative;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.139);
+  cursor: pointer;
+  transition: all 0.4s ease;
+  z-index: 2;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.368);
+  }
+  
+  
+  & .searchIcon {
+    position: absolute;
+    top: 22px;
+    left: 22px;
+  }
+  
+  & .input {
+    width: 100%;
+    font-size: 1.5rem;
+    background-color: rgba(255, 255, 254, 0);
+    cursor: pointer;
+    &::placeholder {
+      color: rgba(232, 232, 232, 0.592);
+    }
+  }
+  
+  & .imageClose {
+    padding: 0 40px;
+  }
+}
+
+.actives {
+ background-color: rgb(255, 255, 255);
+}

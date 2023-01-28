@@ -1,0 +1,43 @@
+@use "../../styles/common/var";
+
+%image {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+}
+
+%after {
+  content: "";
+    position: absolute;
+    top: 12px;
+    left: 10px;
+    width: 9px;
+    height: 2px;
+    border-radius: 10px;
+    rotate: (38deg);
+}
+
+
+.image {
+  @extend %image;
+  border: 2px solid rgb(194, 194, 194);
+  &::after {
+   @extend %after;
+    background-color: rgb(194, 194, 194);
+  }
+  &:hover {
+    border: 2px solid rgb(251, 251, 251);
+  }
+  &:hover::after {
+    border: 1px solid rgb(232, 232, 232);
+  }
+}
+
+.active {
+  @extend %image;
+  border: 2px solid rgb(177, 177, 177);
+  &::after {
+    @extend %after;
+    background-color: rgb(177, 177, 177);
+  }
+}
