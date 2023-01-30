@@ -1,6 +1,6 @@
 interface IDialogQuestion {
   name?: string;
-  date: string;
+  time: string;
   text: string;
 }
 

@@ -1,46 +1,78 @@
-import { useState } from "react";
+import { FC } from "react";
 import { ModalQuestionsMessage } from "@/entities";
 import { ButtonFooterHelper } from "@/shared/components";
 
 import styles from "./FooterButtonHelpers.module.scss";
-import { MockDialog } from "../../models/MockDialog";
 import { buttonIcon } from "../../lib/assets/buttonIcon";
-import { formatedDate } from "../../lib/helpers/formatedDate";
+import { useDispatch, useSelector } from "react-redux";
+import { questionsAction, selectQuestions } from "../../lib/store";
+import { useMutation, useQuery } from "@apollo/client";
+import {
+  ADD_COMMENT_QUESTION,
+  ADD_QUESTIONS,
+  ONE_QUESTIONS,
+} from "../../models/questionRequest";
 
-const FooterButtonHelpers = () => {
-  const [modalMessageActive, setModalMessageActive] = useState(false);
-  const [message, setMessage] = useState<string>("");
-  const [comments, setComments] = useState([...MockDialog]);
+const FooterButtonHelpers: FC = () => {
+  const [createQuestion, {}] = useMutation(ADD_QUESTIONS);
+  const { modalStatus, textQuestion, questionsId } =
+    useSelector(selectQuestions);
+  const { data: questions = [], loading } = useQuery(ONE_QUESTIONS, {
+    variables: { id: questionsId },
+  });
+  const dispatch = useDispatch();
+  const [addCommentQuestion, {}] = useMutation(ADD_COMMENT_QUESTION);
 
-  const handleSubmitMessage = () => {
-    if (message.length > 0) {
-      const newComment = {
-        text: message,
-        date: formatedDate(),
-      };
-
-      setComments((prev) => (prev = [...prev, newComment]));
-
-      setMessage("");
+  const handleAddQuestion = async () => {
+    const variables = {
+      text: textQuestion,
+      name: "Guest",
+      viewed: false,
+    };
+    if (!questionsId) {
+      await createQuestion({
+        variables,
+        awaitRefetchQueries: true,
+      })
+        .then((data) => {
+          dispatch(
+            questionsAction.setNewQuestionId({
+              id: data.data.createdDialog._id,
+            })
+          );
+        })
+        .catch((err) => console.error("Error create question", err));
+    } else {
+      await addCommentQuestion({
+        variables: {
+          ...variables,
+          id: questionsId,
+        },
+      });
     }
+    dispatch(questionsAction.textValueClear());
   };
-
   return (
     <>
       <div className={styles.root}>
-        <ButtonFooterHelper icon={buttonIcon.arrowUp} onClick={() => {}} />
-        {modalMessageActive ? (
+        <ButtonFooterHelper
+          icon={buttonIcon.arrowUp}
+          onClick={() => window.scrollTo(0, 0)}
+        />
+        {modalStatus ? (
           <ModalQuestionsMessage
-            dialogs={comments}
-            setMessage={setMessage}
-            message={message}
-            closeModal={() => setModalMessageActive(false)}
-            handleSubmitMessage={handleSubmitMessage}
+            dialogs={questions.question?.dialog}
+            setMessage={(value) =>
+              dispatch(questionsAction.getValueInput({ value }))
+            }
+            message={textQuestion}
+            closeModal={() => dispatch(questionsAction.getActivModal())}
+            handleAddQuestion={handleAddQuestion}
           />
         ) : (
           <ButtonFooterHelper
             icon={buttonIcon.chatIcon}
-            onClick={() => setModalMessageActive(true)}
+            onClick={() => dispatch(questionsAction.getActivModal())}
           />
         )}
       </div>

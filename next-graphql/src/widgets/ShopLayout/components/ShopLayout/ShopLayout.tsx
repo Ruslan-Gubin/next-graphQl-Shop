@@ -1,13 +1,12 @@
-import React from "react";
-import { HeaderStoreNavbar } from "@/entities/HeaderStoreNavbar";
-import { LayoutHeaderBurger } from "@/features/LayoutHeaderBurger";
-import { LayoutHeaderSearch } from "@/features/LayoutHeaderSearch";
+import { FC } from "react";
 import Head from "next/head";
 import Link from "next/link";
-import { ShopHeaderLogo } from "../ShopHeaderLogo";
-import styles from "./ShopLayout.module.scss";
 import { FooterShop } from "@/widgets/FooterShop";
-import { FooterButtonHelpers } from "@/features/FooterButtonHelpers";
+import * as features from "@/features";
+import { HeaderStoreNavbar } from "@/entities/HeaderStoreNavbar";
+import { ShopHeaderLogo } from "../ShopHeaderLogo";
+
+import styles from "./ShopLayout.module.scss";
 
 interface IShopLayout {
   children: React.ReactNode;
@@ -15,7 +14,7 @@ interface IShopLayout {
   keywords: string;
 }
 
-const ShopLayout: React.FC<IShopLayout> = ({ children, title, keywords }) => {
+const ShopLayout: FC<IShopLayout> = ({ children, title, keywords }) => {
   return (
     <>
       <Head>
@@ -29,11 +28,18 @@ const ShopLayout: React.FC<IShopLayout> = ({ children, title, keywords }) => {
         <meta name="keywords" content={keywords} />
       </Head>
       <div className={styles.root}>
+        <div className={styles.adminLink}>
+              <nav><Link href={'/admin'}>
+                <span className={styles.text}>Admin</span>
+                
+                </Link></nav>
+        </div>
         <div className={styles.container}>
           <header className={styles.header}>
             <div className={styles.headerMenu}>
+                
               <div className={styles.headerBurger}>
-                <LayoutHeaderBurger />
+                <features.LayoutHeaderBurger />
               </div>
               <div className={styles.headerLogo}>
                 <nav>
@@ -44,7 +50,7 @@ const ShopLayout: React.FC<IShopLayout> = ({ children, title, keywords }) => {
               </div>
             </div>
             <div className={styles.search}>
-              <LayoutHeaderSearch />
+              <features.LayoutHeaderSearch />
             </div>
             <nav className={styles.headerNavbar}>
               <HeaderStoreNavbar shopingCount={0} />
@@ -56,10 +62,10 @@ const ShopLayout: React.FC<IShopLayout> = ({ children, title, keywords }) => {
         </main>
         <footer>
           <div className={styles.container}>
-         <FooterShop />
+            <FooterShop />
           </div>
         </footer>
-          <FooterButtonHelpers />
+        <features.FooterButtonHelpers />
       </div>
     </>
   );

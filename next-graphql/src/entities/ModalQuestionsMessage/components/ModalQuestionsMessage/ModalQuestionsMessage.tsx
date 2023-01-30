@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { ButtonFooterHelper } from "@/shared/components";
 import { modalQuestionsIcon } from "../../lib/assets/modalQuestionsIcon";
 import { GREETING_MESSAGE } from "../../constants/greetingMessage";
@@ -6,21 +5,23 @@ import { GREETING_MESSAGE } from "../../constants/greetingMessage";
 import styles from "./ModalQuestionsMessage.module.scss";
 import { IDialogQuestion } from "../../model/types";
 
+
 interface IModalQuestionsMessage {
   closeModal: () => void;
-  handleSubmitMessage: () => void;
+  handleAddQuestion: () => void;
   setMessage: (value: string) => void;
   message: string;
   dialogs: IDialogQuestion[];
 }
 
-const ModalQuestionsMessage: FC<IModalQuestionsMessage> = ({
-  dialogs,
+const ModalQuestionsMessage: React.FC<IModalQuestionsMessage> = ({
+  dialogs = [],
   closeModal,
-  handleSubmitMessage,
+  handleAddQuestion,
   message,
   setMessage,
 }) => {
+
   return (
     <button type="button" className={styles.root}>
       <div className={styles.container}>
@@ -40,16 +41,16 @@ const ModalQuestionsMessage: FC<IModalQuestionsMessage> = ({
           <ul>
             {dialogs.map((message, ind) => (
               <li key={ind}>
-                {message.name ? (
+                {message.name !== "Guest" ? (
                   <div className={styles.answer}>
                     <div className={styles.name}>{message.name}</div>
                     <div className={styles.text}>{message.text}</div>
-                    <div className={styles.date}>{message.date}</div>
+                    <div className={styles.date}>{message.time}</div>
                   </div>
                 ) : (
                   <div className={styles.question}>
                     <div className={styles.text}>{message.text}</div>
-                    <div className={styles.date}>{message.date}</div>
+                    <div className={styles.date}>{message.time}</div>
                   </div>
                 )}
               </li>
@@ -72,7 +73,7 @@ const ModalQuestionsMessage: FC<IModalQuestionsMessage> = ({
           <ButtonFooterHelper
             active={message.length > 0}
             icon={modalQuestionsIcon.sendMessageIcon}
-            onClick={handleSubmitMessage}
+            onClick={handleAddQuestion}
           />
         </footer>
       </div>

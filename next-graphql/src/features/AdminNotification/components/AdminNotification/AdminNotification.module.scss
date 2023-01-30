@@ -1,0 +1,49 @@
+.notifications {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  & .notificationItem {
+    position: relative;
+    cursor: pointer;
+    & small {
+      min-width: 15px;
+      text-align: center;
+      background-color: rgb(231, 192, 21);
+      padding: 1px;
+      position: absolute;
+      top: -3px;
+      left: 13px;
+      border-radius: 50%;
+      font-weight: 700;
+      color: rgb(32, 22, 36);
+      border: 1px solid rgb(154, 148, 148);
+    }
+  }
+
+  & img {
+    width: 25px;
+    height: 25px;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+
+  .exit {
+    cursor: pointer;
+    margin-right: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.565);
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+
+    span {
+      color: rgb(71, 70, 70);
+    }
+
+    &:hover {
+      box-shadow: 1px 1px 3px 1px rgba(80, 80, 80, 0.319);
+    }
+  }
+}
