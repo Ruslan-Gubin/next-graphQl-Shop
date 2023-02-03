@@ -1,0 +1,25 @@
+.root {
+
+  & .label {
+    // margin: 20px;
+    color: rgba(46, 46, 49, 0.891);
+    font-weight: 600;
+  }
+
+  & .textarea {
+    width: 100%;
+    padding: 10px 0;
+    background-color: rgba(255, 255, 255, 0);
+    font-size: 1.3rem;
+    color: rgba(37,37,43,.9803921569);
+    margin: 10px 0;
+    resize: none;
+    border-bottom: 1px solid #a1a1a1;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+  }
+
+  }
+}

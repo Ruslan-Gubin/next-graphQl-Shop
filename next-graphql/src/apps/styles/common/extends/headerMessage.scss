@@ -1,0 +1,14 @@
+@use '../var' as *;
+
+%header-message{
+    font-size: 18px;
+    color: $light;
+    background-image: $header-gradient-message;
+    transition: $transition-ease;
+    border-radius: 10px;
+    height: 30px;
+    &:hover {
+        color: $white;
+        box-shadow: $box-shadow;
+    }
+}

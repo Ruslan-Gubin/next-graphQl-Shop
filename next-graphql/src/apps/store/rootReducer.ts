@@ -2,7 +2,7 @@ import { combineReducers } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { getPersistConfig } from "redux-deep-persist";
 import * as redusers from "@/features";
-import { adminNavReducer } from "@/widgets/AdminLayout";
+
 
 const rootReducer = combineReducers({
   burgerLayout: redusers.burgerLayoutReducer,
@@ -10,7 +10,9 @@ const rootReducer = combineReducers({
   questions: redusers.questionsReducer,
   adminNotification: redusers.AdminNotificationReducer,
   adminNavHeader: redusers.adminNavHeaderReducer,
-  adminNav: adminNavReducer,
+  adminQuestion: redusers.adminQuestionReducer,
+  createdProduct: redusers.createdProductReducer,
+  createdProductImages: redusers.createdProductImagesReducer,
   // [rtkQuery.productsApi.reducerPath]: rtkQuery.productsApi.reducer,
 });
 
@@ -23,7 +25,6 @@ const config = getPersistConfig({
     "product",
     "burgerLayout",
     "adminNotification",
-    "adminNavHeader",
     // rtkQuery.productsApi.reducerPath,
   ],
   rootReducer,

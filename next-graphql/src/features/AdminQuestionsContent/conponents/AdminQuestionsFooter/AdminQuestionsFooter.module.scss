@@ -1,0 +1,22 @@
+.root {
+  position: relative;
+  & .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+
+    & .input {
+      & input {
+        width: 600px;
+        height: 70px;
+        background-color: rgb(220, 218, 218);
+        border-radius: 20px;
+        padding: 15px 30px;
+        font-size: 2rem;
+        color: rgb(73, 73, 73);
+      }
+    }
+  }
+}

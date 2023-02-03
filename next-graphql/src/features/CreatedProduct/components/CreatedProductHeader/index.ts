@@ -1,0 +1,1 @@
+export { CreatedProductHeader } from "./CreatedProductHeader";

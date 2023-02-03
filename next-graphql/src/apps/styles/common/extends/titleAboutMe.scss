@@ -1,0 +1,11 @@
+@use 'scss/common/var';
+
+
+%title-about-me{
+  font-family: var.$ff-Gilroy-Bold;
+  text-align: center;
+  letter-spacing: 1px;
+  margin-bottom: var.$spasing-medium;
+  font-size: var.$font-size-title-normal;
+  color: var.$color-card-bg;
+}

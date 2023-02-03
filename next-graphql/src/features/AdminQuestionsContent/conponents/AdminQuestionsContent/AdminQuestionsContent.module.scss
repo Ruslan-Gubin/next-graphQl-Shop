@@ -1,0 +1,24 @@
+
+
+.root {
+  height: 740px;
+  overflow: scroll;
+
+   &::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  & .container {
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    position: relative;
+    
+    & ::-webkit-scrollbar {
+      width: 0;
+    }
+    
+
+  }
+}

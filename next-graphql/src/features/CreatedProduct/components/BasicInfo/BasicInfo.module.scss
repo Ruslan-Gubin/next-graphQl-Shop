@@ -1,0 +1,24 @@
+@use '../../../../apps/styles/common/var';
+
+.basicInfo {
+  width: 100%;
+
+  & .countContainer {
+    display: flex;
+    justify-content: space-between;
+   
+    & .countWidth {
+      width: 150px;
+    }
+    
+  }
+    & h2 {
+      text-align: center;
+      color: var.$color-black;
+      font-size: var.$font-size-header-link;
+      font-weight: 600;
+      margin-bottom: 30px;
+      
+    }
+  
+}

@@ -2,11 +2,13 @@ import { TypeRootState } from "@/apps/store/srote";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface IInitialState {
-
+searchValue: string;
+burgerStatus: boolean;
 }
 
 const initialState: IInitialState = {
-
+  searchValue: '',
+  burgerStatus: false,
 };
 
 const adminNavHeaderSlice = createSlice({
@@ -14,23 +16,17 @@ const adminNavHeaderSlice = createSlice({
   initialState,
   reducers: {
 
-    getActivModal(state) {
-    
+    toggleBurgerStatus(state) {
+    if (state.burgerStatus) {
+      state.burgerStatus = false
+    } else {
+      state.burgerStatus = true
+    }
     },
 
     getValueInput(state, action: PayloadAction<{value: string}>) {
-     
+     state.searchValue = action.payload.value
     },
-
-    textValueClear(state) {
-     
-    },
-
-    setNewQuestionId(state, action: PayloadAction<{id: string}>) {
-   
-    }
-
-
 
   },
 });

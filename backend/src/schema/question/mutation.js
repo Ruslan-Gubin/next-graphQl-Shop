@@ -5,7 +5,7 @@ import { QuestionType } from "./types.js";
 
 
 const formatedDate = () => {
-  const nowDate = new Date();
+  const nowDate = new Date();   
   return nowDate.toTimeString().slice(0, 5);
 };
 

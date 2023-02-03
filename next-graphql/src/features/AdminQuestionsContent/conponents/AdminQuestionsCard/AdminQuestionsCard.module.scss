@@ -1,0 +1,53 @@
+%textItem {
+  color: rgb(255, 255, 255);
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  position: relative;
+  padding: 10px;
+  padding-bottom: 30px;
+  border-radius: 15px;
+
+  & .text {
+  }
+
+  & time {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+}
+
+
+.dialogContainer {
+  background-image: linear-gradient(to top, (rgb(201, 200, 200), white));
+  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.382);
+  border-radius: 15px;
+  padding: 12px;
+  padding-bottom: none;
+  margin: 10px;
+  width: 360px;
+  height: 250px;
+  overflow: scroll;
+  
+  &:hover {
+    min-height: 250px;
+    height: auto;
+  }
+  
+  
+  & .item {
+    background-color: rgb(212, 37, 209);
+    @extend %textItem;
+  }
+  & .itemAdmin {
+    background-color: rgb(84, 79, 84);
+    @extend %textItem;
+  }
+  
+  & .btn {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+  }
+}
+

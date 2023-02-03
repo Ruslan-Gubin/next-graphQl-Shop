@@ -1,0 +1,14 @@
+@use 'scss/common/var';
+
+%iconsFooterComments {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  margin-right: var.$spasing-button;
+  transition: all 0.2s ease-in;
+
+  &:hover {
+    transition: all 0.2s ease-in;
+    transform: scale(1.2);
+  }
+}

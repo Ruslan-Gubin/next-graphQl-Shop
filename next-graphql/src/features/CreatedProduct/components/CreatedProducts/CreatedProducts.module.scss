@@ -1,0 +1,42 @@
+.root {
+  position: relative;
+  padding: 0 60px;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+
+ 
+@media (max-width: 1200px) {
+  padding: 0 50px;  
+}
+
+& .content {
+  flex: 1 0 auto;
+  
+  
+  & .main {
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-between;
+
+    @media (max-width: 1200px) {
+      display: flex; 
+      flex-direction: column;
+      
+    }
+    
+    & .basic {
+      width: 40%;
+      @media (max-width: 1200px) {
+        margin: 0 auto;
+        width: 90%;
+      }
+    }
+
+
+  }
+}
+  
+
+}

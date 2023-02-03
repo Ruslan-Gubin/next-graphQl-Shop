@@ -12,6 +12,7 @@ interface IShopLayout {
 }
 
 const AdminLayout: FC<IShopLayout> = ({ children, title, keywords }) => {
+ 
   return (
     <>
       <Head>
@@ -24,13 +25,11 @@ const AdminLayout: FC<IShopLayout> = ({ children, title, keywords }) => {
         />
         <meta name="keywords" content={keywords} />
       </Head>
-      <div className={styles.root}>
+      <div  className={styles.root}>
         <AdminLayoutAside />
-        <div className={styles.content}>
+        <div  className={styles.content}>
           <AdminLayoutHeader />
-          <main>
-            <div>{children}</div>
-          </main>
+          <main >{children}</main>
         </div>
       </div>
     </>

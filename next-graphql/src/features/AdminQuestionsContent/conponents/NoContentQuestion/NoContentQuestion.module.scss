@@ -1,0 +1,75 @@
+.root {
+  position: absolute;
+  top: 360px;
+  box-shadow: 2px 2px 5px 2px rgba(67, 66, 66, 0.744);
+  border: 2px solid black;
+  padding: 2px;
+  rotate: (-3deg);
+  transition: all 0.5s ease;
+
+  &:hover {
+    rotate: none;
+  }
+
+
+  &::after {
+    content: '';
+    position: absolute;
+    height: 3px;
+    width: 212px;
+    background-color: rgba(0, 0, 0, 0.787);
+    border-bottom: none;
+    background-image: linear-gradient(to left, (rgba(6, 6, 6, 0.124), rgb(255, 255, 255)));
+    rotate: (-60deg);
+    top: -70px;
+    left: -30px;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    height: 3px;
+    width: 212px;
+    background-color: rgba(0, 0, 0, 0.787);
+    border-bottom: none;
+    background-image: linear-gradient(to right, (rgba(6, 6, 6, 0.124), rgb(210, 210, 210)));
+    rotate: (60deg);
+    top: -70px;
+    right: -30px;
+  }
+  .pin {
+    width: 20px;
+    height: 20px;
+    background-image: linear-gradient(to right, (rgb(110, 107, 107), rgb(28, 27, 27)));
+    box-shadow: 1px 1px 1px 1px black;
+    border: 2px solid rgb(35, 35, 35);
+    border-radius: 50%;
+    position: absolute;
+    top: -176px;
+    left: 125px;
+
+    &::after {
+      content: '';
+
+    }
+  }
+
+  & .container {
+    border: 2px solid black;
+    background-image: linear-gradient(to left, (rgb(179, 179, 179), white));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    
+    & span {
+text-shadow: 2px 2px 1px rgb(255, 255, 255);
+      font-size: 2.3rem;
+      color: rgb(1, 1, 1);
+
+    }
+
+
+  }
+
+  
+}

@@ -1,0 +1,1 @@
+export { AdminQuestionsFooter } from "./AdminQuestionsFooter";

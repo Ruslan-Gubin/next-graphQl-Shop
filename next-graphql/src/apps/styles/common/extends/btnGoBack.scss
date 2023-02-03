@@ -1,0 +1,61 @@
+@use '../var/index' as *;
+
+%btn-goback-blue {
+    background-color: $color-primary;
+    box-shadow: $box-shadow;
+    padding: $spasing-button;
+    border-radius: $border-radius-button;
+    box-sizing: border-box;
+    color: $white;
+    font-size: $font-size-button;
+    transition: all 0.2s ease-in;
+    &:hover {
+        transition: all 0.2s ease-in;
+        background-color: $color-primary-hover;
+    }
+  }
+
+%btn-goback-red {
+    background-color: $color-red-hover;
+    box-shadow: $box-shadow;
+    padding: $spasing-button;
+    border-radius: $border-radius-button;
+    box-sizing: border-box;
+    color: $white;
+    font-size: $font-size-button;
+    transition: all 0.2s ease-in;
+    &:hover {
+        transition: all 0.2s ease-in;
+        background-color: $color-red-hover-light;
+    }
+  }
+
+%btn-goback-green {
+    background-color: $color-green;
+    box-shadow: $box-shadow;
+    padding: $spasing-button;
+    border-radius: $border-radius-button;
+    box-sizing: border-box;
+    color: $white;
+    font-size: $font-size-button;
+    transition: all 0.2s ease-in;
+    &:hover {
+        transition: all 0.2s ease-in;
+        background-color: $color-green-black;
+    }
+  }
+
+%btn-goback-orange {
+    background-color: $color-orange;
+    box-shadow: $box-shadow;
+    padding: $spasing-button;
+    border-radius: $border-radius-button;
+    box-sizing: border-box;
+    color: $white;
+    font-size: $font-size-button;
+    transition: all 0.2s ease-in;
+    &:hover {
+        transition: all 0.2s ease-in;
+        background-color: $color-orange-light;
+    }
+  }

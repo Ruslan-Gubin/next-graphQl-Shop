@@ -1,0 +1,16 @@
+.root {
+  position: relative;
+  padding: 17px 0 50px 0;
+  & .dropdownsLine {
+    position: absolute;
+    display: flex;
+
+    & .dropdown {
+     
+      margin-right: 10px;
+    }
+
+
+  }
+  
+}

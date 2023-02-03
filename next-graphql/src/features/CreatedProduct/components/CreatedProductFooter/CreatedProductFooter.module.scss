@@ -1,0 +1,41 @@
+@use '../../../../apps/styles/common/var';
+
+%btn {
+  margin: 0 auto;
+  padding: 20px 100px;
+  border-radius: 20px;
+  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.368);
+  font-size: var.$font-size-header-link;
+}
+
+.root {
+padding: 30px 0;
+display: flex;
+
+  & .btn {
+    background-image: linear-gradient(to left, (rgb(228, 228, 228),rgb(184, 183, 183)));
+    color: var.$color-black-hover;
+    border: 1px solid rgba(255, 255, 255, 0.621);
+   @extend %btn;
+    &:active {
+      border: 1px solid rgb(255, 255, 255);
+      box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.368);
+      background-image: linear-gradient(to left, (rgb(217, 217, 217),rgb(195, 195, 195)));
+    } 
+}
+  & .active {
+    background-image: linear-gradient(to right, (rgb(86, 38, 83),rgb(41, 41, 41)));
+    color: var.$color-white;
+    border: 1px solid rgba(255, 255, 255, 0.987);
+    @extend %btn;
+    
+    &:active {
+      color: rgb(255, 255, 255);
+      border: 1px solid rgb(255, 255, 255);
+      box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.368);
+      background-image: linear-gradient(to right, (rgb(76, 35, 73),rgb(47, 47, 47)));
+    } 
+}
+
+}
+

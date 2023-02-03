@@ -1,0 +1,10 @@
+@use '../var' as *;
+
+%grid-card-maxmed{   
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    grid-auto-rows: auto;
+    grid-gap:  10px;
+    max-width: $container-cart-list;
+    background-color: $light;
+}

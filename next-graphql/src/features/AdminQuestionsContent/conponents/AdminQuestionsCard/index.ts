@@ -1,0 +1,1 @@
+export { AdminQuestionsCard } from "./AdminQuestionsCard";

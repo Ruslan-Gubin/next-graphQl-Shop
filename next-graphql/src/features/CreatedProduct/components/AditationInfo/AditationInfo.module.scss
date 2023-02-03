@@ -1,0 +1,27 @@
+@use '../../../../apps/styles/common/var';
+
+.root {
+
+  @media (max-width: 1200px) {
+    margin: 0 auto;
+    width: 90%;
+  }
+  & .productParams {
+    display: flex;
+   
+    & .paramsItem {
+      width: 150px;
+    }
+
+  }
+  
+  & h2 {
+    text-align: center;
+    color: var.$color-black;
+    font-size: var.$font-size-header-link;
+    font-weight: 600;
+    margin-bottom: 30px;
+    
+  }
+  
+}

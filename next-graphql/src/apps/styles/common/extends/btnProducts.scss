@@ -1,0 +1,37 @@
+@use '../var';
+
+%btn-post__red{
+  color: var.$c80;
+  background-color: rgb(240, 240, 239);
+  border-radius: var.$border-radius-average;
+  height: 100%;
+  width: 100%;
+  border: 1px solid var.$ccb;
+  transition: all 0.3s ease;
+  background-color: var.$white;
+  box-shadow: var.$box-shadow;
+  font-size: 1.2rem;
+  &:hover {
+      background-color: red;
+    color: var.$white;
+  }
+}
+%btn-post__orange{
+  color: var.$c80;
+  background-color: rgb(240, 240, 239);
+  border-radius: var.$border-radius-average;
+  height: 100%;
+  width: 100%;
+  border: 1px solid var.$ccb;
+  transition: all 0.3s ease;
+  background-color: var.$white;
+  box-shadow: var.$box-shadow;
+  font-size: 1.2rem;
+  &:hover {
+    background-color: orange;
+    color: var.$white;
+  }
+    }
+    
+
+

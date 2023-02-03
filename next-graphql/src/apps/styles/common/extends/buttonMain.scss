@@ -1,0 +1,12 @@
+@use "scss/common/var";
+
+%buttonMain {
+  width: 100%;
+  box-shadow: var.$box-shadow;
+  padding: var.$spasing-button;
+  border-radius: var.$border-radius-button;
+  box-sizing: border-box;
+  color: var.$white;
+  font-size: var.$font-size-button;
+  transition: all 0.2s ease-in;
+}

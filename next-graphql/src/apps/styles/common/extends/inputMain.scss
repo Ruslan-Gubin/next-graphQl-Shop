@@ -1,0 +1,16 @@
+@use '../var';
+
+%input {
+  font-family: var.$ff-Gilroy-Regular;
+  border: 1px solid var.$color-dark-grey;
+  border-radius: var.$border-radius-button;
+  padding: 7px 0px 7px 10px;
+  font-size: var.$font-size-button;
+  color: var.$color-header-bg-dark;
+  margin-top: var.$spasing-small;
+
+  &:focus {
+    border: 1px solid var.$color-green;
+    box-shadow: var.$box-shadow;
+  }
+}

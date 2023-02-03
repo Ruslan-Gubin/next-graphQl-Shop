@@ -14,24 +14,28 @@
     background-color: rgb(41, 77, 92);
   }
   & img {
-   width: 40px;
-   height: 40px;
- }
- 
- & .nameLink {
-   position: absolute;
-   top: 19px;
-   left: 23%;
-   color: rgb(215, 215, 215);
-   font-size: large;
-   font-weight: 600;
- }
+    width: 40px;
+    height: 40px;
+  }
+
+  & .nameLink {
+    position: absolute;
+    top: 19px;
+    left: 23%;
+    color: rgb(215, 215, 215);
+    font-size: large;
+    font-weight: 600;
+  }
 }
 
 .root {
   background-color: rgba(50, 54, 60, 0.995);
   color: rgb(217, 217, 217);
+  position: sticky;
+  top: 0;
   width: 330px;
+  height: 100vh;
+
   & .header {
     & .headerItem {
       display: flex;
@@ -65,24 +69,38 @@
     padding: 20px;
     padding-left: 10px;
     cursor: pointer;
-    
+
     & .navItem {
       @extend %navItem;
       background-color: rgba(88, 88, 88, 0.172);
     }
-    
+
     .active {
       @extend %navItem;
       background-color: rgb(41, 77, 92);
-     }
+    }
+  }
+}
 
-    
-    
-    
-    
-    
-    
-    
-    
+.smallAside {
+  background-color: rgba(50, 54, 60, 0.995);
+  width: 40px;
+  padding-top: 85px;
+  position: relative;
+  & .logo {
+    cursor: pointer;
+    background-color: rgba(50, 54, 60, 0.995);
+    position: relative;
+  margin-bottom: 20px;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  & img {
+    width: 80%;
+    height: 80%;
+  }
   }
 }

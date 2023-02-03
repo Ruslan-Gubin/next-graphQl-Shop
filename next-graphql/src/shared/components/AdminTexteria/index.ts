@@ -1,0 +1,1 @@
+export { AdminTexteria } from "./AdminTexteria";

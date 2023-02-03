@@ -1,0 +1,19 @@
+
+
+%footer-links {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    flex-wrap: wrap;
+  }
+  %footer-links-a {
+    color: #fff;
+    margin: 0 10px;
+    display: inline-block;
+    transition: 0.5s;
+    &:hover {
+            transform: translateY(-10px);
+          }
+  }

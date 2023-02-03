@@ -1,0 +1,1 @@
+export { NoContentQuestion } from "./NoContentQuestion";

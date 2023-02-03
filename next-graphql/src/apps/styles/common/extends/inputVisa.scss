@@ -1,0 +1,11 @@
+@use '../../common/var';
+
+%inputVisa {
+  background-color:rgba(254, 254, 254, 0);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.151);
+  width: 100%;
+  font-size: var.$font-size-button;
+  margin-top: var.$spasing-small;
+  padding-bottom: var.$spasing-small;
+  color: var.$color-black-hover;
+}

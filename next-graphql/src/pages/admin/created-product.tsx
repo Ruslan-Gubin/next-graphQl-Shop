@@ -1,11 +1,12 @@
-import { AdminLayout } from '@/widgets/AdminLayout/components/AdminLayout';
-import React from 'react';
+import { CreatedProducts } from '@/features';
+import { AdminLayout } from '@/widgets';
+
 
 const CreatedProduct = () => {
   return (
-    <AdminLayout keywords='AddWarehouse' title='AddWarehouse' >
-      CreatedProduct
-    </AdminLayout>
+    <AdminLayout keywords='Created Product' title='Created Product' >
+      <CreatedProducts />
+    </AdminLayout> 
   );
 };
 

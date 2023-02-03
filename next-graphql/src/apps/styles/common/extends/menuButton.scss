@@ -1,0 +1,13 @@
+@use '../var';
+
+%buttons {
+  margin-bottom: var.$spasing-small;
+  margin-left: var.$spasing-small;
+  border-radius: var.$border-radius-button;
+  box-shadow: var.$box-shadow;
+  border: 1px solid rgba(255, 255, 255, 0.112);
+  color: var.$color-card-bg;
+  padding: var.$spasing-small;
+  cursor: pointer;
+  transition: all .6s ease;
+}

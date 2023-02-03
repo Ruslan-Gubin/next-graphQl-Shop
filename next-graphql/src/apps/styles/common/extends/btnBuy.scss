@@ -1,0 +1,12 @@
+@use '../var' as *;
+%btn-buy {
+  font-size: $border-radius-average;
+  color: $ccb;
+  background-image: $linear-gradient-grey;
+  transition: $transition-ease;
+  border-radius: 10px;
+  &:hover {
+    color: rgb(224, 224, 224);
+    box-shadow: $box-shadow;
+  }
+}

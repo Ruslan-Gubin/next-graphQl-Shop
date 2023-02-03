@@ -1,0 +1,148 @@
+@mixin scloll-main($width, $trumb-color, $trumb-radius, $track-color) {
+  ::-webkit-scrollbar {
+    width: $width;
+    height: $width;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: $trumb-color;
+    border-radius: $trumb-radius;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: $track-color;
+  }
+}
+
+%birdie {
+  position: relative;
+  top: 1px;
+  width: 8px;
+  height: 2px;
+  background-color: rgb(111, 110, 110);
+  transition: all 0.3s ease;
+  &::after {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: 3px;
+    width: 8px;
+    height: 2px;
+    background-color: rgb(111, 110, 110);
+    rotate: (-85deg);
+  }
+}
+
+.root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & .initiaValue {
+    background-color: white;
+    padding: 8px 15px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.243);
+    cursor: pointer;
+    & .value {
+      display: flex;
+      align-items: center;
+
+      cursor: pointer;
+      color: black;
+    }
+
+    & p {
+      margin-right: 10px;
+    }
+
+    & .birdie {
+      rotate: (45deg);
+      @extend %birdie;
+    }
+    & .birdieActive {
+      rotate: (-135deg);
+      @extend %birdie;
+    }
+  }
+
+  & .arrow {
+    position: relative;
+    top: 7px;
+    rotate: (-45deg);
+    background-color: white;
+    width: 15px;
+    height: 15px;
+  }
+
+  & .dropContainer {
+    position: absolute;
+    top: 45px;
+    left: -65px;
+    width: 330px;
+    padding: 20px;
+    background-color: white;
+    z-index: 2;
+    border-radius: 10px;
+    box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.243);
+    max-height: 500px;
+    overflow: scroll;
+
+    &::-webkit-scrollbar {
+      width: 4px;
+      height: 0px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgb(155, 155, 155);
+      border-radius: 15px;
+      height: 80%;
+    }
+
+    & .dropItem {
+      background-color: white;
+      margin-bottom: 10px;
+      padding-left: 15px;
+
+      & .textItem {
+        position: relative;
+        color: rgb(50, 50, 50);
+        font-size: 1.2rem;
+        &::after {
+          content: "";
+          position: absolute;
+          top: 0px;
+          left: -30px;
+          width: 20px;
+          height: 20px;
+          border: 1px solid rgba(138, 138, 138, 0.49);
+          border-radius: 50%;
+        }
+      }
+
+      & .active {
+        position: relative;
+        color: rgb(50, 50, 50);
+        font-size: 1.2rem;
+        &::before {
+          content: "";
+          position: absolute;
+          top: 5px;
+          left: -25px;
+          width: 10px;
+          height: 10px;
+          background-color: rgb(170, 57, 214);
+          border-radius: 50%;
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          top: 0px;
+          left: -30px;
+          width: 20px;
+          height: 20px;
+          border: 2px solid rgb(170, 57, 214);
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}
