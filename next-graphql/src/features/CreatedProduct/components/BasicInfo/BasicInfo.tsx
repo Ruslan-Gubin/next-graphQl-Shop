@@ -25,11 +25,11 @@ const BasicInfo = () => {
         }
       />
       <CustomAdminInput
-        label="Product name"
-        value={basicValue.productName}
+        label="Name"
+        value={basicValue.name}
         setValue={(value) =>
           dispatch(
-            createdProductAction.getBasicValue({ key: "productName", value })
+            createdProductAction.getBasicValue({ key: "name", value })
           )
         }
       />

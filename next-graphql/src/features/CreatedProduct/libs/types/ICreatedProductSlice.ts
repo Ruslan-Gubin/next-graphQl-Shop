@@ -18,12 +18,12 @@ interface IAdditationSize extends Record<string, string> {
 }
 
 interface IBasicValue extends Record<string, string | number> {
-  // category: string;
-  // productName: string;
-  // price: number;
-  // oldPrice: number;
-  // count: number;
-  // description: string;
+  category: string;
+  name: string;
+  price: number;
+  oldPrice: number;
+  count: number;
+  description: string;
 }
 
 interface ICreatedProductSlice {

@@ -1,20 +1,22 @@
 import { GraphQLObjectType, GraphQLSchema } from "graphql";
-import { DirectorQuery, DirectorMutation } from "./direcrot/index.js";
-import { MovieQuery, MovieMutation, } from "./movie/index.js";
 import {QuestionQuery, QuestionMutation} from './question/index.js';
 import { helperSchema } from "../utils/helperSchema.js";
+import { PhotoProductMutation, PhotoProductQuery } from "./photoProduct/index.js";
+import { ProductQuery, ProductMutation } from "./product/index.js";
+import { BrandQuery, BrandMutation } from "./brand/index.js";
+import { CategoryQuery, CategoryMutation } from './category/index.js';
 
 const Query = new GraphQLObjectType({
   name: "Query",
   fields: {
-    ...helperSchema.assingObj(MovieQuery, DirectorQuery, QuestionQuery),
+    ...helperSchema.assingObj(QuestionQuery, PhotoProductQuery, ProductQuery, BrandQuery, CategoryQuery), 
   },
 });
 
 const Mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {
-    ...helperSchema.assingObj(DirectorMutation, MovieMutation, QuestionMutation),
+    ...helperSchema.assingObj(QuestionMutation, PhotoProductMutation, ProductMutation, BrandMutation, CategoryMutation),
   },
 });
 

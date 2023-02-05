@@ -1,24 +1,8 @@
 import { TypeRootState } from "@/apps/store/srote";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { checkImagesValidator } from "../helpers/checkImagesValidator";
+import { IImages, IinitialCreatedImages } from "../types/IinitialCreatedImages";
 
-interface IImages {
-  url: string;
-  public_id: string;
-}
-
-interface IOptionsBodyUpdate {
-  remainsImages?: (string | IImages)[];
-  imageRemovesUpdate: string[];
-  imageAddUpdate: string[];
-}
-
-interface IinitialCreatedImages {
-  images: (string | IImages)[];
-  updatedStatus: boolean,
-  optionsBodyUpdate: IOptionsBodyUpdate;
-  error: {images: string}
-}
 
 const initialState: IinitialCreatedImages = { 
 images: [],

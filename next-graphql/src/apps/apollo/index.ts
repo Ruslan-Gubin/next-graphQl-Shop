@@ -13,4 +13,8 @@ export {
   DELETE_QUESTION,
   ONE_QUESTIONS,
   CHECK_NEW_QUESTIONS,
-} from './questionsRequest'
+} from "./questionsRequest";
+export { CREATED_PRODUCT } from "./productRequest/";
+export { CREATED_CATEGORY } from "./CategoryRequest";
+export { CREATED_BRAND } from "./BrandRequest";
+export { CREATED_PHOTOS } from "./photoRequest/";
