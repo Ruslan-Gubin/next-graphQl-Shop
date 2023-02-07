@@ -1,4 +1,4 @@
-import { GraphQLList } from "graphql";
+import { GraphQLList, GraphQLNonNull, GraphQLString } from "graphql";
 import { ShcemaQuery } from "../../utils/ShcemaQuery.js";
 import { CategoryModel } from "./models.js";
 import { CategoryType } from "./types.js";
@@ -10,12 +10,16 @@ const { getMethods } = new ShcemaQuery({
 });
 
 const categoryMethods = {
-  // checkVieweds: {
-  //   type: new GraphQLList(PhotoProductType),
-  //  resolve(parent, args) {
-  //     return  PhotoProductModel.find({viewed: false})
-  //   }
-  // }
+  sortCategory: {
+    type: new GraphQLList(CategoryType),
+    args: {
+      department: {type : new GraphQLNonNull(GraphQLString)},
+      sub_department: {type : new GraphQLNonNull(GraphQLString)},
+    },
+   resolve(parent, args) {
+      return  CategoryModel.find({department: args.department, sub_department: args.sub_department})
+    }
+  }
  
 }
 

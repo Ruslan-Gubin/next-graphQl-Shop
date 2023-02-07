@@ -1,21 +1,14 @@
 import {
-  graphql,
-  GraphQLBoolean,
-  GraphQLFloat,
-  GraphQLID,
   GraphQLInt,
   GraphQLList,
   GraphQLNonNull,
-  GraphQLObjectType,
   GraphQLScalarType,
   GraphQLString,
 } from "graphql";
-import { cloudinaryImagesMethod } from "../../utils/cloudinaryImagesMethod.js";
 import { helperSchema } from "../../utils/index.js";
 import { BrandModel } from "../brand/models.js";
 import { CategoryModel } from "../category/models.js";
 import { PhotoProductModel } from "../photoProduct/models.js";
-import { PhotoProductType } from "../photoProduct/types.js";
 import { ProductModel } from "./models.js";
 import { ProductType } from "./types.js";
 
@@ -48,19 +41,6 @@ const productMutation = {
         args.oldPrice &&
         Math.ceil(((args.price - args.oldPrice) / args.oldPrice) * 100);
 
-      // const imageUrl = [];
-
-      // const files = args.images;
-
-      // for (const file of files) {
-      //   const newImage = await cloudinaryImagesMethod(file, "Products GpaphQL");
-      //   imageUrl.push(newImage);
-      // }
-
-      // const photos = await new PhotoProductModel({
-      //   images: imageUrl.map((item) => item),
-      // }).save();
-
       const newProduct = await new ProductModel({
         name: args.name,
         description: args.description,
@@ -78,17 +58,17 @@ const productMutation = {
 
       await BrandModel.findByIdAndUpdate(
         { _id: args.brandId },
-        { $push: { products: newProduct._id, category: args.categoryId } }
+        { $addToSet: { products: newProduct._id, category: args.categoryId } }
       );
 
       await CategoryModel.findByIdAndUpdate(
         { _id: args.categoryId },
-        { $push: { products: newProduct._id, brands: args.brandId } }
+        { $addToSet: { products: newProduct._id, brands: args.brandId } }
       );
 
       await PhotoProductModel.findByIdAndUpdate(
         { _id: args.photo_id },
-        { product_id:  newProduct._id}
+        { product_id: newProduct._id }
       );
 
       return newProduct;

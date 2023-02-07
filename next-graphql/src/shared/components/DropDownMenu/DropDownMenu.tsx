@@ -6,10 +6,12 @@ import styles from "./DropDownMenu.module.scss";
 interface Ioption {
   value: string;
   label: string;
+  id?: string;
+  subdepartment?: Ioption[];
 }
 
 interface IDropDownMenu {
-  options: IOptionDepartment[] | undefined;
+  options: Ioption[] ;
   onChange: (value: IOptionDepartment) => void;
   value: Ioption;
 }

@@ -18,21 +18,29 @@ interface IAdditationSize extends Record<string, string> {
 }
 
 interface IBasicValue extends Record<string, string | number> {
-  category: string;
   name: string;
-  price: number;
-  oldPrice: number;
-  count: number;
+  price: number | string;
+  oldPrice: number | string;
+  count: number | string;
   description: string;
 }
 
 interface ICreatedProductSlice {
   departmentMenu: IOptionDepartment;
   subdepartmentMenu: Ioption;
-  categoriesMenu: Ioption;
+  categoriesMenu: { value: string; label: string; id: string | undefined };
+  brandMenu: { value: string; label: string; id: string | undefined };
   additationalOption: IAdditationalOption;
   additationSize: IAdditationSize;
   basicValue: IBasicValue;
+  categoryValue: string | number;
+  brandValue: string | number;
+  colorMenu: { value: string; label: string };
 }
 
-export type { ICreatedProductSlice };
+export type {
+  ICreatedProductSlice,
+  IBasicValue,
+  IAdditationalOption,
+  IAdditationSize,
+};

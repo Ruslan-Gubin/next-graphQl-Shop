@@ -7,8 +7,8 @@ const CategoryType = new GraphQLObjectType({
   fields: () => ({ 
     name: {type: new GraphQLNonNull(GraphQLString)},
     _id: {type: GraphQLString},
-    depantment: { type: new GraphQLNonNull(GraphQLString)},
-    sub_depantment: { type: new GraphQLNonNull(GraphQLString)},
+    department: { type: new GraphQLNonNull(GraphQLString)},
+    sub_department: { type: new GraphQLNonNull(GraphQLString)},
     products: {
       type: new GraphQLList(ProductType),
       resolve(parent, args) {

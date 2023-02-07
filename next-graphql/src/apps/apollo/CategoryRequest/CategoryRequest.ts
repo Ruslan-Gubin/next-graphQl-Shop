@@ -1,32 +1,13 @@
 import { gql } from "@apollo/client";
 
-// const ALL_PRODUCTS = gql`
-//   query {
-//     questions {
-//       viewed
-//       _id
-//       dialog {
-//         name
-//         text
-//         time
-//       }
-//     }
-//   }
-// `;
-
-// const ONE_PRODUCT = gql`
-//   query ($id: ID) {
-//     question: question(id: $id) {
-//       viewed
-//       _id
-//       dialog {
-//         name
-//         text
-//         time
-//       }
-//     }
-//   }
-// `;
+const SORT_CATEGORY = gql`
+query($department: String!, $sub_department: String!){
+ sortCategory(department:$department,sub_department: $sub_department){
+   name
+   _id
+ }
+ }
+`;
 
 const CREATED_CATEGORY = gql`
 mutation(
@@ -34,7 +15,7 @@ mutation(
   $department: String! 
   $sub_department: String! 
 ) {
- data: createdCategory(
+  createdCategory(
     categoryName: $categoryName
     department: $department
     sub_department: $sub_department
@@ -47,4 +28,5 @@ mutation(
 
 export {
   CREATED_CATEGORY,
+  SORT_CATEGORY,
 };

@@ -1,1 +1,1 @@
-export { CREATED_BRAND } from "./brandRequest";
+export { CREATED_BRAND, ALL_BRENDS } from "./brandRequest";

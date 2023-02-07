@@ -61,6 +61,10 @@ const createdProductImagesSlice = createSlice({
         "Добавьте минимум 1 фото"
       );
     },
+
+    clearImages(state) {
+      state.images = []
+    },
    
 
   },

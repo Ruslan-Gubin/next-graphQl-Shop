@@ -4,7 +4,7 @@ import styles from './AdminTexteria.module.scss';
 
 interface IAdminTexteria {
   label: string
-  width: number
+  width: number | string
   setValue: (value: string) => void
   value: string | number
 }

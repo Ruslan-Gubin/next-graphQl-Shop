@@ -1,18 +1,13 @@
 import { gql } from "@apollo/client";
 
-// const ALL_PRODUCTS = gql`
-//   query {
-//     questions {
-//       viewed
-//       _id
-//       dialog {
-//         name
-//         text
-//         time
-//       }
-//     }
-//   }
-// `;
+const ALL_BRENDS = gql`
+  query{
+  brands{
+    name
+    _id
+  }
+}
+`;
 
 // const ONE_PRODUCT = gql`
 //   query ($id: ID) {
@@ -32,7 +27,7 @@ const CREATED_BRAND = gql`
 mutation(
   $brand_name: String!
 ) {
- data:  createdBrend(
+   createdBrend(
     brand_name: $brand_name
   ) {
     _id
@@ -43,4 +38,5 @@ mutation(
 
 export {
   CREATED_BRAND, 
+  ALL_BRENDS,
 };

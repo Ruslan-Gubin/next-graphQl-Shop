@@ -1,1 +1,1 @@
-export { CREATED_CATEGORY } from "./CategoryRequest";
+export { CREATED_CATEGORY, SORT_CATEGORY } from "./CategoryRequest";

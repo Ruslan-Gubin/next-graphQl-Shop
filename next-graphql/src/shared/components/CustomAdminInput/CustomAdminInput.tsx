@@ -4,7 +4,7 @@ import styles from './CustomAdminInput.module.scss';
 
 interface ICustomAdminInput {
   value: string | number;
-  setValue: (value: string | number) => void
+  setValue?: (value: string | number) => void
   label: string
   type?: 'number' | 'string'
 }
@@ -21,7 +21,7 @@ const CustomAdminInput: FC<ICustomAdminInput> = ({ value, setValue, label,type='
         id="customInput"
         className={styles.input}
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => setValue && setValue(e.target.value)}
       />
     </div>
   );
