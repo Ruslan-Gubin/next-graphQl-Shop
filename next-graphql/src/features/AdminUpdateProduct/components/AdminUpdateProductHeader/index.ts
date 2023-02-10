@@ -1,0 +1,1 @@
+export { AdminUpdateProductHeader } from "./AdminUpdateProductHeader";

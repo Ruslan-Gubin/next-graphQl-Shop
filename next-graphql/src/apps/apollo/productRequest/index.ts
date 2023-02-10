@@ -1,1 +1,1 @@
-export { ALL_PRODUCTS, CREATED_PRODUCT, ONE_PRODUCT } from "./productRequest";
+export { ALL_PRODUCTS, CREATED_PRODUCT, ONE_PRODUCT,GET_PRODUCT_UPDATE } from "./productRequest";

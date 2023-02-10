@@ -4,7 +4,7 @@ import React from 'react';
 const Notification = () => {
   return (
     <AdminLayout keywords='Notification' title='Notification' >
-      Notification
+      In development
     </AdminLayout>
   );
 };

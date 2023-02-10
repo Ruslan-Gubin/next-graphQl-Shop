@@ -1,11 +1,11 @@
 import { FC, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { DropDownMenu } from "@/shared";
-import { OPTIONS_DEPARTMENT } from "../../constants/optionsMenu";
 import { createdProductAction } from "../../libs/store/createdProductSlice";
-import styles from "./CreatedProductHeader.module.scss";
 import { Ioption, IOptionDepartment } from "../../libs/types/IOptionsMenu";
 import { COLOR_OPTIONS } from "../../constants/colorOptions";
+import { OPTIONS_DEPARTMENT } from "@/apps/constants";
+import styles from "./CreatedProductHeader.module.scss";
 
 interface ICreatedProductHeader {
   sortCategory: { name: string; _id: string }[];

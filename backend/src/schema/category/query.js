@@ -1,4 +1,4 @@
-import { GraphQLList, GraphQLNonNull, GraphQLString } from "graphql";
+import {  GraphQLList, GraphQLNonNull, GraphQLString } from "graphql";
 import { ShcemaQuery } from "../../utils/ShcemaQuery.js";
 import { CategoryModel } from "./models.js";
 import { CategoryType } from "./types.js";
@@ -19,7 +19,9 @@ const categoryMethods = {
    resolve(parent, args) {
       return  CategoryModel.find({department: args.department, sub_department: args.sub_department})
     }
-  }
+  },
+
+  
  
 }
 

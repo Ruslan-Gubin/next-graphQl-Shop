@@ -1,0 +1,48 @@
+
+.root {
+  padding: 15px 0;
+
+  & .btn {
+    padding: 20px 10px;
+    background-image: linear-gradient(to top, (rgb(220, 220, 220), white));
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 50%;
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.224);
+    
+    &:active {
+      box-shadow: none;
+    }
+    
+    & .btn_goback {
+      background-color: rgb(65, 65, 65);
+      height: 4px;
+      width: 28px;
+      position: relative;
+      border-radius: 15px;
+      
+      &::before{
+        content: '';
+        position: absolute;
+        top: 4px;
+        left: 0;
+        height: 4px;
+        width: 15px;
+        border-radius: 15px;
+        background-color: rgb(65, 65, 65);
+        rotate: (30deg);
+      }
+      &::after{
+        content: '';
+        position: absolute;
+        top: -4px;
+        left: 0;
+        height: 4px;
+        width: 15px;
+        border-radius: 15px;
+        background-color: rgb(65, 65, 65);
+        rotate: (-30deg);
+      }
+    }
+
+  }
+}

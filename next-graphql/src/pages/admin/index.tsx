@@ -4,7 +4,7 @@ import React from 'react';
 const Admin = () => {
   return (
     <AdminLayout keywords='Admin main' title='Admin' >
-      Admin content
+     In development
     </AdminLayout>
   );
 };

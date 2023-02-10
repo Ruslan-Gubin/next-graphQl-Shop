@@ -1,0 +1,1 @@
+export { AdminProductSceleton } from "./AdminProductSceleton";

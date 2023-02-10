@@ -7,15 +7,17 @@ interface ICustomAdminInput {
   setValue?: (value: string | number) => void
   label: string
   type?: 'number' | 'string'
+  name?: string
 }
 
-const CustomAdminInput: FC<ICustomAdminInput> = ({ value, setValue, label,type='string'}) => {
+const CustomAdminInput: FC<ICustomAdminInput> = ({name, value, setValue, label,type='string'}) => {
  
   return (
     <div 
     className={styles.root}>
       <label className={styles.label} htmlFor="customInput">{label}</label>
       <input
+      name={name}
       autoComplete="off"
       type={type}
         id="customInput"

@@ -11,15 +11,25 @@ const productSchema = new Schema(
       type: String,
       require: true,
     },
+    department: {
+      type: String,
+      require: true,
+    },
+    sub_department: {
+      type: String,
+      require: true,
+    },
     price: {
       type: Number,
       require: true,
     },
     oldPrice: {
       type: Number,
+      default: 0
     },
     discount: {
       type: Number,
+      default: 0
     },
     count: {
       type: Number,

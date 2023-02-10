@@ -1,11 +1,12 @@
 import { graphql, GraphQLBoolean, GraphQLID, GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLString } from "graphql";
-import { cloudinaryImagesMethod } from "../../utils/cloudinaryImagesMethod.js";
+import { cloudinaryImagesMethod, cloudinaryImagesRemove } from "../../utils/cloudinaryImagesMethod.js";
 import { helperSchema } from "../../utils/helperSchema.js";
+import { PhotoTypeScalar } from "../product/mutation.js";
 import { PhotoProductModel } from "./models.js";
 import { PhotoProductType } from './types.js';
 
 
-const photoProductMutation = {
+export const photoProductMutation = {
   createdPhoto: {
     type: PhotoProductType,  
     args: {
@@ -28,24 +29,38 @@ const photoProductMutation = {
       return newPhotos;
     },
   },
-  // addCommentDialog: {
-  //   type: QuestionType,
-  //   args: {
-  //     id: { type: new GraphQLNonNull(GraphQLID) },
-  //     text: { type: new GraphQLNonNull(GraphQLString) },
-  //     name: { type: new GraphQLNonNull(GraphQLString) },
-  //     viewed: { type: new GraphQLNonNull(GraphQLBoolean) },
-  //   },
-  //   async resolve(parent, args) {
-  //     const name = args.name ? args.name : 'Guest'
-  //     const dialog = { text: args.text, name, time: formatedDate() };
-  //     return await QuestionModel.findByIdAndUpdate(
-  //       args.id,
-  //       { $push: { dialog: dialog }, viewed: args.viewed },
-  //       { returnDocument: "after" }
-  //     );
-  //   },
-  // },
+  updatePhoto: {
+    type: PhotoProductType,
+    args: {
+      photo_id: { type : new GraphQLNonNull(GraphQLID) }, 
+      images_remove: { type : new GraphQLList(GraphQLString) },
+      images_add: { type : new GraphQLList(GraphQLString) },
+      images_old: { type: new GraphQLList(PhotoTypeScalar)},
+    },
+    async resolve(parent, args) {
+      
+      const newImagesArray = [...args.images_old]
+
+      if (args.images_remove.length) {
+     for (const imag of args.images_remove) {
+      await cloudinaryImagesRemove(imag)
+      }
+      }
+
+      if (args.images_add.length) {
+        for (const imag of args.images_add) {
+          const newImage = await cloudinaryImagesMethod(imag, "Products GpaphQL");
+          newImagesArray.push(newImage);
+        }
+      }
+     
+     return await PhotoProductModel.findByIdAndUpdate(args.photo_id,
+      {images: newImagesArray},
+      {returnDocument: "after"}
+      )
+
+    },
+  },
   // removeDialog: {
   //   type: QuestionType,
   //   args: {

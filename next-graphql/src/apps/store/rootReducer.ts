@@ -13,6 +13,8 @@ const rootReducer = combineReducers({
   adminQuestion: redusers.adminQuestionReducer,
   createdProduct: redusers.createdProductReducer,
   createdProductImages: redusers.createdProductImagesReducer,
+  updateProduct: redusers.updateProductReducer,
+  updateOption: redusers.updateOptionReducer,
   // [rtkQuery.productsApi.reducerPath]: rtkQuery.productsApi.reducer,
 });
 
@@ -25,6 +27,7 @@ const config = getPersistConfig({
     "product",
     "burgerLayout",
     "adminNotification",
+    // "updateOption",
     // rtkQuery.productsApi.reducerPath,
   ],
   rootReducer,

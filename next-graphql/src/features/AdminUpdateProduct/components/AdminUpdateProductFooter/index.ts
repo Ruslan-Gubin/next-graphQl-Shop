@@ -1,0 +1,1 @@
+export { AdminUpdateProductFooter } from "./AdminUpdateProductFooter";

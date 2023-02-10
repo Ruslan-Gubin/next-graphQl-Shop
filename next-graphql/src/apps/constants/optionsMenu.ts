@@ -1,4 +1,17 @@
-import { Ioption, IOptionDepartment } from "../libs/types/IOptionsMenu";
+
+interface Ioption {
+  value: string;
+  label: string;
+  id?: string;
+}
+
+interface IOptionDepartment {
+  value: string;
+  label: string;
+  subdepartment: Ioption[];
+  id?: string
+}
+
 
 const OPTIONS_STATIONERY_SUBDEPARTMENT: Ioption[] = [
   { value: "Бумажная продукция", label: "bumazhnaya-produktsiya" },

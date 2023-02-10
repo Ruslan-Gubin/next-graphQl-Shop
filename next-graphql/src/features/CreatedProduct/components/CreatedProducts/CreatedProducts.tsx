@@ -107,6 +107,10 @@ const CreatedProducts: FC = () => {
         photo_count: images.length,
         brandId,
         categoryId,
+
+        department: createdProductState.departmentMenu.label,
+        sub_department: createdProductState.subdepartmentMenu.label,
+
         count: Number(createdProductState.basicValue.count),
         price: Number(createdProductState.basicValue.price),
         oldPrice: Number(createdProductState.basicValue.oldPrice),

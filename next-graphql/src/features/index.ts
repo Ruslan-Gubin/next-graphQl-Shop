@@ -44,3 +44,15 @@ export {
   createdProductImagesReducer,
   selectCreatedProductImages,
 } from "./CreatedProduct";
+export {
+  AdminProductManagment,
+  selectUpdateProduct,
+  updateProductAction,
+  updateProductReducer,
+} from "./AdminProductManagment";
+export {
+  AdminUpdateProduct,
+  selectUpdateOption,
+  updateOptionAction,
+  updateOptionReducer,
+} from "./AdminUpdateProduct";

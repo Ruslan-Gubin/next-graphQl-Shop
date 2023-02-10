@@ -1,0 +1,1 @@
+export { AdminProductManagmentFooter } from "./AdminProductManagmentFooter";

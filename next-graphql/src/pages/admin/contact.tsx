@@ -4,7 +4,7 @@ import React from 'react';
 const Contact = () => {
   return (
     <AdminLayout keywords='Contact' title='Contact' >
-      Contact
+     In development
       </AdminLayout>
   );
 };

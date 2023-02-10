@@ -4,7 +4,7 @@ import React from 'react';
 const StatisticsProducts = () => {
   return (
     <AdminLayout keywords='AddWarehouse' title='AddWarehouse' >
-  StatisticsProducts
+  In development
     </AdminLayout>
   );
 };

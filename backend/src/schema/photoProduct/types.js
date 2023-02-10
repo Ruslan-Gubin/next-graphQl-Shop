@@ -24,4 +24,4 @@ const PhotoProductType = new GraphQLObjectType({
   }),
 });
 
-export { PhotoProductType }
+export { PhotoProductType, PhotoType }
