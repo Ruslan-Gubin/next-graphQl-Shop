@@ -12,6 +12,8 @@ const AddProductImages = () => {
 
   return (
       <section className={styles.root}>
+        <div className={styles.product__imag_container}>
+
     <ul className={styles.imagesContainer}>
       {images.map((item, index, arr) => (
         <li 
@@ -21,8 +23,6 @@ const AddProductImages = () => {
       </li>
         ))}
     </ul>
-
-
         {images.length < 5 &&
         <>
         <img 
@@ -33,8 +33,7 @@ const AddProductImages = () => {
         <input ref={fileRef} type="file" onChange={(e) => changeFile(e)} hidden />
         </>
       }
-
-
+      </div>
       </section>
   );
 };

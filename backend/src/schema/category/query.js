@@ -20,7 +20,16 @@ const categoryMethods = {
       return  CategoryModel.find({department: args.department, sub_department: args.sub_department})
     }
   },
-
+  sortCategoryFromCatalog: {
+    type: new GraphQLList(CategoryType),
+    args: {
+      department: { type: new GraphQLNonNull(GraphQLString) },
+    },
+    resolve(parent, args) {
+      return  CategoryModel.find({department: args.department})
+    }
+  },
+  
   
  
 }

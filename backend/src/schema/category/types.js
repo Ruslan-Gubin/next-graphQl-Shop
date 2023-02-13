@@ -1,6 +1,9 @@
 import { GraphQLList,  GraphQLNonNull, GraphQLObjectType, GraphQLString } from "graphql";
 import { ProductModel, ProductType,  } from "../product/index.js";
 import { BrandModel, BrandType } from '../brand/index.js';
+import { PhotoType } from "../photoProduct/types.js";
+
+
 
 const CategoryType = new GraphQLObjectType({
   name: "Category",
@@ -8,6 +11,7 @@ const CategoryType = new GraphQLObjectType({
     name: {type: new GraphQLNonNull(GraphQLString)},
     _id: {type: GraphQLString},
     department: { type: new GraphQLNonNull(GraphQLString)},
+    image: { type : PhotoType},
     sub_department: { type: new GraphQLNonNull(GraphQLString)},
     products: {
       type: new GraphQLList(ProductType),

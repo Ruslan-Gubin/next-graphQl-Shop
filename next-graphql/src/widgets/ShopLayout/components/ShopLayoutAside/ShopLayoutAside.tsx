@@ -1,0 +1,88 @@
+import { OPTIONS_DEPARTMENT } from '@/apps/constants';
+import { IOptionDepartment } from '@/apps/constants/optionsMenu';
+import { burgerLayoutAction, selectLayoutBurger } from '@/features';
+import { useHover } from '@/shared';
+import Link from 'next/link'
+import { useCallback, useEffect,  useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AsideCatehoryItem } from '../AsideCatehoryItem';
+
+
+import styles from './ShopLayoutAside.module.scss';
+
+const ShopLayoutAside = () => {
+  const {asideLayoutStatus} = useSelector(selectLayoutBurger)
+  const [activeDepartment, setActiveDepartment] = useState<string>('')
+  const [subDepartmentArray, setSubDepartmentArray] = useState<IOptionDepartment >({} as IOptionDepartment)
+
+
+  const handleActiveCategory = useCallback((label: string) => {
+    setActiveDepartment(label)
+  },[activeDepartment]) 
+  const dispatch = useDispatch()
+
+
+  const handleCloseAside = () => {
+    dispatch(burgerLayoutAction.asideLayoutToggle())
+  }
+
+  useEffect(() => {
+    const departmentFilter =  OPTIONS_DEPARTMENT.find(item => item.label === activeDepartment)
+    if (departmentFilter) {
+      setSubDepartmentArray(departmentFilter)
+    }
+  },[activeDepartment])
+
+
+  return (
+    <div onClick={handleCloseAside} style={asideLayoutStatus ? {left: 0} : {left: '-5000px'} } className={styles.wrapper}>
+      <aside onClick={(e) => e.stopPropagation()} style={asideLayoutStatus ? { left: 0 } : {left: '-530px'}} className={styles.root}>
+      <section className={styles.category__root}>
+      <ul>
+      {OPTIONS_DEPARTMENT.map(department => (
+        <Link onClick={handleCloseAside} key={department.value}  href={department.href} className={styles.link}>
+        <AsideCatehoryItem 
+        handleActiveCategory={handleActiveCategory}
+        activeDepartment={activeDepartment}
+        setActiveDepartment={setActiveDepartment}
+        department={department}
+        />
+        </Link>
+        ))}
+        </ul>
+        </section>
+
+{activeDepartment && 
+  <>
+  <section className={styles.sub_category__root}>
+  <Link onClick={handleCloseAside} href={`${subDepartmentArray?.href}`}>
+  <h2>{subDepartmentArray.value}</h2>
+  </Link>
+<ul>
+        {subDepartmentArray?.subdepartment && subDepartmentArray?.subdepartment.map(subDepartment => (
+          <Link onClick={handleCloseAside} href={`${subDepartmentArray.href}/${subDepartment.label}`} key={subDepartment.value}>
+          <li className={styles.sub_category__item} key={subDepartment.value}>
+              <p>{subDepartment.value}</p>
+          </li>
+             </Link>
+            ))}
+
+        </ul>
+      </section>
+      
+      <section className={styles.image__root}>
+        <figure>
+          <img src={subDepartmentArray.img_layout} alt="" />
+        </figure>
+      </section>
+            </>
+          }
+   
+          <div onClick={handleCloseAside}  className={styles.close__aside}></div>
+        
+          </aside>
+           </div>
+        );
+      };
+      
+      export { ShopLayoutAside };

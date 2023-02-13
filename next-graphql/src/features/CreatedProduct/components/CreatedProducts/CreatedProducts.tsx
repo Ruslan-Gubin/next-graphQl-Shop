@@ -36,8 +36,11 @@ const CreatedProducts: FC = () => {
   const [createdBrand] = useMutation(CREATED_BRAND);
   const [createdPhotos] = useMutation(CREATED_PHOTOS);
   const { images } = useSelector(selectCreatedProductImages);
+  const [categoryImag, setCategoryImag] = useState('')
+  const [brandImag, setBrandImag] = useState('')
   const [download, setDownload] = useState(true);
   const dispatch = useDispatch();
+
 
   const handleCreatedProduct = async () => {
     setDownload(false);
@@ -52,11 +55,13 @@ const CreatedProducts: FC = () => {
           categoryName: createdProductState.categoryValue,
           department: createdProductState.departmentMenu.label,
           sub_department: createdProductState.subdepartmentMenu.label,
+          imag: categoryImag,
         },
       })
         .then(({ data }) => {
           categoryId = data.createdCategory._id;
           refCategory();
+          setCategoryImag('')
           dispatch(
             createdProductAction.getCategoriesValue({
               value: {
@@ -73,10 +78,12 @@ const CreatedProducts: FC = () => {
       await createdBrand({
         variables: {
           brand_name: createdProductState.brandValue,
+          imag: brandImag,
         },
       })
         .then(({ data }) => {
           brandId = data.createdBrend._id;
+          setBrandImag('')
           refetchBrends();
           dispatch(
             createdProductAction.setBrandMenu({
@@ -148,6 +155,10 @@ const CreatedProducts: FC = () => {
         <section className={styles.main}>
           <div className={styles.basic}>
             <BasicInfo
+             brandImag={brandImag}
+             setBrandImag={setBrandImag}
+             categoryImag={categoryImag}
+             setCategoryImag={setCategoryImag}
               brandMenu={createdProductState.brandMenu}
               brandValue={createdProductState.brandValue}
               basicValue={createdProductState.basicValue}

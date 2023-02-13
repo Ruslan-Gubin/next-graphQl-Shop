@@ -1,1 +1,1 @@
-export { ShopLayout } from "./components/ShopLayout";
+export { ShopLayout, ShopLayoutAside } from "./components";

@@ -7,13 +7,8 @@ import { buttonIcon } from "../../lib/assets/buttonIcon";
 import { useDispatch, useSelector } from "react-redux";
 import { questionsAction, selectQuestions } from "../../lib/store";
 import { useMutation, useQuery } from "@apollo/client";
-import { ADD_COMMENT_QUESTION, ONE_QUESTIONS } from "@/apps/apollo";
+import { ADD_COMMENT_QUESTION, ONE_QUESTIONS  } from "@/apps/apollo";
 import { ADD_QUESTIONS } from "../../models/questionRequest";
-// import {
-//   ADD_COMMENT_QUESTION,
-//   ADD_QUESTIONS,
-//   ONE_QUESTIONS,
-// } from "../../models/questionRequest";
 
 const FooterButtonHelpers: FC = () => {
   const [createQuestion, {}] = useMutation(ADD_QUESTIONS);

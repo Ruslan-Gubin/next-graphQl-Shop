@@ -106,6 +106,7 @@ const productMutation = {
       )
       
       if (category.products.length === 0) {
+      await  cloudinaryImagesRemove(category.image.public_id).catch(error => console.log(error))
         await BrandModel.findByIdAndUpdate(args.brand_id,
           {$pull: {category: category._id}},
           {returnDocument: "after"} 
@@ -117,8 +118,9 @@ const productMutation = {
           {$pull: {products: args.product_id}},
           {returnDocument: "after"}       
           )
-
+ 
           if (brand.products.length === 0) {
+            await  cloudinaryImagesRemove(brand.image.public_id).catch(error => console.log(error))
             brand.remove()
             await CategoryModel.findByIdAndUpdate(args.category_id,
               {$pull: {brands: brand._id}}, 
@@ -168,5 +170,5 @@ const productMutation = {
 };
 
 const ProductMutation = helperSchema.assingObj(productMutation);
-console.log(ProductMutation);
+
 export { ProductMutation, PhotoTypeScalar };

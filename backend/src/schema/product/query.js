@@ -56,6 +56,44 @@ const questionMethods = {
         })
     }
   },
+  sortProductDepartment: {
+    type: new GraphQLList(ProductType),
+    args: {
+      department: {type : new GraphQLNonNull(GraphQLString)},
+      sortValue: {type : new GraphQLNonNull(GraphQLString)},
+    }, 
+    resolve(parent, args) {
+      if (args.sortValue === 'new') {
+       return ProductModel.find(
+          {
+            department: args.department,
+          }).sort({createdAt: -1}).limit(5)
+        }
+        if (args.sortValue === 'popular') {
+          return ProductModel.find(
+            {
+              department: args.department,
+            }).sort({views: 1}).limit(5) 
+        }
+    }
+  },
+  sortProductCatalog: {
+    type: new GraphQLList(ProductType),
+    args: {
+      department: {type : new GraphQLNonNull(GraphQLString)},
+      
+    }, 
+    resolve(parent, args) {
+      
+       return ProductModel.find(
+          {
+            department: args.department,
+          }).sort({createdAt: -1}).limit(0)
+   
+  
+        
+    }
+  },
 
 }
 

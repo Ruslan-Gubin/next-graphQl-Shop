@@ -1,0 +1,112 @@
+.wrapper {
+  background-color: rgba(69, 69, 69, 0.347);
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0px;
+  z-index: 4;
+  transition: all 0s ease;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .root {
+    height: 100%;
+    display: flex;
+    height: 100vh;
+    background-color: #fff;
+    position: absolute;
+    top: 0px;
+    left: -310px;
+    z-index: 2;
+    transition: all 0.7s ease;
+    & .link {
+      color: black;
+
+      &:hover {
+        color: white;
+      }
+    }
+
+    & .category__root {
+      height: 100%;
+      border-right: 3px solid rgba(155, 155, 155, 0.35);
+      padding: 30px;
+      overflow: scroll;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    & .sub_category__root {
+      z-index: 5;
+      padding: 30px;
+      transition: all 1s ease;
+      overflow: scroll;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: rgb(7, 7, 7);
+        padding: 10px 0;
+        transition: all 0.5s ease;
+
+        &:hover {
+          color: rgb(182, 31, 179);
+        }
+      }
+      & .sub_category__item {
+        min-width: 240px;
+        padding: 10px 0;
+        & p {
+          color: rgb(126, 126, 126);
+          font-size: 1.1rem;
+          &:hover {
+            color: black;
+          }
+        }
+      }
+    }
+
+    & .image__root {
+      padding: 20px 20px 0 20px;
+      display: flex;
+      position: relative;
+      & img {
+        width: 270px;
+        height: 325px;
+        border-radius: 10px;
+      }
+    }
+
+    & .close__aside {
+      cursor: pointer;
+      position: absolute;
+      top: 25px;
+      right: -40px;
+      width: 29px;
+      height: 4px;
+      border-radius: 13px;
+      background-color: rgb(255, 255, 255);
+      rotate: (45deg);
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 29px;
+        height: 4px;
+        border-radius: 13px;
+        background-color: rgb(255, 255, 255);
+        rotate: (-90deg);
+      }
+    }
+  }
+}

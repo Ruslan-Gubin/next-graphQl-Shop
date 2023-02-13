@@ -8,4 +8,4 @@ export {
   DropDownMenu,
 } from "./components";
 
-export { useAddImage } from "./lib/hooks";
+export { useAddImage, useHover } from "./lib/hooks";

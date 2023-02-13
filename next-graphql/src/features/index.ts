@@ -56,3 +56,6 @@ export {
   updateOptionAction,
   updateOptionReducer,
 } from "./AdminUpdateProduct";
+export { 
+  CatalogPage 
+} from "./CatalogPage";

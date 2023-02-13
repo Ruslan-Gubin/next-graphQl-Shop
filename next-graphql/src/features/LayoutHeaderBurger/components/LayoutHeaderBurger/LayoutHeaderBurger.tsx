@@ -7,7 +7,7 @@ const LayoutHeaderBurger = () => {
   const dispatch = useDispatch()
 
   const handleBurgerClick = () => {
-    dispatch(burgerLayoutAction.setActiveToggle())
+    dispatch(burgerLayoutAction.asideLayoutToggle())
   }
 
   return (

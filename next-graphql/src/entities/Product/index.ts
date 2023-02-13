@@ -3,4 +3,5 @@ export {
   ProductImage,
   ProductInfo,
   UserSettingsInfo,
+  ProductCategory,
 } from "./components";

@@ -1,0 +1,45 @@
+.root {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  & .loader{
+    display: flex;
+    margin: 0 auto;
+    border: 10px solid rgb(95, 2, 128);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    transition: all 1s ease;
+
+    animation-name: loaderMove;
+    animation-duration: 10s;
+    animation-direction: normal;
+    animation-iteration-count: infinite;
+
+    &::after {
+      content: '';
+      position: relative;
+      top: 20px;
+      left: 30px;
+      width: 100px;
+      height: 100px;
+      background-color: rgb(255, 255, 255);
+      rotate: (45deg);
+    }
+
+  }
+
+}
+
+@keyframes loaderMove {
+  0% {
+
+  } 
+  100% {
+    rotate: (3600deg);
+  } 
+}

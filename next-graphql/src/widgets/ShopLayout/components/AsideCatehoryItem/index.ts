@@ -1,0 +1,1 @@
+export { AsideCatehoryItem } from "./AsideCatehoryItem";

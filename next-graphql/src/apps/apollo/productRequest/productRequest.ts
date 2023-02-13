@@ -105,4 +105,54 @@ const GET_PRODUCT_UPDATE = gql`
   }
 `;
 
-export { GET_PRODUCT_UPDATE, ALL_PRODUCTS, ONE_PRODUCT, CREATED_PRODUCT };
+const SORT_PRODUCT_DEPARTMENT = gql`
+  query ($department: String!, $sortValue: String!) {
+    sortProductDepartment(department: $department, sortValue: $sortValue) {
+      name
+      _id
+      discount
+      price
+      oldPrice
+      name
+      photo {
+        images {
+          url
+        }
+      }
+    }
+  }
+`;
+
+const SORT_PRODUCT_CATALOG = gql`
+  query (
+  $department: String!
+  
+   
+   ) {
+    sortProductCatalog(
+    department: $department
+    
+    ) {
+      name
+      _id
+      discount
+      price
+      oldPrice
+      name
+      photo {
+        images {
+          url
+        }
+      }
+    }
+  }
+`;
+
+export {
+  GET_PRODUCT_UPDATE,
+  ALL_PRODUCTS,
+  ONE_PRODUCT,
+  CREATED_PRODUCT,
+  SORT_PRODUCT_DEPARTMENT,
+  SORT_PRODUCT_CATALOG,
+};

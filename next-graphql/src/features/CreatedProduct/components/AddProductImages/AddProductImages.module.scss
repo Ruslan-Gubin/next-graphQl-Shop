@@ -1,26 +1,32 @@
 .root {
   display: flex;
+  flex-direction: column;
   padding: 15px 0;
-  & .imagesContainer {
+  
+  & .product__imag_container {
     display: flex;
-  }
-  
-  & img {
-    width: 100px;
-    height: 100px;
-    cursor: pointer;
-  }
-  
-  & .images {
-    width: 100px;
-    height: 100px;
-    cursor: pointer;
-    border-radius: 15px;
-    transition: all 0.4s ease;
-    margin: 0 5px ;
-    &:hover{
+    
+    & .imagesContainer {
+      display: flex;
+    }
+    
+    & img {
+      width: 100px;
+      height: 100px;
+      cursor: pointer;
+    }
+    
+    & .images {
+      width: 100px;
+      height: 100px;
+      cursor: pointer;
+      border-radius: 15px;
+      transition: all 0.4s ease;
+      margin: 0 5px ;
+      &:hover{
       scale: 1.1;
     }
   }
-  
+}
+ 
 }

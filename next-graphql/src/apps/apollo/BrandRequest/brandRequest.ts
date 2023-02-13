@@ -9,31 +9,20 @@ const ALL_BRENDS = gql`
 }
 `;
 
-// const ONE_PRODUCT = gql`
-//   query ($id: ID) {
-//     question: question(id: $id) {
-//       viewed
-//       _id
-//       dialog {
-//         name
-//         text
-//         time
-//       }
-//     }
-//   }
-// `;
-
 const CREATED_BRAND = gql`
 mutation(
   $brand_name: String!
+  $imag: String!
 ) {
    createdBrend(
     brand_name: $brand_name
+    imag: $imag
   ) {
     _id
   }
 }
 `;
+
 
 
 export {

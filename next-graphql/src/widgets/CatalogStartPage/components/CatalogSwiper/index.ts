@@ -1,0 +1,1 @@
+export { CatalogSwiper } from "./CatalogSwiper";

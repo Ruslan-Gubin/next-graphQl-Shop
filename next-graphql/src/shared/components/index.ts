@@ -7,3 +7,5 @@ export { AdminOptionButton } from "./AdminOptionButton";
 export { DropDownMenu } from "./DropDownMenu";
 export { CustomAdminInput } from "./CustomAdminInput";
 export { AdminTexteria } from "./AdminTexteria";
+export { Loader } from "./Loader";
+export { DropDownCategory } from "./DropDownCategory";

@@ -1,0 +1,1 @@
+export { CatalogStartPage } from "./CatalogStartPage";

@@ -1,4 +1,5 @@
-import { graphql, GraphQLBoolean, GraphQLID, GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLString } from "graphql";
+import {  GraphQLNonNull, GraphQLString } from "graphql";
+import { cloudinaryImagesMethod } from "../../utils/cloudinaryImagesMethod.js";
 import { helperSchema } from "../../utils/helperSchema.js";
 import { CategoryModel } from "./models.js";
 import { CategoryType } from './types.js';
@@ -11,12 +12,17 @@ const categoryMutation = {
       categoryName: {type : new GraphQLNonNull(GraphQLString)},
       department: {type : new GraphQLNonNull(GraphQLString)},
       sub_department: {type : new GraphQLNonNull(GraphQLString)},
+      imag: { type: new GraphQLNonNull( GraphQLString) },
       },
-    resolve(parent, args) {
-      const newCategory = new CategoryModel({
+   async resolve(parent, args) {
+
+      const newImage = await cloudinaryImagesMethod(args.imag, "Category image");  
+
+      const newCategory = await new CategoryModel({
         name: args.categoryName,
         department: args.department,
         sub_department: args.sub_department,
+        image: newImage,
       }).save();
       return newCategory;
     },

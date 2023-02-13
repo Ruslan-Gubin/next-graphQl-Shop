@@ -3,6 +3,7 @@ interface ICategoryType {
   department: string;
   sub_department: string;
   products: string[];
+  image: string
   brands: string[];
   _id: string;
   __typename: string;

@@ -14,7 +14,11 @@ const brandSchema = new Schema(
     category: {
       type:  [String],
       require: true,
-    }
+    },
+    image: {
+      url: String,
+      public_id: String,
+    },
   },
   { timestamps: true }
 );

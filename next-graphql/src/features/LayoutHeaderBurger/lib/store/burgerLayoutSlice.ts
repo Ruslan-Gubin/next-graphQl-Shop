@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TypeRootState } from "@/apps/store/srote";
 
 interface IInitialState {
-  active: boolean
+  asideLayoutStatus: boolean
 }
 
 const initialState: IInitialState = {
-active: false
+  asideLayoutStatus: false
 };
 
 const burgerLayoutSlice = createSlice({
@@ -14,8 +14,12 @@ const burgerLayoutSlice = createSlice({
   initialState,
   reducers: {
 
-    setActiveToggle(state) {
-    state.active = !state.active
+    asideLayoutToggle(state) {
+      if (!state.asideLayoutStatus) {
+        state.asideLayoutStatus = true
+      } else {
+        state.asideLayoutStatus = false
+      }
     },
 
   }

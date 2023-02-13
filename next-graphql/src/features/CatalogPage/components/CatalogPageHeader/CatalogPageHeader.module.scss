@@ -1,0 +1,56 @@
+.root {
+  padding-top: 30px;
+
+ & .nav__container {
+  display: flex;
+
+  & .nav__item {
+    margin-right:10px;
+    color: rgb(150, 150, 150);
+    font-size: 1rem; 
+    font-weight: 500;
+    &::after {
+      position: relative;
+      left: 5px;
+      content: '/';
+    }
+    &:hover {
+      border-bottom: 1px solid rgb(87, 87, 87);
+      color: rgb(60, 60, 60);
+    }  
+    
+  }
+  & p {
+    color: rgb(150, 150, 150);   
+    font-size: 1rem; 
+    font-weight: 500;
+  }
+  }
+
+  & .title__container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    
+    & .title {
+      color: rgb(41, 41, 41);
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    
+    & small {
+      color: rgb(138, 138, 138);
+      font-size: 1rem;
+        position: relative;
+        top: 6px;
+        left: 25px;
+    }
+  }
+
+  & .filter__container {
+    display: flex;
+  }
+
+
+  
+}

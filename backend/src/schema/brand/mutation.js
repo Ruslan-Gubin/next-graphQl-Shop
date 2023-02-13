@@ -1,4 +1,5 @@
-import { graphql, GraphQLBoolean, GraphQLID, GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLString } from "graphql";
+import {  GraphQLNonNull, GraphQLString } from "graphql";
+import { cloudinaryImagesMethod } from "../../utils/cloudinaryImagesMethod.js";
 import { helperSchema } from "../../utils/helperSchema.js";
 import { BrandModel } from "./models.js";
 import { BrandType } from './types.js';
@@ -9,16 +10,20 @@ const brandMutation = {
     type: BrandType, 
     args: {
       brand_name: { type: new GraphQLNonNull(GraphQLString) },
+      imag: { type: new GraphQLNonNull( GraphQLString) },
       },
     
-    resolve(parent, args) {
-      
+   async resolve(parent, args) {
+      const newImage = await cloudinaryImagesMethod(args.imag, "Brand image");
+     
       const newBrand = new BrandModel({
-        name: args.brand_name
+        name: args.brand_name,
+        image: newImage,
       }).save();
       return newBrand;
     },
   },
+  
   // addCommentDialog: {
   //   type: QuestionType,
   //   args: {
