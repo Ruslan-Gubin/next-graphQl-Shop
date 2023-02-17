@@ -1,7 +1,5 @@
 export {
-  ProductCard,
-  ProductImage,
-  ProductInfo,
-  UserSettingsInfo,
+  ProductDetails,
+  ProductCategoryMobile,
   ProductCategory,
 } from "./components";

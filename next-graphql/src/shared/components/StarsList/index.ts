@@ -1,0 +1,1 @@
+export { StarsList } from './StarsList'

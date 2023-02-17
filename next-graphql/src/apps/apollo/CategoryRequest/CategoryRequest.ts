@@ -35,6 +35,7 @@ query(
   ) {
     name
     sub_department
+    _id
     image {
     url
     }

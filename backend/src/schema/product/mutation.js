@@ -31,6 +31,19 @@ const prodOptionScalar = new GraphQLScalarType({
 });
 
 const productMutation = {
+  productDetail: {
+    type: ProductType,
+    args: {
+      id: {type: new GraphQLNonNull(GraphQLID)}
+    },
+   async resolve(parent, args) {
+    return ProductModel.findByIdAndUpdate(args.id,
+      {$inc: {views: 1}},
+      {returnDocument: "arter"}
+      )
+     
+  }
+  },
   createdProduct: {
     type: ProductType,
     args: {

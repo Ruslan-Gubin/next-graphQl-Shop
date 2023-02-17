@@ -1,0 +1,136 @@
+.root {
+  padding-top: 20px;
+  padding-bottom: 30px;
+
+  & .nav__container {
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+    & .nav__item {
+      font-size: 0.83rem;
+      margin-right: 10px;
+      color: rgb(150, 150, 150);
+      font-weight: 500;
+      &::after {
+        position: relative;
+        left: 5px;
+        content: "/";
+      }
+      &:hover {
+        border-bottom: 1px solid rgb(87, 87, 87);
+        color: rgb(60, 60, 60);
+      }
+    }
+    & p {
+      color: rgb(150, 150, 150);
+      font-weight: 500;
+      
+    }
+  }
+
+  & .title__container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 5px 0;
+    & .title {
+      color: rgb(41, 41, 41);
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    & small {
+      color: rgb(138, 138, 138);
+      font-size: 0.8rem;
+      position: relative;
+      top: 3px;
+      left: 25px;
+    }
+  }
+
+  & .nav__links {
+    display: flex;
+    overflow: scroll;
+    &::-webkit-scrollbar {
+      width: 0;
+    };
+
+    & .link {
+      background-color: rgba(217, 223, 225, 0.626);
+      font-size: 1em;
+      margin-right: 10px;
+      border-radius: 5px;
+      padding: 10px;
+      
+      & .link__name {
+        color: black;
+
+      }
+    }
+  }
+
+
+
+
+
+
+    & .size__container {
+      position: relative;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @media (max-width: 1023px) {
+        justify-content: flex-start;
+        left: 20px;
+        top:10px;
+        align-items: center;
+      }
+
+
+      & .size__big_card {
+        cursor: pointer;
+        & .size__big_itemActive {
+          border: 2px solid black;
+          position: relative;
+          width: 10px;
+          height: 10px;
+          border-radius: 3px;
+          margin-bottom: 1px;
+          &::after {
+            content: "";
+            border: 2px solid black;
+            position: absolute;
+            top: -2px;
+            right: 9px;
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+          }
+        }
+      }
+
+      & .desctop {
+        position: relative;
+        width: 25px;
+        height: 20px;
+        border: 2px solid black;
+        border-radius: 4px;
+        left: -12px;
+        &::before {
+          content: '';
+          position: absolute;
+          top: 20px;
+          left: -1px;
+          width: 18px;
+          height: 2px;
+          background-color: black;
+        }
+      }
+
+
+ 
+    }
+  }
+

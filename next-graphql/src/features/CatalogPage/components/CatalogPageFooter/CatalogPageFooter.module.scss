@@ -1,5 +1,139 @@
-root {
+%arrow {
+  width: 15px;
+  height: 2px;
+  background-color: rgb(0, 0, 0);
+  position: relative;
+  top: 2px;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    right: -1px;
+    width: 10px;
+    height: 2px;
+    background-color: black;
+    rotate: (-25deg);
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -1px;
+    width: 10px;
+    height: 2px;
+    background-color: black;
+    rotate: (25deg);
+  }
 
+}
+
+.root {
+  
+  & .pagination__container {
+  display: flex;
+  align-items: center;
+  padding: 35px 0;
+  padding-top: 0;
+  padding-bottom: 0;
+
+ & .prev__container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 230px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.5s ease;
+  &:hover { 
+    & .arrow__prev {
+     margin-right: 20px;
+      background-color: rgb(210, 49, 204);
+      &::after {
+        background-color: rgb(210, 49, 204);
+      }
+      &::before {
+        background-color: rgb(210, 49, 204);
+      }
+    }
+    & .prev__text {
+      color: rgb(210, 49, 204);
+    }
+  }
+  & .prev__text {
+     background-color: rgba(255, 255, 255, 0);
+     font-size: 1.2rem;
+    }
+    & .arrow__prev {
+      @extend %arrow;
+      rotate: (180deg);
+      margin-right: 10px;
+      transition: margin-right 0.5s ease;
+    }
+  }
+
+  & .next__container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    &:hover { 
+      & .arrow__next {
+        margin-left: 25px;
+        background-color: rgb(210, 49, 204);
+        &::after {
+          background-color: rgb(210, 49, 204);
+        }
+        &::before {
+          background-color: rgb(210, 49, 204);
+        }
+      }
+      & .next__text {
+        color: rgb(210, 49, 204);
+      }
+     }
+    & .arrow__next {
+      @extend %arrow;
+      margin-left: 10px;
+      transition: margin-left 0.5s ease;
+    }
+    & .next__text {
+      background-color: rgba(255, 255, 255, 0);
+      font-size: 1.2rem;
+      position: relative; 
+    }  
+  }
+
+  & .number__container {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+
+    & .page {
+      padding: 10px 15px;
+      font-size: 1.2rem;
+      border-radius: 50%;
+      transition: all 0.6s ease;
+      margin-right: 2px;
+      cursor: pointer;
+      &:hover {
+        background-color: rgba(213, 213, 213, 0.402);
+        
+      }
+    }
+    & .current__page {
+      margin-right: 2px;
+      padding: 10px 15px;
+      font-size: 1.2rem;
+      background-color: rgb(196, 49, 219);
+      border-radius: 50%;
+      color: rgb(255, 255, 255);
+    }
+  }
+
+
+}
 
   
+  
 }
+

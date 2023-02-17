@@ -18,6 +18,7 @@ interface IShopLayout {
 
 const ShopLayout: FC<IShopLayout> = ({ children, title, keywords }) => {
   const { asideLayoutStatus } = useSelector(features.selectLayoutBurger);
+  const {basket} = useSelector(features.selectBasket)
 
   return (
     <>
@@ -60,7 +61,7 @@ const ShopLayout: FC<IShopLayout> = ({ children, title, keywords }) => {
               <features.LayoutHeaderSearch />
             </div>
             <nav className={styles.headerNavbar}> 
-              <HeaderStoreNavbar shopingCount={0} />
+              <HeaderStoreNavbar shopingCount={basket.length} />
             </nav>
           </header>
         </div>

@@ -1,18 +1,20 @@
 import { FC, useEffect, useRef, useState } from "react";
-import { IOptionDepartment } from "@/features/CreatedProduct/libs/types/IOptionsMenu";
+
 
 import styles from "./DropDownCategory.module.scss";
+import { IPropertyType } from "@/features/CatalogPage/model/ICatalogPageSlice";
 
 interface Ioption {
   value: string;
   label: string;
   id?: string;
   subdepartment?: Ioption[];
+  property?: IPropertyType
 }
 
 interface IDropDownCategory {
   options: Ioption[];
-  onChange: (value: Ioption) => void;
+  onChange: (value: Ioption ) => void;
   value: Ioption;
 }
 

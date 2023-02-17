@@ -1,6 +1,5 @@
-import { GraphQLID, GraphQLInt, GraphQLList, GraphQLNonNull, GraphQLString } from "graphql";
+import {  GraphQLID, GraphQLInt, GraphQLList, GraphQLNonNull, GraphQLScalarType, GraphQLString } from "graphql";
 import { ShcemaQuery } from "../../utils/ShcemaQuery.js";
-import { PhotoProductModel } from "../photoProduct/models.js";
 import { ProductModel } from "./models.js";
 import { ProductType } from "./types.js";
 
@@ -8,6 +7,14 @@ const { getMethods } = new ShcemaQuery({
   model: ProductModel,
   name: "product",
   type: ProductType,
+});
+
+const sortPropertyScale = new GraphQLScalarType({
+  name: "sortPropertyScale",
+  fields: {
+    name: { type: GraphQLString },
+    value: { type: GraphQLInt },
+  },
 });
 
 const questionMethods = {
@@ -81,16 +88,22 @@ const questionMethods = {
     type: new GraphQLList(ProductType),
     args: {
       department: {type : new GraphQLNonNull(GraphQLString)},
-      
+      sub_department: { type : new GraphQLNonNull(GraphQLString) },
+      sortProperty: { type : sortPropertyScale },
     }, 
     resolve(parent, args) {
-      
+      const sort = {}
+      sort[args.sortProperty.name] = args.sortProperty.value
+
+     
+     
        return ProductModel.find(
           {
             department: args.department,
-          }).sort({createdAt: -1}).limit(0)
+            sub_department: args.sub_department,
+          }).sort(sort).limit(0)
    
-  
+   
         
     }
   },

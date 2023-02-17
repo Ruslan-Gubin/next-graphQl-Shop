@@ -15,14 +15,41 @@ const ALL_PRODUCTS = gql`
 `;
 
 const ONE_PRODUCT = gql`
-  query ($id: ID) {
-    question: question(id: $id) {
-      viewed
+  mutation($id: ID!) {
+    productDetail(id: $id) {
       _id
-      dialog {
+      name
+      price
+      oldPrice
+      discount
+      count
+      description
+      colors_names
+      sub_department
+      department
+      photo_count
+      views
+      options {
         name
-        text
-        time
+        value
+      }
+      brand {
+        name
+        _id
+        image {
+          url
+        }
+      }
+      category {
+        sub_department
+        department
+        name
+        _id
+      }
+      photo {
+        images {
+          url
+        }
       }
     }
   }
@@ -125,20 +152,32 @@ const SORT_PRODUCT_DEPARTMENT = gql`
 
 const SORT_PRODUCT_CATALOG = gql`
   query (
-  $department: String!
-  
-   
-   ) {
+    $department: String!
+    $sub_department: String!
+    $sortProperty: sortPropertyScale
+  ) {
     sortProductCatalog(
-    department: $department
-    
+      department: $department
+      sub_department: $sub_department
+      sortProperty: $sortProperty
     ) {
-      name
       _id
-      discount
+      name
       price
       oldPrice
-      name
+      discount
+      count
+      category_id
+      brand_id
+      category {
+        name
+        _id
+      }
+      brand {
+        name
+        _id
+      }
+
       photo {
         images {
           url

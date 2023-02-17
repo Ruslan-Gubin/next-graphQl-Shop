@@ -1,0 +1,54 @@
+import { FC, useContext } from 'react';
+import { DetailsContext } from '@/pages/catalog/[id]';
+import Link from 'next/link'
+import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import { catalogPageAction } from '@/features';
+import { StarsList } from '@/shared';
+import styles from './ProductDetailsHeader.module.scss';
+
+
+const ProductDetailsHeader: FC = () => {
+  const {product, department, subDepartment} = useContext(DetailsContext)
+  const dispatch = useDispatch()
+  const router = useRouter()
+
+  return (
+    <section className={styles.root}>
+      <nav>
+        <ul className={styles.nav__container}>
+          <div onClick={() => router.back()} className={styles.array__container}> 
+          <li className={styles.array__back}></li>
+          </div>
+          <Link href={'/'}>
+          <li className={styles.link}>Главная</li>
+          </Link>
+          <Link href={`${department.href}`}>
+          <li className={styles.link}>{department.name}</li>
+          </Link>
+          <Link href={`${department.href}/${subDepartment.href}`}>
+        <li 
+        className={styles.link}
+        onClick={() => dispatch(catalogPageAction.setCategoryValue({
+          value: "Категория", label: "Категория", id: ""
+        }))}
+        >{subDepartment.name}</li>
+          </Link>
+          <Link href={`/brands/${product.brand._id}`}>
+         <li className={styles.last__link}>{product.brand.name}</li>
+          </Link>
+        </ul>
+      </nav>
+      <h1 className={styles.title}>{product.brand.name} / {product.name}</h1>
+
+        <div className={styles.info__container}>
+          <StarsList count={5}/>
+          <p className={styles.reviews}>525 отзывов</p>
+          <p className={styles.index}>Индекс: <span>{product._id}</span></p>
+          <p className={styles.index}>Купили более {5900}  раз</p>
+        </div>
+    </section>
+  );
+};
+
+export { ProductDetailsHeader };

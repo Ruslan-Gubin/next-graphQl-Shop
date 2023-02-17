@@ -1,1 +1,0 @@
-export { UserSettingsInfo } from "./ProductSettingsInfo";

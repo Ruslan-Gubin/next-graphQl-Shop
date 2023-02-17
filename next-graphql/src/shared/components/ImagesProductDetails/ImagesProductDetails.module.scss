@@ -1,0 +1,176 @@
+%foto-small {
+  width: 68px;
+  height: 92px;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+%arrow {
+  position: relative;
+  width: 20px;
+  height: 2px;
+  background-color: black;
+  rotate: (90deg);
+  &::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 0;
+    width: 12px;
+  height: 2px;
+  background-color: black;
+  rotate: (35deg);
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 0px;
+    width: 12px;
+  height: 2px;
+  background-color: black;
+  rotate: (-35deg);
+  }
+}
+
+%arrow-container {
+  position: relative;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        margin: 0 auto;
+        cursor: pointer;
+        &:hover{
+          & .arrow__up {
+            background-color: rgb(194, 56, 199);
+            &::after {
+              background-color: rgb(194, 56, 199);
+            }
+            &::before {
+              background-color: rgb(194, 56, 199);
+            }
+          }
+        }
+        & .arrow__up {
+          position: relative;
+          top: 15px;
+          display: flex;
+          margin: 0 auto;
+          @extend %arrow;
+        } 
+        & .arrow__up_white {
+          position: relative;
+          top: 15px;
+          display: flex;
+          margin: 0 auto;
+          @extend %arrow;
+        } 
+}
+
+
+.foto__container {
+  display: flex;
+  width: 43%;
+  & .foto__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-right: 15px;
+    & .foto__small {
+      @extend %foto-small;
+      border: 3px solid rgba(192, 60, 209, 0);
+    }
+
+    & .foto__small_active {
+      @extend %foto-small;
+        border: 3px solid rgb(192, 60, 209);
+    }
+
+    & .arrow__up_container {
+      @extend %arrow-container;
+
+      & .arrow__up_white {
+        position: relative;
+        width: 20px;
+        height: 2px;
+        background-color: rgba(189, 189, 189, 0.835);
+        rotate: (90deg);
+        &::after {
+          content: '';
+          position: absolute;
+          top: 4px;
+          left: 0;
+          width: 12px;
+        height: 2px;
+        background-color: rgba(189, 189, 189, 0.835);
+        rotate: (35deg);
+        }
+        &::before {
+          content: '';
+          position: absolute;
+          top: -4px;
+          left: 0px;
+          width: 12px;
+        height: 2px;
+        background-color: rgba(189, 189, 189, 0.835);
+        rotate: (-35deg);
+        }
+      }
+    }
+    
+    & .arrow__down_container{
+      @extend %arrow-container;
+      position: relative;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      margin: 0 auto;
+      cursor: pointer;
+        &:hover{
+          & .arrow__down {
+            background-color: rgb(194, 56, 199);
+            &::after {
+              background-color: rgb(194, 56, 199);
+            }
+            &::before {
+              background-color: rgb(194, 56, 199);
+            }
+          }
+        }
+      & .arrow__down {
+        position: relative;
+        top: 15px;
+        display: flex;
+        margin: 0 auto;
+        @extend %arrow;
+        rotate: (-90deg);
+      } 
+      & .arrow__down_white {
+        position: relative;
+        top: 15px;
+        display: flex;
+        margin: 0 auto;
+        @extend %arrow;
+        rotate: (-90deg);
+        background-color: rgba(189, 189, 189, 0.835);
+        &::after {
+          background-color: rgba(189, 189, 189, 0.835);
+        }
+        &::before {
+          background-color: rgba(189, 189, 189, 0.835);
+        }
+      } 
+    }   
+  }
+
+  & .foto__big {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    & img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

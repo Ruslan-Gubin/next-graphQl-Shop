@@ -27,7 +27,6 @@ const Kanstovary = ({
           title="Канцтовары"
           navValueArray={OPTIONS_STATIONERY_SUBDEPARTMENT}
         />
-        // <Link href={`/post/[id]`} as={`/post/${post.id}`}></Link>
       )}
     </ShopLayout>
   );

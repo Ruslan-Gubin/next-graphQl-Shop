@@ -1,0 +1,36 @@
+ .modalMessage {
+  position: fixed;
+  left: 45%;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.734);
+  padding: 10px;
+  border-radius: 10px;
+  padding-left: 30px;
+  transition: all 0.5s ease;
+  & .message {
+    position: relative;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    &::before{
+      content: '';
+      position: absolute;
+      top: 7px;
+      left: -20px;
+      width: 7px;
+      height: 2px;
+      background-color: white;
+      rotate: (45deg);
+    }
+    &::after{
+      content: '';
+      position: absolute;
+      top: 6px;
+      left: -17px;
+      width: 10px;
+      height: 2px;
+      background-color: white;
+      rotate: (-45deg);
+    }
+  }
+}

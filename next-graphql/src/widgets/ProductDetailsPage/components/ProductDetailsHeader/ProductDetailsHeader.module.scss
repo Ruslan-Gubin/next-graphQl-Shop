@@ -1,0 +1,131 @@
+.root {
+padding: 30px 0;
+
+& .nav__container {
+display: flex;
+align-items: center;
+padding-bottom: 5px;
+
+& .array__container {
+  cursor: pointer;
+  margin-right: 20px;
+  width: 25px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 5px;
+  &:hover {
+    & .array__back {
+      background-color: rgb(190, 44, 178);
+      &::after {
+        background-color: rgb(190, 44, 178);
+      }
+      &::before {
+        background-color: rgb(190, 44, 178);
+      }
+    }
+  }
+
+  & .array__back {
+    position: relative;
+    width: 15px;
+    height: 2px;
+    background-color: black;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: -1px;
+      width: 9px;
+      height: 2px;
+      background-color: black;
+      rotate: (45deg);
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -1px;
+      width: 9px;
+      height: 2px;
+      background-color: black;
+      rotate: (-45deg);
+    }
+  }
+}
+
+ & .link {
+  font-size: 1rem;
+  color: rgb(125, 125, 125);
+  font-weight: 500;
+  margin-right: 15px;
+  padding-bottom: 5px;
+  border-bottom: 1px  solid rgba(0, 0, 0, 0);
+
+  &::after{
+    content: '/';
+    position: relative;
+    left: 7px;
+  }
+
+  &:hover {
+    color: black;
+    border-bottom: 1px  solid black;
+  }
+ }
+
+ & .last__link {
+  font-size: 1rem;
+  color: rgb(125, 125, 125);
+  font-weight: 500;
+  margin-right: 15px;
+  padding-bottom: 5px;
+  border-bottom: 1px  solid rgba(0, 0, 0, 0);
+
+  &:hover {
+    color: black;
+    border-bottom: 1px  solid black;
+  }
+ } 
+}
+
+& .title {
+  font-size: 1.7rem;
+  font-weight: 700;
+  padding-bottom: 8px;
+}
+
+ & .info__container {
+  display: flex;
+  align-items: center;
+  color: rgb(142, 142, 142);
+  font-weight: 600;
+  & ul {
+    cursor: pointer;
+  }
+  & .reviews {
+    position: relative;
+    top: 2px;
+    margin-left: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed rgb(142, 142, 142);
+    &:hover {
+      cursor: pointer;
+      color: rgb(29, 29, 29);
+      border-bottom: 1px dashed rgb(42, 42, 42);
+    }
+  }
+
+  & .index {
+    margin: 0 15px;
+    & span {
+      margin-left: 2px;
+      color: rgb(52, 51, 51);
+    }
+  }
+
+
+ }
+
+}

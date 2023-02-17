@@ -1,0 +1,1 @@
+export { CatalogPageHeaderMobile } from "./CatalogPageHeaderMobile";

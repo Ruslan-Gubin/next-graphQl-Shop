@@ -3,32 +3,31 @@ import { OPTIONS_STATIONERY_SUBDEPARTMENT } from "@/apps/constants";
 import { IProductType } from "@/apps/types";
 import { CatalogPage } from "@/features";
 import { ShopLayout } from "@/widgets";
-import { ApolloQueryResult } from "@apollo/client";
-import { NextPageContext} from 'next';
-import { useState } from "react";
+import { GetServerSidePropsResult, NextPageContext} from 'next';
+
 
 interface IStationeryProps {
   value: string
   label: string
   products:  IProductType[]
+  sub_department: string
 }
 
-const Stationery = ({value, label, products}: IStationeryProps) => {
-const [tets, setTest] = useState(false)
-  console.log(products)
+const Stationery = ({value, label, products, sub_department}: IStationeryProps) => {
 
   return (
     <ShopLayout
       title={value}
       keywords="Купить тетрадь, купить блокнот, купить альбом, школьный дневник, нотная тетрадь, ежедневник"
     >
-      <button onClick={() => setTest(!tets)}>toggle</button>
       <CatalogPage
-        countProduct={258110}
         href="kantstovary"
+        sub_departmentName='Канцтовары'
         value={value}
         label={label}
         optionDepartment={OPTIONS_STATIONERY_SUBDEPARTMENT}
+        department='stationery'
+        sub_department={sub_department}
       />
     </ShopLayout>
   );
@@ -38,17 +37,30 @@ interface promiseProps {
   value: string | undefined
   label: string | undefined
   products: IProductType[]
-  
+  sub_department: string | string[] | undefined
 }
 
-export const getServerSideProps  = async ({ query }: NextPageContext): Promise<{props: promiseProps}> => {
+
+export const getServerSideProps  = async ({ query }: NextPageContext): Promise<GetServerSidePropsResult<promiseProps>> => {
   const subDepartment = OPTIONS_STATIONERY_SUBDEPARTMENT.find(item => item.label === query.id)
+
   const { data } = await client.query({
    query: SORT_PRODUCT_CATALOG,
    variables: {
-    department: 'stationery'
+    department: 'stationery',
+    sub_department: query.id,
+    sortProperty: 'anyfin'
    }
   })
+
+  if (!data.sortProductCatalog.length) { 
+    return {
+      redirect: {
+        destination: '/catalog/kantstovary',
+        permanent: false
+      }
+    }
+  }
 
 const products: IProductType[] =   data.sortProductCatalog
 
@@ -56,7 +68,8 @@ const products: IProductType[] =   data.sortProductCatalog
     props: {
       value: subDepartment?.value,
       label: subDepartment?.label,
-      products:  products
+      products:  products,
+      sub_department:  query.id
     },
   };
 };

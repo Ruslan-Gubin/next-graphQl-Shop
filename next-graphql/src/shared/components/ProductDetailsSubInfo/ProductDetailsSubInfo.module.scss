@@ -1,0 +1,121 @@
+
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+  // background-color: rgba(105, 187, 60, 0.142);
+  margin-left: 25px;
+
+  & .color {
+    color: rgb(130, 130, 130);
+    font-weight: 600;
+    margin-right: 5px;
+  }
+
+  & .color__name {
+    font-size: 1rem;
+    text-transform: lowercase;
+  }
+
+  & .additional__info {
+
+    padding: 40px 0;
+    & .additional__title {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    
+    & .additional__option_item {
+      margin-bottom: 10px;
+      display: flex;
+      & .key__container {
+        display: flex;
+        justify-content: space-between;
+        width: 130px;
+       flex-wrap: nowrap;
+       margin-right: 10px;
+       & .key__option {
+         width: 130px;
+         color: rgb(121, 121, 121);
+         border-bottom: none;
+         overflow: hidden;
+         &::after {
+           content: '__________________________________';
+           color: rgb(210, 210, 210);
+           overflow: hidden;
+         }
+        }
+        
+      }
+      & .value__option {
+
+      }
+
+    }
+
+    & .all__additional {
+      margin-top: 10px;
+      color: black;
+      border-bottom: 1px dashed rgb(121, 121, 121);
+      &:hover {
+        color: rgb(207, 58, 212);
+        border-bottom: 1px dashed rgb(207, 58, 212);
+      }
+    }
+    
+  }
+
+  & .all__product_brand {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+
+    &:hover {
+      cursor: pointer;
+      & .array {
+        background-color: rgb(207, 58, 212);
+        &::after{
+          background-color: rgb(207, 58, 212);
+        }
+      }
+      & p {
+        color: rgb(207, 58, 212);
+      }
+    }
+
+    & p {
+      color: rgb(99, 99, 99);
+      font-weight: 600;
+      font-size: 1.1rem;
+
+    }
+    
+    
+    & .array {
+      margin-left: 5px;
+      width: 8px;
+      height: 2px;
+      background-color: rgb(93, 92, 92);
+      rotate: (33deg);
+      position: relative;
+      top: -2px;
+      &::after {
+        content: '';
+        position: absolute;
+        top: 4px;
+        left: -7px;
+        margin-left: 10px;
+      width: 8px;
+      height: 2px;
+      background-color: rgb(93, 92, 92);
+      rotate: (-75deg);
+      }
+    }
+  }
+
+  & .brand__image {
+    width: 150px;
+    height: 50px;
+  }
+
+}

@@ -1,0 +1,65 @@
+.root {
+  background-color: white;
+  border-radius: 15px;
+  width: 340px;
+  max-height: 140px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 150px;
+  height: 1500px;
+
+  position: sticky;
+  top: 0px;
+  left: 0;
+
+  & .header {
+    display: flex;
+    justify-content: space-between;
+    & .prices {
+      display: flex;
+      align-items: flex-end;
+      & .price {
+        font-weight: 700;
+        font-size: 2rem;
+        margin-right: 15px;
+      }
+      & .old__price {
+        font-size: 1.1em;
+        font-weight: 700;
+        text-decoration: line-through 2px;
+        color: rgb(154, 154, 154);
+      }
+    }
+  }
+
+  & .likes {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+  }
+
+  & .btn {
+    padding: 13px;
+    background-color: rgb(196, 39, 178);
+    border: 2px solid rgb(196, 39, 178);
+    border-radius: 10px;
+    color: white;
+    font-weight: 600;
+    font-size: 1.2rem;
+    &:hover {
+      background-color: rgb(216, 46, 197);
+      border: 2px solid rgb(216, 46, 197);
+    }
+  }
+  & .btn__active {
+    padding: 13px;
+    background-color: white;
+    border: 2px solid rgb(196, 39, 178);
+    border-radius: 10px;
+    color: rgb(196, 39, 178);
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+}

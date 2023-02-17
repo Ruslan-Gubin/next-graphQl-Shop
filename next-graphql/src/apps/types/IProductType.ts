@@ -6,6 +6,10 @@ interface IProductType {
     name: string;
     _id: string;
     products: IProductType[];
+    image: {
+      url: string
+      public_id: string
+    }
   };
   colors_names: string;
   description: string;

@@ -1,0 +1,1 @@
+export { ProductListImag } from "./ProductListImag";
