@@ -50,10 +50,7 @@
 
   & .nav__links {
     display: flex;
-    overflow: scroll;
-    &::-webkit-scrollbar {
-      width: 0;
-    };
+    flex-wrap: wrap;
 
     & .link {
       background-color: rgba(217, 223, 225, 0.626);
@@ -61,6 +58,8 @@
       margin-right: 10px;
       border-radius: 5px;
       padding: 10px;
+      margin-bottom: 10px;
+      cursor: pointer;
       
       & .link__name {
         color: black;

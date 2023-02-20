@@ -1,0 +1,24 @@
+@use "../../../apps/styles/common/var";
+
+.root {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+  width: 100%;
+  & label {
+    color: rgb(133, 133, 133);
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+  & input {
+    padding: 10px;
+    padding-bottom: 5px;
+    border: 2px solid rgba(0, 0, 0, 0.121);
+    border-radius: 7px;
+    font-size: 1.2rem;
+    &:focus {
+      border: 2px solid var.$color-shop-button;
+    }
+  }
+}

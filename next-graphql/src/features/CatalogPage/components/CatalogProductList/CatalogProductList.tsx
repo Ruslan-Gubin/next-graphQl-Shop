@@ -1,10 +1,11 @@
 import { IProductType } from '@/apps/types';
 import { ProductCategory } from '@/entities';
 import { ProductCategoryMobile } from '@/entities/Product/components';
+import { basketAction } from '@/features';
 import { QueckMessage } from '@/shared';
 import { FC, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { basketAction, selectCatalogPage } from '../../store';
+import {  selectCatalogPage } from '../../store';
 
 import styles from './CatalogProductList.module.scss';
 
@@ -27,7 +28,8 @@ const CatalogProductList: FC<ICatalogProductList> = ({products, isDesktop}) => {
       color: product.colors_names,
       price: product.price,
       oldPrice: product.oldPrice,
-      id: product._id 
+      id: product._id,
+      brandName: product.brand.name, 
     }}))
     setModalMessage(true)
      setTimeout(() => {

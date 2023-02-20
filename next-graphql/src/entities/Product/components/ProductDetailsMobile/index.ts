@@ -1,0 +1,1 @@
+export { ProductDetailsMobile } from "./ProductDetailsMobile";

@@ -6,55 +6,6 @@ display: flex;
 align-items: center;
 padding-bottom: 5px;
 
-& .array__container {
-  cursor: pointer;
-  margin-right: 20px;
-  width: 25px;
-  height: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 5px;
-  &:hover {
-    & .array__back {
-      background-color: rgb(190, 44, 178);
-      &::after {
-        background-color: rgb(190, 44, 178);
-      }
-      &::before {
-        background-color: rgb(190, 44, 178);
-      }
-    }
-  }
-
-  & .array__back {
-    position: relative;
-    width: 15px;
-    height: 2px;
-    background-color: black;
-    &::after {
-      content: '';
-      position: absolute;
-      top: 3px;
-      left: -1px;
-      width: 9px;
-      height: 2px;
-      background-color: black;
-      rotate: (45deg);
-    }
-    &::before {
-      content: '';
-      position: absolute;
-      top: -3px;
-      left: -1px;
-      width: 9px;
-      height: 2px;
-      background-color: black;
-      rotate: (-45deg);
-    }
-  }
-}
-
  & .link {
   font-size: 1rem;
   color: rgb(125, 125, 125);

@@ -5,4 +5,6 @@ export {
   ProductCategory,
   ProductCategoryMobile,
   ProductDetails,
+  ProductDetailsMobile,
+  ProductCardBasket,
 } from "./Product";

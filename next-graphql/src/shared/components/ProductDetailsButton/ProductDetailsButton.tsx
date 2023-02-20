@@ -1,19 +1,20 @@
-import { basketAction, selectBasket } from "@/features";
-import { formatterRub } from "@/features/CatalogPage/libs/helper";
-import { useDetailsContext } from "@/pages/catalog/[id]";
-import { useDispatch, useSelector } from "react-redux";
-import { Heart } from "../Heart";
+import { FC } from "react";
 import { useRouter } from "next/router";
+import { useDetailsContext } from "@/pages/catalog/[id]";
+import { selectBasket } from "@/features";
+import { formatterRub } from "@/features/CatalogPage/libs/helper";
+import { useSelector } from "react-redux";
+import { Heart } from "../Heart";
 
 import styles from "./ProductDetailsButton.module.scss";
-import { useState } from "react";
-import { QueckMessage } from "../QueckMessage";
 
-const ProductDetailsButton = () => {
+interface IProductDetailsButton {
+  handleAddBasket: () => void
+}
+
+const ProductDetailsButton: FC<IProductDetailsButton> = ({handleAddBasket}) => {
   const { basket } = useSelector(selectBasket);
-  const { product, department, media } = useDetailsContext();
-  const [modalMessage, setModalMessage] = useState(false);
-  const dispatch = useDispatch();
+  const { product } = useDetailsContext();
   const router = useRouter();
 
   const checkBasket = () => {
@@ -23,26 +24,6 @@ const ProductDetailsButton = () => {
     } else {
       return false;
     }
-  };
-
-  const handleAddBasket = () => {
-    dispatch(
-      basketAction.addProduct({
-        product: {
-          img: product.photo.images[0].url,
-          name: product.name,
-          count: 1,
-          color: product.colors_names,
-          price: product.price,
-          oldPrice: product.oldPrice,
-          id: product._id,
-        },
-      })
-    );
-    setModalMessage(true);
-    setTimeout(() => {
-      setModalMessage(false);
-    }, 3000);
   };
 
   return (
@@ -73,8 +54,6 @@ const ProductDetailsButton = () => {
           </button>
         )}
       </aside>
-
-      <QueckMessage active={modalMessage} />
     </>
   );
 };

@@ -25,9 +25,9 @@ const Heart = () => {
   },[image])
 
   return (
-    <>
-  <img ref={ref} src={image} alt="heart img" />
-    </>
+    <figure>
+  <img style={{cursor: 'pointer'}} ref={ref} src={image} alt="heart img" />
+    </figure>
   );
 };
 

@@ -1,4 +1,5 @@
 import { client, ONE_PRODUCT } from '@/apps/apollo';
+import { SORT_PRODUCT_SIMILAR } from '@/apps/apollo/productRequest';
 import { OPTIONS_DEPARTMENT } from '@/apps/constants';
 import { IProductType } from '@/apps/types';
 import { useMatchMedia } from '@/features/CatalogPage/libs/hooks/use-match-media';
@@ -10,6 +11,7 @@ import { createContext, useContext } from 'react';
 
 interface IProductDetails {
   product: IProductType
+  similarProduct: IProductType[] 
   department: {name: string, href: string}
   subDepartment: {name: string, href: string}
   media: {isDesktop: boolean | undefined, isMobile: boolean | undefined, isTablet: boolean | undefined}
@@ -25,13 +27,13 @@ export const useDetailsContext = () => {
   return data
 }
 
-const ProductDetails = ({product, department, subDepartment}: IProductDetails) => {
+const ProductDetails = ({product, department, subDepartment, similarProduct}: IProductDetails) => {
   const {isDesktop, isMobile, isTablet} = useMatchMedia()
 
   return (
     <ShopLayout title='ProductDetail' keywords='ProductDetail'>
 
-    <DetailsContext.Provider value={{product, department, subDepartment, media:{isDesktop, isMobile, isTablet}}}>
+    <DetailsContext.Provider value={{product, similarProduct, department, subDepartment, media:{isDesktop, isMobile, isTablet}}}>
     <ProductDetailsPage />
     </DetailsContext.Provider>
       
@@ -44,6 +46,7 @@ interface IPromiseProps {
 product: IProductType
 department: {name: string | undefined, href: string | undefined}
 subDepartment: {name: string | undefined, href: string | undefined}
+similarProduct: IProductType[]
 }
 
 export const getServerSideProps = async ({query}: NextPageContext): Promise<GetServerSidePropsResult<IPromiseProps>> => {
@@ -52,7 +55,7 @@ export const getServerSideProps = async ({query}: NextPageContext): Promise<GetS
     variables: {
       id: query.id
     }
-  })
+  });
   if (!data.productDetail) { 
     return {
       redirect: {
@@ -61,14 +64,24 @@ export const getServerSideProps = async ({query}: NextPageContext): Promise<GetS
       }
     }
   }
-  
+
+  const { data: similarProduct } = await client.query({
+    query: SORT_PRODUCT_SIMILAR,
+    variables: {
+      department: data.productDetail.department,
+      sub_department: data.productDetail.sub_department,
+      category_id: data.productDetail.category_id,
+      exception: data.productDetail._id,
+    },
+  });
+
 const findDepartment = OPTIONS_DEPARTMENT.find(item => item.label === data.productDetail.department)
- const subDepartment = findDepartment?.subdepartment.find(item => item.label === data.productDetail.sub_department)
-  
-  
+const subDepartment = findDepartment?.subdepartment.find(item => item.label === data.productDetail.sub_department)
+   
   return {
     props: {
       product: data.productDetail,
+      similarProduct: similarProduct.sortSimilarProduct,
       department: {
         name: findDepartment?.value,
         href: findDepartment?.href,

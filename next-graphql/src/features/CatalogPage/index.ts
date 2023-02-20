@@ -3,7 +3,4 @@ export {
   catalogPageAction,
   catalogPageReducer,
   selectCatalogPage,
-  basketAction,
-  basketReducer,
-  selectBasket,
 } from "./store";

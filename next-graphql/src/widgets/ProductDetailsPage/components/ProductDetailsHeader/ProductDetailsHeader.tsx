@@ -1,15 +1,15 @@
-import { FC, useContext } from 'react';
-import { DetailsContext } from '@/pages/catalog/[id]';
+import { FC } from 'react';
+import { useDetailsContext } from '@/pages/catalog/[id]';
 import Link from 'next/link'
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import { catalogPageAction } from '@/features';
-import { StarsList } from '@/shared';
+import { Array, StarsList } from '@/shared';
 import styles from './ProductDetailsHeader.module.scss';
 
 
 const ProductDetailsHeader: FC = () => {
-  const {product, department, subDepartment} = useContext(DetailsContext)
+  const {product, department, subDepartment} = useDetailsContext()
   const dispatch = useDispatch()
   const router = useRouter()
 
@@ -17,9 +17,7 @@ const ProductDetailsHeader: FC = () => {
     <section className={styles.root}>
       <nav>
         <ul className={styles.nav__container}>
-          <div onClick={() => router.back()} className={styles.array__container}> 
-          <li className={styles.array__back}></li>
-          </div>
+          <Array onClick={() => router.back()} derection='left'/>
           <Link href={'/'}>
           <li className={styles.link}>Главная</li>
           </Link>

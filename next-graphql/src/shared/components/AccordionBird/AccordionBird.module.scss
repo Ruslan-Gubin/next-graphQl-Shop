@@ -1,0 +1,41 @@
+.header__bird_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  width: 40px;
+  height: 40px;
+
+  &:hover {
+    & .header__bird {
+      background-color: black;
+      &::after {
+        background-color: black;
+      }
+    }
+  }
+  & .header__bird {
+    width: 15px;
+    height: 3px;
+    background-color: rgb(108, 108, 108);
+    position: relative;
+    left: -5px;
+    rotate: (45deg);
+    &::after {
+      content: "";
+      position: absolute;
+      top: -7px;
+      left: 7px;
+      width: 15px;
+      height: 3px;
+      background-color: rgb(108, 108, 108);
+      rotate: (90deg);
+    }
+  }
+}
+
+.active {
+  rotate: (180deg);
+}

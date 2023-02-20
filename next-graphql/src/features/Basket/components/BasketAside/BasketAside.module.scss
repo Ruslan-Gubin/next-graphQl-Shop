@@ -1,0 +1,105 @@
+@use '../../../../apps/styles/common/var';
+
+.root {
+
+  background-color: var.$color-white;
+  border-radius: var.$spasing-medium;
+  box-shadow: var.$box-shadow;
+  padding: 20px ;
+  
+  @media (min-width: 1167px) {
+    min-width: 340px;
+    max-height: 286px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 10px;
+    left: 0px;
+    margin-left: 20px;
+  }
+
+  & .address {
+    display: inline;
+    font-size: var.$font-size-card-text;
+    padding-bottom: 1px;
+    color: var.$color-shop-button;
+    font-weight: 600;
+    border-bottom: 1px dashed rgb(210, 210, 210);
+    background-color: rgba(255, 255, 255, 0);
+    cursor: pointer;
+    &:hover {
+      border-bottom: 1px dashed var.$color-shop-button;
+    }
+  }
+
+  & .product__count {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var.$color-secondary;
+    font-size: var.$font-size-card-text;
+    margin-bottom: var.$spasing-small;
+    padding-top: 20px;
+  }
+
+  & .product__total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var.$font-size-header-link;
+    font-weight: 700;
+  }
+
+  & .product__btn {
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: var.$font-size-card-text;
+    font-weight: 500;
+    border-radius: 10px;
+    padding: var.$spasing-medium 0;
+    background-color: var.$color-shop-button;
+    color: var.$color-white;
+    &:hover {
+      background-color: var.$color-shop-button-active;
+    }
+  }
+
+  & .access {
+    display: flex;
+& .bird {
+margin-right: 20px;
+  width: 12px;
+  height: 2px;
+  background-color: var.$color-shop-button;
+  rotate: (-45deg);
+  position: relative;
+  top: 10px;
+  left: 10px;
+  &::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -4px;
+    // margin-right: 10px;
+  width: 8px;
+  height: 2px;
+  background-color: var.$color-shop-button;
+  rotate: (90deg);
+  }
+}
+    & .small {
+      display: inline-block;
+      letter-spacing: 0.5px;
+      line-height: 20px;
+      width: 252px;
+      font-size: 0.9rem;
+      & span {
+        color: var.$color-dark-grey;
+      }
+    }
+    
+  }
+  
+}

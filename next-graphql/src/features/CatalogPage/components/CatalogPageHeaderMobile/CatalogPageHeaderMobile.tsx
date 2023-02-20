@@ -6,6 +6,7 @@ import { sortProductOption } from "../../constants/sortProductOption";
 import { catalogPageAction, selectCatalogPage } from "../../store";
 import { IOptionsDropDownType } from "@/apps/types";
 import { PriceFilter } from "../PriceFilter";
+import {useRouter} from 'next/router';
 import styles from "./CatalogPageHeaderMobile.module.scss";
 
 interface ICatalogPageHeaderMobile {
@@ -32,6 +33,8 @@ interface ICatalogPageHeaderMobile {
 const CatalogPageHeaderMobile: FC<ICatalogPageHeaderMobile> = (props) => {
   const { sortProduct, sizeCard } = useSelector(selectCatalogPage);
   const dispatch = useDispatch();
+  const router = useRouter()
+
 
   const handleCategoryDropDown = (value: IOptionsDropDownType) => {
     if (value.id === props.categoryValue.id) {
@@ -62,6 +65,15 @@ const CatalogPageHeaderMobile: FC<ICatalogPageHeaderMobile> = (props) => {
     }
   };
 
+  const routerLinknavigation = (label: string) => {
+    props.setCategoryValue(() => ({
+      value: "Категория",
+      label: "Категория",
+      id: "",
+    }));
+    router.push(`/catalog/${props.href}/${label}`)
+  }
+
   return (
     <section className={styles.root}>
       <nav>
@@ -89,9 +101,7 @@ const CatalogPageHeaderMobile: FC<ICatalogPageHeaderMobile> = (props) => {
       <ul className={styles.nav__links}>
         {props.optionDepartment.map((department, ind) => (
           <li key={ind} className={styles.link}>
-            <Link href={`/`}>
-              <p className={styles.link__name}>{department.value}</p>
-            </Link>
+              <p onClick={() => routerLinknavigation(department.label)}  className={styles.link__name}>{department.value}</p>
         </li>
           ))}
       </ul>

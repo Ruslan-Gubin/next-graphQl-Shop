@@ -1,0 +1,59 @@
+@use '../../../../apps/styles/common/var';
+
+.root {
+width: 100%;
+box-shadow: var.$box-shadow;
+border-radius: 15px;
+padding: 30px 22px;
+
+  & .header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    & .title__container {
+
+      & .header__title {
+        display: flex;
+        align-items: flex-start;
+        font-size: 1.7rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+      & small {
+        font-size: 1.1rem;
+        margin-left: 5px;
+      }
+      
+      & .header__count {
+        font-size: 1.2rem;
+        position: relative;
+        &::after {
+          content: '';
+          position: absolute;
+          top: 7px;
+          left: 95px;
+          width: 4px;
+          height: 4px;
+          background-color: black;
+          border-radius: 50%;
+          margin-right: 15px;
+        }
+        & span {
+          margin-left: 25px;
+        }
+      }
+      
+    }
+ 
+
+  }
+
+ & .product__list_wrapper {
+
+   & .product__list_item {
+  
+    }
+  }
+
+  
+}

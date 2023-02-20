@@ -1,0 +1,233 @@
+.root {
+  position: relative;
+  padding: 15px 0;
+
+  & .array {
+    position: absolute;
+    top: 30px;
+    left: 20px;
+  }
+
+  & .header__images {
+    display: flex;
+    overflow: scroll;
+    
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+    & .imag {
+      min-width: 48vw;
+      border-radius: 20px;
+      margin-right: 25px;
+      overflow: hidden;
+
+      @media (max-width: 575px) {
+        min-width: 90vw;
+      }
+        
+      & img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+  }
+
+  & .prices {
+    display: flex;
+    align-items: flex-end;
+    & .price {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: rgb(30, 30, 30);
+      margin-right: 15px;
+    }
+    & .old__price {
+      font-size: 1rem;
+      text-decoration: line-through;
+      font-weight: 700;
+      color: rgb(139, 139, 139);
+      margin-right: 15px;
+    }
+  }
+
+  & .color__container {
+    color: rgb(139, 139, 139);
+    font-weight: 600;
+    padding: 15px 0;
+    & .color__name {
+      margin-left: 5px;
+      text-transform: lowercase;
+      color: rgb(41, 41, 41);
+    }
+  }
+
+  
+  & .sub__info {
+  border-bottom: 1px solid rgb(220, 220, 220);  
+  border-top: 1px solid rgb(220, 220, 220);  
+  padding-top: 15px;
+    & .link__brand {
+    font-size: 1.7rem;
+    font-weight: 400;
+    color: rgb(30, 30, 30);
+    text-shadow: 1px 1px 1px  black;
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 17px;
+      right: -20px;
+      width: 10px;
+      height: 2px;
+      background-color: black;
+        rotate: (35deg);
+      }
+      &::before {
+        content: '';
+        position: absolute;
+        top: 22px;
+        right: -20px;
+        width: 10px;
+        height: 2px;
+        background-color: black;
+        rotate: (-35deg);
+      }
+    }
+    
+    & .product__history {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 25px 0;
+      line-height: 30px;
+      position: relative;
+     
+      & .product__stars {
+        position: relative;
+        top: 6px;
+      }
+      
+      & .reviews {
+        margin: 0 15px;
+        color: rgb(137, 137, 137);
+        border-bottom: 1px dashed rgb(137, 137, 137);
+        &:hover {
+          color: rgb(77, 77, 77);
+          border-bottom: 1px dashed rgb(81, 81, 81);
+          cursor: pointer;
+        }
+      }
+      
+      & .id {
+        color: rgb(146, 145, 145);
+        & span {
+          margin-left: 5px;
+          color: rgb(208, 46, 219);
+          margin-right: 15px;
+        }
+      }
+    }
+    & .buy__products {
+      color: rgb(142, 141, 141);
+      font-weight: 400;
+    }
+  } 
+
+  & .description {
+    padding: 20px 0;
+
+    & .description__title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    & .description__text {
+      line-height: 20px;
+      font-size: 1rem;
+      color: rgb(35, 35, 35);
+      margin-bottom: 10px;
+      max-height: 84px;
+      overflow: hidden;
+    }
+    & .description__text_active {
+      line-height: 20px;
+      font-size: 1rem;
+      color: rgb(35, 35, 35);
+      margin-bottom: 10px;
+    }   
+  }
+
+  & .description__btn {
+    background-color: rgba(255, 255, 255, 0);
+    border-bottom: 1px dashed rgba(208, 46, 219, 0);
+    &:hover {
+      color: rgb(208, 46, 219);
+      border-bottom: 1px dashed rgb(208, 46, 219);
+    }
+  }
+
+
+  & .optons {
+& .optons__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+& .option__container_active {
+  line-height: 30px;
+  & .option__item {
+    display: flex;
+    
+    & .option__name {
+      display: inline-block;
+      width: 350px;
+      overflow: hidden;
+      color: rgb(143, 142, 142);
+      font-weight: 600;
+      &::after {
+        content: '________________________________________________________________';
+        color: rgb(203, 203, 203);
+      }
+    }
+    & .option__value {
+      margin-left: 10px;
+      
+    }
+    
+  }
+}
+& .option__container {
+  line-height: 30px;
+max-height: 70px;
+overflow: hidden;
+  & .option__item {
+    display: flex;
+    
+    & .option__name {
+      display: inline-block;
+      width: 350px;
+      overflow: hidden;
+      color: rgb(143, 142, 142);
+      font-weight: 600;
+      &::after {
+        content: '________________________________________________________________';
+        color: rgb(203, 203, 203);
+      }
+    }
+    & .option__value {
+      margin-left: 10px;
+      
+    }
+    
+  }
+}
+
+
+  }
+
+
+    
+  }

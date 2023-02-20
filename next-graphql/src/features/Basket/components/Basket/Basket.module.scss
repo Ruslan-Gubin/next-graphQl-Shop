@@ -1,0 +1,16 @@
+.root {
+display: flex;
+justify-content: space-between;
+padding: 25px 0;
+@media (max-width: 1167px) {
+  display: block;
+}
+
+& .basket__info_list {
+  @media (min-width: 1168px) {
+    width: 72%;
+   }
+
+ }
+
+}

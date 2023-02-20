@@ -1,0 +1,1 @@
+export { AccordionBird } from "./AccordionBird";

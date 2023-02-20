@@ -1,0 +1,1 @@
+export { LoginPageInputPhone } from "./LoginPageInputPhone";

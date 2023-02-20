@@ -1,12 +1,15 @@
+import { Basket } from '@/features';
 import { ShopLayout } from '@/widgets/ShopLayout';
-import React from 'react';
+import { useSelector } from 'react-redux';
 
-const Basket = () => {
+
+const BasketPage = () => {
+
   return (
     <ShopLayout title='Корзина' keywords='Корзина'>
-      Basket
+      <Basket />
     </ShopLayout>
   );
 };
 
-export default Basket;
+export default BasketPage;

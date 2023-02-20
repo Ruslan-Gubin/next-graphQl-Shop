@@ -10,7 +10,10 @@
 
    & .card__wrapper {
 display: flex;
-justify-content: space-between;
+overflow: scroll;
+&::-webkit-scrollbar {
+  width: 0;
+}
      
      & .card__container {
       display: flex;
@@ -18,6 +21,7 @@ justify-content: space-between;
       width: 180px;
       height: 300px;
        position: relative;
+       margin-right: 5px;
        & .card__img {
          width: 180px;
          height: 240px;

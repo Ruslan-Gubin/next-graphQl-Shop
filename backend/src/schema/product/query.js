@@ -84,6 +84,30 @@ const questionMethods = {
         }
     }
   },
+  sortSimilarProduct: {
+    type: new GraphQLList(ProductType),
+    args: {
+      department: {type : new GraphQLNonNull(GraphQLString)},
+      sub_department: {type : new GraphQLNonNull(GraphQLString)},
+      category_id: {type : new GraphQLNonNull(GraphQLString)},
+      exception: {type : new GraphQLNonNull(GraphQLString)},
+    }, 
+    resolve(parent, args) {
+       return ProductModel.find(
+          {
+            $and: [{
+              department: args.department,
+              sub_department: args.sub_department,
+              category_id: args.category_id,
+},
+{ _id: {$ne: args.exception}}
+            ]
+           
+          }
+          
+          ).sort({createdAt: -1}).limit(5)
+    }
+  },
   sortProductCatalog: {
     type: new GraphQLList(ProductType),
     args: {
@@ -94,17 +118,11 @@ const questionMethods = {
     resolve(parent, args) {
       const sort = {}
       sort[args.sortProperty.name] = args.sortProperty.value
-
-     
-     
        return ProductModel.find(
           {
             department: args.department,
             sub_department: args.sub_department,
           }).sort(sort).limit(0)
-   
-   
-        
     }
   },
 

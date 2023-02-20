@@ -1,14 +1,13 @@
-import { FC, useContext } from 'react';
+import { FC } from 'react';
 import { ProductDetails } from '@/entities';
 import { ProductDetailsHeader } from '../ProductDetailsHeader';
 
 import styles from './ProductDetailsPage.module.scss';
-import { useMatchMedia } from '@/features/CatalogPage/libs/hooks/use-match-media';
-import { DetailsContext } from '@/pages/catalog/[id]';
+import {  useDetailsContext } from '@/pages/catalog/[id]';
 
 
 const ProductDetailsPage: FC = () => {
-  const {product, department, media} = useContext(DetailsContext)
+  const { media} = useDetailsContext()
  
   
   return (

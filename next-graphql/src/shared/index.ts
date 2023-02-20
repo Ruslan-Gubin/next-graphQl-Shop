@@ -13,6 +13,13 @@ export {
   ProductDetailsButton,
   Heart,
   QueckMessage,
+  ProductDetailsDescription,
+  Array,
+  Modal,
+  ModalInput,
+  AccordionBird,
+  RemoveIcon,
+  BasketFooterCard,
 } from "./components";
 
 export { useAddImage, useHover } from "./lib/hooks";

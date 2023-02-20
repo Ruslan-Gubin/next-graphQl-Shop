@@ -61,7 +61,6 @@ export {
   catalogPageAction,
   catalogPageReducer,
   selectCatalogPage,
-  basketAction,
-  basketReducer,
-  selectBasket,
 } from "./CatalogPage";
+export { Basket, basketAction, basketReducer, selectBasket } from "./Basket";
+export { LoginPage } from './LoginPage'

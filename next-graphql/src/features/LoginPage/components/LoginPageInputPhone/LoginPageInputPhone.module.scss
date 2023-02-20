@@ -1,0 +1,98 @@
+@use '../../../../apps/styles/common/var';
+
+.input__container {
+
+  & .input__text_hits {
+    display: flex;
+    align-items: center; 
+
+    & span {
+      color: var.$color-red;
+    }
+
+    & .label__text {
+      color: var.$color-secondary;
+      font-size: 1.1em;
+    }
+    
+    & .input__error {
+      position: relative;
+      top: 2px;
+      margin-left: 10px;
+      color: var.$color-error-dark;
+    }
+  }
+
+  & .input__container {
+display: flex;
+    & .drop__btn {
+      border: 2px solid rgba(128, 128, 128, 0.275);
+      width: 100%;
+      border-radius: 10px;
+      padding: 15px ;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var.$color-black-hover;
+      margin: 10px 0;
+      width: 35%;
+      margin-right: 5px;
+      position: relative;
+      cursor: pointer;
+
+      & .drop__bird {
+        position: absolute;
+        top: 5px;
+        left: 50px;
+        scale: 0.6;
+      }
+    }
+
+    & .drop__list {
+      position: absolute;
+      top: 60px;
+      left: 0px;
+      background-color: white;
+      box-shadow: var.$box-shadow;
+      padding: 5px 20px;
+      border-radius: 10px;
+      z-index: 1;
+      transition: all 0.5s ease;
+      
+      
+      & .drop__item {
+        transition: all 0.4s ease;
+        padding: 10px 5px;
+        border-radius: 8px;
+        &:hover {
+          background-color: rgb(242, 242, 242);
+
+        }
+      }
+
+      & .active {
+        color: var.$color-shop-button;
+      }
+
+
+    }
+
+    
+    & .input {
+      border: 2px solid rgba(128, 128, 128, 0.275);
+      width: 100%;
+      border-radius: 10px;
+      padding: 15px ;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var.$color-black-hover;
+      margin: 10px 0;
+      
+      &:focus {
+        border: 2px solid var.$color-shop-button;
+        
+      }
+    }
+    
+  }
+
+}

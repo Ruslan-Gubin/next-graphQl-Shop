@@ -1,5 +1,5 @@
 import { useDetailsContext } from '@/pages/catalog/[id]';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { ProductListImag } from '../ProductListImag';
 import styles from './ImagesProductDetails.module.scss';
 
@@ -9,7 +9,11 @@ interface IImagesProductDetails {
 
 const ImagesProductDetails: FC<IImagesProductDetails> = ({}) => {
   const {product} = useDetailsContext()
-  const [photoActive, setPhotoActive] = useState<string>(product.photo.images[0].url)
+  const [photoActive, setPhotoActive] = useState<string>('')
+
+  useEffect(() => {
+    setPhotoActive(product.photo.images[0].url)
+  },[product])
 
   const handleImageUp = () => {
     const prevImag = product.photo.images.findIndex(item => item.url === photoActive)

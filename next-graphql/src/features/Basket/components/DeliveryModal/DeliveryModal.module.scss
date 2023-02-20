@@ -1,0 +1,123 @@
+@use '../../../../apps/styles/common/var';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  & .header__button {
+    color: var.$color-shop-button;
+    font-weight: 600;
+    font-size: var.$font-size-button;
+    background-color: var.$color-white;
+    border: 1px solid var.$color-shop-button;
+    border-radius: var.$spasing-small;
+    padding: 20px 0;
+    padding-left: 15px;
+    padding-right: 30%;
+    margin-bottom: 20px;
+  }
+
+
+& .street__container {
+display: flex;
+
+
+& .shecked {
+   cursor: pointer;
+  position: relative;
+  top: 45px;
+  left: 60px;
+  font-size: var.$font-size-button;
+  color: var.$color-header-bg-dark;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: -30px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgb(145, 145, 145);
+    border-radius: 5px;
+  }
+ }
+ & .shecked__active {
+  cursor: pointer;
+  position: relative;
+  top: 45px;
+  left: 60px;
+  font-size: var.$font-size-button;
+  color: var.$color-header-bg-dark;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: -30px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var.$color-shop-button;
+    background-color: var.$color-shop-button;
+    border-radius: 5px;
+  }
+ }
+
+ & .checked__bird {
+  position: absolute;
+  top: 10px;
+  left: -23px;
+  width: 10px;
+  height: 2px;
+  background-color: rgb(255, 255, 255);
+  z-index: 1;
+  rotate: (-45deg);
+  &::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+  left: -2px;
+  width: 5px;
+  height: 2px;
+  background-color: rgb(255, 255, 255);
+  rotate: (85deg);
+  }
+ }
+}
+
+
+& .sub__info {
+  width: 100%;
+  width: 400px;
+  margin-bottom: 10px;
+  & h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
+  & .sub__info_container {
+    display: flex;
+    justify-content: space-between;
+  } 
+
+}
+
+
+  & .footer__button_active {
+    color: var.$color-white;
+    font-weight: 600;
+    font-size: var.$font-size-button;
+    background-color: var.$color-shop-button;
+    border: 1px solid var.$color-shop-button;
+    border-radius: var.$spasing-small;
+    padding: 15px 20px;
+  }
+  & .footer__button {
+    color: var.$color-secondary;
+    font-weight: 600;
+    font-size: var.$font-size-button;
+    background-color: var.$color-white;
+    border: 1px solid var.$color-secondary;
+    border-radius: var.$spasing-small;
+    padding: 15px 20px;
+  }
+
+  
+}

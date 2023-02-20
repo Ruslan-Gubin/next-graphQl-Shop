@@ -72,6 +72,11 @@
 .foto__container {
   display: flex;
   width: 43%;
+
+  @media (max-width: 1365px) {
+    width: 55%;
+  }
+
   & .foto__list {
     display: flex;
     flex-direction: column;

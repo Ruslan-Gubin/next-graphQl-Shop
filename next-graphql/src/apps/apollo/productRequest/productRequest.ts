@@ -29,6 +29,7 @@ const ONE_PRODUCT = gql`
       department
       photo_count
       views
+      category_id
       options {
         name
         value
@@ -149,6 +150,33 @@ const SORT_PRODUCT_DEPARTMENT = gql`
     }
   }
 `;
+const SORT_PRODUCT_SIMILAR = gql`
+  query (
+  $department: String!,
+  $sub_department: String!
+  $category_id: String!
+  $exception: String!
+  ) {
+    sortSimilarProduct(
+    department: $department,
+    sub_department: $sub_department
+    category_id: $category_id
+    exception: $exception
+    ) {
+      name
+      _id
+      discount
+      price
+      oldPrice
+      name
+      photo {
+        images {
+          url
+        }
+      }
+    }
+  }
+`;
 
 const SORT_PRODUCT_CATALOG = gql`
   query (
@@ -194,4 +222,5 @@ export {
   CREATED_PRODUCT,
   SORT_PRODUCT_DEPARTMENT,
   SORT_PRODUCT_CATALOG,
+  SORT_PRODUCT_SIMILAR,
 };
