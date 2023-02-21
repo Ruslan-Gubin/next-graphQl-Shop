@@ -17,6 +17,7 @@ const rootReducer = combineReducers({
   updateOption: redusers.updateOptionReducer,
   catalogPage: redusers.catalogPageReducer,
   basket: redusers.basketReducer,
+  User: redusers.userReducer,
   // [rtkQuery.productsApi.reducerPath]: rtkQuery.productsApi.reducer,
 });
 

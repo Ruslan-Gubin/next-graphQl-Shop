@@ -17,7 +17,7 @@ const sortPropertyScale = new GraphQLScalarType({
   },
 });
 
-const questionMethods = {
+const productsMethods = {
   getProductsUpdate: {
     type: new GraphQLList(ProductType),
     args: {
@@ -129,7 +129,7 @@ const questionMethods = {
 }
 
 
-const assaignMethods = Object.assign(getMethods, questionMethods) 
+const assaignMethods = Object.assign(getMethods, productsMethods) 
 
 
 const ProductQuery = assaignMethods;

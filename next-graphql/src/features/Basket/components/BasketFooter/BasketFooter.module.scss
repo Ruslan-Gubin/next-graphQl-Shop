@@ -22,6 +22,29 @@
       width: 49%;
     }
   }
+
+  & .user__data {
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    line-height: 25px;
+    & .user__name {
+    }
+    & .user__phone {
+      
+    }
+    & span {
+      font-size: 1rem;
+      color: var.$color-secondary;
+      margin-right: 10px;
+
+    }
+    & .update__user {
+      color: var.$color-shop-button;
+      font-size: 1rem;
+    }
+  }
  }
 
  & .address__item {

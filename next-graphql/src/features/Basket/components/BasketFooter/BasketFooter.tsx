@@ -1,13 +1,15 @@
-import { MouseEvent, MouseEventHandler, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { MouseEvent, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 import { BasketFooterCard, RemoveIcon } from '@/shared';
 import { useBasketContext } from '../../libs/context/BasketContext';
 import { basketAction } from '../../store/basketSlice';
 
 import styles from './BasketFooter.module.scss';
+import { selectUser } from '@/features/LoginPage';
 
 const BasketFooter = () => {
+  const { user } = useSelector(selectUser);
   const { setModalActive, address} = useBasketContext()
   const [activeAddressList, setActiveAddressList] = useState(false)
   const dispatch = useDispatch()
@@ -85,13 +87,21 @@ const BasketFooter = () => {
       </div>
       <div className={styles.last__card}>
      <BasketFooterCard visionToggle={false} title='Мои данные'>
+        {user.name ?
+        <div className={styles.user__data}>
+          <p className={styles.user__name}><span>Имя: </span>{user.name}</p>
+          <p className={styles.user__phone}><span>Телефон: </span>{user.phone}</p>
+          <Link href={'/lk/details'}>
+           <p className={styles.update__user}>Изменить</p>
+          </Link>
+        </div>
+        :
       <p className={styles.notification}>
-        {!isAuth && 
         <Link href={'/security/login'}>
         <span>Войти или зарегистрироваться, </span>
         </Link>
-      }
         чтобы оформить заказ</p>
+      }
      </BasketFooterCard>
       </div>
      </div>

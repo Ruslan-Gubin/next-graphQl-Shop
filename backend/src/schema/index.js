@@ -5,18 +5,19 @@ import { PhotoProductMutation, PhotoProductQuery } from "./photoProduct/index.js
 import { ProductQuery, ProductMutation } from "./product/index.js";
 import { BrandQuery, BrandMutation } from "./brand/index.js";
 import { CategoryQuery, CategoryMutation } from './category/index.js';
+import { UserQuery, UserMutation } from "./auth/index.js";
 
 const Query = new GraphQLObjectType({
   name: "Query",
   fields: {
-    ...helperSchema.assingObj(QuestionQuery, PhotoProductQuery, ProductQuery, BrandQuery, CategoryQuery), 
+    ...helperSchema.assingObj(QuestionQuery, PhotoProductQuery, ProductQuery, BrandQuery, CategoryQuery, UserQuery), 
   },
 });
 
 const Mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {
-    ...helperSchema.assingObj(QuestionMutation, PhotoProductMutation, ProductMutation, BrandMutation, CategoryMutation),
+    ...helperSchema.assingObj(QuestionMutation, PhotoProductMutation, ProductMutation, BrandMutation, CategoryMutation, UserMutation),
   },
 });
 

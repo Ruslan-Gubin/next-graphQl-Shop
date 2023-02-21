@@ -5,7 +5,6 @@ interface IUserValue {
   phone: string;
   email: string;
   password: string;
-  image: string;
 }
 
 interface ILoginPageContext {

@@ -1,5 +1,7 @@
 import Link from "next/link";
-import React from "react";
+import { useSelector } from "react-redux";
+import { selectUser } from "@/features";
+
 const addressIcon =
   "https://res.cloudinary.com/ds289tkqj/image/upload/v1674831921/Hits/addressIcon_jgsuc2.png";
 const loginIcon =
@@ -9,21 +11,23 @@ const orderIcon =
 
 import styles from "./HeaderStoreNavbar.module.scss";
 
-const HeaderStoreNavbar = ({shopingCount = 0}:{shopingCount: number}) => {
+const HeaderStoreNavbar = ({ shopingCount = 0 }: { shopingCount: number }) => {
+  const { user } = useSelector(selectUser);
+
   return (
     <div className={styles.root}>
       <Link className={styles.linkItem} href={"/services/dostavka"}>
         <img src={addressIcon} alt="address icon" />
         <span>Адреса</span>
       </Link>
-      <Link className={styles.linkItem} href={"/security/login"}>
+      <Link className={styles.linkItem} href={user.name ? '/lk/details' : "/security/login"}>
         <img src={loginIcon} alt="address icon" />
-        <span> Войти </span>
+        {user.name ? <span> Профиль </span> : <span> Войти </span>}
       </Link>
       <Link className={styles.linkItem} href={"/basket"}>
-      <div className={styles.orderCouter}>
-        <span>{shopingCount}</span>
-      </div>
+        <div className={styles.orderCouter}>
+          <span>{shopingCount}</span>
+        </div>
         <img src={orderIcon} alt="address icon" />
         <span>Корзина </span>
       </Link>

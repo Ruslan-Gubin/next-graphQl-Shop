@@ -32,6 +32,22 @@ padding-top: 60px;
     margin-bottom: 30px;
   }
  
+  & .submit__btn {
+   background-color: var.$color-shop-button;
+   color: var.$color-white;
+   font-size: 1.1rem;
+   font-weight: 600;
+   width: 100%;
+   padding: 15px 0;
+   border-radius: var.$spasing-small;
+    margin-bottom: 15px;
+    margin-top: 10px;
+   &:hover {
+    background-color: var.$color-shop-button-active;
+
+  }
+  }
+
  & .footer__container {
 display: flex;
 align-items: center;
@@ -52,6 +68,7 @@ align-items: center;
   rotate: (-85deg);
   }
  }
+
  & .footer__text {
   padding-left: 15px;
   width: 330px;

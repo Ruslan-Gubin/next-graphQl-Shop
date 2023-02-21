@@ -5,7 +5,6 @@ interface IuserValue {
   phone: string;
   email: string;
   password: string;
-  image: string;
 }
 
 type ISetErrors = Dispatch<
@@ -14,7 +13,6 @@ type ISetErrors = Dispatch<
     phone: boolean;
     email: boolean;
     password: boolean;
-    image: boolean;
   }>
 >;
 
