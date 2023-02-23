@@ -37,8 +37,8 @@ const CatalogPage: FC<ICatalogPage> = ({
   label,
   sub_departmentName,
 }) => {
-  const {page, perPage} = useSelector(selectCatalogPage) 
-  const {isDesktop, isMobile} = useMatchMedia()
+  const { perPage} = useSelector(selectCatalogPage) 
+  const {isDesktop} = useMatchMedia()
   const [subDepartmentValue, setSubDepartmentValue] = useState({
     value: value,
     label: label,

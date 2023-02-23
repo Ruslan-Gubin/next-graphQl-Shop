@@ -7,6 +7,10 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  position: fixed;
+  bottom: 5px;
+  right: 20px;
+  
 
   & img {
     width: 55%;

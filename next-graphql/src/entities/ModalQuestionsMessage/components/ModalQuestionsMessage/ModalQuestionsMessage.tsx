@@ -70,11 +70,19 @@ const ModalQuestionsMessage: React.FC<IModalQuestionsMessage> = ({
             type="text"
             placeholder="Ваше сообщение"
           />
-          <ButtonFooterHelper
-            active={message.length > 0}
-            icon={modalQuestionsIcon.sendMessageIcon}
-            onClick={handleAddQuestion}
-          />
+          {message.length > 0 ? 
+          <div 
+          onClick={handleAddQuestion}
+          className={styles.btn}>
+            <img src={modalQuestionsIcon.sendMessageIcon} alt="image madal add message" />
+            </div>
+            : 
+          <div 
+          className={styles.disabled}>
+            <img src={modalQuestionsIcon.sendMessageIcon} alt="image madal add message" />
+            </div>
+
+        }
         </footer>
       </div>
     </button>

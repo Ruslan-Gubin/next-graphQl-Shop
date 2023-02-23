@@ -12,7 +12,7 @@ import styles from './Basket.module.scss';
 
 const Basket = () => {
   const [modalActive, setModalActive] = useState(false)
-  const {basket, address} = useSelector(selectBasket)
+  const {basket, address, favorites} = useSelector(selectBasket)
 
   const totalCount = basket.reduce((acc, item) => acc + item.price * item.count ,0)
 

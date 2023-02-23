@@ -1,0 +1,32 @@
+
+
+.root {
+
+
+& .product__container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 40px 0;
+  & .product__item {
+  width: 25%;
+  
+  
+  @media (min-width: 1024px) {
+    width: 20%;
+  }
+
+  @media (max-width: 767px) {
+    width: 33%;
+  }
+  @media (max-width: 575px) {
+    width: 50%;
+  }
+
+  }
+  
+
+
+}
+
+  
+}

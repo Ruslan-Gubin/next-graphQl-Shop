@@ -4,6 +4,14 @@
   margin-bottom: 80px;
 
   background-color: white;
+
+  & .heart__container {
+    display: block;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 25px;
+  }
   
   
   

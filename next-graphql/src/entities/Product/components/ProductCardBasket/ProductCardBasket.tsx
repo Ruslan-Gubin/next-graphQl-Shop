@@ -11,10 +11,10 @@ interface IProductCardBasket {
   decrement: (value: string) => void
   increment: (value: string) => void
   removeProduct: (value: string) => void
+  addFavorite: () => void
 }
 
-const ProductCardBasket = ({product, decrement, increment, removeProduct}: IProductCardBasket) => {
-
+const ProductCardBasket = ({product, addFavorite, decrement, increment, removeProduct}: IProductCardBasket) => {
 
   return (
     <article className={styles.root}>
@@ -41,7 +41,7 @@ const ProductCardBasket = ({product, decrement, increment, removeProduct}: IProd
         <p className={styles.product__old_price}>{formatterRub.format(product.oldPrice)}</p>
     <section className={styles.product__footer_btn}>
   <div className={styles.product__footer_heart}>
-   <Heart />
+   <Heart active={false} handleAddFavorite={addFavorite} removeFavorites={addFavorite}/>
   </div>
   <div style={{width: '24px'}}>
     <RemoveIcon onClick={() => removeProduct(product.id)} />

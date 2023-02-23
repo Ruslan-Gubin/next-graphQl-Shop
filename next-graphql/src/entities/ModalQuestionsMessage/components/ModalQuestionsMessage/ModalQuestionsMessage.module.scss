@@ -16,14 +16,33 @@
   }
 }
 
+%root {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  
+
+  & img {
+    width: 55%;
+  }
+}
+
 .root {
   background-color: rgb(255, 255, 255);
   border-radius: 15px;
-  position: absolute;
-  right: 25px;
+  position: fixed;
+  right: 20px;
   bottom: 25px;
   box-shadow: 1px 2px 5px -2px;
   width: 370px;
+
   & .container {
     & header {
       display: flex;
@@ -107,7 +126,7 @@
       justify-content: space-between;
       position: relative;
       padding: 20px;
-
+      position: relative;
       & .paperclip {
         width: 27px;
         position: absolute;
@@ -122,6 +141,21 @@
         border-radius: 20px;
         padding-left: 43px;
       }
+
+     & .btn {
+      background-color:  #cb11ab;
+      @extend %root;
+     
+       &:hover {
+         background-color:  #ce33b4;
+       }
+     }
+
+    & .disabled {
+      @extend %root;
+      background-color:  #e1e1e1;
+    }
+
     }
   }
 }

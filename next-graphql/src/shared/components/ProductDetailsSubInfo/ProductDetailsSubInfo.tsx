@@ -7,25 +7,19 @@ import { Heart } from '../Heart';
 import { useSelector } from 'react-redux';
 import { selectBasket } from '@/features';
 import styles from './ProductDetailsSubInfo.module.scss';
+import { checkFavorite } from '@/entities/Product/lib/helpers/checkFavorite';
+import { checkBasket } from '@/entities/Product/lib/helpers/checkBasket';
 
 interface IProductDetailsSubInfo {
   handleAddBasket: () => void
+  handleAddFavorites: () => void
+  handleRemoveFavorites: () => void
 }
 
-const ProductDetailsSubInfo: FC<IProductDetailsSubInfo> = ({handleAddBasket}) => {
-  const { basket } = useSelector(selectBasket);
+const ProductDetailsSubInfo: FC<IProductDetailsSubInfo> = ({handleRemoveFavorites, handleAddFavorites, handleAddBasket}) => {
+  const { basket, favorites } = useSelector(selectBasket);
   const {product} = useDetailsContext()
   const router = useRouter();
-
-  const checkBasket = () => {
-    const item = basket.find((item) => item.id === product._id);
-    if (item) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
 
   return (
     <section className={styles.root}>
@@ -39,7 +33,7 @@ const ProductDetailsSubInfo: FC<IProductDetailsSubInfo> = ({handleAddBasket}) =>
 
     <div className={styles.btn__container}>
 
-    {checkBasket() ? (
+    {checkBasket(basket, product) ? (
           <button
             onClick={() => router.push("/basket")}
             className={styles.btn__active}
@@ -51,7 +45,7 @@ const ProductDetailsSubInfo: FC<IProductDetailsSubInfo> = ({handleAddBasket}) =>
             Добавить в корзину
           </button>
         )}
-      <Heart />
+      <Heart active={checkFavorite(favorites, product)} removeFavorites={handleRemoveFavorites} handleAddFavorite={handleAddFavorites} />
       
     </div>
 

@@ -1,22 +1,25 @@
 import { IProductType } from '@/apps/types';
 import { formatterRub } from '@/features/CatalogPage/libs/helper';
 import { FC, memo, useEffect, useRef, useState } from 'react';
-import { StarsList } from '@/shared';
+import { Heart, StarsList } from '@/shared';
 import { useInView } from "react-intersection-observer";
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { selectBasket } from '@/features';
 import styles from './ProductCategory.module.scss';
+import { checkFavorite } from '../../lib/helpers/checkFavorite';
 
 
 interface IProductCategory {
 product: IProductType
 onClickBuy: (value: IProductType) => void
+addFavorites: () => void
+removeFavorites: () => void
 }
 
-const ProductCategoryF: FC<IProductCategory> = ({product, onClickBuy}) => {
-  const {basket} = useSelector(selectBasket)
+const ProductCategoryF: FC<IProductCategory> = ({product, onClickBuy, addFavorites,removeFavorites}) => {
+  const {basket, favorites} = useSelector(selectBasket)
   const [hoverCard, setHover] = useState(false)
   const [buttonActive, setButtonActive] = useState(false)
   const [ref, isVisible] = useInView({ threshold: 0.5, triggerOnce: true });
@@ -52,6 +55,9 @@ const ProductCategoryF: FC<IProductCategory> = ({product, onClickBuy}) => {
   return (
     <article ref={cardRef} className={styles.root}>
       <header>
+        <div className={styles.heart__container}>
+        <Heart active={checkFavorite(favorites, product)} handleAddFavorite={addFavorites} removeFavorites={removeFavorites}/>
+        </div>
         <figure className={styles.image__container}>
           <Link href={`/catalog/${product._id}`}>
           <img ref={ref}
@@ -78,7 +84,7 @@ const ProductCategoryF: FC<IProductCategory> = ({product, onClickBuy}) => {
     {!buttonActive ?
     <button onClick={() => onClickBuy(product)} className={styles.btn}>В корзину</button>
     :
-    <button onClick={() => router.push(`/catalog/basket`)} className={styles.btn__active}>В корзине</button>
+    <button onClick={() => router.push(`/basket`)} className={styles.btn__active}>В корзине</button>
   }
     </>
     }

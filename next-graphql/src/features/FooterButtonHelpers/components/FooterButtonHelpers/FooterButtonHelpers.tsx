@@ -1,14 +1,14 @@
 import { FC } from "react";
 import { ModalQuestionsMessage } from "@/entities";
 import { ButtonFooterHelper } from "@/shared/components";
-
-import styles from "./FooterButtonHelpers.module.scss";
 import { buttonIcon } from "../../lib/assets/buttonIcon";
 import { useDispatch, useSelector } from "react-redux";
 import { questionsAction, selectQuestions } from "../../lib/store";
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_COMMENT_QUESTION, ONE_QUESTIONS  } from "@/apps/apollo";
 import { ADD_QUESTIONS } from "../../models/questionRequest";
+
+import styles from "./FooterButtonHelpers.module.scss";
 
 const FooterButtonHelpers: FC = () => {
   const [createQuestion, {}] = useMutation(ADD_QUESTIONS);
@@ -26,6 +26,7 @@ const FooterButtonHelpers: FC = () => {
       name: "Guest",
       viewed: false,
     };
+    console.log(questionsId);
     if (!questionsId) {
       await createQuestion({
         variables,
@@ -49,6 +50,8 @@ const FooterButtonHelpers: FC = () => {
     }
     dispatch(questionsAction.textValueClear());
   };
+
+
   return (
     <>
       <div className={styles.root}>
@@ -67,10 +70,10 @@ const FooterButtonHelpers: FC = () => {
             handleAddQuestion={handleAddQuestion}
           />
         ) : (
-          <ButtonFooterHelper
+            <ButtonFooterHelper
             icon={buttonIcon.chatIcon}
             onClick={() => dispatch(questionsAction.getActivModal())}
-          />
+            />
         )}
       </div>
     </>

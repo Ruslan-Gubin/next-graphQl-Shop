@@ -63,4 +63,6 @@ export {
   selectCatalogPage,
 } from "./CatalogPage";
 export { Basket, basketAction, basketReducer, selectBasket } from "./Basket";
-export { LoginPage, selectUser,userAction,userReducer } from './LoginPage'
+export { LoginPage, selectUser, userAction, userReducer } from "./LoginPage";
+export { UserDetails } from "./UserDetails";
+export { UserFavorites } from "./UserFavorites";

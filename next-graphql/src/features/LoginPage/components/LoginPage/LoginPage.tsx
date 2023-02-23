@@ -1,27 +1,31 @@
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useLayoutEffect, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { LoginPageContext } from "../../libs/context/LoginPageContext";
 import { dropOptions } from "../../libs/data/dropOptions";
 import { validFormInput } from "../../libs/helpers/validFormInput";
-import { LoginPageInput } from "../LoginPageInput";
-import { LoginPageInputPhone } from "../LoginPageInputPhone";
-import { CREATE_USER } from "../../module/authLoginRequest";
-
+import { CREATE_USER, LOGIN_USER } from "../../module/authLoginRequest";
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser, userAction } from "../../store";
+import { RegistationForm } from "../RegistationForm";
 
 import styles from './LoginPage.module.scss';
-import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
-import { userAction } from "../../store";
+import { LoginForm } from "../LoginForm";
+import { QueckMessage } from "@/shared";
 
 
 const LoginPage = () => {
+  const {user} = useSelector(selectUser)
   const [createdUser] = useMutation(CREATE_USER)
+  const [loginUser] = useMutation(LOGIN_USER)
+  const [login, setLogin] = useState(false)
   const [dropValue, setDropValue] = useState(dropOptions[0])
+  const [errorsActive, setErrorsActive] = useState(false)
   const [userValue, setUserValue] = useState({
-    name: 'Ruslan',
-    phone: '9494197155',
-    email: 'gubin_ruslan@rambler.ru',
-    password: '1234qwer',
+    name: '',
+    phone: '',
+    email: '',
+    password: '',
   })
   const [errors, setErrors] = useState({
     name: false,
@@ -29,6 +33,7 @@ const LoginPage = () => {
     email: false,
     password: false, 
   })
+  const [fastMessageError, setFastMessageError] = useState({state: false, message: ''})
   const router = useRouter()
   const dispatch = useDispatch()
 
@@ -36,19 +41,18 @@ const LoginPage = () => {
     validFormInput(userValue, setErrors)
   },[userValue])
 
+  useLayoutEffect(() => {
+   if (user.name) {
+    router.push('/lk/details')
+   }
+  },[])
 
-  const myPhone = '79494197155'
-  const now = Date.now()
 
-  const queickLoginInput = {
-    name: 'Guest',
-    phone: now,
-    email: '',
-    password: `guest${now}`
-  }
+  
 
   const handlerFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setErrorsActive(true)
 
    let errorValue = false;
     
@@ -61,7 +65,6 @@ const LoginPage = () => {
     if (errorValue) {
       return   
     } else {
-      try {
         await  createdUser({
               variables: {
               name: userValue.name,
@@ -73,71 +76,71 @@ const LoginPage = () => {
               dispatch(userAction.createdUser({user: {...data.data.createdUser, image: {url:'',public_id: ''}}}))
               await router.push('/lk/details')
               setUserValue(() => ({name: '', email: '', password: '', phone: ''}))
-              
-              console.log(data.data.createdUser)
             })
-            .catch(error => console.error(error))
+            .catch(error => {
+            setFastMessageError(() => ({message: error.message, state: true}))
+            setTimeout(() => {
+            setFastMessageError(() => ({message: '', state: false}))
+            }, 3000)
+            })
         
-      } catch (error) {
-        console.error(error)
-      }
     }
+  }
+
+  const handleLoginUser = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setErrorsActive(true)
+    if (errors.phone || errors.password) {
+      return
+    }
+
+    loginUser({
+      variables: {
+        phone: `${dropValue.label}${userValue.phone}`,
+        password: userValue.password,
+      }
+    }).then(async (data) => {
+      dispatch(userAction.createdUser({user: data.data.loginUser}))
+      await router.push('/lk/details')
+      setUserValue(() => ({name: '', email: '', password: '', phone: ''}))
+    })
+    .catch(error => {
+      setFastMessageError(() => ({message: error.message, state: true}))
+      setTimeout(() => {
+        setFastMessageError(() => ({message: '', state: false}))
+      }, 3000)
+    });
+    
   }
 
 
   return (
     <div>
       
-        <LoginPageContext.Provider value={{userValue, setUserValue, dropValue, setDropValue}}>
-    <section className={styles.root}>
-      <form onSubmit={(e) => handlerFormSubmit(e)} action="" className={styles.form__container}>
-        <h1 className={styles.form__title}>Войти или создать профиль</h1>
-
-        <LoginPageInput 
-        setValue={(value) => setUserValue(prev => ({...prev, name: value}))}
-        value={userValue.name}
-        required={true}
-        erroState={errors.name}
-        errorText="Введите имя от 3 до 15 символов"
-        label="Имя" 
-        />
-
-        <LoginPageInput 
-        setValue={(value) => setUserValue(prev => ({...prev, email: value}))}
-        value={userValue.email}
-        required={false}
-        erroState={errors.email}
-        errorText="Введите корректный E-Mail"
-        label="E-Mail" />
-
-        <LoginPageInput 
-        setValue={(value) => setUserValue(prev => ({...prev, password: value}))}
-        type="password"
-        value={userValue.password}
-        required={true}
-        erroState={errors.password}
-        errorText="От 5 до 15 символов и цифр"
-        label="Пароль" />
-
-        <LoginPageInputPhone 
-        required={true}
-        errorText="Неверное количество цифр"
-        value={userValue.phone}
-        erroState={errors.phone}
-        setValue={(value) => setUserValue(prev => ({...prev, phone: value}))}
-        label="Контактный телефон"
-        />
-
-        <button className={styles.submit__btn} type='submit'>Подтвердить</button>
-
-      <div className={styles.footer__container}>
-        <div className={styles.footer__bird}></div>
-        <p className={styles.footer__text}><span>Согласен с условиями</span> Правил пользования торговой площадкой и правилами возврата</p>
-      </div>
+        <LoginPageContext.Provider 
+        value={{
+          errorsActive,
+          handlerFormSubmit,
+          errors,
+          setLogin,
+          userValue,
+          setUserValue,
+          dropValue,
+          setDropValue
+          }}>
+   <section className={styles.root}>
+    <form onSubmit={(e) => login ? handleLoginUser(e) : handlerFormSubmit(e)} action="" className={styles.form__container}>
+  {login ?
+  <LoginForm />
+  :
+  <RegistationForm />
+  }
 
       </form>
-      </section>
+    </section>
+    <QueckMessage active={fastMessageError.state} message={fastMessageError.message}/>
       </LoginPageContext.Provider>
+
       </div>
   );
 };

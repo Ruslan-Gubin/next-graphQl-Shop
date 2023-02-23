@@ -1,0 +1,45 @@
+@use '../../../../apps/styles/common/var';
+
+%button {
+  width: 40%;
+  padding: 15px;
+  font-size: 1.3rem;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+%card-container {
+  width: 100%;
+  background-color: white;
+  padding: 20px ;
+  margin: 15px 0;
+  border-radius: 10px;
+}
+
+.card__button {
+  @extend %card-container;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   & .buttons__cancel {
+     @extend %button;
+     color: var.$color-shop-button;
+     border: 2px solid var.$color-shop-button;
+     background-color: var.$color-white;
+     box-shadow: var.$box-shadow;
+     &:hover {
+       border: 2px solid var.$color-shop-button-active;
+       background-color: rgb(246, 246, 246);
+     }
+   }
+   & .buttons__submit {
+     @extend %button;
+     color: var.$color-white;
+     border: 2px solid var.$color-shop-button;
+     background-color: var.$color-shop-button;
+     box-shadow: var.$box-shadow;
+     &:hover {
+       background-color: var.$color-shop-button-active;
+     }
+   }
+ }

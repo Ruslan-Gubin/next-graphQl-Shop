@@ -16,7 +16,24 @@ const userSlice = createSlice({
 
     createdUser(state, action: PayloadAction<{user: IUser}>) {
       state.user = action.payload.user
+      window.localStorage.setItem('token', action.payload.user.token)
+      window.localStorage.setItem('userId', action.payload.user._id)
     },
+
+    updateUser(state, action: PayloadAction<{user: IUser}>) {
+      state.user = {
+        ...state.user,
+        name: action.payload.user.name,
+        email: action.payload.user.email,
+        image: action.payload.user.image,
+      }
+    },
+
+    removeUser(state) {
+      state.user = {} as IUser
+    },
+
+    
  
 
   },

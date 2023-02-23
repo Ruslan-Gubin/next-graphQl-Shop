@@ -4,15 +4,22 @@ import {useRouter} from 'next/router';
 import Link from 'next/link';
 
 import styles from './ProductDetailsMobile.module.scss';
-import { Array, StarsList } from '@/shared';
+import { Array, Heart, StarsList } from '@/shared';
 import { formatterRub } from '@/features/CatalogPage/libs/helper';
 import { CatatlogProductList } from '@/widgets/CatalogStartPage/components/CatatlogProductList';
+import { selectBasket } from '@/features';
+import { useSelector } from 'react-redux';
+import { checkFavorite } from '../../lib/helpers/checkFavorite';
+import { checkBasket } from '../../lib/helpers/checkBasket';
 
 interface IProductDetailsMobile {
   characteristic: boolean;
   setCharacteristic: Dispatch<SetStateAction<boolean>>;
   description: boolean;
   setDescription: Dispatch<SetStateAction<boolean>>;
+  handleAddBasket: () => void
+  handleAddFavorites: () => void
+  handleRemoveFavorites: () => void
 }
 
 const ProductDetailsMobile: FC<IProductDetailsMobile> = ({
@@ -20,7 +27,11 @@ const ProductDetailsMobile: FC<IProductDetailsMobile> = ({
   setDescription,
   characteristic,
   setCharacteristic,
+  handleAddBasket,
+  handleAddFavorites,
+  handleRemoveFavorites
 }) => {
+  const { basket, favorites } = useSelector(selectBasket);
   const {product, similarProduct} = useDetailsContext()
   const router = useRouter()
 
@@ -44,6 +55,9 @@ const ProductDetailsMobile: FC<IProductDetailsMobile> = ({
       </div>
       <div className={styles.color__container}>
             <p>Цвет: <span className={styles.color__name}>{product.colors_names}</span></p>
+      <div className={styles.heards}>
+      <Heart active={checkFavorite(favorites, product)} removeFavorites={handleRemoveFavorites} handleAddFavorite={handleAddFavorites} />
+      </div>
       </div>
             <div className={styles.sub__info}>
             <Link href={`/brands/${product.brand_id}`} className={styles.link__brand}>
@@ -88,6 +102,18 @@ const ProductDetailsMobile: FC<IProductDetailsMobile> = ({
         }
          </section>
          {similarProduct.length > 0 &&  <CatatlogProductList title="Похожие товары" productList={similarProduct} /> }
+   {!checkBasket(basket, product) ?
+    <button 
+    onClick={() => handleAddBasket()}
+    className={styles.btn__buy}>
+      <span>Добавить в корзину</span>
+     
+      </button>
+  :  
+  <Link href={'/basket'}>
+  <button className={styles.btn__buy_active}>Перейти в корзину</button>
+  </Link>
+  }
     </div>
   );
 };

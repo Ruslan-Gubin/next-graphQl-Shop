@@ -20,6 +20,8 @@ export {
   AccordionBird,
   RemoveIcon,
   BasketFooterCard,
+  LKHeader,
+  CloseProductButton,
 } from "./components";
 
 export { useAddImage, useHover } from "./lib/hooks";

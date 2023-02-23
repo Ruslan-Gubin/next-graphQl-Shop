@@ -34,6 +34,7 @@ const BasketList = () => {
         decrement={(value) => dispatch(basketAction.decrement({id: value}))}
         increment={(value) => dispatch(basketAction.increment({id: value}))}
         removeProduct={(value) => dispatch(basketAction.removeProduct({id: value}))}
+        addFavorite={() => dispatch(basketAction.addFavoritAndRemoveBasket({product}))}
          />
       </li>
         ))}

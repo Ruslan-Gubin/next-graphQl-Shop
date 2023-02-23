@@ -1,0 +1,41 @@
+@use "../../../apps/styles/common/var";
+
+.root {
+  background-color: var.$color-white;
+  border-radius: var.$border-radius-circle;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  rotate: (45deg);
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: var.$color-shop-button-active;
+    & .root__cross {
+      background-color: var.$color-white;
+      &::after {
+        background-color: var.$color-white;
+      }
+    }
+  }
+
+  & .root__cross {
+    width: 11px;
+    height: 2px;
+    background-color: var.$color-secondary;
+    position: relative;
+    transition: all 0.3s ease;
+    &::after {
+      content: "";
+      transition: all 0.3s ease;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 11px;
+      height: 2px;
+      background-color: var.$color-secondary;
+      rotate: (90deg);
+    }
+  }
+}

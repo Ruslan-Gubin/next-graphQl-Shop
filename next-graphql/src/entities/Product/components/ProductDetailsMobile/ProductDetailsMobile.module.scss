@@ -1,3 +1,17 @@
+@use '../../../../apps/styles/common/var';
+
+%button-footer {
+  font-size: 1.3em;
+  font-weight: 600;
+  padding: 15px 0;
+width: 100%;
+border-radius: 10px;
+border: 2px solid var.$color-shop-button;
+position: fixed;
+    bottom: 1px;
+    left: 0px;
+}
+
 .root {
   position: relative;
   padding: 15px 0;
@@ -55,12 +69,21 @@
     color: rgb(139, 139, 139);
     font-weight: 600;
     padding: 15px 0;
+    position: relative;
     & .color__name {
       margin-left: 5px;
       text-transform: lowercase;
       color: rgb(41, 41, 41);
     }
+    .heards {
+      position: absolute;
+      top: -10px;
+      width: 30px;
+      height: 30px;
+      left: 180px;
+    }
   }
+
 
   
   & .sub__info {
@@ -228,6 +251,26 @@ overflow: hidden;
 
   }
 
+
+  & .btn__buy {
+    background-color: var.$color-shop-button;
+    color: var.$color-white;
+    @extend %button-footer;
+    
+
+    & span {
+      cursor: pointer;
+    }
+
+    &:hover {
+      background-color: var.$color-shop-button-active;
+    }
+  }
+  & .btn__buy_active {
+    background-color: var.$color-white;
+    color: var.$color-shop-button;
+    @extend %button-footer;
+  }
 
     
   }

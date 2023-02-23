@@ -1,2 +1,2 @@
-export { UserAvatar, UserInfo, UserCard, UserSettingsInfo } from "./components";
+export { UserAvatar, UserInfo, UserCardDetails, UserSettingsInfo } from "./components";
 

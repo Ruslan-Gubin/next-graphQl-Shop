@@ -2,14 +2,24 @@
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 80px;
+  position: relative;
 
   @media (max-width: 1020px) {
     background-color: white;
+  }
 
-
-
-
-
+  &:hover {
+    & .heart__container {
+      display: block;
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 25px;
+    }
+  }
+  
+  & .heart__container {
+    display: none;
   }
   
   & .image__container {

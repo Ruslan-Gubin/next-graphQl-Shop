@@ -1,22 +1,25 @@
-import { IProductType } from '@/apps/types';
-import { formatterRub } from '@/features/CatalogPage/libs/helper';
 import { FC, memo, useEffect, useRef, useState } from 'react';
-import { StarsList } from '@/shared';
-import { useInView } from "react-intersection-observer";
+import { IProductType } from '@/apps/types';
+import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import styles from './ProductCategoryMobile.module.scss';
-import { useSelector } from 'react-redux';
+import { formatterRub } from '@/features/CatalogPage/libs/helper';
+import { Heart, StarsList } from '@/shared';
+import { useInView } from "react-intersection-observer";
 import { selectBasket } from '@/features';
+import { checkFavorite } from '../../lib/helpers/checkFavorite';
+import styles from './ProductCategoryMobile.module.scss';
 
 
 interface IProductCategoryMobile {
 product: IProductType
 onClickBuy: (value: IProductType) => void
+addFavorites: () => void
+removeFavorites: () => void
 }
 
-const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({product, onClickBuy}) => {
-  const {basket} = useSelector(selectBasket)
+const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({product, onClickBuy, addFavorites, removeFavorites}) => {
+  const {basket, favorites} = useSelector(selectBasket)
   const [hoverCard, setHover] = useState(false)
   const [ref, isVisible] = useInView({ threshold: 0.5, triggerOnce: true });
   const [buttonActive, setButtonActive] = useState(false)
@@ -36,6 +39,9 @@ const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({product, onClickBuy
   return (
     <article ref={cardRef} className={styles.root}>
       <header>
+      <div className={styles.heart__container}>
+        <Heart active={checkFavorite(favorites, product)} handleAddFavorite={addFavorites} removeFavorites={removeFavorites}/>
+        </div>
         <figure className={styles.image__container}>
           <Link href={`/catalog/${product._id}`}>
           <img ref={ref}
@@ -57,7 +63,7 @@ const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({product, onClickBuy
     {!buttonActive ?
     <button onClick={() => onClickBuy(product)} className={styles.btn}>В корзину</button>
     :
-    <button onClick={() => router.push(`/catalog/basket`)} className={styles.btn__active}>В корзине</button>
+    <button onClick={() => router.push(`/basket`)} className={styles.btn__active}>В корзине</button>
   }
     </>
 

@@ -1,0 +1,83 @@
+@use '../../../../apps/styles/common/var';
+
+
+
+
+   .form__title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var.$color-black;
+    position: relative;
+    @media (max-width: 1024px) {
+      font-size: 1.3rem; 
+    }
+    margin-bottom: 30px;
+
+    & span {
+      color: var.$color-shop-button;
+      cursor: pointer;
+    }
+    & i {
+      position: absolute;
+      right: 0;
+      top: 20px;
+      color: rgb(151, 150, 150);
+      cursor: pointer;
+      @media (max-width: 1024px) {
+      
+        top: 0px;
+      }
+    }
+  }
+ 
+   .submit__btn {
+   background-color: var.$color-shop-button;
+   color: var.$color-white;
+   font-size: 1.1rem;
+   font-weight: 600;
+   width: 100%;
+   padding: 15px 0;
+   border-radius: var.$spasing-small;
+    margin-bottom: 15px;
+    margin-top: 10px;
+   &:hover {
+    background-color: var.$color-shop-button-active;
+
+  }
+  }
+
+  .footer__container {
+display: flex;
+align-items: center;
+ & .footer__bird {
+  width: 15px;
+  height: 2px;
+  background-color: var.$color-shop-button;
+  rotate: (-45deg);
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -2px;
+    width: 6px;
+  height: 2px;
+  background-color: var.$color-shop-button;
+  rotate: (-85deg);
+  }
+ }
+
+  .footer__text {
+  padding-left: 15px;
+  width: 330px;
+  line-height: 20px;
+  font-size: 1rem;
+  & span {
+    color: rgb(150, 150, 150);
+  }
+ }
+
+ }
+  
+
+  

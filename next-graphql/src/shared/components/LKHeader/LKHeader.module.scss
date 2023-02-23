@@ -1,0 +1,25 @@
+@use '../../../apps/styles/common/var';
+
+.root {
+  padding-top: 30px ;
+  font-weight: 600;
+  text-shadow: 1px 1px 1px rgba(157, 157, 157, 0.257);
+  font-size: 1.2em;
+  color: black;
+  & .link__container {
+    display: flex;
+
+    & .link__container_item {
+      margin-right: 30px;
+      &:hover {
+        cursor: pointer;
+        color: var.$color-shop-button;
+      }
+    }
+  
+  }
+  .active {
+    color: var.$color-shop-button;
+  }
+
+}

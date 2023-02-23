@@ -17,8 +17,10 @@ interface ICatalogProductList {
 const CatalogProductList: FC<ICatalogProductList> = ({products, isDesktop}) => {
   const {page, perPage} = useSelector(selectCatalogPage)
   const { sizeCard } = useSelector(selectCatalogPage)
-  const [modalMessage, setModalMessage] = useState(false)
+  const [quickMessage, setQueckMessage] = useState({status: false, text: ''})
   const dispatch = useDispatch()
+
+  
 
   const handleClickBuy = useCallback((product: IProductType) => {
     dispatch(basketAction.addProduct({product: {
@@ -31,11 +33,44 @@ const CatalogProductList: FC<ICatalogProductList> = ({products, isDesktop}) => {
       id: product._id,
       brandName: product.brand.name, 
     }}))
-    setModalMessage(true)
-     setTimeout(() => {
-      setModalMessage(false)
-    }, 3000)
+    setQueckMessage(() => ({status: true, text: 'Товар добавлен в корзину'}))
+    setTimeout(() => {
+      setQueckMessage(() => ({status: false, text: ''}))
+    }, 3000);
   },[products])
+
+  const handleAddFavorites = (product: IProductType) => {
+    const productOptions = {
+      img: product.photo.images[0].url,
+      name: product.name,
+      count: 1,
+      color: product.colors_names,
+      price: product.price,
+      oldPrice: product.oldPrice,
+      id: product._id,
+      brandName: product.brand.name,
+    }
+
+    dispatch(
+      basketAction.addFavorites({
+        product: productOptions,
+      })
+    );
+    setQueckMessage(() => ({status: true, text: 'Товар добавлен в избранное'}))
+    setTimeout(() => {
+      setQueckMessage(() => ({status: false, text: ''}))
+    }, 3000);
+  };
+
+  const handleRemoveFavorites = (id: string) => {
+    dispatch(
+      basketAction.removeFavorites({ id: id })
+    );
+    setQueckMessage(() => ({status: true, text: 'Товар удален из избранного'}))
+    setTimeout(() => {
+      setQueckMessage(() => ({status: false, text: ''}))
+    }, 3000);
+  };
 
  
   const filterPage = (arr: IProductType[]) => {
@@ -53,17 +88,21 @@ const CatalogProductList: FC<ICatalogProductList> = ({products, isDesktop}) => {
 
   return (
     <section className={styles.root}>
-      <QueckMessage active={modalMessage}/>
+      <QueckMessage active={quickMessage.status} message={quickMessage.text}/>
       <ul className={styles.product__list_container}>
         {products && filterPage(products).map(product => (
           <li className={sizeCard === 'small' ? styles.product__item_small : styles.product__item_big} key={product._id}>
             {isDesktop ?
           <ProductCategory
+          addFavorites={() => handleAddFavorites(product)}
+          removeFavorites={() => handleRemoveFavorites(product._id)}
           onClickBuy={() => handleClickBuy(product)} 
           product={product}
           />
           : 
           <ProductCategoryMobile
+          addFavorites={() => handleAddFavorites(product)}
+          removeFavorites={() => handleRemoveFavorites(product._id)}
           onClickBuy={() => handleClickBuy(product)} 
           product={product}
           />

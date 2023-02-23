@@ -23,3 +23,5 @@ export { ModalInput } from "./ModalInput";
 export { AccordionBird } from "./AccordionBird";
 export { RemoveIcon } from "./RemoveIcon";
 export { BasketFooterCard } from "./BasketFooterCard";
+export { LKHeader } from "./LKHeader";
+export { CloseProductButton } from "./CloseProductButton";

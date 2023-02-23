@@ -2,10 +2,17 @@ import { useEffect, useRef, useState } from "react";
 
 const heartIcon = '/heartBlack.png';
 const heartPink = '/heartPink.png';
+const heartAllPink = '/heartsAllpink.png';
 
-const Heart = () => {
+interface IHeart {
+  handleAddFavorite: () => void
+  removeFavorites: () => void
+  active: boolean
+}
+
+const Heart = ({active, handleAddFavorite, removeFavorites}: IHeart) => {
   const [image, setImage] = useState(heartIcon)
-  
+
   const ref = useRef<HTMLImageElement>(null)
 
   const on = () => setImage(heartPink)
@@ -26,7 +33,11 @@ const Heart = () => {
 
   return (
     <figure>
-  <img style={{cursor: 'pointer'}} ref={ref} src={image} alt="heart img" />
+      {!active ?
+      <img onClick={handleAddFavorite} style={{cursor: 'pointer'}} ref={ref} src={image} alt="heart img" />
+      :
+      <img onClick={removeFavorites} style={{cursor: 'pointer'}} ref={ref} src={heartAllPink} alt="heart img" />
+    }
     </figure>
   );
 };
