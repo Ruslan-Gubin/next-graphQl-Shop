@@ -42,7 +42,7 @@ const adminMenuAsideArr = [
     icon: "https://res.cloudinary.com/ds289tkqj/image/upload/v1675096584/Hits/icons8-get-help-48_qp5nn8.png",
   },
   {
-    value: "Notification",
+    value: "Order",
     label: "notification",
     patch: "/admin/notification",
     icon: "https://res.cloudinary.com/ds289tkqj/image/upload/v1675100161/Hits/icons8-bell-96_xo1ckw.png",

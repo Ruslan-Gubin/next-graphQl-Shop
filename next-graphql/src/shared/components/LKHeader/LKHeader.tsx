@@ -14,6 +14,9 @@ const LKHeader = () => {
         <Link href={'/lk/favorites'}>
         <li className={pathname === '/lk/favorites' ? `${styles.link__container_item} ${styles.active}`  : styles.link__container_item}>Избранное</li>
         </Link>
+        <Link href={'/lk/myorders'}>
+        <li className={pathname === '/lk/myorders' ? `${styles.link__container_item} ${styles.active}`  : styles.link__container_item}>Покупки</li>
+        </Link>
       </ul>
     </section>
   );

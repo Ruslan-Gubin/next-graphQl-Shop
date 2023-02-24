@@ -1,0 +1,1 @@
+export { AdminOrderNoContent } from "./AdminOrderNoContent";

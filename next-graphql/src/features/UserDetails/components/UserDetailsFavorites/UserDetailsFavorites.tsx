@@ -1,5 +1,5 @@
 import { selectBasket } from '@/features/Basket';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import styles from './UserDetailsFavorites.module.scss';
 

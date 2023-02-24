@@ -8,7 +8,6 @@ import {
 import { selectAdminNavHeader } from "@/features";
 import styles from "./AdminLayoutAside.module.scss";
 
-
 const AdminLayoutAside: FC = () => {
   const { burgerStatus } = useSelector(selectAdminNavHeader);
   const { pathname } = window.location;
@@ -57,13 +56,15 @@ const AdminLayoutAside: FC = () => {
             {adminMenuAsideArr.map((link) => (
               <Link href={link.patch} key={link.label}>
                 <li className={styles.logo}>
-                  <img className={styles.navIcon} src={link.icon}alt="link icon" />
+                  <img
+                    className={styles.navIcon}
+                    src={link.icon}
+                    alt="link icon"
+                  />
                 </li>
               </Link>
             ))}
           </ul>
-
-
         </div>
       )}
     </>

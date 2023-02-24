@@ -90,6 +90,10 @@ const basketSlice = createSlice({
     state.favorites = state.favorites.filter(item => item.id !== action.payload.product.id)
    },
 
+   resetBasket(state) {
+    state.basket = []
+   },
+
     
 
   },

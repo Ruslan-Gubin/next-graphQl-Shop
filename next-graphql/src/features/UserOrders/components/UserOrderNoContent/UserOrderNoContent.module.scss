@@ -1,0 +1,30 @@
+@use "../../../../apps/styles/common/var";
+
+.root {
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 30px 0;
+
+  & h2 {
+    color: var.$color-black-hover;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+  }
+  & p {
+    color: var.$color-secondary;
+    font-weight: 500;
+    line-height: 25px;
+    width: 340px;
+    margin-bottom: 20px;
+  }
+  & .btn {
+    padding: 12px 25px;
+    color: var.$color-white;
+    background-color: var.$color-shop-button;
+    border-radius: var.$spasing-small;
+    font-weight: 600;
+    &:hover {
+      background-color: var.$color-shop-button-active;
+    }
+  }
+}

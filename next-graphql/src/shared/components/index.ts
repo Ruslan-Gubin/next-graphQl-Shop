@@ -25,3 +25,4 @@ export { RemoveIcon } from "./RemoveIcon";
 export { BasketFooterCard } from "./BasketFooterCard";
 export { LKHeader } from "./LKHeader";
 export { CloseProductButton } from "./CloseProductButton";
+export { UserIconActive } from './UserIconActive'

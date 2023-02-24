@@ -4,7 +4,7 @@ import { useBasketContext } from '../../libs/context/BasketContext';
 import styles from './BasketAside.module.scss';
 
 const BasketAside = () => {
-  const {basket, setModalActive, totalCount, address} = useBasketContext()
+  const {basket, setModalActive, totalCount, address, handleSubmitOrders} = useBasketContext()
 
   const countProduct = basket.reduce((acc, product) => acc + product.count ,0)
 
@@ -26,7 +26,7 @@ const BasketAside = () => {
     <h1>Итого</h1>
     <p>{formatterRub.format(totalCount)}</p>
       </section>
-      <button className={styles.product__btn}>Заказать</button>
+      <button onClick={handleSubmitOrders} className={styles.product__btn}>Заказать</button>
       <section className={styles.access}>
         <div className={styles.bird}></div>
       <small className={styles.small}><span>Соглашаюсь с </span>правилами пользования торговой площадкой и возврата</small>

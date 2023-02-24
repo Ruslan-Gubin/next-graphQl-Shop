@@ -6,9 +6,11 @@ import { notificationIcons } from "../../lib/assets/linkNotificationIcons";
 import styles from "./AdminNotification.module.scss";
 import { useDispatch } from "react-redux";
 import { adminQuestionAction } from "@/features/AdminQuestionsContent";
+import { GET_NEW_ORDERS_LENGTH } from "@/apps/apollo/orderRequest";
 
 const AdminNotification: FC = () => {
   const { data, loading } = useQuery(ALL_QUESTIONS);
+  const {data: allOrders} = useQuery(GET_NEW_ORDERS_LENGTH)
   const [lengthViewed, setLengthViewed] = useState(0);
   const dispatch = useDispatch()
 
@@ -33,7 +35,7 @@ const AdminNotification: FC = () => {
         <div className={styles.notificationItem}>
           <Link href={"/admin/notification"}>
             <img src={notificationIcons.notification} alt="notification icon" />
-            {/* <small>{}</small> */}
+            {allOrders && allOrders?.getNewLength.length > 0 && <small>{allOrders?.getNewLength.length}</small>}
           </Link>
         </div>
 

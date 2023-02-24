@@ -3,4 +3,5 @@ export {
   sortOptionsDropDown,
   sortOptionsBrand,
 } from "./sortProductDropDown";
-export {formatterRub} from './formatedNumber'
+export { formatterRub } from "./formatedNumber";
+export { formatterRuTime } from "./formatterRuTime";

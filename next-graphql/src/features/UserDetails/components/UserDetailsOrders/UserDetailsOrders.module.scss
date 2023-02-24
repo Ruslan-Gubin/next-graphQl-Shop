@@ -1,0 +1,64 @@
+@use '../../../../apps/styles/common/var';
+
+%title {
+  font-size: 1.5rem;
+  color: var.$color-black;
+  font-weight: 700;
+}
+
+%card-container {
+  width: 100%;
+  background-color: white;
+  padding: 20px ;
+  margin: 15px 0;
+  border-radius: 10px;
+}
+
+
+
+
+   .card__favorites {
+    @extend %card-container;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s ease;
+    &:hover {
+      box-shadow: var.$box-shadow;
+      cursor: pointer;
+     & h2 {
+      color: var.$color-shop-button;
+     }
+    }
+    .card__remove_title {
+      @extend %title;
+      margin-bottom: 20px;
+    }
+
+    & .content__container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      @media (max-width: 1200px) {
+        display: block;
+      }
+
+      
+      
+      & .footer__text {
+        color: var.$color-secondary;
+        font-size: 1.2rem;
+        & span {
+          font-size: 1.4rem;
+          color: var.$color-black;
+          font-weight: 700;
+        }
+      }
+
+      & .nocontent__text {
+        color: var.$color-secondary;
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+      }
+      
+    }
+  }

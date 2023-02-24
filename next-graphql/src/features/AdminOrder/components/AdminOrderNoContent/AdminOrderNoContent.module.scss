@@ -1,0 +1,26 @@
+@use "../../../../apps/styles/common/var";
+
+.root {
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 30px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+
+  & h2 {
+    color: var.$color-black-hover;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+  }
+  & p {
+    color: var.$color-secondary;
+    font-weight: 500;
+    line-height: 25px;
+    width: 340px;
+    margin-bottom: 20px;
+  }
+
+}

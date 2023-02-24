@@ -8,6 +8,8 @@ interface IAdminOptionButton {
 }
 
 const AdminOptionButton: FC<IAdminOptionButton> = ({text, onClick}) => {
+
+
   return (
     <button onClick={onClick} className={styles.root}>
       <div className={styles.container}>

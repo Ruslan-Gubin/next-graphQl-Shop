@@ -26,3 +26,4 @@ export { CREATED_CATEGORY, SORT_CATEGORY } from "./CategoryRequest";
 export { CREATED_BRAND } from "./BrandRequest";
 export { CREATED_PHOTOS } from "./photoRequest/";
 export { GET__ONE__USER } from "./userRequest/";
+export { GET_USER_ORDERS } from "./orderRequest";

@@ -1,20 +1,18 @@
 import { MouseEvent, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Link from 'next/link';
 import { BasketFooterCard, RemoveIcon } from '@/shared';
 import { useBasketContext } from '../../libs/context/BasketContext';
 import { basketAction } from '../../store/basketSlice';
 
 import styles from './BasketFooter.module.scss';
-import { selectUser } from '@/features/LoginPage';
+
 
 const BasketFooter = () => {
-  const { user } = useSelector(selectUser);
-  const { setModalActive, address} = useBasketContext()
+  const { setModalActive, address, user} = useBasketContext()
   const [activeAddressList, setActiveAddressList] = useState(false)
   const dispatch = useDispatch()
 
-  const isAuth = false
 
   const filterActiveAddress = () => {
     if (!activeAddressList) {
@@ -73,7 +71,7 @@ const BasketFooter = () => {
         </li>
       ))}
       {address.length > 0 &&
-      <button onClick={() => setModalActive(true)} className={styles.add__address_more}>Добавить адресс</button>
+      <button onClick={() => setModalActive(true)} className={styles.add__address_more}>Добавить адрес</button>
       }
     </ul>
     }

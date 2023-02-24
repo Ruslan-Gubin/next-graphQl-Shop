@@ -1,4 +1,4 @@
-import { IUser } from "@/apps/types";
+import { formattedPhone } from "@/features/CatalogPage/libs/helper/formattedPhone";
 import { ChangeEvent, Dispatch, FC, RefObject, SetStateAction } from "react";
 
 import styles from "./UserCardDetails.module.scss";
@@ -25,9 +25,7 @@ const UserCardDetails: FC<IUserCardDetails> = ({
   photoUser,
 }) => {
  
-
-  const formatted = userPhone ? userPhone.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3") : ''
-
+  const formatPhone = userPhone ? formattedPhone(userPhone) : ''
   
   return (
     <section className={styles.root}>
@@ -48,7 +46,7 @@ const UserCardDetails: FC<IUserCardDetails> = ({
       </div>
       <div className={styles.card__footer_email}>
       <label htmlFor="user-phone">Телефон</label>
-       <p id="user-phone"  >+{formatted}</p> 
+       <p id="user-phone"  >+{formatPhone}</p> 
       </div>
 
     </section>

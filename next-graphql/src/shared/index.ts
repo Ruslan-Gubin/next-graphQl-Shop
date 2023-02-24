@@ -24,4 +24,6 @@ export {
   CloseProductButton,
 } from "./components";
 
+export { queckMessage } from './lib'
+
 export { useAddImage, useHover } from "./lib/hooks";

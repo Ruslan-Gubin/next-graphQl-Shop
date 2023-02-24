@@ -1,29 +1,86 @@
-import { Modal } from '@/shared';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import Link from 'next/link';
+import { useDispatch, useSelector } from 'react-redux';
 import { BasketContext } from '../../libs/context/BasketContext';
-import { selectBasket } from '../../store/basketSlice';
+import { basketAction, selectBasket } from '../../store/basketSlice';
 import { BasketAside } from '../BasketAside';
 import { BasketFooter } from '../BasketFooter';
 import { BasketList } from '../BasketList';
+import { BasketNoContent } from '../BasketNoContent';
 import { DeliveryModal } from '../DeliveryModal';
+import { Modal, queckMessage, QueckMessage } from '@/shared';
+import { selectUser } from '@/features/LoginPage';
 import styles from './Basket.module.scss';
+import { useMutation } from '@apollo/client';
+import { CREATED__ORDER } from '../../models';
+import { useRouter } from 'next/router';
 
 const Basket = () => {
+  const [createdOrder] = useMutation(CREATED__ORDER)
   const [modalActive, setModalActive] = useState(false)
-  const {basket, address, favorites} = useSelector(selectBasket)
+  const { user } = useSelector(selectUser);
+  const {basket, address} = useSelector(selectBasket)
+  const [queckModal, setqueckModal] = useState({state: false, message: ''})
+  const [disable, setDidable] = useState(false)
+  const dispatch = useDispatch()
+  const router = useRouter()
 
   const totalCount = basket.reduce((acc, item) => acc + item.price * item.count ,0)
 
+
+  const handleSubmitOrders = async () => {
+    if (disable) {
+      return
+    }
+
+    setDidable(true)
+    const clientAddress = address.find(item => item.selected)
+
+    if (!clientAddress) {
+      queckMessage(setqueckModal, 'Выберите Адрес')
+      return
+    }
+
+    if (!user._id) {
+      queckMessage(setqueckModal, 'Войдите или зарегестрируйтесь')
+      return
+    }
+
+  await createdOrder({
+    variables: {
+      user_id: user._id,
+      street: clientAddress.street,
+      flat: clientAddress.flat,
+      floor: clientAddress.floor,
+      entrance: clientAddress.entrance,
+      intercom: clientAddress.intercom,
+      privateHome: clientAddress.privateHome,
+      products: basket,
+    }
+  }).then(() => {
+    router.push('/lk/myorders')
+    dispatch(basketAction.resetBasket())
+    setDidable(false)
+  }).catch(error => {
+    queckMessage(setqueckModal, error.message)
+    setDidable(false)
+  })
+
+  }
+
+  if (basket.length === 0) {
+    return <BasketNoContent /> 
+  }
+
   return (
     <section className={styles.root}>
-      {basket.length > 0 ?
+      <QueckMessage active={queckModal.state}  message={queckModal.message}/>
     <BasketContext.Provider value={{basket,
+      handleSubmitOrders,
       setModalActive,
       modalActive,
       totalCount,
       address,
+      user,
     }}>
       <section className={styles.basket__info_list}>
       <BasketList />
@@ -35,20 +92,6 @@ const Basket = () => {
       <DeliveryModal />
       </Modal>
     </BasketContext.Provider>
-  :
-  <div className={styles.empty__basket}>
-    <div className={styles.empty__basket_container}>
-
-    <h1 className={styles.title}>В корзине пока пусто</h1>
-    <p className={styles.text}>Загляните на главную, чтобы выбрать товары или найдите нужное в поиске</p>
-    <Link href={'/'}>
-    <button className={styles.btn}>Перейти на главную</button>
-    </Link>
-    </div>
-
-  </div>    
-  
-  }
     </section>
   );
 };
