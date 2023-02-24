@@ -22,8 +22,9 @@ export {
   BasketFooterCard,
   LKHeader,
   CloseProductButton,
+  BurgerButton,
 } from "./components";
 
-export { queckMessage } from './lib'
+export { queckMessage } from "./lib";
 
 export { useAddImage, useHover } from "./lib/hooks";

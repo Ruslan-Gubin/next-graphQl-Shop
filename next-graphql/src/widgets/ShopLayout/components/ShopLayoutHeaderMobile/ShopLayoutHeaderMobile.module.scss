@@ -1,0 +1,71 @@
+@use '../../../../apps/styles/common/var';
+
+.root {
+  position: relative;
+  & .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+
+    
+    & .logo {
+      font-weight: 400;
+      color: var.$color-white;
+      font-size: 1.7em;
+  }
+
+  & .search__icon_container {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: -2px;
+    right: -4px;
+    background-color: rgba(255, 255, 255, 0);
+    & .search__icon {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      border: 2px solid white;
+      position: relative;
+      &::after {
+        content: '';
+        position: absolute;
+        top: 13px;
+        left: 9px;
+        width: 10px;
+        height: 2px;
+        background-color: white;
+        rotate: (45deg);
+      }
+    }
+  }
+}
+
+& .nav__container {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: white;
+  width: 100%;
+  z-index: 5;
+  padding: 15px 0;
+  & .nav__container_item {
+    width: 28px;
+    height: 28px;
+    & button {
+      background-color: rgba(255, 255, 255, 0);
+    }
+  }
+
+
+}
+  
+  
+}

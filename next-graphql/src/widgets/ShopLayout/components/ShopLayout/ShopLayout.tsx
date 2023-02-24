@@ -4,11 +4,13 @@ import Head from "next/head";
 import Link from "next/link";
 import { FooterShop } from "@/widgets/FooterShop";
 import * as features from "@/features";
-import { HeaderStoreNavbar } from "@/entities/HeaderStoreNavbar";
-import { ShopHeaderLogo } from "../ShopHeaderLogo";
 import { ShopLayoutAside } from "../ShopLayoutAside";
+import { ShopLayoutHeader } from "../ShopLayoutHeader";
 
 import styles from "./ShopLayout.module.scss";
+import { selectLayoutShop } from "../../lib/store";
+import { useMatchMedia } from "@/features/CatalogPage/libs/hooks/use-match-media";
+import { ShopLayoutHeaderMobile } from "../ShopLayoutHeaderMobile";
 
 interface IShopLayout {
   children: React.ReactNode;
@@ -17,8 +19,9 @@ interface IShopLayout {
 }
 
 const ShopLayout: FC<IShopLayout> = ({ children, title, keywords }) => {
-  const { asideLayoutStatus } = useSelector(features.selectLayoutBurger);
-  const {basket} = useSelector(features.selectBasket)
+  const { asideLayoutStatus } = useSelector(selectLayoutShop);
+  const {isMobile, isDesktop,isTablet} = useMatchMedia()
+ 
 
   return (
     <>
@@ -32,52 +35,34 @@ const ShopLayout: FC<IShopLayout> = ({ children, title, keywords }) => {
         />
         <meta name="keywords" content={keywords} />
       </Head>
-      <div
+      <section
         style={asideLayoutStatus ? { height: "100vh" } : { height: "100%" }}
         className={styles.root}
       >
-        <div className={styles.adminLink}>
+        <button className={styles.adminLink}>
           <nav>
             <Link href={"/admin"}>
               <span className={styles.text}>Admin</span>
             </Link>
           </nav>
-        </div>
-        <div className={styles.container}>
-          <header className={styles.header}>
-            <div className={styles.headerMenu}>
-              <div className={styles.headerBurger}>
-                <features.LayoutHeaderBurger />
-              </div>
-              <div className={styles.headerLogo}>
-                <nav>
-                  <Link href={"/"}>
-                    <ShopHeaderLogo />
-                  </Link>
-                </nav>
-              </div>
-            </div>
-            <div className={styles.search}>
-              <features.LayoutHeaderSearch />
-            </div>
-            <nav className={styles.headerNavbar}> 
-              <HeaderStoreNavbar shopingCount={basket.length} />
-            </nav>
-          </header>
-        </div>
+        </button>
+
+           {isDesktop ?
+        <ShopLayoutHeader />
+        : 
+        <ShopLayoutHeaderMobile />
+           }
+   
         <ShopLayoutAside />
+
         <main>
           <div className={styles.main__container}>
             {children}
           </div>
         </main>
-        <footer>
-          <div className={styles.container}>
-            <FooterShop />
-          </div>
-        </footer>
+         <FooterShop />
         <features.FooterButtonHelpers />
-      </div>
+      </section>
     </>
   );
 };

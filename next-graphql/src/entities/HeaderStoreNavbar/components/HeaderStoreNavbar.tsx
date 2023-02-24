@@ -11,27 +11,35 @@ const orderIcon =
 
 import styles from "./HeaderStoreNavbar.module.scss";
 
-const HeaderStoreNavbar = ({ shopingCount = 0 }: { shopingCount: number }) => {
+const HeaderStoreNavbar = ({ shopingCount  }: { shopingCount: number }) => {
   const { user } = useSelector(selectUser);
 
   return (
-    <div className={styles.root}>
+    <ul className={styles.root}>
+      <li>
       <Link className={styles.linkItem} href={"/services/dostavka"}>
         <img src={addressIcon} alt="address icon" />
         <span>Адреса</span>
       </Link>
+      </li>
+      <li>
       <Link className={styles.linkItem} href={user.name ? '/lk/details' : "/security/login"}>
         <img src={loginIcon} alt="address icon" />
         {user.name ? <span> Профиль </span> : <span> Войти </span>}
       </Link>
+      </li>
+      <li>
       <Link className={styles.linkItem} href={"/basket"}>
+        {shopingCount > 0 &&
         <div className={styles.orderCouter}>
           <span>{shopingCount}</span>
         </div>
+        }
         <img src={orderIcon} alt="address icon" />
         <span>Корзина </span>
       </Link>
-    </div>
+        </li>
+    </ul>
   );
 };
 

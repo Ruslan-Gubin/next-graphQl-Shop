@@ -14,35 +14,6 @@
   background: -moz-linear-gradient(right, #54126d, #cf16b9);
   background: linear-gradient(to left, #3a1367, #cf16b9);
 
-  & .header {
-    // width:100%;
-    display: flex;
-    // align-items: center;
-    // justify-content: space-between;
-    padding: 20px 0;
-
-    & .headerMenu {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      & .headerBurger {
-        margin-right: 25px;
-      }
-      & .headerLogo {
-        width: 100%;
-      }
-    }
-
-    & .search {
-      width: 100%;
-      margin: 0 52px 0 20px;
-      max-width: 850px;
-    }
-
-    & .headerNavbar {
-      width: 210px;
-    }
-  }
 
   & main {
     background-color: rgb(248, 248, 248);
@@ -52,12 +23,13 @@
     position: relative;   
     padding-bottom: 60px;
    
+    @media (max-width: 1024px) {
+      border-radius: 0px;
+    }
 
     & .main__container {
       width: 75%;
       margin: 0 auto;
-     
-      
       @media (max-width: 1500px) {
        width: 95%;
       }
@@ -65,32 +37,20 @@
     }
   }
 
-  & footer {
-    background-color: #410e6b;
-  }
-}
-
-.container {
-  width: 75%;
-  margin: 0 auto;
-
-  @media (max-width: 1500px) {
-    width: 95%;
-   }
-   
+ 
 }
 
 .adminLink {
   background-image: linear-gradient(
     to left,
-    (rgb(42, 40, 40), rgb(219, 36, 36))
+    (rgb(42, 40, 40), rgb(171, 134, 134))
   );
   width: 100px;
   border-radius: 20px;
   padding: 5px;
   text-align: center;
   position: fixed;
-  top: 20px;
+  bottom: 60px;
   left: 20px;
   z-index: 2;
   & .text {

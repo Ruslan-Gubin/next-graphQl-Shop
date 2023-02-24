@@ -110,7 +110,7 @@ const OPTIONS_DEPARTMENT: IOptionDepartment[] = [
     label: "stationery",
     href: "/catalog/kantstovary",
     img_layout:
-      "https://res.cloudinary.com/ds289tkqj/image/upload/v1676057618/Hits/vypadashka_paper_xbtmod.jpg",
+      "https://res.cloudinary.com/ds289tkqj/image/upload/v1676058037/Hits/vypadashka_paper_eitopt.jpg",
     img: "https://res.cloudinary.com/ds289tkqj/image/upload/v1676037681/Hits/icons8-stationery-64_2_bzywaw.png",
     subdepartment: OPTIONS_STATIONERY_SUBDEPARTMENT,
   },

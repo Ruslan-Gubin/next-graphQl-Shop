@@ -1,0 +1,27 @@
+@use '../../../apps/styles/common/var';
+
+.root {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 150px;
+
+  & .content__container {
+    text-align: center;
+    padding: 20px 30px;
+    background-image: linear-gradient(to top, (rgb(220, 219, 219), rgb(90, 87, 101)));
+    border-radius: 15px;
+    box-shadow: var.$box-shadow;
+   & h1 {
+    color: var.$color-white;
+    font-size: var.$font-size-header-link;
+    width: 250px;
+    line-height: 30px;
+    }
+
+
+  }
+
+
+}

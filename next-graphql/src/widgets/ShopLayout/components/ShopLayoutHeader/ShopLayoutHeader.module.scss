@@ -1,0 +1,38 @@
+
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  width: 75%;
+  margin: 0 auto;
+
+  
+
+  @media (max-width: 1500px) {
+    width: 95%;
+   }
+
+  @media (max-width: 1200px) {
+    width: 95%;
+    height: 165px;
+   }
+
+
+  & .headerMenu {
+    display: flex;
+    & .headerBurger {
+      margin-right: 25px;
+      @media (max-width: 1200px) {
+        margin-right: 55px;
+       }
+    }
+    & .headerLogo {
+      width: 100%;
+    }
+  }
+
+  & .headerNavbar {
+    width: 210px;
+  }
+}

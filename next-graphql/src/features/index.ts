@@ -4,18 +4,7 @@ export {
   questionsReducer,
   selectQuestions,
 } from "./FooterButtonHelpers";
-export {
-  LayoutHeaderBurger,
-  burgerLayoutAction,
-  burgerLayoutReducer,
-  selectLayoutBurger,
-} from "./LayoutHeaderBurger";
-export {
-  LayoutHeaderSearch,
-  layoutSearchAction,
-  layoutSearchReducer,
-  selectLayoutSherch,
-} from "./LayoutHeaderSearch";
+
 export {
   AdminNotification,
   AdminNotificationAction,

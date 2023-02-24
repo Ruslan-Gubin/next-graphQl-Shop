@@ -1,0 +1,1 @@
+export { NoContentAdmin } from "./NoContentAdmin";

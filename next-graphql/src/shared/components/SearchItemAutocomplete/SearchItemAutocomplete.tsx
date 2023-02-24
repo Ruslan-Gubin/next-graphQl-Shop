@@ -1,4 +1,3 @@
-import React from 'react';
 import { ImageSearch } from '../ImageSearch';
 
 import styles from './SearchItemAutocomplete.module.scss';

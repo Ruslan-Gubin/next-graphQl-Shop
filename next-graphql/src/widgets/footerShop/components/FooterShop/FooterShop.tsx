@@ -6,11 +6,12 @@ import styles from './FooterShop.module.scss';
 
 const FooterShop = () => {
   return (
-    <div className={styles.root}>
+    <footer className={styles.root}>
+      <section className={styles.footer__container}>
       <FooterNavigation />
       <FooterCopyrights />
-      
-    </div>
+      </section>
+    </footer>
   );
 };
 

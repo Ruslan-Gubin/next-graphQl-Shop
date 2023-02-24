@@ -16,9 +16,9 @@ import { AdminProductSceleton } from "../AdminProductSceleton";
 import { IProductType } from "@/apps/types";
 import styles from "./AdminProductManagment.module.scss";
 import { AdminModal } from "../AdminModal";
-import { useOutside } from "@/features/LayoutHeaderSearch/lib/hooks/useOutside";
 import {  updateOptionAction } from "@/features/AdminUpdateProduct";
 import { useRouter } from "next/router";
+import { useOutside } from "@/widgets/ShopLayout/lib/hooks/useOutside";
 
 interface IAdminProductManagment {
 }

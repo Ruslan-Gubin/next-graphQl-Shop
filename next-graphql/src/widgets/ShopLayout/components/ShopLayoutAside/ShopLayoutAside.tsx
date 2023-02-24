@@ -1,17 +1,16 @@
 import { OPTIONS_DEPARTMENT } from '@/apps/constants';
 import { IOptionDepartment } from '@/apps/constants/optionsMenu';
-import { burgerLayoutAction, selectLayoutBurger } from '@/features';
-import { useHover } from '@/shared';
-import Link from 'next/link'
+import Link from 'next/link';
 import { useCallback, useEffect,  useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import {  layoutShopAction, selectLayoutShop } from '../../lib/store';
 import { AsideCatehoryItem } from '../AsideCatehoryItem';
 
 
 import styles from './ShopLayoutAside.module.scss';
 
 const ShopLayoutAside = () => {
-  const {asideLayoutStatus} = useSelector(selectLayoutBurger)
+  const {asideLayoutStatus} = useSelector(selectLayoutShop)
   const [activeDepartment, setActiveDepartment] = useState<string>('')
   const [subDepartmentArray, setSubDepartmentArray] = useState<IOptionDepartment >({} as IOptionDepartment)
 
@@ -23,7 +22,7 @@ const ShopLayoutAside = () => {
 
 
   const handleCloseAside = () => {
-    dispatch(burgerLayoutAction.asideLayoutToggle())
+    dispatch(layoutShopAction.asideLayoutToggle())
   }
 
   useEffect(() => {
@@ -72,7 +71,7 @@ const ShopLayoutAside = () => {
       
       <section className={styles.image__root}>
         <figure>
-          <img src={subDepartmentArray.img_layout} alt="" />
+          <img src={subDepartmentArray.img_layout} alt="sub_department img" />
         </figure>
       </section>
             </>

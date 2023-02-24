@@ -1,7 +1,6 @@
-import { ALL_MOVIES } from "@/apps/apollo";
-import styles from "@/apps/styles/pages/Home.module.scss";
 import { ShopLayout } from "@/widgets/ShopLayout";
-import { useQuery } from "@apollo/client";
+import styles from "@/apps/styles/pages/Home.module.scss";
+
 
 export default function Home() {
 
