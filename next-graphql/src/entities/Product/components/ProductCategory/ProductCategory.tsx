@@ -1,7 +1,7 @@
 import { IProductType } from '@/apps/types';
 import { formatterRub } from '@/features/CatalogPage/libs/helper';
 import { FC, memo, useEffect, useRef, useState } from 'react';
-import { Heart, StarsList } from '@/shared';
+import { findMaxOpinion, Heart, StarsList } from '@/shared';
 import { useInView } from "react-intersection-observer";
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -76,7 +76,7 @@ const ProductCategoryF: FC<IProductCategory> = ({product, onClickBuy, addFavorit
            <p className={styles.oldPrice}>{formatterRub.format(product.oldPrice)}</p>
             </div>
           <p className={hoverCard ? styles.product__name_active : styles.product__name}> <span className={styles.product__brand}>{product.brand.name}</span> / {product.name}</p>
-      <StarsList count={5} />
+          <StarsList count={findMaxOpinion(product.feedbacks)} />
       <p className={styles.delivery}>Доставка <span className={styles.delivery__span}>завтра</span></p>
   
     {hoverCard && 

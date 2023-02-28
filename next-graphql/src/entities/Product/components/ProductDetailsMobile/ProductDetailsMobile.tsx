@@ -2,15 +2,14 @@ import { useDetailsContext } from '@/pages/catalog/[id]';
 import { Dispatch, FC, SetStateAction } from 'react';
 import {useRouter} from 'next/router';
 import Link from 'next/link';
-
-import styles from './ProductDetailsMobile.module.scss';
-import { Array, Heart, StarsList } from '@/shared';
+import { Array, findMaxOpinion, Heart, StarsList } from '@/shared';
 import { formatterRub } from '@/features/CatalogPage/libs/helper';
-import { CatatlogProductList } from '@/widgets/CatalogStartPage/components/CatatlogProductList';
 import { selectBasket } from '@/features';
 import { useSelector } from 'react-redux';
 import { checkFavorite } from '../../lib/helpers/checkFavorite';
 import { checkBasket } from '../../lib/helpers/checkBasket';
+
+import styles from './ProductDetailsMobile.module.scss';
 
 interface IProductDetailsMobile {
   characteristic: boolean;
@@ -32,7 +31,7 @@ const ProductDetailsMobile: FC<IProductDetailsMobile> = ({
   handleRemoveFavorites
 }) => {
   const { basket, favorites } = useSelector(selectBasket);
-  const {product, similarProduct} = useDetailsContext()
+  const {product} = useDetailsContext()
   const router = useRouter()
 
   return (
@@ -64,8 +63,8 @@ const ProductDetailsMobile: FC<IProductDetailsMobile> = ({
               {product.brand.name}
             </Link>
               <ul className={styles.product__history}>
-                <li className={styles.product__stars}> <StarsList count={5}/></li>
-                <li className={styles.reviews}> <p>{136} отзыва</p> </li>
+                <li className={styles.product__stars}> <StarsList count={findMaxOpinion(product.feedbacks)}/></li>
+                <li className={styles.reviews}><a href="#feedback-header">{product.feedbacks.length} отзыва</a>  </li>
                 <li className={styles.id}>id: <span>{product._id}</span></li>
                 <li className={styles.buy__products}>Купили более 1600 раз</li>
               </ul>
@@ -101,7 +100,6 @@ const ProductDetailsMobile: FC<IProductDetailsMobile> = ({
           <button onClick={() => setCharacteristic(!characteristic)} className={styles.description__btn}>Свернуть описание</button>
         }
          </section>
-         {similarProduct.length > 0 &&  <CatatlogProductList title="Похожие товары" productList={similarProduct} /> }
    {!checkBasket(basket, product) ?
     <button 
     onClick={() => handleAddBasket()}

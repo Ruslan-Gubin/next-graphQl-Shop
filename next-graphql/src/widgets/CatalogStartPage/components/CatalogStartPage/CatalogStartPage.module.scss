@@ -22,15 +22,17 @@
   & h1 {
     font-size: 2rem;
     font-weight: 700;
+    @media (max-width: 1024px) {
+      font-size: 1.3rem;
+      
+    }
   }
 }
 
 .main__container {
   display: flex;
- 
-  // width: 100%;
 
-  & nav {
+  & .categori__container {
     min-width: 272px;
 
     @media (max-width: 1025px) {
@@ -62,6 +64,23 @@
       &:hover {
         color: black;
       }
+    }
+  }
+
+  & .categori__container_mobile {
+    display: flex;
+    flex-wrap: wrap;
+    @media (min-width: 1025px) {
+      display: none; 
+    }
+    & .nav__item_mobile {
+      display: inline-block;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      background-color: rgb(238, 238, 238);
+      border-radius: 5px;
+      padding: 10px;
+      color: black;
     }
   }
 

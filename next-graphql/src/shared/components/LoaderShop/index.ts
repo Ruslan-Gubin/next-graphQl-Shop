@@ -1,0 +1,1 @@
+export { LoaderShop } from "./LoaderShop";

@@ -1,21 +1,46 @@
-import { SearchItemAutocomplete } from '@/shared';
-
-
-
-const mockListSearch = ['ручка','тетрадь','пенал','посуда','портфель','игрушки','бижутерия','тетрадь','пенал','посуда','портфель','игрушки','бижутерия']
+import { SEARCH_PRODUCTS } from '@/apps/apollo/productRequest';
+import { ISearchProduct } from '@/apps/types';
+import { LoaderShop, SearchItemAutocomplete } from '@/shared';
+import { useQuery } from '@apollo/client';
+import { Dispatch, FC, SetStateAction } from 'react';
+import { useRouter } from 'next/router';
 
 import styles from './LayoutAutoComplet.module.scss';
 
-const LayoutAutoComplet = () => {
+interface ILayoutAutoComplet {
+searchValue: string
+setModalActive: Dispatch<SetStateAction<boolean>>
+setValue: Dispatch<SetStateAction<string>>
+} 
+
+const LayoutAutoComplet: FC<ILayoutAutoComplet> = ({searchValue, setModalActive, setValue}) => {
+  const {data, loading} = useQuery<{searchProducts:ISearchProduct[]}>(SEARCH_PRODUCTS, {
+    variables: {
+      searchValue: searchValue.length > 2 ? searchValue : 'adfsfeasdfg'
+    }
+  })
+  const router = useRouter()
+
+  const handlerNavRouter = (id: string) => {
+    setValue('')
+    setModalActive(false)
+    router.push(`/catalog/${id}`)
+  }
 
   return (
     <div className={styles.root}>
-      
+      {loading && 
+      <LoaderShop />
+      }
       <ul className={styles.container}>
 
-    {mockListSearch.map(item => (
-      <li key={item}>
-        <SearchItemAutocomplete text={item}/>
+    {data?.searchProducts.map(item => (
+      <li onClick={() => handlerNavRouter(item._id)} key={item._id}>
+        <SearchItemAutocomplete
+        id={item._id}
+         onClick={handlerNavRouter}
+        productImg={item.photo.images[0].url}
+         text={item.name}/>
       </li>
     ))}
 

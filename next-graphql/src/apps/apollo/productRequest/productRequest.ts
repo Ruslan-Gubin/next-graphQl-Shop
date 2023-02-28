@@ -13,6 +13,19 @@ const ALL_PRODUCTS = gql`
     }
   }
 `;
+const SEARCH_PRODUCTS = gql`
+  query($searchValue: String!) {
+    searchProducts(searchValue: $searchValue) {
+      _id
+    name
+    photo{
+      images{
+        url
+      }
+    }   
+    }
+  }
+`;
 
 const ONE_PRODUCT = gql`
   mutation($id: ID!) {
@@ -47,6 +60,91 @@ const ONE_PRODUCT = gql`
         name
         _id
       }
+
+      feedbacks {
+      _id
+      text
+      user_id
+      img {
+      url
+      }
+      user_opinion 
+      like
+      dislike
+      createdAt
+      user {
+      _id
+      name
+      image {
+      url
+      }
+      }
+      }
+
+
+      photo {
+        images {
+          url
+        }
+      }
+    }
+  }
+`;
+const ONE_PRODUCT_QUERY = gql`
+  query($id: ID!) {
+    getOneProductDetails(id: $id) {
+      _id
+      name
+      price
+      oldPrice
+      discount
+      count
+      description
+      colors_names
+      sub_department
+      department
+      photo_count
+      views
+      category_id
+      options {
+        name
+        value
+      }
+      brand {
+        name
+        _id
+        image {
+          url
+        }
+      }
+      category {
+        sub_department
+        department
+        name
+        _id
+      }
+
+      feedbacks {
+      _id
+      text
+      user_id
+      img {
+      url
+      }
+      user_opinion 
+      like
+      dislike
+      createdAt
+      user {
+      _id
+      name
+      image {
+      url
+      }
+      }
+      }
+
+
       photo {
         images {
           url
@@ -197,6 +295,11 @@ const SORT_PRODUCT_CATALOG = gql`
       count
       category_id
       brand_id
+
+      feedbacks {
+        user_opinion
+      }
+
       category {
         name
         _id
@@ -215,7 +318,60 @@ const SORT_PRODUCT_CATALOG = gql`
   }
 `;
 
+const GET__MAXVIEWS__ALLPRODUCT = gql`
+query($limit: Int){
+  getMaxViewsProducts(limit: $limit){
+    name
+    price
+    oldPrice
+    _id
+    discount
+    photo {
+      images {
+      url
+      }
+    }
+  }
+}
+`;
+const GET__NEW__ALLPRODUCT = gql`
+query($limit: Int){
+  getNewProducts(limit: $limit){
+    name
+    price
+    oldPrice
+    _id
+    discount
+    photo {
+      images {
+      url
+      }
+    }
+  }
+}
+`;
+const GET__MAXDISCOUNT__ALLPRODUCT = gql`
+query($limit: Int){
+  getMaxDiscountProducts(limit: $limit){
+    name
+    price
+    oldPrice
+    _id
+    discount
+    photo {
+      images {
+      url
+      }
+    }
+  }
+}
+`;
+
 export {
+  GET__MAXDISCOUNT__ALLPRODUCT,
+  GET__NEW__ALLPRODUCT,
+  GET__MAXVIEWS__ALLPRODUCT,
+  ONE_PRODUCT_QUERY,
   GET_PRODUCT_UPDATE,
   ALL_PRODUCTS,
   ONE_PRODUCT,
@@ -223,4 +379,5 @@ export {
   SORT_PRODUCT_DEPARTMENT,
   SORT_PRODUCT_CATALOG,
   SORT_PRODUCT_SIMILAR,
+  SEARCH_PRODUCTS,
 };

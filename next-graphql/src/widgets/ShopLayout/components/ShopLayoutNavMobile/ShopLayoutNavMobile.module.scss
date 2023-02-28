@@ -1,0 +1,26 @@
+.nav__container {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: white;
+  width: 100%;
+  z-index: 5;
+  padding: 15px 0;
+
+  @media (min-width: 1024px) {
+    display: none;
+  }
+
+  & .nav__container_item {
+    width: 28px;
+    height: 28px;
+    & button {
+      background-color: rgba(255, 255, 255, 0);
+    }
+  }
+
+
+}

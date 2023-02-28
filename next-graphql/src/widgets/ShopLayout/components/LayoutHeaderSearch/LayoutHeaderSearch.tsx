@@ -1,28 +1,51 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useFocusInput } from "../../lib/hooks/useFocusInput";
-
-
-import styles from './LayoutHeaderSearch.module.scss';
 import { LayoutSearchInput } from "../LayoutSearchInput";
 import { LayoutAutoComplet } from "../LayoutAutoComplet";
 
+import styles from "./LayoutHeaderSearch.module.scss";
+
 const LayoutHeaderSearch = () => {
   const [value, setValue] = useState<string>("");
-  const {focus, focusRef} = useFocusInput()
+  const { focus, focusRef } = useFocusInput();
+  const [modalActive, setModalActive] = useState(false);
+  const dropRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const checkIfClickedOutside = (e: any) => {
+      if (!dropRef.current?.contains(e.target)) {
+        setModalActive(false);
+      }
+    };
+
+    document.addEventListener("click", checkIfClickedOutside);
+    return () => {
+      document.removeEventListener("click", checkIfClickedOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (focus) {
+      setModalActive(true);
+    }
+  }, [focus]);
 
   return (
-    <div className={styles.root}>
+    <div ref={dropRef} className={styles.root}>
       <LayoutSearchInput
-      focusRef={focusRef}
+        focusRef={focusRef}
         active={focus}
         value={value}
         onChange={(e) => setValue(e)}
-        cancel={() => setValue('')}
+        cancel={() => setValue("")}
       />
-      {focus && 
-      <LayoutAutoComplet />
-      }
+      {modalActive && (
+        <LayoutAutoComplet
+          setValue={setValue}
+          searchValue={value}
+          setModalActive={setModalActive}
+        />
+      )}
     </div>
   );
 };

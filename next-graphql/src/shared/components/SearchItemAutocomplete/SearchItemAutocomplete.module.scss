@@ -1,6 +1,7 @@
 .root {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   position: relative;
   cursor: pointer;
   border-radius: 15px;
@@ -13,7 +14,7 @@
 
   & .imag {
     position: absolute;
-    top: 10px;
+    top: 23px;
     left: 15px;
   }
 
@@ -21,5 +22,10 @@
     padding-left: 40px;
     font-size: 1.2rem;
     color: rgb(93, 93, 93);
+  }
+  & img {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
   }
 }

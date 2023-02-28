@@ -1,21 +1,25 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useDetailsContext } from '@/pages/catalog/[id]';
 import { useDispatch } from 'react-redux';
 import { ImagesProductDetails, ProductDetailsButton, ProductDetailsDescription, ProductDetailsSubInfo, QueckMessage } from '@/shared';
 import { basketAction } from '@/features';
 import { ProductDetailsMobile } from '../ProductDetailsMobile';
-import { CatatlogProductList } from '@/widgets/CatalogStartPage/components/CatatlogProductList';
 
 import styles from './ProductDetails.module.scss';
+import { productDetailsAction } from '../../lib/store';
 
 
 
 const ProductDetails: FC = () => {
-  const {product, media, similarProduct} = useDetailsContext()
+  const {product, media} = useDetailsContext()
   const [characteristic, setCharacteristic] = useState(false)
   const [description, setDescription] = useState(false)
   const [quickMessage, setQueckMessage] = useState({status: false, text: ''})
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(productDetailsAction.addProduct({product}))
+  },[])
 
   const productOptions = {
     img: product.photo.images[0].url,
@@ -80,7 +84,6 @@ const ProductDetails: FC = () => {
         description={description}
         setDescription={setDescription}
         />
-     {similarProduct.length > 0 &&  <CatatlogProductList title="Похожие товары" productList={similarProduct} /> }
      </>
      : 
      <ProductDetailsMobile 

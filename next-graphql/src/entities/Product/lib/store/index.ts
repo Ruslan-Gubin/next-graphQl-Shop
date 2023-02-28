@@ -1,0 +1,1 @@
+export { productDetailsAction,productDetailsReducer,selectProductDetails } from './productDetailsSlice'

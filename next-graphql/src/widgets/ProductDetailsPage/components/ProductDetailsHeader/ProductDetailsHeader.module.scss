@@ -52,6 +52,10 @@ padding-bottom: 5px;
   align-items: center;
   color: rgb(142, 142, 142);
   font-weight: 600;
+ & a {
+  color: rgb(142, 142, 142);
+  font-weight: 600;
+  }
   & ul {
     cursor: pointer;
   }

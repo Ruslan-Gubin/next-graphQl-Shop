@@ -25,7 +25,7 @@ const CatatlogProductList: FC<ICatatlogProductList> = ({
           <figure>
             <img className={styles.card__img} src={product.photo.images[0].url} alt="Product img" />
             <figcaption>
-              <small>{product.discount}%</small>
+              {product.discount && <small>{product.discount}%</small>}
               <p className={styles.card__price}>{product.price} P<span>{product.oldPrice} P</span></p>
               <p className={styles.card__name}>{product.name}</p>
               </figcaption>

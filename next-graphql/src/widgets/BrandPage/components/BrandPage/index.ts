@@ -1,0 +1,1 @@
+export { BrandPage } from "./BrandPage";

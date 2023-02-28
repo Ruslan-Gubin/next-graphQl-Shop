@@ -1,15 +1,20 @@
 import { client, ONE_PRODUCT } from '@/apps/apollo';
-import { SORT_PRODUCT_SIMILAR } from '@/apps/apollo/productRequest';
+import { ONE_PRODUCT_QUERY, SORT_PRODUCT_SIMILAR } from '@/apps/apollo/productRequest';
 import { OPTIONS_DEPARTMENT } from '@/apps/constants';
 import { IProductType } from '@/apps/types';
 import { useMatchMedia } from '@/features/CatalogPage/libs/hooks/use-match-media';
-import { ProductDetailsPage } from '@/widgets';
+import { LoaderShop } from '@/shared';
+import { ProductDetailsPage, ProductFeedback } from '@/widgets';
+import { FeedbackList } from '@/widgets/ProductFeedback/components/FeedbackList/FeedbackList';
 import { ShopLayout } from '@/widgets/ShopLayout';
+import { useMutation, useQuery } from '@apollo/client';
 import { NextPageContext, GetServerSidePropsResult} from 'next';
 import { createContext, useContext } from 'react';
 
 
 interface IProductDetails {
+  refetch: () => void
+  product_id: string
   product: IProductType
   similarProduct: IProductType[] 
   department: {name: string, href: string}
@@ -27,15 +32,25 @@ export const useDetailsContext = () => {
   return data
 }
 
-const ProductDetails = ({product, department, subDepartment, similarProduct}: IProductDetails) => {
-  const {isDesktop, isMobile, isTablet} = useMatchMedia()
+const ProductDetails = ({product, department, subDepartment, similarProduct, product_id}: IProductDetails) => {
+  const {isDesktop, isMobile, isTablet} = useMatchMedia() 
+  const {data, refetch, loading}  = useQuery(ONE_PRODUCT_QUERY, {
+    variables: {id: product_id}
+  })
+
 
   return (
     <ShopLayout title='ProductDetail' keywords='ProductDetail'>
 
-    <DetailsContext.Provider value={{product, similarProduct, department, subDepartment, media:{isDesktop, isMobile, isTablet}}}>
-    <ProductDetailsPage />
+    {loading ?   
+  <LoaderShop/>
+  : 
+    <DetailsContext.Provider value={{refetch, product_id, product: data.getOneProductDetails , similarProduct, department, subDepartment, media:{isDesktop, isMobile, isTablet}}}>
+  <ProductDetailsPage />
     </DetailsContext.Provider>
+
+  }
+
       
    
     </ShopLayout>
@@ -47,6 +62,7 @@ product: IProductType
 department: {name: string | undefined, href: string | undefined}
 subDepartment: {name: string | undefined, href: string | undefined}
 similarProduct: IProductType[]
+product_id: string | undefined | string[] 
 }
 
 export const getServerSideProps = async ({query}: NextPageContext): Promise<GetServerSidePropsResult<IPromiseProps>> => {
@@ -90,6 +106,7 @@ const subDepartment = findDepartment?.subdepartment.find(item => item.label === 
         name: subDepartment?.value,
         href: subDepartment?.label
       },
+      product_id: query.id
     }
   }
 }

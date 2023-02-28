@@ -6,6 +6,12 @@
   border-radius: 20px;
   overflow: hidden;
 height: 15vw;
+cursor: pointer;
+
+@media (max-width: 767px) {
+  height: 33vw;
+  margin-bottom: 10px;
+}
 
 &:hover {
   opacity: 0.7;
@@ -16,7 +22,7 @@ height: 15vw;
     height: 100%;
     border-radius: 20px;
     max-height: 270px;
-    transition: all 0.7s ease;
+    transition: all 0.6s ease;
     &:hover {
       scale: 1.05;
     }
@@ -35,6 +41,21 @@ height: 15vw;
       font-size: 1.3vw;
       font-weight: 700;
       border-radius: 8px;
+      @media (max-width: 1500px) {
+        bottom: 40px;
+      }
+      @media (max-width: 1024px) {
+        bottom: 35px;
+      }
+      @media (max-width: 800px) {
+        bottom: 30px;
+      }
+      @media (max-width: 600px) {
+        bottom: 25px;
+      }
+      @media (max-width: 400px) {
+        bottom: 20px;
+      }
     }
   }
 }

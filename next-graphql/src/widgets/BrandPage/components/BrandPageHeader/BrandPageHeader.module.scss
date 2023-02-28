@@ -1,0 +1,36 @@
+.root {
+  padding: 20px 0;
+
+  & .link__home {
+    width: 55px;
+    padding-bottom: 1px;
+    border-bottom: 1px solid rgba(137, 137, 137, 0);
+    color: rgb(137, 137, 137);
+    &:hover {
+      color: black;
+      border-bottom: 1px solid black;
+    }
+  }
+
+  & .title__container {
+    display: flex;
+    align-items: center;
+    & .title {
+      margin-right: 15px;
+      font-weight: 700;
+      font-size: 1.7rem;
+      @media (max-width: 1024px) {
+        font-size: 1.3rem;
+      }
+    }
+    & .count {
+      position: relative;
+      top: 4px;
+      font-size: 0.9rem;
+      color: rgb(137, 137, 137);
+      @media (max-width: 1024px) {
+        top: 2px;
+      }
+    }
+  }
+}

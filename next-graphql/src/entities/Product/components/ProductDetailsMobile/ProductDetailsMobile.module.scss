@@ -5,11 +5,12 @@
   font-weight: 600;
   padding: 15px 0;
 width: 100%;
-border-radius: 10px;
+z-index: 1;
 border: 2px solid var.$color-shop-button;
 position: fixed;
-    bottom: 1px;
     left: 0px;
+    bottom: 58px;
+   
 }
 
 .root {
@@ -132,13 +133,15 @@ position: fixed;
       }
       
       & .reviews {
-        margin: 0 15px;
-        color: rgb(137, 137, 137);
-        border-bottom: 1px dashed rgb(137, 137, 137);
-        &:hover {
-          color: rgb(77, 77, 77);
-          border-bottom: 1px dashed rgb(81, 81, 81);
-          cursor: pointer;
+        & a {
+          margin: 0 15px;
+          color: rgb(137, 137, 137);
+          border-bottom: 1px dashed rgb(137, 137, 137);
+          &:hover {
+            color: rgb(77, 77, 77);
+            border-bottom: 1px dashed rgb(81, 81, 81);
+            cursor: pointer;
+          }
         }
       }
       

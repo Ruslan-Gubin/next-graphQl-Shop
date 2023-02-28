@@ -1,32 +1,60 @@
 .root {
-  
-
 
   & h1 {
     font-size: 1.8vw;
     font-weight: 700;
     padding-top: 20px;
+    font-size: 1.7rem;
+    @media (max-width: 1024px) {
+      font-size: 1.2rem;
+      
+    }
   }
 
    & .card__wrapper {
 display: flex;
+overflow: hidden;
 overflow: scroll;
 &::-webkit-scrollbar {
   width: 0;
 }
-     
-     & .card__container {
-      display: flex;
-      flex-direction: column;
-      width: 180px;
-      height: 300px;
+@media (max-width: 680px) {
+//  width: 100%;
+
+ // height: 200px;
+ // height: 25%;
+//  overflow: scroll;
+}
+
+& .card__container {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
        position: relative;
        margin-right: 5px;
+      
+
        & .card__img {
          width: 180px;
          height: 240px;
          border-radius: 15px;
          margin-bottom: 10px;
+         @media (max-width: 680px) {
+          width: 130px;
+          height: 180px;
+          }
+         @media (max-width: 580px) {
+          width: 100px;
+          height: 150px;
+          }
+         @media (max-width: 400px) {
+          width: 70px;
+          height: 110px;
+          }
+         @media (max-width: 300px) {
+          width: 60px;
+          height: 110px;
+          }
     }
 
        & .card__price {
@@ -36,6 +64,9 @@ overflow: scroll;
         position: relative;
         margin-bottom: 10px;
         color: black;
+        @media (max-width: 400px) {
+          display: none;
+          }
 
         & span {
           margin-left: 15px;
@@ -43,6 +74,9 @@ overflow: scroll;
           text-decoration: line-through 2px;
           color: rgb(112, 112, 112);
           text-shadow: none;
+          @media (max-width: 740px) {
+            display: none;
+           }
         }  
     }
 
@@ -53,6 +87,18 @@ overflow: scroll;
          white-space: nowrap;
         overflow: hidden;
          text-overflow: ellipsis;
+         @media (max-width: 1024px) {
+          width: 170px;
+          }
+         @media (max-width: 850px) {
+          width: 150px;
+          }
+         @media (max-width: 750px) {
+          width: 120px;
+          }
+         @media (max-width: 680px) {
+          display: none;
+          }
     } 
 
     & small {

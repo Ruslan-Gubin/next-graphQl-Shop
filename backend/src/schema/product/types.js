@@ -8,6 +8,7 @@ import {
 import { PhotoProductModel, PhotoProductType } from "../photoProduct/index.js";
 import { BrandModel, BrandType } from "../brand/index.js";
 import { CategoryModel, CategoryType } from "../category/index.js";
+import { FeedbackModel, FeedbackType } from '../feedback/index.js';
 
 const OptionsType = new GraphQLObjectType({
   name: "Options",
@@ -53,6 +54,12 @@ const ProductType = new GraphQLObjectType({
       type: CategoryType,
       resolve(parent, args) {
         return CategoryModel.findById(parent.category_id);
+      },
+    },
+    feedbacks: {
+      type: new GraphQLList (FeedbackType),
+      resolve(parent, args) {
+        return FeedbackModel.find({product_id: parent._id}).sort({createdAt: -1});
       },
     },
   }),

@@ -3,6 +3,7 @@ import storage from "redux-persist/lib/storage";
 import { getPersistConfig } from "redux-deep-persist";
 import * as redusers from "@/features";
 import { layoutShopReducer } from "@/widgets";
+import { productDetailsReducer } from "@/entities";
 
 
 const rootReducer = combineReducers({
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   catalogPage: redusers.catalogPageReducer,
   basket: redusers.basketReducer,
   User: redusers.userReducer,
+  productDetails: productDetailsReducer,
   // [rtkQuery.productsApi.reducerPath]: rtkQuery.productsApi.reducer,
 });
 

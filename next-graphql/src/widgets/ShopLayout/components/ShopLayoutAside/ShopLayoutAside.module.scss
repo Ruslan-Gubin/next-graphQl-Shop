@@ -1,22 +1,26 @@
 .wrapper {
-  background-color: rgba(69, 69, 69, 0.347);
+  background-color: rgba(69, 69, 69, 0.963);
+  // background-image: linear-gradient(to top, (rgb(219rgb(114, 114, 114), 218), rgb(126, 126, 126)));
+  background-image: linear-gradient(to top, (rgb(244, 244, 244), rgb(23, 23, 23)));
   width: 100%;
-  min-height: 100%;
-  overflow: hidden;
-  position: absolute;
+
+  
   top: 0;
   left: 0px;
   z-index: 4;
   transition: all 0s ease;
-  overflow: scroll;
+  // overflow: scroll;
   &::-webkit-scrollbar {
     display: none;
   }
+  position: fixed;
+  height: 100vh;
+  overflow-y: hidden;
+  padding-right: 15px;
 
   .root {
-    height: 100%;
     display: flex;
-    height: 100vh;
+    height: 100%;
     background-color: #fff;
     position: absolute;
     top: 0px;
@@ -82,6 +86,9 @@
         width: 270px;
         height: 325px;
         border-radius: 10px;
+      }
+      @media (max-width: 1024px) {
+        display: none;
       }
     }
 

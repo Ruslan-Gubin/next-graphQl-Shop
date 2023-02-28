@@ -42,9 +42,23 @@ query(
   }
 }
 `;
+const  GET_CATEGORYES = gql`
+query {
+  categorys{
+    name
+    sub_department
+    _id
+    department
+    image {
+    url
+    }
+  }
+}
+`;
 
 
 export {
+  GET_CATEGORYES,
   SORT_CATEGORY_FROM_CATALOG,
   CREATED_CATEGORY,
   SORT_CATEGORY,

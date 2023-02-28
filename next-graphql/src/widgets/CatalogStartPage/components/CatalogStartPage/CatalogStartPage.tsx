@@ -6,8 +6,9 @@ import { useRouter } from 'next/router';
 import { CatatlogProductList } from "../CatatlogProductList";
 import { ICategoryType, IProductType } from "@/apps/types";
 import styles from "./CatalogStartPage.module.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { catalogPageAction } from "@/features";
+import { selectProductDetails } from "@/entities";
 
 interface ICatalogStartPage {
   title: string;
@@ -26,6 +27,7 @@ const CatalogStartPage: FC<ICatalogStartPage> = ({
   catalogData,
   newSortProduct,
 }) => {
+  const { watchedProduct } = useSelector(selectProductDetails)
   const dispatch = useDispatch()
   const router = useRouter()
 
@@ -47,7 +49,7 @@ const CatalogStartPage: FC<ICatalogStartPage> = ({
       </section>
 
       <section className={styles.main__container}>
-        <nav>
+        <nav className={styles.categori__container}>
           <h2>Категории</h2>
           <h3>{title}</h3>
           <ul>
@@ -63,7 +65,20 @@ const CatalogStartPage: FC<ICatalogStartPage> = ({
           </ul>
         </nav>
 
+
         <section className={styles.content}>
+       
+          <ul className={styles.categori__container_mobile}>
+            {navValueArray.map((nav) => (
+              <Link key={nav.value} href={`${href}/${nav.label}`}  >
+                <li
+                onClick={() => dispatch(catalogPageAction.setCategoryValue({
+                  value: "Категория", label: "Категория", id: ""
+                }))}
+                className={styles.nav__item_mobile}>{nav.value}</li>
+              </Link>
+            ))}
+          </ul>
           {navValueArray.length &&
           <CatalogSwiper
           href={href} catalogImages={navValueArray} />
@@ -80,6 +95,7 @@ const CatalogStartPage: FC<ICatalogStartPage> = ({
              
        {newSortProduct.length > 0 &&  <CatatlogProductList title="Новинки" productList={newSortProduct} /> }
        {popularProduct.length > 0 &&  <CatatlogProductList title='Популярное' productList={popularProduct} />}
+       {watchedProduct.length > 0 &&  <CatatlogProductList title="Вы недавно смотрели" productList={watchedProduct} />} 
         </section>
       </section>
     </>

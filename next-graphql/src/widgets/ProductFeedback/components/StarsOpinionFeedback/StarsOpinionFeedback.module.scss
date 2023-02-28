@@ -1,0 +1,23 @@
+
+.root {
+  display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 auto;
+
+     & .stars__container {
+        display: flex;
+        & .stars {
+          
+          & .img {
+      width: 30px;
+      height: 30px;
+      margin: 0 5px ;
+    }
+  }
+}
+
+}
+
+  

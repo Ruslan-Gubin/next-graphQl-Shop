@@ -17,6 +17,9 @@
     width: 95%;
     height: 165px;
    }
+  @media (max-width: 1024px) {
+    display: none;
+   }
 
 
   & .headerMenu {

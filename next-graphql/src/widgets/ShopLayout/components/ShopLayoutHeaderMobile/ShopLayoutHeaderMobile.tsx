@@ -1,14 +1,33 @@
+import { useMatchMedia } from '@/features/CatalogPage/libs/hooks/use-match-media';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { Dispatch, FC, SetStateAction } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { layoutShopAction, selectLayoutShop } from '../../lib/store';
+import { ShopLayoutNavMobile } from '../ShopLayoutNavMobile';
 
 import styles from './ShopLayoutHeaderMobile.module.scss';
 
-const ShopLayoutHeaderMobile = () => {
-  const { asideLayoutStatus } = useSelector(selectLayoutShop)
-  const dispatch = useDispatch()
+interface IShopLayoutHeaderMobile {
+  setSearchMobileModal: Dispatch<SetStateAction<boolean>>
+}
 
-  const pathname = window.location.pathname
+const ShopLayoutHeaderMobile: FC<IShopLayoutHeaderMobile> = ({setSearchMobileModal}) => {
+  const { asideLayoutStatus } = useSelector(selectLayoutShop)
+  const {isMobile} = useMatchMedia()
+  const dispatch = useDispatch()
+  const router = useRouter()
+
+  const handlerClickNav = (href: string) => {
+    if (asideLayoutStatus) {
+      dispatch(layoutShopAction.asideCancel())
+    }
+    router.push(`${href}`)
+  }
+
+  if (isMobile) {
+    return <></>
+  }
 
   return (
     <header className={styles.root}>
@@ -16,63 +35,12 @@ const ShopLayoutHeaderMobile = () => {
 <Link href={'/'}>
 <h1 className={styles.logo}> ONLINESHOP </h1>
 </Link>
-<button className={styles.search__icon_container}>
+<button title='Поиск' onClick={() => setSearchMobileModal(true)} className={styles.search__icon_container}>
 <div className={styles.search__icon}></div>
 </button>
       </section>
 
-<nav>
-<ul className={styles.nav__container}>
-  <li className={styles.nav__container_item}>
-    <figure>
-      {pathname !== '/' ? 
-    <Link href={'/'}><img src="/home__mobile_gray.png" alt="home icon" /></Link>  
-    :  
-    <img src="/home_pink.png" alt="home icon" />
-    }
-      </figure>
-  </li>
-  <li className={styles.nav__container_item}>
-    <figure>
-    {!asideLayoutStatus ? 
-    <button onClick={() => dispatch(layoutShopAction.asideLayoutToggle())}>
-    <img  src="/search_document_gray.png" alt="home search_document" />
-    </button>
-      :
-      <button onClick={() => dispatch(layoutShopAction.asideLayoutToggle())}>
-      <img src="/search_pink.png" alt="home search_document" />
-      </button>
-  }
-    </figure>
-  </li>
-  <li className={styles.nav__container_item}>
-    <figure>
-    {pathname !== '/basket' ? 
-    <Link href={'/basket'}><img src="/basket__mobile_gray.png" alt="home basket" /></Link>  
-      :
-      <img src="/backet_pink.png" alt="home basket" />
-}
-      </figure>
-  </li>
-  <li className={styles.nav__container_item}>
-    <figure>
-    {pathname !== '/lk/favorites' ? 
-    <Link href={'/lk/favorites'}><img src="/hearts__mobile_gray.png" alt="home hearts" /></Link>  
-      :
-       <img src="/heartsAllpink.png" alt="home hearts" />
-}
-      </figure>
-  </li>
-  <li className={styles.nav__container_item}>
-<figure>
-{pathname !== '/lk/details' ? 
- <Link href={'/lk/details'}><img src="/user__mobile_gray.png" alt="home icon" /></Link> 
-  :<img src="/user_pink.png" alt="home icon" />
-}
-  </figure>
-  </li>
-</ul>
-</nav>
+    <ShopLayoutNavMobile handlerClickNav={handlerClickNav}/>
       
     </header>
   );

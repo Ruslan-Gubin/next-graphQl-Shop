@@ -23,8 +23,9 @@ export {
   LKHeader,
   CloseProductButton,
   BurgerButton,
+  LoaderShop,
 } from "./components";
 
-export { queckMessage } from "./lib";
+export { queckMessage, findMaxOpinion } from "./lib";
 
 export { useAddImage, useHover } from "./lib/hooks";

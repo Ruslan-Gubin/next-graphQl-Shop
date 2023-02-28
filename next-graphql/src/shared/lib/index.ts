@@ -1,1 +1,1 @@
-export { queckMessage } from "./helpers";
+export { queckMessage, findMaxOpinion } from "./helpers";

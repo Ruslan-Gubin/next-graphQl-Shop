@@ -50,7 +50,6 @@ const navListArray: INavListArray[] = [
   {
     title: "Мы в соцсетях",
     links: [
-      { name: "О нас", href: "/" },
       { name: "ВКонтакте", href: "/" },
       { name: "Одноклассники", href: "/" },
       { name: "YouTube", href: "/" },

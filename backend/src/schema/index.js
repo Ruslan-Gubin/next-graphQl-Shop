@@ -7,6 +7,7 @@ import { BrandQuery, BrandMutation } from "./brand/index.js";
 import { CategoryQuery, CategoryMutation } from './category/index.js';
 import { UserQuery, UserMutation } from "./auth/index.js";
 import { OrderQuery , OrderMutation } from "./order/index.js";
+import { FeedbackQuery, FeedbackMutation } from './feedback/index.js';
 
 const Query = new GraphQLObjectType({
   name: "Query",
@@ -19,6 +20,7 @@ const Query = new GraphQLObjectType({
       CategoryQuery,
       UserQuery,
       OrderQuery,
+      FeedbackQuery,
       ), 
   },
 });
@@ -33,7 +35,8 @@ const Mutation = new GraphQLObjectType({
     BrandMutation,
     CategoryMutation,
     UserMutation,
-    OrderMutation
+    OrderMutation,
+    FeedbackMutation,
     ),
   },
 });

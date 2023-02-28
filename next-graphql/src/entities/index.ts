@@ -6,5 +6,8 @@ export {
   ProductDetailsMobile,
   ProductCardBasket,
   ProductCardFavorites,
+  productDetailsAction,
+  productDetailsReducer,
+  selectProductDetails,
 } from "./Product";
 export { UserCardDetails } from "./User";

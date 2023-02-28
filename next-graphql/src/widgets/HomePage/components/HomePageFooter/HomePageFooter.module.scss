@@ -1,0 +1,62 @@
+@use '../../../../apps/styles/common/var';
+
+.root {
+  padding: 50px 0;
+  overflow: hidden;
+  position: relative;
+  @media (max-width: 1024px) {
+    display: none;
+  }
+
+  & h1 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  & h2 {
+    padding: 20px 0;
+    font-size: 1.2rem;
+    color: var.$color-secondary;
+    font-weight: 700;
+
+  }
+  & p {
+    font-size: 1.1rem;
+    color: var.$color-secondary;
+    line-height: 22px;
+  }
+ 
+}
+
+.btn {
+  position: relative;
+  top: 15px;
+ color: var.$color-shop-button;
+ background-color: rgba(255, 255, 255, 0);
+ font-size: 1.16rem;
+ font-weight: 600;
+ border-bottom: 1px dashed rgb(180, 180, 180);
+ @media (max-width: 1024px) {
+  display: none;
+}
+ &:hover {
+   border-bottom: 1px dashed var.$color-shop-button;
+
+ }
+}
+.small__block {
+  height: 190px;
+  position: relative;
+  @media (max-width: 1024px) {
+    display: none;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+height: 20px;
+background-image: linear-gradient(to bottom, (rgba(248, 248, 248, 0.292), rgb(248, 248, 248)));
+  }
+}

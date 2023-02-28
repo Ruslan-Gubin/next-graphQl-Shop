@@ -28,3 +28,4 @@ export { CloseProductButton } from "./CloseProductButton";
 export { UserIconActive } from "./UserIconActive";
 export { NoContentAdmin } from "./NoContentAdmin";
 export { BurgerButton } from "./BurgerButton";
+export { LoaderShop } from "./LoaderShop";

@@ -26,6 +26,12 @@ const layoutShopSlice = createSlice({
 
     getSearchValue(state, action) {
       state.searchValue = action.payload.value
+    },
+
+    asideCancel(state) {
+      if (state.asideLayoutStatus) {
+        state.asideLayoutStatus = false
+      }
     }
 
   }

@@ -1,0 +1,1 @@
+export { LayoutSearchMobile } from './LayoutSearchMobile'

@@ -1,0 +1,50 @@
+@use '../../../../apps/styles/common/var';
+
+.root {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  & .array__left {
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 100px;
+    left: 10px;
+    scale: 1.4;
+  }
+  & .array__right {
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 100px;
+    right: -10px;
+    scale: 1.4;
+  }
+  
+  
+  & .feedback__container {
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    width: 100%;
+    padding: 15px 0;
+    & .feedback__item {
+      width: 30%;
+      margin: 0 5px;
+
+    }
+    
+  }
+  
+}
+
+.hidden {
+  visibility: hidden;
+}

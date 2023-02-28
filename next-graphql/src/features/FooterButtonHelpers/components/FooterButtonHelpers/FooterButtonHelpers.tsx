@@ -26,7 +26,7 @@ const FooterButtonHelpers: FC = () => {
       name: "Guest",
       viewed: false,
     };
-    console.log(questionsId);
+   
     if (!questionsId) {
       await createQuestion({
         variables,

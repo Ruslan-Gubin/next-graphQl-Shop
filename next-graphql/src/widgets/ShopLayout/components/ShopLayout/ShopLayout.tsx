@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useSelector } from "react-redux";
 import Head from "next/head";
 import Link from "next/link";
@@ -11,6 +11,7 @@ import styles from "./ShopLayout.module.scss";
 import { selectLayoutShop } from "../../lib/store";
 import { useMatchMedia } from "@/features/CatalogPage/libs/hooks/use-match-media";
 import { ShopLayoutHeaderMobile } from "../ShopLayoutHeaderMobile";
+import { LayoutSearchMobile } from "../LayoutSearchMobile";
 
 interface IShopLayout {
   children: React.ReactNode;
@@ -20,9 +21,10 @@ interface IShopLayout {
 
 const ShopLayout: FC<IShopLayout> = ({ children, title, keywords }) => {
   const { asideLayoutStatus } = useSelector(selectLayoutShop);
-  const {isMobile, isDesktop,isTablet} = useMatchMedia()
- 
+  const [searchMobileModal, setSearchMobileModal] = useState<boolean>(false)
+  const { isDesktop } = useMatchMedia()
 
+ 
   return (
     <>
       <Head>
@@ -39,6 +41,13 @@ const ShopLayout: FC<IShopLayout> = ({ children, title, keywords }) => {
         style={asideLayoutStatus ? { height: "100vh" } : { height: "100%" }}
         className={styles.root}
       >
+
+         {searchMobileModal && !isDesktop &&
+         <LayoutSearchMobile 
+         setSearchMobileModal={setSearchMobileModal}
+         />
+         }
+
         <button className={styles.adminLink}>
           <nav>
             <Link href={"/admin"}>
@@ -47,13 +56,13 @@ const ShopLayout: FC<IShopLayout> = ({ children, title, keywords }) => {
           </nav>
         </button>
 
-           {isDesktop ?
-        <ShopLayoutHeader />
-        : 
-        <ShopLayoutHeaderMobile />
-           }
-   
-        <ShopLayoutAside />
+            <ShopLayoutHeader />
+            <ShopLayoutHeaderMobile
+            setSearchMobileModal={setSearchMobileModal}
+            />
+      
+
+    <ShopLayoutAside />
 
         <main>
           <div className={styles.main__container}>
@@ -63,6 +72,8 @@ const ShopLayout: FC<IShopLayout> = ({ children, title, keywords }) => {
          <FooterShop />
         <features.FooterButtonHelpers />
       </section>
+       
+        
     </>
   );
 };

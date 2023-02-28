@@ -4,17 +4,23 @@ import { HeaderStoreNavbar } from "@/entities/HeaderStoreNavbar";
 import {  selectBasket } from "@/features";
 import { BurgerButton } from "@/shared";
 import { layoutShopAction } from "../../lib/store";
-
-import styles from './ShopLayoutHeader.module.scss';
 import { LayoutHeaderSearch } from "../LayoutHeaderSearch";
 import { ShopHeaderLogo } from "../ShopHeaderLogo";
 
+import styles from './ShopLayoutHeader.module.scss';
+import { useMatchMedia } from "@/features/CatalogPage/libs/hooks/use-match-media";
+
 const ShopLayoutHeader = () => {
   const {basket} = useSelector(selectBasket)
+  const {isMobile} = useMatchMedia()
   const dispatch = useDispatch()
 
   const handleBurgerClick = () => {
     dispatch(layoutShopAction.asideLayoutToggle())
+  }
+
+  if (isMobile) {
+    return <></>
   }
 
   return (

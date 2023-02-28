@@ -1,4 +1,3 @@
-import React from 'react';
 import { navListArray } from '../../model/navListArray';
 import { FooterNavigationList } from '../FooterNavigationList';
 

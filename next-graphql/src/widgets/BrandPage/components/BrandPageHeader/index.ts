@@ -1,0 +1,1 @@
+export { BrandPageHeader } from "./BrandPageHeader";

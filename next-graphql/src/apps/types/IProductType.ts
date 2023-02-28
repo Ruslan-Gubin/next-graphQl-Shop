@@ -1,4 +1,5 @@
 import { ICategoryType } from "./ICategoryType";
+import { IFeedbackType } from "./IFeedbackType";
 
 interface IProductType {
   brand: {
@@ -35,6 +36,7 @@ interface IProductType {
   discount: number;
   __typename: string;
   _id: string;
+  feedbacks: IFeedbackType[]
 }
 
 export type { IProductType };

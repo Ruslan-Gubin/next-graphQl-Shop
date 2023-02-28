@@ -17,6 +17,9 @@ import {
 import styles from "./CatalogPage.module.scss";
 import { useMatchMedia } from "../../libs/hooks/use-match-media";
 import { CatalogPageHeaderMobile } from "../CatalogPageHeaderMobile";
+import { LoaderShop } from "@/shared";
+import { selectProductDetails } from "@/entities";
+import { CatatlogProductList } from "@/widgets/CatalogStartPage/components/CatatlogProductList";
 
 interface ICatalogPage {
   href: string;
@@ -37,6 +40,7 @@ const CatalogPage: FC<ICatalogPage> = ({
   label,
   sub_departmentName,
 }) => {
+  const { watchedProduct } = useSelector(selectProductDetails)
   const { perPage} = useSelector(selectCatalogPage) 
   const {isDesktop} = useMatchMedia()
   const [subDepartmentValue, setSubDepartmentValue] = useState({
@@ -111,6 +115,10 @@ const CatalogPage: FC<ICatalogPage> = ({
     }
   }, [categoryValue]);
 
+  if (loading) {
+    return <LoaderShop />
+  }
+
   return (
     <div className={styles.root}>
       {productsFilter && !loading && products && (
@@ -153,22 +161,24 @@ const CatalogPage: FC<ICatalogPage> = ({
           countProduct={productsFilter.length}
           optionDepartment={optionDepartment}
           />
-          
         }
           <CatalogProductList
           isDesktop={isDesktop}
-            products={sortProductFilter(
-              productsFilter,
-              categoryValue,
-              brandValue,
-              priceFilter
+          products={sortProductFilter(
+            productsFilter,
+            categoryValue,
+            brandValue,
+            priceFilter
             )}
-          />
+            />
         {perPage < productsFilter.length && 
           <CatalogPageFooter 
           totalCountries={productsFilter.length} 
           />
         }
+  {watchedProduct.length > 0 &&  
+  <CatatlogProductList title="Вы недавно смотрели" productList={watchedProduct} /> 
+  }
         </>
       )}
     </div>

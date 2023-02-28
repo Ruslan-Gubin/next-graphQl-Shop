@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { formatterRub } from '@/features/CatalogPage/libs/helper';
-import { Heart, StarsList } from '@/shared';
+import { findMaxOpinion, Heart, StarsList } from '@/shared';
 import { useInView } from "react-intersection-observer";
 import { selectBasket } from '@/features';
 import { checkFavorite } from '../../lib/helpers/checkFavorite';
@@ -55,7 +55,7 @@ const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({product, onClickBuy
            <p className={styles.oldPrice}>{formatterRub.format(product.oldPrice)}</p>
             </div>
           <p className={hoverCard ? styles.product__name_active : styles.product__name}> <span className={styles.product__brand}>{product.brand.name}</span> / {product.name}</p>
-      <StarsList count={5} />
+      <StarsList count={findMaxOpinion(product.feedbacks)} />
       <p className={styles.delivery}>Доставка <span className={styles.delivery__span}>завтра</span></p>
   
   

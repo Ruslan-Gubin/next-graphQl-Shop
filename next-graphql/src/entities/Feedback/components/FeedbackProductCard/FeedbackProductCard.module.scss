@@ -1,0 +1,127 @@
+@use '../../../../apps/styles/common/var';
+
+.root {
+  padding: 15px;
+  box-shadow: var.$box-shadow;
+  border-radius: 15px;
+  overflow: scroll;
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+  & .header {
+    display: flex;
+    @media (max-width: 1024px) {
+      display: block;
+    }
+    & .header__user_img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 15px;
+    }
+    
+    & .header__info_container {
+      
+      & .header__info {
+        display: flex;
+        margin-bottom: 10px;
+        @media (max-width: 1024px) {
+          display: block;
+        }
+        & .header__user_name {
+          font-weight: 600;
+          font-size: 1.1rem;
+          padding-bottom: 2px;
+          border-bottom: 1px dashed black;
+          margin-right: 10px;
+          @media (max-width: 1024px) {
+            border-bottom: 1px dashed rgba(0, 0, 0, 0);
+          }
+          &:hover {
+            cursor: pointer;
+            border-bottom: 1px dashed rgba(0, 0, 0, 0);
+          }
+        }
+  
+        & .header__user_time {
+          color: var.$color-secondary;
+          font-weight: 600;
+          font-size: 1.1rem;
+        }
+
+      }
+    } 
+  }
+
+  & .content__container {
+    // min-width: 500px;
+    // @media (max-width: 1024px) {
+    //   min-width: 250px;
+    //   width: 100%;
+    // }
+    & .content {
+      width: 100%;
+      padding: 15px 0;
+      font-size: 1.1rem;
+      height: 96px;
+      line-height: 20px;
+      overflow: scroll;
+      @media (max-width: 1024px) {
+        font-size: 1rem;
+        line-height: 16px;
+      }
+      &::-webkit-scrollbar {
+       width: 0;
+     }
+    }
+    & .content__img {
+      height: 70px;
+      @media (max-width: 1024px) {
+        height: 50px;
+      }
+      & img {
+        width: 70px;
+        height: 70px;
+        border-radius: 10px;
+        @media (max-width: 1024px) {
+          width: 50px;
+          height: 50px;
+        }
+      }
+    }
+  }
+
+
+  & .footer {
+    padding-top: 15px;
+    // position: relative;
+    & .likes__container {
+      
+    }
+
+    & .footer__remove {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background-color: rgba(255, 255, 255, 0);
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var.$color-shop-button;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0);
+      &:hover {
+        color: var.$color-shop-button-active;
+        border-bottom: 1px dashed var.$color-shop-button;
+
+      }
+    }
+
+  }
+
+
+
+  
+}

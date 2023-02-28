@@ -3,25 +3,73 @@
 .root {
   font-size: 1.3rem;
   margin-bottom: 60px;
+
+  @media (max-width: 1024px) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.222);
+    padding: 10px 0;
+    margin-bottom: 0px;
+  }
+  
   & .title {
     color: rgb(255, 255, 255);
     margin-bottom: 15px;
     font-weight: 600;
-  }
-  
-  & .linkItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @media (max-width: 1024px) {
+    }
     
-    margin-bottom: 15px;
+    & .bird {
+      @media (min-width: 1024px) {
+        display: none;
+      }
+    }
+
   }
   
-  & .link {
-    line-height: 24px;
-    padding-bottom: 13px;
-    color: rgba(255,255,255,.7);
-    &:hover {
-      color: rgb(255, 255, 255);
+  & .link__container {
+    @media (max-width: 1024px) {
+      display: none;
+    }
+    & .linkItem {
+      margin-bottom: 15px;
+    }
+    & .link {
+      line-height: 24px;
+      padding-bottom: 13px;
+      color: rgba(255,255,255,.7);
+      &:hover {
+        color: rgb(255, 255, 255);
+      }
     }
   }
 
+  & .link__container_mobile {
+    height: 0px;
+    opacity: 0;
+    transition: all 0.4s ease;
+    @media (min-width: 1024px) {
+      display: none;
+    }
+    & .linkItem_mobile {
+      margin-bottom: 15px;
+    }
+    & .link_mobile {
+      line-height: 24px;
+      padding-bottom: 13px;
+      color: rgba(255,255,255,.7);
+      &:hover {
+        color: rgb(255, 255, 255);
+      }
+    }
+  }
+
+  & .active {
+    transition: all 0.4s ease;
+    opacity: 1;
+    height: 100%;
+  }
+    
   
 }

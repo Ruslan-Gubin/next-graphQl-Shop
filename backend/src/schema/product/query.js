@@ -125,6 +125,57 @@ const productsMethods = {
           }).sort(sort).limit(0)
     }
   },
+  searchProducts: {
+    type: new GraphQLList(ProductType),
+    args: {
+      searchValue: { type : new GraphQLNonNull(GraphQLString) },
+    }, 
+    resolve(parent, args) {
+
+       return ProductModel.find({
+        $or: [
+         { name : {$regex: `${args.searchValue}`, $options: 'i'}},
+         { description : {$regex: `${args.searchValue}`, $options: 'i'}},
+        ]
+      })
+    }
+  },
+  getOneProductDetails: {
+    type: ProductType,
+    args: {
+      id: { type : new GraphQLNonNull(GraphQLID) },
+    }, 
+    resolve(parent, args) {
+       return ProductModel.findById(args.id)
+    }
+  },
+  getMaxViewsProducts: {
+    type: new GraphQLList(ProductType),
+    args: {
+      limit: {type: GraphQLInt}
+    }, 
+    resolve(parent, args) {
+       return ProductModel.find({}).sort({views: -1}).limit(args.limit)
+    }
+  },
+  getNewProducts: {
+    type: new GraphQLList(ProductType),
+    args: {
+      limit: {type: GraphQLInt}
+    }, 
+    resolve(parent, args) {
+       return ProductModel.find({}).sort({createdAt: -1}).limit(args.limit)
+    }
+  },
+  getMaxDiscountProducts: {
+    type: new GraphQLList(ProductType),
+    args: {
+      limit: {type: GraphQLInt}
+    }, 
+    resolve(parent, args) {
+       return ProductModel.find({}).sort({discount: 1}).limit(args.limit)
+    }
+  },
 
 }
 

@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import { catalogPageAction } from '@/features';
-import { Array, StarsList } from '@/shared';
+import { Array, findMaxOpinion, StarsList } from '@/shared';
 import styles from './ProductDetailsHeader.module.scss';
 
 
@@ -40,8 +40,8 @@ const ProductDetailsHeader: FC = () => {
       <h1 className={styles.title}>{product.brand.name} / {product.name}</h1>
 
         <div className={styles.info__container}>
-          <StarsList count={5}/>
-          <p className={styles.reviews}>525 отзывов</p>
+          <StarsList count={findMaxOpinion(product.feedbacks)}/>
+          <a href='#feedback-header' className={styles.reviews}>{product.feedbacks.length} отзыва</a>
           <p className={styles.index}>Индекс: <span>{product._id}</span></p>
           <p className={styles.index}>Купили более {5900}  раз</p>
         </div>
