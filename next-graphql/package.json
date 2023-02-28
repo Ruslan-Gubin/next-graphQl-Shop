@@ -1,11 +1,12 @@
 {
   "name": "next-graphql",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "lint": "next lint",
     "test": "jest --watch"
   },
   "dependencies": {
