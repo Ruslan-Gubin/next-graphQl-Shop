@@ -1,9 +1,8 @@
-import { IFeedbackType } from "@/apps/types/IFeedbackType";
+import { FC, FormEvent, useState } from "react";
 import { selectUser } from "@/features";
 import { useDetailsContext } from "@/pages/catalog/[id]";
 import { findMaxOpinion, Modal, QueckMessage, queckMessage, StarsList, useAddImage } from "@/shared";
 import { useMutation } from "@apollo/client";
-import { FC, FormEvent, useState } from "react";
 import { useSelector } from "react-redux";
 import { CREATE_FEEDBACK } from "../../models/feedbackRequest";
 import { StarsOpinionFeedback } from "../StarsOpinionFeedback";

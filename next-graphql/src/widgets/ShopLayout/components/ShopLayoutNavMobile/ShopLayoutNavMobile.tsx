@@ -1,6 +1,6 @@
-
 import { useDispatch, useSelector } from 'react-redux';
 import { layoutShopAction, selectLayoutShop } from '../../lib/store';
+import Image from 'next/image';
 import styles from './ShopLayoutNavMobile.module.scss';
 
 interface IShopLayoutNavMobile {
@@ -19,10 +19,10 @@ const ShopLayoutNavMobile = ({handlerClickNav}: IShopLayoutNavMobile) => {
     <figure>
       {pathname !== '/' || asideLayoutStatus ? 
       <button onClick={() => handlerClickNav('/')}>
-   <img src="/home__mobile_gray.png" alt="home icon" /> 
+   <Image src="/home__mobile_gray.png" width={30} height={30}  alt="home icon" /> 
       </button>
     :  
-    <img src="/home_pink.png" alt="home icon" />
+    <Image width={30} height={30} src="/home_pink.png" alt="home icon" />
     }
       </figure>
   </li>
@@ -30,11 +30,11 @@ const ShopLayoutNavMobile = ({handlerClickNav}: IShopLayoutNavMobile) => {
     <figure>
     {!asideLayoutStatus ? 
     <button onClick={() => dispatch(layoutShopAction.asideLayoutToggle())}>
-    <img  src="/search_document_gray.png" alt="home search_document" />
+    <Image width={30} height={30} src="/search_document_gray.png" alt="home search_document" />
     </button>
       :
       <button onClick={() => dispatch(layoutShopAction.asideLayoutToggle())}>
-      <img src="/search_pink.png" alt="home search_document" />
+      <Image width={30} height={30} src="/search_pink.png" alt="home search_document" />
       </button>
   }
     </figure>
@@ -43,10 +43,10 @@ const ShopLayoutNavMobile = ({handlerClickNav}: IShopLayoutNavMobile) => {
     <figure>
     {pathname !== '/basket' || asideLayoutStatus ? 
     <button onClick={() => handlerClickNav('/basket')}>
-    <img src="/basket__mobile_gray.png" alt="home basket" />  
+    <Image width={30} height={30} src="/basket__mobile_gray.png" alt="home basket" />  
     </button>
       :
-      <img src="/backet_pink.png" alt="home basket" />
+      <Image width={30} height={30} src="/backet_pink.png" alt="home basket" />
 }
       </figure>
   </li>
@@ -54,10 +54,10 @@ const ShopLayoutNavMobile = ({handlerClickNav}: IShopLayoutNavMobile) => {
     <figure>
     {pathname !== '/lk/favorites' || asideLayoutStatus ? 
     <button onClick={() => handlerClickNav('/lk/favorites')}>
-    <img src="/hearts__mobile_gray.png" alt="home hearts" />  
+    <Image width={30} height={30} src="/hearts__mobile_gray.png" alt="home hearts" />  
     </button>
       :
-       <img src="/heartsAllpink.png" alt="home hearts" />
+       <Image width={30} height={30} src="/heartsAllpink.png" alt="home hearts" />
 }
       </figure>
   </li>
@@ -65,9 +65,9 @@ const ShopLayoutNavMobile = ({handlerClickNav}: IShopLayoutNavMobile) => {
 <figure>
 {pathname !== '/lk/details' || asideLayoutStatus ? 
 <button onClick={() => handlerClickNav('/lk/details')}>
- <img src="/user__mobile_gray.png" alt="home icon" />
+ <Image width={30} height={30} src="/user__mobile_gray.png" alt="home icon" />
 </button>
-  :<img src="/user_pink.png" alt="home icon" />
+  :<Image width={30} height={30} src="/user_pink.png" alt="home icon" />
 }
   </figure>
   </li>

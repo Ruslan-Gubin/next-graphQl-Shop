@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { layoutShopAction, selectLayoutShop } from "../../lib/store";
 import { AsideCatehoryItem } from "../AsideCatehoryItem";
+import Image from 'next/image';
 
 import styles from "./ShopLayoutAside.module.scss";
 
@@ -18,7 +19,7 @@ const ShopLayoutAside = () => {
     (label: string) => {
       setActiveDepartment(label);
     },
-    [activeDepartment]
+    []
   );
   const dispatch = useDispatch();
 
@@ -112,6 +113,8 @@ const ShopLayoutAside = () => {
             <section className={styles.image__root}>
               <figure>
                 <img
+                  // width={270}
+                  // height={325}
                   src={subDepartmentArray.img_layout}
                   alt="sub_department img"
                 />
