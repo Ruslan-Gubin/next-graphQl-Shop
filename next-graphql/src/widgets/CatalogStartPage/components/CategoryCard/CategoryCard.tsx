@@ -1,4 +1,5 @@
-import React, { FC } from 'react';
+import  { FC } from 'react';
+import Image from 'next/image';
 
 import styles from './CategoryCard.module.scss';
 
@@ -10,7 +11,14 @@ interface ICategoryCard {
 const CategoryCard: FC<ICategoryCard> = ({name, img}) => {
   return (
       <figure className={styles.root}>
-          <img className={styles.img} src={img} alt="Category img" />
+          <Image
+          width={500}
+          height={400}
+          sizes='100%'
+          className={styles.img}
+          src={img}
+          alt="Category img" 
+          />
         <figcaption className={styles.name__container}>
           <p className={styles.name}>{name.toUpperCase()}</p>
         </figcaption>

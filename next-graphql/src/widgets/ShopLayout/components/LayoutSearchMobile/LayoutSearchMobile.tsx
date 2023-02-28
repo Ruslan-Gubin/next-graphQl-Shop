@@ -4,6 +4,7 @@ import { CloseProductButton, LoaderShop } from '@/shared';
 import { useQuery } from '@apollo/client';
 import { ISearchProduct } from '@/apps/types';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 import styles from './LayoutSearchMobile.module.scss';
 
@@ -44,7 +45,7 @@ const LayoutSearchMobile: FC<ILayoutSearchMobile> = ({setSearchMobileModal}) => 
         {data && data.searchProducts.map(item => (
           <li onClick={() => handleNavClick(item._id)} key={item._id} className={styles.search__item}>
             <p>{item.name}</p>
-            <img  src={item.photo.images[0].url} alt="img product" />
+            <Image width={40} height={40} src={item.photo.images[0].url} alt="img product" />
         </li>
           ))}
         </ul>

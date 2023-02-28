@@ -2,114 +2,105 @@
   display: flex;
   align-items: center;
   justify-content: center;
-position: relative;
-width: 100%;
+  position: relative;
+  width: 100%;
 
-@media (max-width: 1024px) {
-  // width: 100%; 
-}
+  @media (max-width: 1024px) {
+    // width: 100%;
+  }
 
-& .btn__array {
-  width: 20px;
-  height: 2px;
-  background-color: rgb(51, 51, 51);
-  border-radius: 20px;
-  
- 
-  
-  &::before {
-    content: "";
-    position: absolute;
-    top: 15px;
-    left: 6px;
-    width: 12px;
+  & .btn__array {
+    width: 20px;
     height: 2px;
     background-color: rgb(51, 51, 51);
     border-radius: 20px;
-    rotate: (-35deg);
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 15px;
+      left: 6px;
+      width: 12px;
+      height: 2px;
+      background-color: rgb(51, 51, 51);
+      border-radius: 20px;
+      rotate: (-35deg);
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      top: 21px;
+      left: 6px;
+      width: 12px;
+      height: 2px;
+      background-color: rgb(51, 51, 51);
+      border-radius: 20px;
+      rotate: (35deg);
+    }
   }
-  &::after {
-    content: "";
+
+  & .btn__prev {
+    padding: 18px 10px;
+    border-radius: 50%;
     position: absolute;
-    top: 21px;
-    left: 6px;
-    width: 12px;
-    height: 2px;
-    background-color: rgb(51, 51, 51);
-    border-radius: 20px;
-    rotate: (35deg);
-  }
-  
-}
-
-& .btn__prev {
-  padding: 18px 10px;
-  border-radius: 50%;
-  position: absolute;
-  top: 160px;    
-  left: 20px;
-  background-color: rgba(227, 227, 227, 0.777);
-  &:hover {
-    background-color: rgb(255, 255, 255);
-    & .btn__array {
+    top: 160px;
+    left: 20px;
+    background-color: rgba(227, 227, 227, 0.777);
+    &:hover {
+      background-color: rgb(255, 255, 255);
+      & .btn__array {
         background-color: rgb(199, 40, 201);
-        &::after{
-        background-color: rgb(199, 40, 201);
-      }
-        &::before{
-        background-color: rgb(199, 40, 201);
+        &::after {
+          background-color: rgb(199, 40, 201);
+        }
+        &::before {
+          background-color: rgb(199, 40, 201);
+        }
       }
     }
-  }
-  @media (max-width: 1025px) {
-   display: none; 
-  }
-}
-
-
-& .btn__next {
-  padding: 18px 10px;
-  border-radius: 50%;
-  position: absolute;
-  top: 160px;    
-  right: 20px;
-  background-color: rgba(227, 227, 227, 0.777);
-  rotate: (180deg);
-  &:hover {
-    background-color: rgb(255, 255, 255);
-    & .btn__array {
-        background-color: rgb(199, 40, 201);
-        &::after{
-        background-color: rgb(199, 40, 201);
-      }
-        &::before{
-        background-color: rgb(199, 40, 201);
-      }
+    @media (max-width: 1025px) {
+      display: none;
     }
   }
 
-  @media (max-width: 1025px) {
-    display: none; 
-   }
+  & .btn__next {
+    padding: 18px 10px;
+    border-radius: 50%;
+    position: absolute;
+    top: 160px;
+    right: 20px;
+    background-color: rgba(227, 227, 227, 0.777);
+    rotate: (180deg);
+    &:hover {
+      background-color: rgb(255, 255, 255);
+      & .btn__array {
+        background-color: rgb(199, 40, 201);
+        &::after {
+          background-color: rgb(199, 40, 201);
+        }
+        &::before {
+          background-color: rgb(199, 40, 201);
+        }
+      }
+    }
 
+    @media (max-width: 1025px) {
+      display: none;
+    }
   }
-   
+
   .img__container {
     text-align: center;
     cursor: pointer;
     width: 100%;
     & img {
-      width: 100%; 
+      width: 100%;
       height: 370px;
       border-radius: 20px;
 
       @media (max-width: 1024px) {
         height: 45vw;
-       }
-
+      }
     }
-    
- 
-    
   }
 }

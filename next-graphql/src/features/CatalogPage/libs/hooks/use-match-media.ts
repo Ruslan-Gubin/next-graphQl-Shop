@@ -25,7 +25,7 @@ export const useMatchMedia = (): {isMobile?: boolean, isTablet?: boolean, isDesk
 
   return ['isMobile', 'isTablet', 'isDesktop'].reduce((acc, screen, index) => ({
     ...acc,
-    [screen]: values[index]
+    [screen]: values && values[index]
   }),{})
 }
 

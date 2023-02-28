@@ -1,9 +1,10 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import  { FC, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
-
-import styles from './CatalogSwiper.module.scss';
+import Image from 'next/image';
 import { useDispatch } from 'react-redux';
 import { catalogPageAction } from '@/features';
+
+import styles from './CatalogSwiper.module.scss';
 
 interface ICatelogSwiper {
   catalogImages: {value: string, label: string, img: string}[]

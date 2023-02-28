@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import styles from "./CustomPagination.module.scss";
 
 interface IPagination {
@@ -10,7 +10,7 @@ interface IPagination {
   nextPage: Function;
 }
 
-const CustomPagination: React.FC<IPagination> = React.memo(
+const CustomPagination: FC<IPagination> = 
   ({
     counterPerPage,
     totalCountries,
@@ -76,7 +76,6 @@ const CustomPagination: React.FC<IPagination> = React.memo(
         )}
       </div>
     );
-  }
-);
+  };
 
 export { CustomPagination };

@@ -1,5 +1,6 @@
 import { FC } from "react";
 import Link from "next/link";
+import Image from 'next/image';
 import { IProductType } from "@/apps/types";
 
 import styles from './CatatlogProductList.module.scss';
@@ -23,7 +24,7 @@ const CatatlogProductList: FC<ICatatlogProductList> = ({
         <li key={product._id} className={styles.card__container}>
           <Link href={`/catalog/${product._id}`}>
           <figure>
-            <img className={styles.card__img} src={product.photo.images[0].url} alt="Product img" />
+            <Image width={180} height={240} className={styles.card__img} src={product.photo.images[0].url} alt="Product img" />
             <figcaption>
               {product.discount && <small>{product.discount}%</small>}
               <p className={styles.card__price}>{product.price} P<span>{product.oldPrice} P</span></p>

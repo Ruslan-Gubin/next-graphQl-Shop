@@ -1,4 +1,5 @@
 import { Dispatch, FC, SetStateAction } from "react";
+import Image from 'next/image';
 
 import styles from './StarsOpinionFeedback.module.scss';
 
@@ -16,7 +17,7 @@ const StarsOpinionFeedback: FC<IStarsOpinionFeedback> = ({setOpinion, stars, han
     <ul className={styles.stars__container}>
     {stars.map((item, ind) => (
       <li onClick={() => handleUpdateStarsList(ind)} key={ind} className={styles.stars}>
-      <img className={styles.img} src={item} alt="stars Item" />
+      <Image width={30} height={30} className={styles.img} src={item} alt="stars Item" />
       </li>
     ))}
   </ul>

@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { layoutShopAction, selectLayoutShop } from '../../lib/store';
 import Image from 'next/image';
+
 import styles from './ShopLayoutNavMobile.module.scss';
 
 interface IShopLayoutNavMobile {

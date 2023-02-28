@@ -1,6 +1,7 @@
 import { selectProductDetails } from "@/entities";
 import { useDispatch, useSelector } from "react-redux"; 
 import { useRouter } from "next/router";
+import Image from 'next/image';
 import { CatatlogProductList } from "@/widgets/CatalogStartPage/components/CatatlogProductList";
 import { swiperHomeData } from "../../libs";
 import { brandLendingList } from "../../libs/data/brandLendingList";
@@ -10,7 +11,6 @@ import { CategoryCard } from "@/widgets/CatalogStartPage/components/CategoryCard
 import { catalogPageAction } from "@/features";
 import { OPTIONS_DEPARTMENT } from "@/apps/constants";
 import { HomePageFooter } from "../HomePageFooter";
-
 import styles from "./HomePage.module.scss";
 
 interface IHomePage {
@@ -58,7 +58,9 @@ const HomePage = ({ categoryData , maxWievsProducts, newProducts, maxDiscountPro
             key={brand.name}
             onClick={() => router.push(`${brand.href}`)}
           >
-            <img
+            <Image
+              width={400}
+              height={300}
               className={styles.brand__img}
               title={brand.name}
               src={brand.img}

@@ -1,9 +1,10 @@
 import { FC, FormEvent, useState } from "react";
+import { useMutation } from "@apollo/client";
+import { useSelector } from "react-redux";
+import Image from 'next/image';
 import { selectUser } from "@/features";
 import { useDetailsContext } from "@/pages/catalog/[id]";
 import { findMaxOpinion, Modal, QueckMessage, queckMessage, StarsList, useAddImage } from "@/shared";
-import { useMutation } from "@apollo/client";
-import { useSelector } from "react-redux";
 import { CREATE_FEEDBACK } from "../../models/feedbackRequest";
 import { StarsOpinionFeedback } from "../StarsOpinionFeedback";
 
@@ -95,9 +96,9 @@ const ProductFeedback: FC = () => {
       <div className={styles.form__footer}>
 
       {!imag ?
-    <img title="Добавить фото" onClick={() => fileRef.current?.click()} src={addImageIcon} alt="Icon add img" />
+    <Image width={120} height={120} title="Добавить фото" onClick={() => fileRef.current?.click()} src={addImageIcon} alt="Icon add img" />
     :
-    <img onClick={() => cancelImage()} src={imag} alt="imge" />
+    <Image width={120} height={120} onClick={() => cancelImage()} src={imag} alt="imge" />
   }
     
       <input ref={fileRef} type="file" onChange={(e) => changeFile(e)} hidden />

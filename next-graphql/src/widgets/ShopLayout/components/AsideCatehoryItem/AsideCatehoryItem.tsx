@@ -1,4 +1,5 @@
-import  React, { Dispatch, FC, SetStateAction, useEffect, useRef, useState } from 'react';
+import  { Dispatch, FC, SetStateAction, useCallback, useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 import styles from './AsideCatehoryItem.module.scss';
 
@@ -9,12 +10,12 @@ interface IAsideCatehoryItem {
   handleActiveCategory: (value: string) => void
 }
 
-const AsideCatehoryItem: FC<IAsideCatehoryItem> = React.memo(({handleActiveCategory ,department,  setActiveDepartment, activeDepartment}) => {
+const AsideCatehoryItem: FC<IAsideCatehoryItem> = ({handleActiveCategory ,department, activeDepartment}) => {
   const ref = useRef<HTMLLIElement>(null)
 
-  const handlerClick = () => {
+  const handlerClick = useCallback(() => {
     handleActiveCategory(department.label)
-  }
+  },[department.label, handleActiveCategory])
 
   useEffect(() => {
     if (!ref.current) {
@@ -30,7 +31,7 @@ const AsideCatehoryItem: FC<IAsideCatehoryItem> = React.memo(({handleActiveCateg
       node.removeEventListener('mouseenter', handlerClick)
       node.removeEventListener('mousemove', handlerClick)
     }
-  },[])
+  },[handlerClick])
 
   return (
     <li 
@@ -38,10 +39,10 @@ const AsideCatehoryItem: FC<IAsideCatehoryItem> = React.memo(({handleActiveCateg
     id={department.label} 
     className={activeDepartment === department.label ? styles.category__item_active : styles.category__item}
     >
-    <img src={department.img} alt="category imag" />
+    <Image width={25} height={25} src={department.img} alt="category imag" />
     <p >{department.value}</p>
     </li>
   );
-});
+};
 
 export {AsideCatehoryItem};

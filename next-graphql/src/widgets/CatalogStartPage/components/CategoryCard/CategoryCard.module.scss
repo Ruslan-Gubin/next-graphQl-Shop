@@ -5,19 +5,19 @@
   transition: all 0.7s ease;
   border-radius: 20px;
   overflow: hidden;
-height: 15vw;
-cursor: pointer;
+  height: 15vw;
+  cursor: pointer;
 
-@media (max-width: 767px) {
-  height: 33vw;
-  margin-bottom: 10px;
-}
+  @media (max-width: 767px) {
+    height: 33vw;
+    margin-bottom: 10px;
+  }
 
-&:hover {
-  opacity: 0.7;
-}
+  &:hover {
+    opacity: 0.7;
+  }
 
-& .img {
+  & .img {
     width: 100%;
     height: 100%;
     border-radius: 20px;

@@ -1,5 +1,4 @@
 .root {
-
   & h1 {
     font-size: 1.8vw;
     font-weight: 700;
@@ -7,66 +6,66 @@
     font-size: 1.7rem;
     @media (max-width: 1024px) {
       font-size: 1.2rem;
-      
     }
   }
 
-   & .card__wrapper {
-display: flex;
-overflow: hidden;
-overflow: scroll;
-&::-webkit-scrollbar {
-  width: 0;
-}
-@media (max-width: 680px) {
-//  width: 100%;
+  & .card__wrapper {
+    display: flex;
+    overflow: hidden;
+    overflow: scroll;
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+    @media (max-width: 680px) {
+      //  width: 100%;
 
- // height: 200px;
- // height: 25%;
-//  overflow: scroll;
-}
-
-& .card__container {
-  display: flex;
-  flex-direction: column;
-  width: 20%;
-       position: relative;
-       margin-right: 5px;
-      
-
-       & .card__img {
-         width: 180px;
-         height: 240px;
-         border-radius: 15px;
-         margin-bottom: 10px;
-         @media (max-width: 680px) {
-          width: 130px;
-          height: 180px;
-          }
-         @media (max-width: 580px) {
-          width: 100px;
-          height: 150px;
-          }
-         @media (max-width: 400px) {
-          width: 70px;
-          height: 110px;
-          }
-         @media (max-width: 300px) {
-          width: 60px;
-          height: 110px;
-          }
+      // height: 200px;
+      // height: 25%;
+      //  overflow: scroll;
     }
 
-       & .card__price {
+    & .card__container {
+      display: flex;
+      flex-direction: column;
+      width: 20%;
+      position: relative;
+      margin-right: 5px;
+
+      & .card__img {
+        width: 180px;
+        height: 240px;
+        width: auto;
+        height: auto;
+        border-radius: 15px;
+        margin-bottom: 10px;
+        @media (max-width: 680px) {
+          width: 130px;
+          height: 180px;
+        }
+        @media (max-width: 580px) {
+          width: 100px;
+          height: 150px;
+        }
+        @media (max-width: 400px) {
+          width: 70px;
+          height: 110px;
+        }
+        @media (max-width: 300px) {
+          width: 60px;
+          height: 110px;
+        }
+      }
+
+      & .card__price {
         font-size: 1.6rem;
         font-weight: 600;
-        text-shadow: 1px 1px 1px  rgb(122, 122, 122);
+        text-shadow: 1px 1px 1px rgb(122, 122, 122);
         position: relative;
         margin-bottom: 10px;
         color: black;
         @media (max-width: 400px) {
           display: none;
-          }
+        }
 
         & span {
           margin-left: 15px;
@@ -76,47 +75,42 @@ overflow: scroll;
           text-shadow: none;
           @media (max-width: 740px) {
             display: none;
-           }
-        }  
-    }
+          }
+        }
+      }
 
-       & .card__name {
-         color: rgba(100, 100, 100, 0.719);
-         font-weight: 600;
-         width: 180px;
-         white-space: nowrap;
+      & .card__name {
+        color: rgba(100, 100, 100, 0.719);
+        font-weight: 600;
+        width: 180px;
+        white-space: nowrap;
         overflow: hidden;
-         text-overflow: ellipsis;
-         @media (max-width: 1024px) {
+        text-overflow: ellipsis;
+        @media (max-width: 1024px) {
           width: 170px;
-          }
-         @media (max-width: 850px) {
+        }
+        @media (max-width: 850px) {
           width: 150px;
-          }
-         @media (max-width: 750px) {
+        }
+        @media (max-width: 750px) {
           width: 120px;
-          }
-         @media (max-width: 680px) {
+        }
+        @media (max-width: 680px) {
           display: none;
-          }
-    } 
+        }
+      }
 
-    & small {
-      position: absolute;
-      bottom: 67px;
-      left: 10px;
-      background-color: rgba(255, 0, 0, 0.703);
-      border-radius: 7px;
-      color: white;
-      padding: 3px;
-      font-size: 0.8rem;
-      font-weight: 700;
+      & small {
+        position: absolute;
+        bottom: 67px;
+        left: 10px;
+        background-color: rgba(255, 0, 0, 0.703);
+        border-radius: 7px;
+        color: white;
+        padding: 3px;
+        font-size: 0.8rem;
+        font-weight: 700;
+      }
     }
-    
-    
   }
-}
-
-
-  
 }
