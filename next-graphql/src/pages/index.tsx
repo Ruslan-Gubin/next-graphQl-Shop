@@ -1,7 +1,8 @@
 import { client } from "../apps/apollo";
 import { NextPageContext} from 'next';
 import { ShopLayout } from "../widgets";
-import { HomePage } from '../widgets'
+import { HomePage } from '../widgets';
+import { useRouter } from 'next/router';
 import { GET_CATEGORYES } from "../apps/apollo/CategoryRequest";
 import { ICategoryType, IProductType } from "../apps/types";
 import styles from "../apps/styles/pages/Home.module.scss";
@@ -15,6 +16,13 @@ interface IHome {
 }
 
 export default function Home({categoryData, maxWievsProducts, newProducts, maxDiscountProducts}:IHome) {
+  const router = useRouter()
+
+   
+      if (!router.isFallback && !categoryData.length) {
+          return <div>error...</div> ;
+      }
+
 
   return (  
     <ShopLayout title="OnlineShop" keywords="Start project in home page">
@@ -31,7 +39,50 @@ export default function Home({categoryData, maxWievsProducts, newProducts, maxDi
   );
 }
 
-export const getServerSideProps = async ({req, query, }: NextPageContext) => {
+// export const getServerSideProps = async ({req, query, }: NextPageContext) => {
+//   try {
+//     const { data: categoryData } = await client.query({
+//       query: GET_CATEGORYES,
+//     });
+//     const { data: maxWievsProducts } = await client.query({
+//       query: GET__MAXVIEWS__ALLPRODUCT,
+//       variables: {
+//         limit: 5,
+//       }
+//     });
+//     const { data: newProducts } = await client.query({
+//       query: GET__NEW__ALLPRODUCT,
+//       variables: {
+//         limit: 5,
+//       }
+//     });
+//     const { data: maxDiscountProducts } = await client.query({
+//       query: GET__MAXDISCOUNT__ALLPRODUCT,
+//       variables: {
+//         limit: 5,
+//       }
+//     });
+  
+//     return {
+//       props: {
+//         categoryData: categoryData.categorys,
+//         maxWievsProducts: maxWievsProducts.getMaxViewsProducts,
+//         newProducts: newProducts.getNewProducts,
+//         maxDiscountProducts: maxDiscountProducts.getMaxDiscountProducts, 
+//       },
+//     };
+//   } catch  {
+//     return {
+//       props: {
+//         categoryData: null,
+//         maxWievsProducts: null,
+//         newProducts: null,
+//         maxDiscountProducts: null, 
+//       },
+//     }
+//     } 
+// };
+export const getStaticProps  = async ({req, query, }: NextPageContext) => {
   try {
     const { data: categoryData } = await client.query({
       query: GET_CATEGORYES,
