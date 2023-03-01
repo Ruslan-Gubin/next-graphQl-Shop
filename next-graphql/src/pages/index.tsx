@@ -2,7 +2,6 @@ import { client } from "../apps/apollo";
 import { NextPageContext} from 'next';
 import { ShopLayout } from "../widgets";
 import { HomePage } from '../widgets';
-import { useRouter } from 'next/router';
 import { GET_CATEGORYES } from "../apps/apollo/CategoryRequest";
 import { ICategoryType, IProductType } from "../apps/types";
 import styles from "../apps/styles/pages/Home.module.scss";
@@ -71,10 +70,10 @@ if (catData) {
   return (  
     <ShopLayout title="OnlineShop" keywords="Start project in home page">
       <section data-testid="test-root-home" className={styles.root}>
-       {load1 || load2 || load3 || load4 &&
+       {/* {load1 || load2 || load3 || load4 &&
        <LoaderShop/>
-       }
-       {!catData || !viewsData || !newData || !discoutData ?
+       } */}
+       {load1 || load2 || load3 || load4 ?
       <LoaderShop/>
       : 
         <HomePage
