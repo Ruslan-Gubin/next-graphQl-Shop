@@ -6,7 +6,7 @@ import {
   adminImage,
   adminMenuAsideArr,
 } from "../../lib/data/adminMenuAsideArr";
-import { selectAdminNavHeader } from "@/features";
+import { selectAdminNavHeader } from "../../../../features";
 import styles from "./AdminLayoutAside.module.scss";
 
 const AdminLayoutAside: FC = () => {

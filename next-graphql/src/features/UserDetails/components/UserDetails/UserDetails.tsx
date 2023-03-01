@@ -1,15 +1,15 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useMutation, useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from "react-redux";
-import { selectUser, userAction } from "@/features/LoginPage";
-import { UserCardDetails } from "@/entities";
-import { useAddImage } from '@/shared';
-import { useMutation, useQuery } from '@apollo/client';
+import { selectUser, userAction } from "../../../../features/LoginPage";
+import { UserCardDetails } from "../../../../entities";
+import { useAddImage } from '../../../../shared';
 import { DELETE_USER, UPDATE_USER } from '../../module';
-import { GET__ONE__USER } from '@/apps/apollo';
-import { GET_ORDERS_LENGTH } from '@/apps/apollo/orderRequest';
+import { GET__ONE__USER } from '../../../../apps/apollo';
+import { GET_ORDERS_LENGTH } from '../../../../apps/apollo/orderRequest';
 import { UserDetailsOrders, UserDetailsFavorites, UserDetailsButtons } from '../';
-import { Loader } from '@/shared/components';
+import { LoaderShop } from '../../../../shared/components';
 import styles from './UserDetails.module.scss';
 
 
@@ -113,7 +113,7 @@ const mockPhoto =
   }
 
   if(LoadingOrders || loadingUser) {
-  return  <Loader/>
+  return  <LoaderShop/>
   }
 
   return (

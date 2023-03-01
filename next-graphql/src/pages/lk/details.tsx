@@ -1,6 +1,6 @@
-import {  UserDetails } from '@/features';
-import { LKHeader } from '@/shared';
-import { ShopLayout, } from '@/widgets';
+import {  UserDetails } from '../../features';
+import { LKHeader } from '../../shared';
+import { ShopLayout, } from '../../widgets';
 
 
 

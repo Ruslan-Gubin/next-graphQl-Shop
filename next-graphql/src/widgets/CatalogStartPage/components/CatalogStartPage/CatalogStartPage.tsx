@@ -7,8 +7,8 @@ import { CatatlogProductList } from "../CatatlogProductList";
 import { ICategoryType, IProductType } from "@/apps/types";
 import styles from "./CatalogStartPage.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { catalogPageAction } from "@/features";
-import { selectProductDetails } from "@/entities";
+import { catalogPageAction } from "../../../../features";
+import { selectProductDetails } from "../../../../entities";
 
 interface ICatalogStartPage {
   title: string;

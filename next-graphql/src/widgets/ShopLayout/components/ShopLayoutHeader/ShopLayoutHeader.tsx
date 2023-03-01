@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { HeaderStoreNavbar } from "@/entities/HeaderStoreNavbar";
-import {  selectBasket } from "@/features";
-import { BurgerButton } from "@/shared";
+import { HeaderStoreNavbar } from "../../../../entities/HeaderStoreNavbar";
+import {  selectBasket } from "../../../../features";
+import { BurgerButton } from "../../../../shared";
 import { layoutShopAction } from "../../lib/store";
 import { LayoutHeaderSearch } from "../LayoutHeaderSearch";
 import { ShopHeaderLogo } from "../ShopHeaderLogo";
 
 import styles from './ShopLayoutHeader.module.scss';
-import { useMatchMedia } from "@/features/CatalogPage/libs/hooks/use-match-media";
+import { useMatchMedia } from "../../../../features/CatalogPage/libs/hooks/use-match-media";
 
 const ShopLayoutHeader = () => {
   const {basket} = useSelector(selectBasket)

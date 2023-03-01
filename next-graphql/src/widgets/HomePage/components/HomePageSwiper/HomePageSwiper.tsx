@@ -1,7 +1,7 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-import { catalogPageAction } from "@/features";
+import { catalogPageAction } from "../../../../features";
 
 import styles from "./HomePageSwiper.module.scss";
 

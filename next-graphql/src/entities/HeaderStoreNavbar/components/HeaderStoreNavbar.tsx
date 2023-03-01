@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from 'next/image';
 import { useSelector } from "react-redux";
-import { selectUser } from "@/features";
+import { selectUser } from "../../../features";
 
 // const addressIcon =
 //   "https://res.cloudinary.com/ds289tkqj/image/upload/v1674831921/Hits/addressIcon_jgsuc2.png";

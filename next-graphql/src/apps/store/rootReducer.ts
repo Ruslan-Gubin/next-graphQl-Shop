@@ -1,9 +1,9 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { getPersistConfig } from "redux-deep-persist";
-import * as redusers from "@/features";
-import { layoutShopReducer } from "@/widgets";
-import { productDetailsReducer } from "@/entities";
+import * as redusers from "../../features";
+import { layoutShopReducer } from "../../widgets";
+import { productDetailsReducer } from "../../entities";
 
 
 const rootReducer = combineReducers({
