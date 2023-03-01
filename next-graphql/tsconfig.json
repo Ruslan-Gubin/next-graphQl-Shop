@@ -1,53 +1,6 @@
 {
   "compilerOptions": {
-    // "target": "es5",
-    // "module": "ESNext",
-    // "lib": [
-    //   "dom",
-    //   "dom.iterable",
-    //   "esnext"
-    // ],
-    // "allowJs": true,
-    // "skipLibCheck": true,
-    // "strict": true,
-    // "forceConsistentCasingInFileNames": true,
-    // "noEmit": true,
-    // "esModuleInterop": true,
-    // "moduleResolution": "node",
-    // "resolveJsonModule": true,
-    // "isolatedModules": true,
-    // "jsx": "preserve",
-    // "incremental": true,
-    // "baseUrl": "src",
-    // "paths": {
-    //   "@/apps": [ "apps/*" ],
-    //   "@/entities": [ "entities/*" ],
-    //   "@/pages": [ "pages/*" ],
-    //   "@/shared": [ "shared/*" ],
-    //   "@/widgets": [ "widgets/*" ],
-    //   "features": [ "features" ],
-    // },
-    // "baseUrl": "src",
-    // "paths": {
-    //   "@/widgets": ["../widgets/*"],
-    //   // "utils": ["utils"],
-    //   // "pages": ["pages"],
-    //   // "modules": ["modules"],
-    //   // "hooks": ["hooks"],
-    //   // "data": ["data"],
-    //   // "constants": ["constants"],
-    //   // "assets": ["assets"],
-    //   // "components": ["App/components"],
-    //   // "ui": ["App/components/Ui"], 
-    //   // "game": ["App/components/Game"], 
-    //   // "scss": ["scss"], 
-    // },
-    // "baseUrl": "src",
-    // "paths": {
-    //   "@/*": [
-    //     "./*"
-    //   ]
-    // },
+    "target": "es5",
     "baseUrl": "src",
     "paths": {
       "@/widgets/*": [
@@ -75,26 +28,18 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "module": "ES6",
-    // "module": "esnext"
+    "module": "esnext"
   },
-  // "include": [
-  //   "src",
-  //   "next-env.d.ts",
-  //   "**/*.ts",
-  //   "**/*.tsx",
-  //   "types.d.ts",
-  //   "src/store/movie-api/testSlice",
-  //   "src/entities/User/api/updateUserData",
-  //   "src/entities/User/api/fetcthUserData",
-  //   "src/entities/User/api/vreaterNewUser",
-  //   "src/entities/User/api/mappers/mapUserDataToApi",
-  //   "src/entities/User/api/mapUserDataFromApi",
-  //   "src/shared/api/axiosInstance",
-  //   "src/shared/api/rtkApi",
-  //   ".next/types/**/*.ts"
-  // ],
-  "include": ["src/**/*"],
+  "include": [
+    "src",
+     "src/**/*",
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "types.d.ts",
+    ".next/types/**/*.ts"
+  ],
+
   "exclude": [
     "node_modules",
     "src/**/*.test.ts"
