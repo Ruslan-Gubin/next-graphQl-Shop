@@ -93,11 +93,7 @@
   //   "src/shared/api/rtkApi",
   //   ".next/types/**/*.ts"
   // ],
-  "include": [
-    "src/**/*.tsx",
-    "src/**/*.ts",
-    "src"
-  ],
+  "include": ["src/**/*"],
   "exclude": [
     "node_modules",
     "src/**/*.test.ts"
