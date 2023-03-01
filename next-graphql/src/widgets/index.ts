@@ -1,4 +1,4 @@
-export { FooterShop } from "./FooterShop";
+export { FooterShop } from "../widgets/FooterShop";
 export { AdminLayout } from "../widgets/AdminLayout";
 export {
   ShopLayout,
