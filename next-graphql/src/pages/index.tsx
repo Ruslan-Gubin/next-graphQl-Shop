@@ -31,36 +31,40 @@ export default function Home({categoryData, maxWievsProducts, newProducts, maxDi
 }
 
 export const getServerSideProps = async ({req, query, }: NextPageContext) => {
-  const { data: categoryData } = await client.query({
-    query: GET_CATEGORYES,
-  });
-  const { data: maxWievsProducts } = await client.query({
-    query: GET__MAXVIEWS__ALLPRODUCT,
-    variables: {
-      limit: 5,
-    }
-  });
-  const { data: newProducts } = await client.query({
-    query: GET__NEW__ALLPRODUCT,
-    variables: {
-      limit: 5,
-    }
-  });
-  const { data: maxDiscountProducts } = await client.query({
-    query: GET__MAXDISCOUNT__ALLPRODUCT,
-    variables: {
-      limit: 5,
-    }
-  });
-
-  return {
-    props: {
-      categoryData: categoryData.categorys,
-      maxWievsProducts: maxWievsProducts.getMaxViewsProducts,
-      newProducts: newProducts.getNewProducts,
-      maxDiscountProducts: maxDiscountProducts.getMaxDiscountProducts, 
-    },
-  };
+  try {
+    const { data: categoryData } = await client.query({
+      query: GET_CATEGORYES,
+    });
+    const { data: maxWievsProducts } = await client.query({
+      query: GET__MAXVIEWS__ALLPRODUCT,
+      variables: {
+        limit: 5,
+      }
+    });
+    const { data: newProducts } = await client.query({
+      query: GET__NEW__ALLPRODUCT,
+      variables: {
+        limit: 5,
+      }
+    });
+    const { data: maxDiscountProducts } = await client.query({
+      query: GET__MAXDISCOUNT__ALLPRODUCT,
+      variables: {
+        limit: 5,
+      }
+    });
+  
+    return {
+      props: {
+        categoryData: categoryData.categorys,
+        maxWievsProducts: maxWievsProducts.getMaxViewsProducts,
+        newProducts: newProducts.getNewProducts,
+        maxDiscountProducts: maxDiscountProducts.getMaxDiscountProducts, 
+      },
+    };
+  } catch (error) {
+    console.log(error)
+  }
 };
 
 

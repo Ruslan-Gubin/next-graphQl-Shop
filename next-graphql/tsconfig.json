@@ -39,7 +39,6 @@
 //     "types.d.ts",
 //     ".next/types/**/*.ts"
 //   ],
-
 //   "exclude": [
 //     "node_modules",
 //     "src/**/*.test.ts"
@@ -63,7 +62,8 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "incremental": true
   },
   "include": [
     "next-env.d.ts",
