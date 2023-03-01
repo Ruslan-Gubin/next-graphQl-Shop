@@ -18,12 +18,31 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": "src",
+
+
+
+    "baseUrl": ".",
+
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@apps/*": [ "apps/*" ],
+      "@entities/*": [ "entities/*" ],
+      "@pages/*": [ "pages/*" ],
+      "@shared/*": [ "shared/*" ],
+      "@/widgets": [ "widgets/*" ],
     },
+
+
+
+
+    // "baseUrl": "src",
+    // "paths": {
+    //   "@/*": [
+    //     "./*"
+    //   ]
+    // },
+
+
+
     "plugins": [
       {
         "name": "next"

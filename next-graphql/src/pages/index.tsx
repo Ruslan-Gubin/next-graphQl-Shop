@@ -1,7 +1,8 @@
 import { client } from "@/apps/apollo";
 import { NextPageContext} from 'next';
 import { ShopLayout } from "@/widgets/ShopLayout";
-import { HomePage } from "@/widgets";
+// import { HomePage } from "@/widgets";
+import { HomePage } from '../widgets'
 import { GET_CATEGORYES } from "@/apps/apollo/CategoryRequest";
 import { ICategoryType, IProductType } from "@/apps/types";
 import styles from "@/apps/styles/pages/Home.module.scss";
