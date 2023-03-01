@@ -1,5 +1,5 @@
-import { AdminUpdateProduct } from "@/features";
-import { AdminLayout } from "@/widgets";
+import { AdminUpdateProduct } from "../../features";
+import { AdminLayout } from "../../widgets";
 
 const UpdateProduct = () => {
   return (

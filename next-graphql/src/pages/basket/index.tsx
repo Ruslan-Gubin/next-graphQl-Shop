@@ -1,6 +1,5 @@
-import { Basket } from '@/features';
-import { ShopLayout } from '@/widgets/ShopLayout';
-import { useSelector } from 'react-redux';
+import { Basket } from '../../features';
+import { ShopLayout } from '../../widgets/ShopLayout';
 
 
 const BasketPage = () => {

@@ -1,6 +1,5 @@
-import { AdminQuestionsContent } from '@/features';
-import { AdminLayout } from '@/widgets/AdminLayout/components/AdminLayout';
-import React from 'react';
+import { AdminQuestionsContent } from '../../features';
+import { AdminLayout } from '../../widgets/AdminLayout/components/AdminLayout';
 
 const Questions = () => {
   return (

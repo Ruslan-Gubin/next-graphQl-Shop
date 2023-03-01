@@ -1,6 +1,6 @@
-import { UserOrders } from '@/features/UserOrders';
-import { LKHeader } from '@/shared';
-import { ShopLayout } from '@/widgets';
+import { UserOrders } from '../../features/UserOrders';
+import { LKHeader } from '../../shared';
+import { ShopLayout } from '../../widgets';
 
 
 const Myorders = () => {

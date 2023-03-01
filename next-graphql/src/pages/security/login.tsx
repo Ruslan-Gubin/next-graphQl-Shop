@@ -1,5 +1,5 @@
-import { ShopLayout } from '@/widgets/ShopLayout';
-import { LoginPage } from '@/features';
+import { ShopLayout } from '../../widgets/ShopLayout';
+import { LoginPage } from '../../features';
 
 
 const Login = () => {

@@ -1,5 +1,5 @@
-import { AdminOrder } from '@/features';
-import { AdminLayout } from '@/widgets/AdminLayout/components/AdminLayout';
+import { AdminOrder } from '../../features';
+import { AdminLayout } from '../../widgets/AdminLayout/components/AdminLayout';
 import React from 'react';
 
 const Notification = () => {

@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import type { AppProps } from "next/app";
 import "@/apps/styles/globals.scss";
-import store, { persistor } from "@/apps/store/srote";
+import store, { persistor } from "../apps/store/srote";
 
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {

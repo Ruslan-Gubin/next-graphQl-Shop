@@ -1,5 +1,5 @@
-import { CreatedProducts } from '@/features';
-import { AdminLayout } from '@/widgets';
+import { CreatedProducts } from '../../features';
+import { AdminLayout } from '../../widgets';
 
 
 const CreatedProduct = () => {

@@ -23,14 +23,14 @@
 
     // "baseUrl": "src",
 
-    "paths": {
-      "@/apps": [ "apps/*" ],
-      "@/entities": [ "entities/*" ],
-      "@/pages": [ "pages/*" ],
-      "@/shared": [ "shared/*" ],
-      "@/widgets": [ "widgets/*" ],
-      "features": [ "features" ],
-    },
+    // "paths": {
+    //   "@/apps": [ "apps/*" ],
+    //   "@/entities": [ "entities/*" ],
+    //   "@/pages": [ "pages/*" ],
+    //   "@/shared": [ "shared/*" ],
+    //   "@/widgets": [ "widgets/*" ],
+    //   "features": [ "features" ],
+    // },
 
     // "baseUrl": "src",
     // "paths": {

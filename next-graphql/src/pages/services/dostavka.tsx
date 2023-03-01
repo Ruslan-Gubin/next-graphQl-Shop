@@ -1,5 +1,5 @@
-import { ShopLayout } from '@/widgets/ShopLayout';
-import React from 'react';
+import { ShopLayout } from '../../widgets/ShopLayout';
+
 
 const Dostavka = () => {
   return (

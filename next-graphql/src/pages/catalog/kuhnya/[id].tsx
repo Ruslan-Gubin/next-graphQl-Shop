@@ -1,8 +1,8 @@
-import { client, SORT_PRODUCT_CATALOG } from "@/apps/apollo";
-import { OPTIONS_KITCHEN_SUBDEPARTMENT } from "@/apps/constants";
-import { IProductType } from "@/apps/types";
-import { CatalogPage } from "@/features";
-import { ShopLayout } from "@/widgets";
+import { client, SORT_PRODUCT_CATALOG } from "../../../apps/apollo";
+import { OPTIONS_KITCHEN_SUBDEPARTMENT } from "../../../apps/constants";
+import { IProductType } from "../../../apps/types";
+import { CatalogPage } from "../../../features";
+import { ShopLayout } from "../../../widgets";
 import { GetServerSidePropsResult, NextPageContext} from 'next';
 
 

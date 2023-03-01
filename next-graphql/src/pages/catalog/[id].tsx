@@ -1,15 +1,14 @@
-import { client, ONE_PRODUCT } from '@/apps/apollo';
-import { ONE_PRODUCT_QUERY, SORT_PRODUCT_SIMILAR } from '@/apps/apollo/productRequest';
-import { OPTIONS_DEPARTMENT } from '@/apps/constants';
-import { IProductType } from '@/apps/types';
-import { useMatchMedia } from '@/features/CatalogPage/libs/hooks/use-match-media';
-import { LoaderShop } from '@/shared';
-import { ProductDetailsPage, ProductFeedback } from '@/widgets';
-import { FeedbackList } from '@/widgets/ProductFeedback/components/FeedbackList/FeedbackList';
-import { ShopLayout } from '@/widgets/ShopLayout';
-import { useMutation, useQuery } from '@apollo/client';
-import { NextPageContext, GetServerSidePropsResult} from 'next';
 import { createContext, useContext } from 'react';
+import { useQuery } from '@apollo/client';
+import { NextPageContext, GetServerSidePropsResult} from 'next';
+import { client, ONE_PRODUCT } from '../../apps/apollo';
+import { ONE_PRODUCT_QUERY, SORT_PRODUCT_SIMILAR } from '../../apps/apollo/productRequest';
+import { OPTIONS_DEPARTMENT } from '../../apps/constants';
+import { IProductType } from '../../apps/types';
+import { useMatchMedia } from '../../features/CatalogPage/libs/hooks/use-match-media';
+import { LoaderShop } from '../../shared';
+import { ProductDetailsPage, ProductFeedback } from '../../widgets';
+import { ShopLayout } from '../../widgets/ShopLayout';
 
 
 interface IProductDetails {

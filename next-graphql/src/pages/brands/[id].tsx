@@ -1,9 +1,9 @@
-import { client } from "@/apps/apollo";
-import { IBrandType } from "@/apps/types";
-import { BrandPage } from "@/widgets";
-import { GET__ONE_BRAND } from "@/widgets/BrandPage";
-import { ShopLayout } from "@/widgets/ShopLayout";
 import { NextPageContext, GetServerSidePropsResult } from "next";
+import { client } from "../../apps/apollo";
+import { IBrandType } from "../../apps/types";
+import { BrandPage } from "../../widgets";
+import { GET__ONE_BRAND } from "../../widgets/BrandPage";
+import { ShopLayout } from "../../widgets/ShopLayout";
 
 const ProductDetails = ({ brand }: { brand: IBrandType }) => {
   return (

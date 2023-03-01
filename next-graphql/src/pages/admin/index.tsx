@@ -1,5 +1,5 @@
-import { NoContentAdmin } from '@/shared/components';
-import { AdminLayout } from '@/widgets/AdminLayout/components/AdminLayout';
+import { NoContentAdmin } from '../../shared/components';
+import { AdminLayout } from '../../widgets/AdminLayout/components/AdminLayout';
 
 
 const Admin = () => {

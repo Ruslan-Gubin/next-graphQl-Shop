@@ -1,10 +1,10 @@
-import { client } from "@/apps/apollo";
-import { SORT_CATEGORY_FROM_CATALOG } from "@/apps/apollo/CategoryRequest";
-import { SORT_PRODUCT_DEPARTMENT } from "@/apps/apollo/productRequest";
-import { OPTIONS_KITCHEN_SUBDEPARTMENT } from "@/apps/constants";
-import { IStartPageServerProps } from "@/apps/types";
-import { CatalogStartPage, ShopLayout } from "@/widgets";
+import { client } from "../../../apps/apollo";
 import { NextPageContext} from 'next';
+import { SORT_CATEGORY_FROM_CATALOG } from "../../../apps/apollo/CategoryRequest";
+import { SORT_PRODUCT_DEPARTMENT } from "../../../apps/apollo/productRequest";
+import { OPTIONS_KITCHEN_SUBDEPARTMENT } from "../../../apps/constants";
+import { IStartPageServerProps } from "../../../apps/types";
+import { CatalogStartPage, ShopLayout } from "../../../widgets";
 
 
 const Kuhnya = ({
