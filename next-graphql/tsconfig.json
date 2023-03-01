@@ -51,7 +51,7 @@
 
 
 
-    "baseUrl": "src",
+    "baseUrl": "./src",
     // "paths": {
     //   "@/*": [
     //     "./*"
