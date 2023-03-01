@@ -50,9 +50,10 @@ export default function Home({ error , categoryData, maxWievsProducts, newProduc
 
 
 
-  if (error) {
-    // router.push('/lk/details')
-    // return <Error statusCode={error} />
+
+  if (error || router.isFallback) {
+    router.push('/lk/details')
+    return <Error statusCode={error} />
     console.log(error)
   }
    
@@ -67,20 +68,29 @@ export default function Home({ error , categoryData, maxWievsProducts, newProduc
        {load1 || load2 || load3 || load4 &&
        <LoaderShop/>
        }
-       
+       {!catData || !viewsData || !newData || !discoutData ?
+      <LoaderShop/>
+      : 
         <HomePage
+        categoryData={catData && catData.categorys}
+        maxWievsProducts={viewsData && viewsData.getMaxViewsProducts}
+        newProducts={newData && newData.getNewProducts}
+        maxDiscountProducts={discoutData && discoutData.getMaxDiscountProducts}
+        />
+      }
+        {/* <HomePage
         categoryData={error ? catData : categoryData}
         maxWievsProducts={error ? viewsData : maxWievsProducts}
         newProducts={error ? newData : newProducts}
         maxDiscountProducts={error ? discoutData : maxDiscountProducts}
-        />
+        /> */}
       </section>
     </ShopLayout>
   );
 }
 
-export const getServerSideProps  = async ({req, query, }: NextPageContext) => {
-  try {
+export const getStaticProps   = async ({req, query, }: NextPageContext) => {
+ 
     const { data: categoryData } = await client.query({
       query: GET_CATEGORYES,
     });
@@ -112,17 +122,7 @@ export const getServerSideProps  = async ({req, query, }: NextPageContext) => {
         maxDiscountProducts: maxDiscountProducts.getMaxDiscountProducts, 
       },
     };
-  } catch  {
-    return {
-      props: {
-        categoryData: null,
-        maxWievsProducts: null,
-        newProducts: null,
-        maxDiscountProducts: null,
-        error: true, 
-      },
-    }
-    } 
+   
 };
 
 
