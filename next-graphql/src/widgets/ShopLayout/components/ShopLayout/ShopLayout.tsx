@@ -5,7 +5,7 @@ import Link from "next/link";
 
 
 import * as features from "../../../../features";
-// import { FooterShop } from "../../../../widgets";
+import { FooterShop } from "../../../../widgets";
 import { ShopLayoutAside } from "../ShopLayoutAside";
 import { ShopLayoutHeader } from "../ShopLayoutHeader";
 import { selectLayoutShop } from "../../lib/store";

@@ -1,5 +1,5 @@
 
-export { FooterShop } from "./FooterShop";
+export {  } from "./FooterShop";
 export { AdminLayout } from "./AdminLayout";
 export {
   ShopLayout,

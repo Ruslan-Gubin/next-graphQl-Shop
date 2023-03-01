@@ -1,2 +1,2 @@
 //@ts-ignore
-export { FooterShop } from "./components/FooterShop";
+export {  } from "./components/FooterShop";
