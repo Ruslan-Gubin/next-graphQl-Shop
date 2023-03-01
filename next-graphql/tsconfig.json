@@ -1,18 +1,53 @@
+// {
+//   "compilerOptions": {
+//     "target": "es5",
+//     "module": "esnext",
+//     "baseUrl": "src",
+//     "paths": {
+//       "@/widgets/*": [
+//         "widgets"
+//       ]
+//     },
+//     "plugins": [
+//       {
+//         "name": "next"
+//       }
+//     ],
+//     "lib": [
+//       "dom",
+//       "dom.iterable",
+//       "esnext"
+//     ],
+//     "allowJs": true,
+//     "skipLibCheck": true,
+//     "strict": true,
+//     "forceConsistentCasingInFileNames": true,
+//     "noEmit": true,
+//     "incremental": true,
+//     "esModuleInterop": true,
+//     "moduleResolution": "node",
+//     "resolveJsonModule": true,
+//     "isolatedModules": true,
+//     "jsx": "preserve",
+//   },
+//   "include": [
+//     "src",
+//      "src/**/*",
+//     "next-env.d.ts",
+//     "**/*.ts",
+//     "**/*.tsx",
+//     "types.d.ts",
+//     ".next/types/**/*.ts"
+//   ],
+
+//   "exclude": [
+//     "node_modules",
+//     "src/**/*.test.ts"
+//   ]
+// }
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "esnext",
-    "baseUrl": "src",
-    "paths": {
-      "@/widgets/*": [
-        "widgets"
-      ]
-    },
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
     "lib": [
       "dom",
       "dom.iterable",
@@ -20,28 +55,22 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
-    "incremental": true,
     "esModuleInterop": true,
+    "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "preserve"
   },
   "include": [
-    "src",
-     "src/**/*",
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx",
-    "types.d.ts",
-    ".next/types/**/*.ts"
+    "**/*.tsx"
   ],
-
   "exclude": [
-    "node_modules",
-    "src/**/*.test.ts"
+    "node_modules"
   ]
 }
