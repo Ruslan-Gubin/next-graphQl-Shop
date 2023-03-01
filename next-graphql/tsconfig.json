@@ -29,6 +29,7 @@
       "@pages/*": [ "pages/*" ],
       "@shared/*": [ "shared/*" ],
       "@/widgets": [ "widgets/*" ],
+      "@/features": [ "features/*" ],
     },
 
 
