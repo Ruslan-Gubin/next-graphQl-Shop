@@ -1,9 +1,9 @@
-import { OPTIONS_DEPARTMENT } from "@/apps/constants";
-import { IOptionDepartment } from "@/apps/constants/optionsMenu";
+import { useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import Image from 'next/image';
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
+import { IOptionDepartment } from "../../../../apps/constants/optionsMenu";
 import { layoutShopAction, selectLayoutShop } from "../../lib/store";
 import { AsideCatehoryItem } from "../AsideCatehoryItem";
 

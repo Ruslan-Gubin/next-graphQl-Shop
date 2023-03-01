@@ -1,8 +1,8 @@
 import { FC, useEffect, useState } from 'react';
-import { useDetailsContext } from '@/pages/catalog/[id]';
 import { useDispatch } from 'react-redux';
-import { ImagesProductDetails, ProductDetailsButton, ProductDetailsDescription, ProductDetailsSubInfo, QueckMessage } from '@/shared';
-import { basketAction } from '@/features';
+import { useDetailsContext } from '../../../../pages/catalog/[id]';
+import { ImagesProductDetails, ProductDetailsButton, ProductDetailsDescription, ProductDetailsSubInfo, QueckMessage } from '../../../../shared';
+import { basketAction } from '../../../../features';
 import { ProductDetailsMobile } from '../ProductDetailsMobile';
 import { productDetailsAction } from '../../lib/store';
 import styles from './ProductDetails.module.scss';

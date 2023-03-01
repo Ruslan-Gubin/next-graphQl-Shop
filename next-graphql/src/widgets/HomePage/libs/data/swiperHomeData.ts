@@ -1,4 +1,4 @@
-import { OPTIONS_DEPARTMENT } from "@/apps/constants";
+import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
 
 const toysImg = 'https://res.cloudinary.com/ds289tkqj/image/upload/v1677509470/Lending/p-141482-wypelnij-swoj-sklep-zabawkami-od-hurtowni-contra_mkcgfz.jpg'
 

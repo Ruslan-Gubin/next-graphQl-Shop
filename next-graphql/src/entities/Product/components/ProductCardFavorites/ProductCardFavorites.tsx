@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { IBasketProduct } from '@/features/Basket/libs/types/IBasketSlice';
-import { formatterRub } from '@/features/CatalogPage/libs/helper';
-import { CloseProductButton } from '@/shared';
+import { IBasketProduct } from '../../../../features/Basket/libs/types/IBasketSlice';
+import { formatterRub } from '../../../../features/CatalogPage/libs/helper';
+import { CloseProductButton } from '../../../../shared';
 
 
 import styles from './ProductCardFavorites.module.scss';

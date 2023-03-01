@@ -8,8 +8,8 @@ import {
 import { AdminUpdateProductMain } from "../AdminUpdateProductMain";
 import { AdminUpdateProductFooter } from "../AdminUpdateProductFooter";
 import { AdminUpdateProductHeader } from "../AdminUpdateProductHeader";
-import { IProductType } from "@/apps/types";
-import { useAddImage } from "@/shared";
+import { IProductType } from "../../../../apps/types";
+import { useAddImage } from "../../../../shared";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUpdateOption, updateOptionAction } from "../../libs/store";
 import styles from "./AdminUpdateProduct.module.scss";

@@ -2,7 +2,7 @@ import { FC, useEffect, useRef, useState } from "react";
 
 
 import styles from "./DropDownCategory.module.scss";
-import { IPropertyType } from "@/features/CatalogPage/model/ICatalogPageSlice";
+import { IPropertyType } from "../../../features/CatalogPage/model/ICatalogPageSlice";
 
 interface Ioption {
   value: string;

@@ -11,7 +11,7 @@ import { RegistationForm } from "../RegistationForm";
 
 import styles from './LoginPage.module.scss';
 import { LoginForm } from "../LoginForm";
-import { QueckMessage } from "@/shared";
+import { QueckMessage } from "../../../../shared";
 
 
 const LoginPage = () => {

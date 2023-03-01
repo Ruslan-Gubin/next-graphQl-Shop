@@ -1,6 +1,6 @@
 import { ChangeEvent, Dispatch, FC, RefObject, SetStateAction } from "react";
 import Image from 'next/image';
-import { formattedPhone } from "@/features/CatalogPage/libs/helper/formattedPhone";
+import { formattedPhone } from "../../../../features/CatalogPage/libs/helper/formattedPhone";
 
 import styles from "./UserCardDetails.module.scss";
 

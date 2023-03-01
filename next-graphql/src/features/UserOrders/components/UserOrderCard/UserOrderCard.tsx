@@ -1,8 +1,8 @@
 import { FC, useState } from "react";
 import Image from 'next/image';
-import { IsortOrdersUser } from "@/apps/types";
-import { formatterRub, formatterRuTime } from "@/features/CatalogPage/libs/helper";
-import { AccordionBird } from "@/shared";
+import { IsortOrdersUser } from "../../../../apps/types";
+import { formatterRub, formatterRuTime } from "../../../../features/CatalogPage/libs/helper";
+import { AccordionBird } from "../../../../shared";
 
 import styles from './UserOrderCard.module.scss';
 

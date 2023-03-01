@@ -1,4 +1,4 @@
-import { useDetailsContext } from "@/pages/catalog/[id]";
+import { useDetailsContext } from "../../../pages/catalog/[id]";
 import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
 
 import styles from "./ProductDetailsDescription.module.scss";

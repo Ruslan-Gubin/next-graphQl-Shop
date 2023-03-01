@@ -1,5 +1,5 @@
-import { IProductType } from "@/apps/types";
-import { IBasketProduct } from "@/features/Basket/libs/types/IBasketSlice";
+import { IProductType } from "../../../../apps/types";
+import { IBasketProduct } from "../../../../features/Basket/libs/types/IBasketSlice";
 
 
 const checkBasket = (basket:IBasketProduct[], product: IProductType) => {

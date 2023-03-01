@@ -1,4 +1,4 @@
-import { formatterRub } from '@/features/CatalogPage/libs/helper';
+import { formatterRub } from '../../../../features/CatalogPage/libs/helper';
 import { useBasketContext } from '../../libs/context/BasketContext';
 
 import styles from './BasketAside.module.scss';

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TypeRootState } from "@/apps/store/srote";
+import { TypeRootState } from "../../../../apps/store/srote";
 
 interface IInitialState {
   asideLayoutStatus: boolean

@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import { IBasketProduct } from '@/features/Basket/libs/types/IBasketSlice';
-import { formatterRub } from '@/features/CatalogPage/libs/helper';
-import { Heart, RemoveIcon } from '@/shared';
+import { IBasketProduct } from '../../../../features/Basket/libs/types/IBasketSlice';
+import { formatterRub } from '../../../../features/CatalogPage/libs/helper';
+import { Heart, RemoveIcon } from '../../../../shared';
 
 import styles from './ProductCardBasket.module.scss';
 

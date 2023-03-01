@@ -1,6 +1,6 @@
-import { IUser } from "@/apps/types";
 import { Dispatch, SetStateAction } from "react";
 import { IAddress, IBasketProduct } from "./IBasketSlice";
+import { IUser } from "../../../../apps/types";
 
 interface IBasketContext {
   handleSubmitOrders: () => void

@@ -1,5 +1,5 @@
-import { OPTIONS_DEPARTMENT } from '@/apps/constants';
-import { DropDownMenu } from '@/shared';
+import { OPTIONS_DEPARTMENT } from '../../../../apps/constants';
+import { DropDownMenu } from '../../../../shared';
 import { FC, useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import {  updateProductAction } from '../../libs/store/updateProductSlice';

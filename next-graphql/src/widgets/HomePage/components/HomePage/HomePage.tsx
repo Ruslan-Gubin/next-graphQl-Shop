@@ -1,15 +1,15 @@
-import { selectProductDetails } from "@/entities";
+import { selectProductDetails } from "../../../../entities";
 import { useDispatch, useSelector } from "react-redux"; 
 import { useRouter } from "next/router";
 import Image from 'next/image';
-import { CatatlogProductList } from "@/widgets/CatalogStartPage/components/CatatlogProductList";
+import { CatatlogProductList } from "../../../../widgets/CatalogStartPage/components/CatatlogProductList";
 import { swiperHomeData } from "../../libs";
 import { brandLendingList } from "../../libs/data/brandLendingList";
 import { HomePageSwiper } from "../HomePageSwiper";
-import { ICategoryType, IProductType } from "@/apps/types";
-import { CategoryCard } from "@/widgets/CatalogStartPage/components/CategoryCard";
-import { catalogPageAction } from "@/features";
-import { OPTIONS_DEPARTMENT } from "@/apps/constants";
+import { ICategoryType, IProductType } from "../../../../apps/types";
+import { CategoryCard } from "../../../../widgets/CatalogStartPage/components/CategoryCard";
+import { catalogPageAction } from "../../../../features";
+import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
 import { HomePageFooter } from "../HomePageFooter";
 import styles from "./HomePage.module.scss";
 

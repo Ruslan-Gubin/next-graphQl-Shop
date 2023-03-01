@@ -1,4 +1,4 @@
-import { CustomAdminInput } from "@/shared/components";
+import { CustomAdminInput } from "../../../../shared/components";
 import { useDispatch, useSelector } from "react-redux";
 import { getKeysInArray } from "../../libs/helpers/getKeysInArray";
 import {

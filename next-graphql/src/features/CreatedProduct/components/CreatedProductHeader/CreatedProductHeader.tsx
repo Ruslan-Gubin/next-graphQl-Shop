@@ -1,10 +1,10 @@
 import { FC, useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { DropDownMenu } from "@/shared";
+import { DropDownMenu } from "../../../../shared";
 import { createdProductAction } from "../../libs/store/createdProductSlice";
 import { Ioption, IOptionDepartment } from "../../libs/types/IOptionsMenu";
 import { COLOR_OPTIONS } from "../../constants/colorOptions";
-import { OPTIONS_DEPARTMENT } from "@/apps/constants";
+import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
 
 import styles from "./CreatedProductHeader.module.scss";
 

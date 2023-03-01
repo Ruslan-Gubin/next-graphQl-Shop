@@ -1,8 +1,8 @@
-import { useMatchMedia } from '@/features/CatalogPage/libs/hooks/use-match-media';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { Dispatch, FC, SetStateAction } from 'react';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
+import { useMatchMedia } from '../../../../features/CatalogPage/libs/hooks/use-match-media';
 import { layoutShopAction, selectLayoutShop } from '../../lib/store';
 import { ShopLayoutNavMobile } from '../ShopLayoutNavMobile';
 

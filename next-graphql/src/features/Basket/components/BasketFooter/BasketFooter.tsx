@@ -1,7 +1,7 @@
 import { MouseEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Link from 'next/link';
-import { BasketFooterCard, RemoveIcon } from '@/shared';
+import { BasketFooterCard, RemoveIcon } from '../../../../shared';
 import { useBasketContext } from '../../libs/context/BasketContext';
 import { basketAction } from '../../store/basketSlice';
 

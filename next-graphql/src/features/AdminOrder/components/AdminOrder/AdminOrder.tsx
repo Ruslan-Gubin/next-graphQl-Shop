@@ -1,11 +1,11 @@
-import { QueckMessage } from '@/shared/components';
-import { useMutation, useQuery } from '@apollo/client';
-import { AdminOrderNoContent } from '../AdminOrderNoContent';
-import {  IsortOrdersUser } from '@/apps/types';
-import { AdminOrderCard } from '../AdminOrderCard';
-import { GET_ALL_ORDERS, GET_NEW_ORDERS_LENGTH, REMOVE_ORDER_AND_UPDATE_PRODUCT, UPDATE_STATUS_ORDER } from '@/apps/apollo/orderRequest';
 import { useState } from 'react';
-import { queckMessage } from '@/shared';
+import { useMutation, useQuery } from '@apollo/client';
+import { QueckMessage } from '../../../../shared/components';
+import { AdminOrderNoContent } from '../AdminOrderNoContent';
+import {  IsortOrdersUser } from '../../../../apps/types';
+import { AdminOrderCard } from '../AdminOrderCard';
+import { GET_ALL_ORDERS, GET_NEW_ORDERS_LENGTH, REMOVE_ORDER_AND_UPDATE_PRODUCT, UPDATE_STATUS_ORDER } from '../../../../apps/apollo/orderRequest';
+import { queckMessage } from '../../../../shared';
 import styles from './AdminOrder.module.scss';
 
 const AdminOrder = () => {

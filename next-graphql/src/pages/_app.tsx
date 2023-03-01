@@ -4,7 +4,7 @@ import { client } from "../apps/apollo";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import type { AppProps } from "next/app";
-import "@/apps/styles/globals.scss";
+import "../apps/styles/globals.scss";
 import store, { persistor } from "../apps/store/srote";
 
 

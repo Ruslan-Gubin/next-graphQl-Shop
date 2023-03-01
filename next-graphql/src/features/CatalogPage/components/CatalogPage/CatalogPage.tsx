@@ -1,5 +1,5 @@
-import { FC, useEffect, useLayoutEffect, useState } from "react";
-import { Ioption } from "@/apps/constants/optionsMenu";
+import { FC, useEffect,  useState } from "react";
+import { Ioption } from "../../../../apps/constants/optionsMenu";
 import { CatalogPageFooter } from "../CatalogPageFooter";
 import { CatalogPageHeader } from "../CatalogPageHeader";
 import { CatalogProductList } from "../CatalogProductList/CatalogProductList";
@@ -7,8 +7,8 @@ import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { selectCatalogPage } from "../../store";
 import { useQuery } from "@apollo/client";
-import { SORT_PRODUCT_CATALOG } from "@/apps/apollo";
-import { IOptionsDropDownType, IProductType } from "@/apps/types";
+import { SORT_PRODUCT_CATALOG } from "../../../../apps/apollo";
+import { IOptionsDropDownType, IProductType } from "../../../../apps/types";
 import {
   sortOptionsBrand,
   sortOptionsDropDown,
@@ -17,9 +17,9 @@ import {
 import styles from "./CatalogPage.module.scss";
 import { useMatchMedia } from "../../libs/hooks/use-match-media";
 import { CatalogPageHeaderMobile } from "../CatalogPageHeaderMobile";
-import { LoaderShop } from "@/shared";
-import { selectProductDetails } from "@/entities";
-import { CatatlogProductList } from "@/widgets/CatalogStartPage/components/CatatlogProductList";
+import { LoaderShop } from "../../../../shared";
+import { selectProductDetails } from "../../../../entities";
+import { CatatlogProductList } from "../../../../widgets/CatalogStartPage/components/CatatlogProductList";
 
 interface ICatalogPage {
   href: string;

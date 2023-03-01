@@ -1,5 +1,5 @@
-import { ProductCardFavorites } from '@/entities';
-import { basketAction, selectBasket } from '@/features/Basket';
+import { ProductCardFavorites } from '../../../../entities';
+import { basketAction, selectBasket } from '../../../../features/Basket';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserFavoritesNoContent } from '../UserFavoritesNoContent';
 

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { AdminOptionButton } from "@/shared";
+import { AdminOptionButton } from "../../../../shared";
 import { IQuestion } from "../../libs/types/IQueston";
 
 import styles from "./AdminQuestionsCard.module.scss";

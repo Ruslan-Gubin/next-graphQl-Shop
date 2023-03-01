@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import Image from 'next/image';
 import { selectUser } from "../../../../features";
 import { useDetailsContext } from "../../../../pages/catalog/[id]";
-import { findMaxOpinion, Modal, QueckMessage, queckMessage, StarsList, useAddImage } from "@/shared";
+import { findMaxOpinion, Modal, QueckMessage, queckMessage, StarsList, useAddImage } from "../../../../shared";
 import { CREATE_FEEDBACK } from "../../models/feedbackRequest";
 import { StarsOpinionFeedback } from "../StarsOpinionFeedback";
 

@@ -1,11 +1,11 @@
 import { FC } from "react";
-import { ModalQuestionsMessage } from "@/entities";
-import { ButtonFooterHelper } from "@/shared/components";
+import { ModalQuestionsMessage } from "../../../../entities";
+import { ButtonFooterHelper } from "../../../../shared/components";
 import { buttonIcon } from "../../lib/assets/buttonIcon";
 import { useDispatch, useSelector } from "react-redux";
 import { questionsAction, selectQuestions } from "../../lib/store";
 import { useMutation, useQuery } from "@apollo/client";
-import { ADD_COMMENT_QUESTION, ONE_QUESTIONS  } from "@/apps/apollo";
+import { ADD_COMMENT_QUESTION, ONE_QUESTIONS  } from "../../../../apps/apollo";
 import { ADD_QUESTIONS } from "../../models/questionRequest";
 
 import styles from "./FooterButtonHelpers.module.scss";

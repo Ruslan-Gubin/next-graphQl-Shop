@@ -6,7 +6,7 @@ import {
   CREATED_PHOTOS,
   CREATED_PRODUCT,
   SORT_CATEGORY,
-} from "@/apps/apollo";
+} from "../../../../apps/apollo";
 import { useDispatch, useSelector } from "react-redux";
 import { createdProductImagesAction, selectCreatedProductImages } from "../../libs/store/createdProductImagesSlice";
 import {
@@ -17,10 +17,10 @@ import { AddProductImages } from "../AddProductImages";
 import { AditationInfo } from "../AditationInfo";
 import { BasicInfo } from "../BasicInfo";
 import { CreatedProductHeader, CreatedProductFooter } from "../index";
+import { ALL_BRENDS } from "../../../../apps/apollo/BrandRequest";
+import { addetationFilterValue } from "../../libs/helpers/addetationFilterValue";
 
 import styles from "./CreatedProducts.module.scss";
-import { ALL_BRENDS } from "@/apps/apollo/BrandRequest";
-import { addetationFilterValue } from "../../libs/helpers/addetationFilterValue";
 
 const CreatedProducts: FC = () => {
   const createdProductState = useSelector(selectCreatedProduct);

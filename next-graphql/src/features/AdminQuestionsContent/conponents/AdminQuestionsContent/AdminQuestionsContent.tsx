@@ -5,7 +5,7 @@ import {
   ADD_COMMENT_QUESTION,
   ALL_QUESTIONS,
   DELETE_QUESTION,
-} from "@/apps/apollo";
+} from "../../../../apps/apollo";
 import {
   adminQuestionAction,
   selectAdminQuestion,

@@ -1,4 +1,4 @@
-import { IBasketProduct } from "@/features/Basket/libs/types/IBasketSlice";
+import { IBasketProduct } from "../../features/Basket/libs/types/IBasketSlice";
 
 interface IsortOrdersUser {
   _id: string;

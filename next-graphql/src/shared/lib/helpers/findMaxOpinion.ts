@@ -1,4 +1,4 @@
-import { IFeedbackType } from "@/apps/types/IFeedbackType";
+import { IFeedbackType } from "../../../apps/types/IFeedbackType";
 
 const findMaxOpinion = (arr: IFeedbackType[]) => {
   const map: Record<string, number> = {}

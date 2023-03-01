@@ -1,4 +1,4 @@
-import { TypeRootState } from "@/apps/store/srote";
+import { TypeRootState } from "../../../../apps/store/srote";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IUpdateOptionSlice } from "../types/IUpdateOptionSlice";
 

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { ImageSearch } from "@/shared";
+import { ImageSearch } from "../../../../shared";
 import { adminNavHeaderAction, selectAdminNavHeader } from "../../lib/store";
 
 import styles from "./AdminNavHeader.module.scss";

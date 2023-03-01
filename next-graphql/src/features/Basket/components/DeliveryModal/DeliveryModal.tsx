@@ -1,13 +1,13 @@
-import { ModalInput } from "@/shared";
 import { FormEventHandler, useState } from "react";
+import { basketAction } from "../../store/basketSlice";
 import { useDispatch } from "react-redux";
 import { useBasketContext } from "../../libs/context/BasketContext";
-import { basketAction } from "../../store/basketSlice";
+import { ModalInput } from "../../../../shared";
 
 import styles from "./DeliveryModal.module.scss";
 
 const DeliveryModal = () => {
-  const { basket, setModalActive } = useBasketContext();
+  const {  setModalActive } = useBasketContext();
   const dispatch = useDispatch()
   const [formValue, setFormValue] = useState({
     street: "",

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import Image from 'next/image';
-import { selectBasket } from '@/features/Basket';
+import { selectBasket } from '../../../../features/Basket';
 
 import styles from './UserDetailsFavorites.module.scss';
 

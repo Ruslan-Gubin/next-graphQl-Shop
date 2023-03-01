@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TypeRootState } from "@/apps/store/srote";
-import { IUser } from "@/apps/types";
+import { TypeRootState } from "../../../apps/store/srote";
+import { IUser } from "../../../apps/types";
 import { IUserSlice } from "../libs/types/IUserSlice";
 
 

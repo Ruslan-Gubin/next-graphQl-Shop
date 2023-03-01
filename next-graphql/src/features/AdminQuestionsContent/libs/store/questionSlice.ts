@@ -1,5 +1,5 @@
-import { TypeRootState } from "@/apps/store/srote";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { TypeRootState } from "../../../../apps/store/srote";
 import { IQuestion } from "../types/IQueston";
 
 

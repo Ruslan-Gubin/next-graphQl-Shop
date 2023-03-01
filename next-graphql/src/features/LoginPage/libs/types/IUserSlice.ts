@@ -1,4 +1,4 @@
-import { IUser } from "@/apps/types"
+import { IUser } from "../../../../apps/types"
 
 
 interface IUserSlice {

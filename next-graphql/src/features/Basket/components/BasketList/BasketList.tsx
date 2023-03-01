@@ -1,10 +1,10 @@
-import { ProductCardBasket } from '@/entities';
-import { formatterRub } from '@/features/CatalogPage/libs/helper';
-import { AccordionBird } from '@/shared';
+import { ProductCardBasket } from '../../../../entities';
+import { formatterRub } from '../../../../features/CatalogPage/libs/helper';
+import { AccordionBird } from '../../../../shared';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useBasketContext } from '../../libs/context/BasketContext';
-import { basketAction, selectBasket } from '../../store/basketSlice';
+import { basketAction } from '../../store/basketSlice';
 
 import styles from './BasketList.module.scss';
 

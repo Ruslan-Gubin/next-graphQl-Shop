@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TypeRootState } from "@/apps/store/srote";
-import { IProductType } from "@/apps/types";
+import { TypeRootState } from "../../../../apps/store/srote";
+import { IProductType } from "../../../../apps/types";
 
 interface IProductDetailsInitial {
   watchedProduct: IProductType[]

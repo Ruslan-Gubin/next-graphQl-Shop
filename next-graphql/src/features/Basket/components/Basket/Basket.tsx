@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useMutation } from '@apollo/client';
 import { BasketContext } from '../../libs/context/BasketContext';
 import { basketAction, selectBasket } from '../../store/basketSlice';
 import { BasketAside } from '../BasketAside';
@@ -7,12 +8,12 @@ import { BasketFooter } from '../BasketFooter';
 import { BasketList } from '../BasketList';
 import { BasketNoContent } from '../BasketNoContent';
 import { DeliveryModal } from '../DeliveryModal';
-import { Modal, queckMessage, QueckMessage } from '@/shared';
-import { selectUser } from '@/features/LoginPage';
-import styles from './Basket.module.scss';
-import { useMutation } from '@apollo/client';
+import { Modal, queckMessage, QueckMessage } from '../../../../shared';
+import { selectUser } from '../../../../features/LoginPage';
 import { CREATED__ORDER } from '../../models';
 import { useRouter } from 'next/router';
+
+import styles from './Basket.module.scss';
 
 const Basket = () => {
   const [createdOrder] = useMutation(CREATED__ORDER)

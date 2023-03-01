@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Image from 'next/image';
 import { createdProductImagesAction, selectCreatedProductImages } from "../../libs/store/createdProductImagesSlice";
 import { addProductIcons } from "../../constants/addProductIcons";
-import {  useAddImage } from "@/shared";
+import {  useAddImage } from "../../../../shared";
 
 import styles from "./AddProductImages.module.scss";
 

@@ -1,4 +1,4 @@
-import { IImages } from "@/features/CreatedProduct/libs/types/IinitialCreatedImages";
+import { IImages } from "../../features/CreatedProduct/libs/types/IinitialCreatedImages";
 import { ICategoryType } from "./ICategoryType";
 import { IProductType } from "./IProductType";
 

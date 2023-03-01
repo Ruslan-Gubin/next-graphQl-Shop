@@ -1,11 +1,11 @@
-import { IProductType } from '@/apps/types';
-import { ProductCategory } from '@/entities';
-import { ProductCategoryMobile } from '@/entities/Product/components';
-import { basketAction } from '@/features';
-import { QueckMessage } from '@/shared';
 import { FC, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {  selectCatalogPage } from '../../store';
+import { IProductType } from '../../../../apps/types';
+import { ProductCategory } from '../../../../entities';
+import { ProductCategoryMobile } from '../../../../entities/Product/components';
+import { basketAction } from '../../../../features';
+import { QueckMessage } from '../../../../shared';
 
 import styles from './CatalogProductList.module.scss';
 

@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { useSelector } from "react-redux";
 import Image from 'next/image';
-import { IFeedbackType } from "@/apps/types/IFeedbackType";
-import { StarsList } from "@/shared";
-import { formatterRuTime } from "@/features/CatalogPage/libs/helper";
-import { selectUser } from "@/features";
+import { IFeedbackType } from "../../../../apps/types/IFeedbackType";
+import { StarsList } from "../../../../shared";
+import { formatterRuTime } from "../../../../features/CatalogPage/libs/helper";
+import { selectUser } from "../../../../features";
 
 import styles from './FeedbackProductCard.module.scss';
 

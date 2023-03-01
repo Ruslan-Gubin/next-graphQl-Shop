@@ -1,10 +1,10 @@
 import { Dispatch, FC, SetStateAction, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Image from 'next/image';
-import { AdminTexteria, CustomAdminInput } from "@/shared/components";
+import { AdminTexteria, CustomAdminInput } from "../../../../shared/components";
 import { createdProductAction } from "../../libs/store/createdProductSlice";
 import { IBasicValue } from "../../libs/types/ICreatedProductSlice";
-import { useAddImage } from "@/shared";
+import { useAddImage } from "../../../../shared";
 
 import styles from "./BasicInfo.module.scss";
 

@@ -1,11 +1,8 @@
 import { Dispatch, FC, SetStateAction } from "react";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { DropDownCategory } from "@/shared/components";
-import { sortProductOption } from "../../constants/sortProductOption";
 import { catalogPageAction, selectCatalogPage } from "../../store";
-import { IOptionsDropDownType } from "@/apps/types";
-import { PriceFilter } from "../PriceFilter";
+import { IOptionsDropDownType } from "../../../../apps/types";
 import {useRouter} from 'next/router';
 import styles from "./CatalogPageHeaderMobile.module.scss";
 

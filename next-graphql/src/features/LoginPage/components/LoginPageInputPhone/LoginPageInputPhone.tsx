@@ -1,4 +1,4 @@
-import { AccordionBird } from '@/shared';
+import { AccordionBird } from '../../../../shared';
 import { useState } from 'react';
 import { useLoginPageContext } from '../../libs/context/LoginPageContext';
 import { dropOptions } from '../../libs/data/dropOptions';

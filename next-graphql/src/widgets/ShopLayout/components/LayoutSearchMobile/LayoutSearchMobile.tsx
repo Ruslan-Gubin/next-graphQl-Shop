@@ -1,8 +1,8 @@
 import { Dispatch, FC, SetStateAction,  useState } from 'react';
-import { SEARCH_PRODUCTS } from '@/apps/apollo/productRequest';
-import { CloseProductButton, LoaderShop } from '@/shared';
+import { SEARCH_PRODUCTS } from '../../../../apps/apollo/productRequest';
+import { CloseProductButton, LoaderShop } from '../../../../shared';
 import { useQuery } from '@apollo/client';
-import { ISearchProduct } from '@/apps/types';
+import { ISearchProduct } from '../../../../apps/types';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 

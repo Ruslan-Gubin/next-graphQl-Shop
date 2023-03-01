@@ -1,12 +1,12 @@
 import { FC, useEffect, useState } from "react";
 import Link from "next/link";
 import { useQuery } from "@apollo/client";
-import { ALL_QUESTIONS } from "@/apps/apollo";
+import { ALL_QUESTIONS } from "../../../../apps/apollo";
 import { notificationIcons } from "../../lib/assets/linkNotificationIcons";
 import Image from 'next/image';
 import { useDispatch } from "react-redux";
-import { adminQuestionAction } from "@/features/AdminQuestionsContent";
-import { GET_NEW_ORDERS_LENGTH } from "@/apps/apollo/orderRequest";
+import { adminQuestionAction } from "../../../../features/AdminQuestionsContent";
+import { GET_NEW_ORDERS_LENGTH } from "../../../../apps/apollo/orderRequest";
 
 import styles from "./AdminNotification.module.scss";
 

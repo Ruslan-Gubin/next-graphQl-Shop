@@ -1,7 +1,7 @@
 import { FC, memo } from "react";
-import { IProductType } from "@/apps/types";
+import { IProductType } from "../../../../apps/types";
 import Image from 'next/image';
-import { AdminTexteria, CustomAdminInput } from "@/shared/components";
+import { AdminTexteria, CustomAdminInput } from "../../../../shared/components";
 import { addImageIcon } from "../../constants/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUpdateOption, updateOptionAction } from "../../libs/store";

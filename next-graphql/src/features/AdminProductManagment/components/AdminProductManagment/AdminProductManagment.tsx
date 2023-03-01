@@ -11,14 +11,14 @@ import {
   SORT_CATEGORY,
 } from "../../model/productRequest";
 
-import { selectAdminNavHeader } from "@/features/AdminNavHeader";
+import { selectAdminNavHeader } from "../../../../features/AdminNavHeader";
 import { AdminProductSceleton } from "../AdminProductSceleton";
-import { IProductType } from "@/apps/types";
+import { IProductType } from "../../../../apps/types";
 import styles from "./AdminProductManagment.module.scss";
 import { AdminModal } from "../AdminModal";
-import {  updateOptionAction } from "@/features/AdminUpdateProduct";
+import {  updateOptionAction } from "../../../../features/AdminUpdateProduct";
 import { useRouter } from "next/router";
-import { useOutside } from "@/widgets/ShopLayout/lib/hooks/useOutside";
+import { useOutside } from "../../../../widgets/ShopLayout/lib/hooks/useOutside";
 
 interface IAdminProductManagment {
 }

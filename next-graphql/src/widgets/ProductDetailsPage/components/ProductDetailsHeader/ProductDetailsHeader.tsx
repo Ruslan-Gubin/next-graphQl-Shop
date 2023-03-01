@@ -1,10 +1,10 @@
 import { FC } from 'react';
-import { useDetailsContext } from '@/pages/catalog/[id]';
+import { useDetailsContext } from '../../../../pages/catalog/[id]';
 import Link from 'next/link'
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
-import { catalogPageAction } from '@/features';
-import { Array, findMaxOpinion, StarsList } from '@/shared';
+import { catalogPageAction } from '../../../../features';
+import { Array, findMaxOpinion, StarsList } from '../../../../shared';
 import styles from './ProductDetailsHeader.module.scss';
 
 

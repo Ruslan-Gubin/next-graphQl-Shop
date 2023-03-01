@@ -1,4 +1,4 @@
-import { IOptionsDropDownType, IProductType } from "@/apps/types";
+import { IOptionsDropDownType, IProductType } from "../../../../apps/types";
 
 
 const sortProductFilter = (arr: IProductType[], categoryValue:IOptionsDropDownType, brandValue: IOptionsDropDownType, priceFilter: {minPrice: number,maxPrice: number}) => {

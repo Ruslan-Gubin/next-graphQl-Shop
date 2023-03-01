@@ -1,5 +1,5 @@
-import { OPTIONS_DEPARTMENT } from "@/apps/constants";
-import { TypeRootState } from "@/apps/store/srote";
+import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
+import { TypeRootState } from "../../../../apps/store/srote";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Ioption, IOptionDepartment, IUpdateProductInitial } from "../types/IUpdateProductInitial";
 

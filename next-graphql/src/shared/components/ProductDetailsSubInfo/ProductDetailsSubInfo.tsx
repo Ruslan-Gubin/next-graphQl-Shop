@@ -1,15 +1,15 @@
 import { FC } from 'react';
-import { formatterRub } from '@/features/CatalogPage/libs/helper';
+import { formatterRub } from '../../../features/CatalogPage/libs/helper';
 import { useRouter } from "next/router";
-import { useDetailsContext } from '@/pages/catalog/[id]';
+import { useDetailsContext } from '../../../pages/catalog/[id]';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Heart } from '../Heart';
 import { useSelector } from 'react-redux';
-import { selectBasket } from '@/features';
+import { selectBasket } from '../../../features';
 import styles from './ProductDetailsSubInfo.module.scss';
-import { checkFavorite } from '@/entities/Product/lib/helpers/checkFavorite';
-import { checkBasket } from '@/entities/Product/lib/helpers/checkBasket';
+import { checkFavorite } from '../../../entities/Product/lib/helpers/checkFavorite';
+import { checkBasket } from '../../../entities/Product/lib/helpers/checkBasket';
 
 interface IProductDetailsSubInfo {
   handleAddBasket: () => void

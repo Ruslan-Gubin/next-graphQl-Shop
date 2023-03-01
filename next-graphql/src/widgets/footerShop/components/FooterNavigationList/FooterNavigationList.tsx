@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import Link from 'next/link';
-import { AccordionBird } from '@/shared';
+import { AccordionBird } from '../../../../shared';
 import { INavListArray } from '../../model/INavListArray';
 
 import styles from './FooterNavigationList.module.scss';

@@ -1,14 +1,14 @@
-import { GET_USER_ORDERS } from '@/apps/apollo';
-import { selectUser } from '@/features/LoginPage';
-import { Loader, QueckMessage } from '@/shared/components';
+import { useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import { useSelector } from 'react-redux';
+import { GET_USER_ORDERS } from '../../../../apps/apollo';
+import { selectUser } from '../../../../features/LoginPage';
+import { Loader, QueckMessage } from '../../../../shared/components';
 import { UserOrderNoContent } from '../UserOrderNoContent';
-import { IOrder } from '@/apps/types';
+import { IOrder } from '../../../../apps/types';
 import { UserOrderCard } from '../UserOrderCard';
-import { REMOVE__ORDER } from '@/apps/apollo/orderRequest';
-import { useState } from 'react';
-import { queckMessage } from '@/shared';
+import { REMOVE__ORDER } from '../../../../apps/apollo/orderRequest';
+import { queckMessage } from '../../../../shared';
 import styles from './UserOrders.module.scss';
 
 const UserOrders = () => {

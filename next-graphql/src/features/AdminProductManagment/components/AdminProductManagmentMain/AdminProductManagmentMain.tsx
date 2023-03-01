@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { IProductType } from "@/apps/types";
+import { IProductType } from "../../../../apps/types";
 import { UpdateProductCard } from "../UpdateProductCard";
 
 import styles from "./AdminProductManagmentMain.module.scss";

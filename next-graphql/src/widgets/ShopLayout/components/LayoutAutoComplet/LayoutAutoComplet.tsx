@@ -1,8 +1,8 @@
-import { SEARCH_PRODUCTS } from '@/apps/apollo/productRequest';
-import { ISearchProduct } from '@/apps/types';
-import { LoaderShop, SearchItemAutocomplete } from '@/shared';
-import { useQuery } from '@apollo/client';
 import { Dispatch, FC, SetStateAction } from 'react';
+import { SEARCH_PRODUCTS } from '../../../../apps/apollo/productRequest';
+import { ISearchProduct } from '../../../../apps/types';
+import { LoaderShop, SearchItemAutocomplete } from '../../../../shared';
+import { useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
 
 import styles from './LayoutAutoComplet.module.scss';

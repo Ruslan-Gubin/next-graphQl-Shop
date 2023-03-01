@@ -1,5 +1,5 @@
 import { FC, useEffect, useRef, useState } from "react";
-import { IOptionDepartment } from "@/features/CreatedProduct/libs/types/IOptionsMenu";
+import { IOptionDepartment } from "../../../features/CreatedProduct/libs/types/IOptionsMenu";
 
 import styles from "./DropDownMenu.module.scss";
 

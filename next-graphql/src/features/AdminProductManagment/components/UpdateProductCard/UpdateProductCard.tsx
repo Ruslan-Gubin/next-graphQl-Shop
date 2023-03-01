@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { IProductType } from '@/apps/types';
+import { IProductType } from '../../../../apps/types';
 import Image from 'next/image';
 
 import styles from './UpdateProductCard.module.scss';

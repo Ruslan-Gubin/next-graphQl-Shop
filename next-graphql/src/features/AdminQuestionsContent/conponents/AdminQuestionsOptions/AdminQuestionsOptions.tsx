@@ -1,4 +1,4 @@
-import { AdminOptionButton } from "@/shared";
+import { AdminOptionButton } from "../../../../shared";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { adminQuestionAction } from "../../libs/store/questionSlice";

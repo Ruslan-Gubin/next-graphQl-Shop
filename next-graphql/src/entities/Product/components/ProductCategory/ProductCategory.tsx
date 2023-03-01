@@ -1,13 +1,13 @@
 import { FC, memo, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { IProductType } from '@/apps/types';
-import { formatterRub } from '@/features/CatalogPage/libs/helper';
-import { findMaxOpinion, Heart, StarsList } from '@/shared';
+import { IProductType } from '../../../../apps/types';
+import { formatterRub } from '../../../../features/CatalogPage/libs/helper';
+import { findMaxOpinion, Heart, StarsList } from '../../../../shared';
 import { useInView } from "react-intersection-observer";
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
-import { selectBasket } from '@/features';
+import { selectBasket } from '../../../../features';
 import { checkFavorite } from '../../lib/helpers/checkFavorite';
 import styles from './ProductCategory.module.scss';
 

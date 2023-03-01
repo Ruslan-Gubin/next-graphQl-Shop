@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Link from "next/link";
 import Image from 'next/image';
-import { IProductType } from "@/apps/types";
+import { IProductType } from "../../../../apps/types";
 
 import styles from './CatatlogProductList.module.scss';
 

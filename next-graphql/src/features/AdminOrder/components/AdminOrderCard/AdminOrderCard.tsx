@@ -1,11 +1,11 @@
 import { FC, useState } from "react";
 import Image from 'next/image';
-import { IsortOrdersUser } from "@/apps/types";
-import { IBasketProduct } from "@/features/Basket/libs/types/IBasketSlice";
-import { formatterRub, formatterRuTime } from "@/features/CatalogPage/libs/helper";
-import { formattedPhone } from "@/features/CatalogPage/libs/helper/formattedPhone";
-import { AccordionBird } from "@/shared";
-import { UserIconActive } from "@/shared/components";
+import { IsortOrdersUser } from "../../../../apps/types";
+import { IBasketProduct } from "../../../../features/Basket/libs/types/IBasketSlice";
+import { formatterRub, formatterRuTime } from "../../../../features/CatalogPage/libs/helper";
+import { formattedPhone } from "../../../../features/CatalogPage/libs/helper/formattedPhone";
+import { AccordionBird } from "../../../../shared";
+import { UserIconActive } from "../../../../shared/components";
 
 import styles from './AdminOrderCard.module.scss';
 
