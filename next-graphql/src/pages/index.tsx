@@ -61,16 +61,15 @@ if (viewsData) {
        {/* {load1 || load2 || load3 || load4 &&
        <LoaderShop/>
        } */}
-       {load1 || load2 || load3 || load4 ?
+       {load1 || load2 || load3 || load4 &&
       <LoaderShop/>
-      : 
+       }
         <HomePage
         categoryData={catData.categorys}
         maxWievsProducts={viewsData.getMaxViewsProducts}
         newProducts={newData.getNewProducts}
         maxDiscountProducts={discoutData.getMaxDiscountProducts}
         />
-      }
         {/* <HomePage
         categoryData={error ? catData : categoryData}
         maxWievsProducts={error ? viewsData : maxWievsProducts}
