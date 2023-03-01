@@ -51,21 +51,9 @@ export default function Home({ error , categoryData, maxWievsProducts, newProduc
     maxDiscountProducts);
   }
 
-if (catData) {
-  console.log(catData.categorys);
+if (viewsData) {
+  console.log(viewsData.getMaxViewsProducts);
 }
-
-
-  // if (error) {
-  //   router.push('/lk/details')
-  //   return <Error statusCode={error} />
-  //   console.log(error)
-  // }
-   
-      // if (!router.isFallback && !categoryData.length) {
-      //     return <div>error...</div> ;
-      // }
-
 
   return (  
     <ShopLayout title="OnlineShop" keywords="Start project in home page">
