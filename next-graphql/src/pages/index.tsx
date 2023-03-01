@@ -13,15 +13,35 @@ interface IHome {
   maxWievsProducts: IProductType[]
   newProducts: IProductType[]
   maxDiscountProducts: IProductType[]
+  error: boolean
 }
 
-export default function Home({categoryData, maxWievsProducts, newProducts, maxDiscountProducts}:IHome) {
+function Error({ statusCode }) {
+  return (
+    <p>
+      {statusCode
+        ? `An error ${statusCode} occurred on server`
+        : 'An error occurred on client'}
+    </p>
+  )
+}
+
+Error.getInitialProps = ({ res, err }) => {
+  const statusCode = res ? res.statusCode : err ? err.statusCode : 404
+  return { statusCode }
+}
+
+export default function Home({ error , categoryData, maxWievsProducts, newProducts, maxDiscountProducts}:IHome) {
   const router = useRouter()
 
+
+  if (error) {
+    return <Error statusCode={error} />
+  }
    
-      if (!router.isFallback && !categoryData.length) {
-          return <div>error...</div> ;
-      }
+      // if (!router.isFallback && !categoryData.length) {
+      //     return <div>error...</div> ;
+      // }
 
 
   return (  
@@ -82,7 +102,7 @@ export default function Home({categoryData, maxWievsProducts, newProducts, maxDi
 //     }
 //     } 
 // };
-export const getStaticProps  = async ({req, query, }: NextPageContext) => {
+export const getServerSideProps  = async ({req, query, }: NextPageContext) => {
   try {
     const { data: categoryData } = await client.query({
       query: GET_CATEGORYES,
@@ -108,6 +128,7 @@ export const getStaticProps  = async ({req, query, }: NextPageContext) => {
   
     return {
       props: {
+        error: false, 
         categoryData: categoryData.categorys,
         maxWievsProducts: maxWievsProducts.getMaxViewsProducts,
         newProducts: newProducts.getNewProducts,
@@ -120,7 +141,8 @@ export const getStaticProps  = async ({req, query, }: NextPageContext) => {
         categoryData: null,
         maxWievsProducts: null,
         newProducts: null,
-        maxDiscountProducts: null, 
+        maxDiscountProducts: null,
+        error: true, 
       },
     }
     } 
