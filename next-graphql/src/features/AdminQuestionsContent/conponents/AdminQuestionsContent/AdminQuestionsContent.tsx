@@ -33,7 +33,7 @@ const AdminQuestionsContent = () => {
         adminQuestionAction.showAllQuestions({ data: allQuestions.questions })
       );
     }
-  }, [allQuestions, questionMenu, removeQuestion]);
+  }, [allQuestions, questionMenu, removeQuestion, allLoading, dispatch]);
 
   const handleAnswer = (id: string) => {
     const variables = {

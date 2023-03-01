@@ -80,7 +80,7 @@ const CatalogPage: FC<ICatalogPage> = ({
 
   useEffect(() => {
     setCategoryValue(category)
-  },[])
+  },[category])
 
   const handleLinkCategory = (value: IOptionsDropDownType) => {
     setSubDepartmentValue(() => ({ value: value.value, label: value.label }));
@@ -94,7 +94,7 @@ const CatalogPage: FC<ICatalogPage> = ({
       setProductsFilter(products.sortProductCatalog);
       setCategoryOption(sortOptionsDropDown(products.sortProductCatalog));
     }
-  }, [products]);
+  }, [products, loading]);
 
   useEffect(() => {
     if (productsFilter) {
@@ -113,7 +113,7 @@ const CatalogPage: FC<ICatalogPage> = ({
         )
       );
     }
-  }, [categoryValue]);
+  }, [categoryValue, brandValue, priceFilter, products]);
 
   if (loading) {
     return <LoaderShop />

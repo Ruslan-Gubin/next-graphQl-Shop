@@ -1,10 +1,11 @@
-import { FC, useEffect } from "react";
+import { FC, useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { DropDownMenu } from "@/shared";
 import { createdProductAction } from "../../libs/store/createdProductSlice";
 import { Ioption, IOptionDepartment } from "../../libs/types/IOptionsMenu";
 import { COLOR_OPTIONS } from "../../constants/colorOptions";
 import { OPTIONS_DEPARTMENT } from "@/apps/constants";
+
 import styles from "./CreatedProductHeader.module.scss";
 
 interface ICreatedProductHeader {
@@ -28,7 +29,7 @@ const CreatedProductHeader: FC<ICreatedProductHeader> = ({
 }) => {
   const dispatch = useDispatch();
 
-  const categoryOption = () => {
+  const categoryOption = useCallback(() => {
     const result = [];
     if (sortCategory) {
       sortCategory.forEach((item) => {
@@ -37,28 +38,28 @@ const CreatedProductHeader: FC<ICreatedProductHeader> = ({
     }
     result.push({ value: "Новая категория", label: "new-category", id: "" });
     return result;
-  };
+  },[sortCategory]);
 
-  const brandOption = () => {
+  const brandOption = useCallback(() => {
     const result = [];
       brandArr &&  brandArr.forEach((item) => {
         result.push({ value: item.name, label: item.name, id: item._id });
       });
       result.push({ value: "New Brand", label: "new-brend", id: "" });
       return result;
-  };
+  },[brandArr]);
 
   useEffect(() => {
     dispatch(
       createdProductAction.getCategoriesValue({ value: categoryOption()[0] })
     );
-  }, [subdepartmentMenu]);
+  }, [subdepartmentMenu,categoryOption,dispatch]);
   
   useEffect(() => {
     dispatch(
       createdProductAction.setBrandMenu({ value: brandOption()[0] })
     );
-  },[])
+  },[brandOption, dispatch])
 
   return (
     <section className={styles.root}>
@@ -68,6 +69,7 @@ const CreatedProductHeader: FC<ICreatedProductHeader> = ({
             options={OPTIONS_DEPARTMENT}
             value={departmentMenu}
             onChange={(value) =>
+              //@ts-ignore
               dispatch(createdProductAction.getDepartmentValue({ value }))
             }
           />

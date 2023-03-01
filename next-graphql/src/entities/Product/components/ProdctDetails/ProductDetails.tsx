@@ -4,9 +4,8 @@ import { useDispatch } from 'react-redux';
 import { ImagesProductDetails, ProductDetailsButton, ProductDetailsDescription, ProductDetailsSubInfo, QueckMessage } from '@/shared';
 import { basketAction } from '@/features';
 import { ProductDetailsMobile } from '../ProductDetailsMobile';
-
-import styles from './ProductDetails.module.scss';
 import { productDetailsAction } from '../../lib/store';
+import styles from './ProductDetails.module.scss';
 
 
 
@@ -19,7 +18,7 @@ const ProductDetails: FC = () => {
 
   useEffect(() => {
     dispatch(productDetailsAction.addProduct({product}))
-  },[])
+  },[product, dispatch])
 
   const productOptions = {
     img: product.photo.images[0].url,

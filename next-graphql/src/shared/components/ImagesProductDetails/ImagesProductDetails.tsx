@@ -1,5 +1,6 @@
+import { FC, useCallback, useEffect, useState } from 'react';
+import Image from 'next/image';
 import { useDetailsContext } from '@/pages/catalog/[id]';
-import { FC, useEffect, useState } from 'react';
 import { ProductListImag } from '../ProductListImag';
 import styles from './ImagesProductDetails.module.scss';
 
@@ -9,11 +10,13 @@ interface IImagesProductDetails {
 
 const ImagesProductDetails: FC<IImagesProductDetails> = ({}) => {
   const {product} = useDetailsContext()
-  const [photoActive, setPhotoActive] = useState<string>('')
+  const [photoActive, setPhotoActive] = useState<string>(product.photo.images[0].url)
 
-  useEffect(() => {
-    setPhotoActive(product.photo.images[0].url)
-  },[product])
+
+
+  const handleChanceImage = useCallback((img: string) => {
+    setPhotoActive(img)
+  },[])
 
   const handleImageUp = () => {
     const prevImag = product.photo.images.findIndex(item => item.url === photoActive)
@@ -49,11 +52,15 @@ if (imagId + 1 === length) {
             </div>
         }
 
+            <ul>
+
           {product.photo.images.map((imag) => (
             <li className={imag.url === photoActive ? styles.foto__small_active : styles.foto__small} key={imag.url}>
-              <ProductListImag url={imag.url} setPhotoActive={setPhotoActive} />
+              <ProductListImag url={imag.url} handleChanceImage={handleChanceImage} />
           </li>
             ))}
+            </ul>
+
           {checkLastImage() ? 
             <div
             onClick={() => handleImageDown()}
@@ -67,7 +74,9 @@ if (imagId + 1 === length) {
             }
         </ul>
         <figure className={styles.foto__big}>
-        <img  src={photoActive} alt="" />
+        <Image width={520} height={660}  src={photoActive} alt="Product Image" />
+        {/* <Image width={520} height={660}  src={photoActive} alt="Product Image" /> */}
+        {/* <img  src={photoActive} alt="Product Image" /> */}
         </figure>
       </section>
   );

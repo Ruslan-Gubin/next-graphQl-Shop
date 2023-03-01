@@ -1,4 +1,4 @@
-@use '../../../../apps/styles/common/var';
+@use "../../../../apps/styles/common/var";
 
 .basicInfo {
   width: 100%;
@@ -6,40 +6,36 @@
   & .countContainer {
     display: flex;
     justify-content: space-between;
-   
+
     & .countWidth {
       width: 150px;
     }
-    
   }
 
   & .categoryContainer {
     display: flex;
     justify-content: space-between;
-   
+
     & .countWidth {
       width: 200px;
     }
-    
   }
-    & h2 {
-      text-align: center;
-      color: var.$color-black;
-      font-size: var.$font-size-header-link;
-      font-weight: 600;
-      margin-bottom: 30px;
-      
-    }
-  
+  & h2 {
+    text-align: center;
+    color: var.$color-black;
+    font-size: var.$font-size-header-link;
+    font-weight: 600;
+    margin-bottom: 30px;
+  }
 }
 
 .categoryImag {
-  width: 70px;
-  height: 70px;
+  width: auto;
+  height: auto;
   border-radius: 15px;
 }
 
- .category__imag_container {
+.category__imag_container {
   // position: relative;
   // top: 0;
   // right: 40px;
@@ -47,10 +43,12 @@
   display: flex;
 
   & .category__imag_block {
-  
     padding: 10px;
     // border: 1px solid rgba(122, 122, 122, 0.298);
-    background-image: linear-gradient(to top, (rgb(97, 97, 97), rgb(254, 254, 254)));
+    background-image: linear-gradient(
+      to top,
+      (rgb(97, 97, 97), rgb(254, 254, 254))
+    );
     width: 90px;
     border-radius: 15px;
     box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.327);
@@ -63,5 +61,4 @@
       color: rgb(70, 70, 70);
     }
   }
-
 }

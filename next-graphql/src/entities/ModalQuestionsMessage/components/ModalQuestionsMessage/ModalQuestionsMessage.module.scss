@@ -31,7 +31,7 @@
   
   
   & img {
-    width: 55%;
+    width: auto;
   }
 }
 
@@ -134,7 +134,8 @@
       padding: 20px;
       position: relative;
       & .paperclip {
-        width: 27px;
+        width: auto;
+        height: auto;
         position: absolute;
         top: 33px;
         left: 30px;

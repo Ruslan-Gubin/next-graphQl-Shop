@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import Image from 'next/image';
 
+import styles from './RemoveIcon.module.scss';
 
 const RemoveIcon = ({onClick}: {onClick: () => void}) => {
   const [hover, setHover] = useState(false)
@@ -27,7 +29,8 @@ const RemoveIcon = ({onClick}: {onClick: () => void}) => {
 
   return (
     <figure onClick={onClick}>
-      <img ref={ref} style={{cursor: 'pointer'}} src={hover ? "/waste-black.png" : "/waste-white.png"} alt="Remove Icon" />
+      <Image width={30} height={30} className={styles.image} ref={ref} style={{cursor: 'pointer'}} src={hover ? "/waste-black.png" : "/waste-white.png"} alt="Remove Icon" />
+      {/* <img ref={ref} style={{cursor: 'pointer'}} src={hover ? "/waste-black.png" : "/waste-white.png"} alt="Remove Icon" /> */}
     </figure>
   );
 };

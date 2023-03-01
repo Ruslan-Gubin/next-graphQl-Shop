@@ -1,9 +1,11 @@
 import { Dispatch, FC, SetStateAction, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import Image from 'next/image';
 import { AdminTexteria, CustomAdminInput } from "@/shared/components";
 import { createdProductAction } from "../../libs/store/createdProductSlice";
 import { IBasicValue } from "../../libs/types/ICreatedProductSlice";
 import { useAddImage } from "@/shared";
+
 import styles from "./BasicInfo.module.scss";
 
 interface IBasicInfo {
@@ -43,11 +45,11 @@ const BasicInfo: FC<IBasicInfo> = ({
 
   useEffect(() => {
     setCategoryImag(categoryFile);
-  }, [categoryFile]);
+  }, [categoryFile, setCategoryImag]);
 
   useEffect(() => {
     setBrandImag(brandFile);
-  }, [brandFile]);
+  }, [brandFile, setBrandImag]);
 
   return (
     <section className={styles.basicInfo}>
@@ -84,7 +86,9 @@ const BasicInfo: FC<IBasicInfo> = ({
               </>
             )}
             {categoryImag.length > 0 && (
-              <img
+              <Image
+                width={70}
+                height={70}
                 onClick={() => setCategoryImag("")}
                 className={styles.categoryImag}
                 src={categoryImag}
@@ -130,7 +134,9 @@ const BasicInfo: FC<IBasicInfo> = ({
               </>
             )}
             {brandImag.length > 0 && (
-              <img
+              <Image
+                width={70}
+                height={70}
                 onClick={() => setBrandImag("")}
                 className={styles.categoryImag}
                 src={brandImag}

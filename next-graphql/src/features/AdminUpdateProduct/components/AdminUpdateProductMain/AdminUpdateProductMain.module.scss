@@ -1,12 +1,10 @@
-
 .root {
-display: flex;
-justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 
-@media (max-width: 1200px) {
-  flex-direction: column;
-}
-
+  @media (max-width: 1200px) {
+    flex-direction: column;
+  }
 
   & h2 {
     font-size: 2rem;
@@ -20,11 +18,11 @@ justify-content: space-between;
 
   & .basic__info {
     width: 40%;
-    
+
     @media (max-width: 1200px) {
       width: 100%;
     }
-    
+
     & .count {
       display: flex;
       justify-content: space-between;
@@ -39,20 +37,17 @@ justify-content: space-between;
       padding: 20px 0;
       & .images__item {
         border-radius: 10px;
-        width: 100px;
-        height: 100px;
+        width: auto;
+        height: auto;
         margin-right: 20px;
       }
-      
+
       & .img {
         border-radius: 10px;
-        width: 80px;
-        height: 80px;
+        width: auto;
+        height: auto;
       }
-
     }
-
-
   }
 
   & .additation_info {
@@ -67,7 +62,5 @@ justify-content: space-between;
       top: 0px;
       max-height: none;
     }
-
   }
-  
 }

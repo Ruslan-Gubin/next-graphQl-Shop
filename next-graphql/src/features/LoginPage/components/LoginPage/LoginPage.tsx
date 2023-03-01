@@ -45,7 +45,7 @@ const LoginPage = () => {
    if (user.name) {
     router.push('/lk/details')
    }
-  },[])
+  },[router, user.name])
 
 
   

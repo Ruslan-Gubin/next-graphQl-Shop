@@ -1,8 +1,14 @@
 import { useEffect, useRef, useState } from "react";
+import Image from 'next/image';
+
+import styles from './Heart.module.scss';
+
 
 const heartIcon = '/heartBlack.png';
 const heartPink = '/heartPink.png';
 const heartAllPink = '/heartsAllpink.png';
+
+
 
 interface IHeart {
   handleAddFavorite: () => void
@@ -34,9 +40,9 @@ const Heart = ({active, handleAddFavorite, removeFavorites}: IHeart) => {
   return (
     <figure>
       {!active ?
-      <img onClick={handleAddFavorite} style={{cursor: 'pointer'}} ref={ref} src={image} alt="heart img" />
+      <Image className={styles.hearts} width={30} height={30}  onClick={handleAddFavorite} style={{cursor: 'pointer'}} ref={ref} src={image} alt="heart img" />
       :
-      <img onClick={removeFavorites} style={{cursor: 'pointer'}} ref={ref} src={heartAllPink} alt="heart img" />
+      <Image className={styles.hearts} width={30} height={30} onClick={removeFavorites} style={{cursor: 'pointer'}} ref={ref} src={heartAllPink} alt="heart img" />
     }
     </figure>
   );

@@ -1,9 +1,8 @@
-import { ButtonFooterHelper } from "@/shared/components";
 import { modalQuestionsIcon } from "../../lib/assets/modalQuestionsIcon";
 import { GREETING_MESSAGE } from "../../constants/greetingMessage";
-
-import styles from "./ModalQuestionsMessage.module.scss";
+import Image from 'next/image';
 import { IDialogQuestion } from "../../model/types";
+import styles from "./ModalQuestionsMessage.module.scss";
 
 
 interface IModalQuestionsMessage {
@@ -58,7 +57,9 @@ const ModalQuestionsMessage: React.FC<IModalQuestionsMessage> = ({
           </ul>
         </div>
         <footer>
-          <img
+          <Image
+          width={20}
+          height={30}
             className={styles.paperclip}
             src={modalQuestionsIcon.paperclipIcon}
             alt="paperclip icon"
@@ -74,12 +75,14 @@ const ModalQuestionsMessage: React.FC<IModalQuestionsMessage> = ({
           <div 
           onClick={handleAddQuestion}
           className={styles.btn}>
-            <img src={modalQuestionsIcon.sendMessageIcon} alt="image madal add message" />
+            <Image width={30} height={30} src={modalQuestionsIcon.sendMessageIcon} alt="image madal add message" />
+            {/* <img src={modalQuestionsIcon.sendMessageIcon} alt="image madal add message" /> */}
             </div>
             : 
           <div 
           className={styles.disabled}>
-            <img src={modalQuestionsIcon.sendMessageIcon} alt="image madal add message" />
+            <Image width={30} height={30}  src={modalQuestionsIcon.sendMessageIcon} alt="image madal add message" />
+            {/* <img  src={modalQuestionsIcon.sendMessageIcon} alt="image madal add message" /> */}
             </div>
 
         }

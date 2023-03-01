@@ -1,7 +1,10 @@
-import { formattedPhone } from "@/features/CatalogPage/libs/helper/formattedPhone";
 import { ChangeEvent, Dispatch, FC, RefObject, SetStateAction } from "react";
+import Image from 'next/image';
+import { formattedPhone } from "@/features/CatalogPage/libs/helper/formattedPhone";
 
 import styles from "./UserCardDetails.module.scss";
+
+const userGuestImg = '/buyer-black.png'
 
 interface IUserCardDetails {
   userPhone: string;
@@ -31,9 +34,11 @@ const UserCardDetails: FC<IUserCardDetails> = ({
     <section className={styles.root}>
       <figure className={styles.figure__container}>
         <div className={styles.user__image}>
-          <img
+          <Image
+          width={80}
+          height={80}
           onClick={() => fileRef.current?.click()}
-          src={photoUser} alt="Img user" />
+          src={photoUser ? photoUser : userGuestImg} alt="Img user" />
           <input ref={fileRef} type="file" onChange={(e) => changeFile(e)} hidden />
         </div>
         <input className={styles.figcaption} type="text" value={name} onChange={(e) => setName(e.target.value)} />

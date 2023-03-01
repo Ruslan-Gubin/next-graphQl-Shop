@@ -1,7 +1,8 @@
+import { FC, useState } from "react";
+import Image from 'next/image';
 import { IsortOrdersUser } from "@/apps/types";
 import { formatterRub, formatterRuTime } from "@/features/CatalogPage/libs/helper";
 import { AccordionBird } from "@/shared";
-import { FC, useState } from "react";
 
 import styles from './UserOrderCard.module.scss';
 
@@ -45,7 +46,8 @@ const UserOrderCard: FC<IUserOrderCard> = ({order, removeOrder}) => {
         {order.products.map(product => (
           <li key={product.id} className={styles.product__item}>
             <figure className={styles.product__img}>
-            <img src={product.img} alt="product img" />
+            <Image width={40} height={40} src={product.img} alt="product img" />
+            {/* <img src={product.img} alt="product img" /> */}
             </figure>
             <p className={styles.product_name}>{product.name}</p>
           <p className={styles.product__brand}>{product.brandName}</p>

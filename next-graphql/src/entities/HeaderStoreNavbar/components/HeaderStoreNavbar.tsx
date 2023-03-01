@@ -1,9 +1,10 @@
 import Link from "next/link";
+import Image from 'next/image';
 import { useSelector } from "react-redux";
 import { selectUser } from "@/features";
 
-const addressIcon =
-  "https://res.cloudinary.com/ds289tkqj/image/upload/v1674831921/Hits/addressIcon_jgsuc2.png";
+// const addressIcon =
+//   "https://res.cloudinary.com/ds289tkqj/image/upload/v1674831921/Hits/addressIcon_jgsuc2.png";
 const loginIcon =
   "https://res.cloudinary.com/ds289tkqj/image/upload/v1674832099/Hits/user-60_lfvy7k.png";
 const orderIcon =
@@ -17,14 +18,14 @@ const HeaderStoreNavbar = ({ shopingCount  }: { shopingCount: number }) => {
   return (
     <ul className={styles.root}>
       <li>
-      <Link className={styles.linkItem} href={"/services/dostavka"}>
-        <img src={addressIcon} alt="address icon" />
+      {/* <Link className={styles.linkItem} href={"/services/dostavka"}>
+        <Image width={27} height={27} src={addressIcon} alt="address icon" />
         <span>Адреса</span>
-      </Link>
+      </Link> */}
       </li>
       <li>
       <Link className={styles.linkItem} href={user.name ? '/lk/details' : "/security/login"}>
-        <img src={loginIcon} alt="address icon" />
+        <Image width={27} height={27} src={loginIcon} alt="address icon" />
         {user.name ? <span> Профиль </span> : <span> Войти </span>}
       </Link>
       </li>
@@ -35,7 +36,7 @@ const HeaderStoreNavbar = ({ shopingCount  }: { shopingCount: number }) => {
           <span>{shopingCount}</span>
         </div>
         }
-        <img src={orderIcon} alt="address icon" />
+        <Image width={27} height={27} src={orderIcon} alt="address icon" />
         <span>Корзина </span>
       </Link>
         </li>

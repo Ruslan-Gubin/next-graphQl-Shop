@@ -12,7 +12,7 @@ interface Ioption {
 
 interface IDropDownMenu {
   options: Ioption[] ;
-  onChange: (value: IOptionDepartment) => void;
+  onChange: (value: Ioption | IOptionDepartment) => void;
   value: Ioption;
 }
 
@@ -20,7 +20,7 @@ const DropDownMenu: FC<IDropDownMenu> = ({ options, onChange, value }) => {
   const [dropActive, setDropActive] = useState(false);
   const dropRef = useRef<HTMLDivElement>(null);
 
-  const handlerChangeInitial = (value: IOptionDepartment) => {
+  const handlerChangeInitial = (value: Ioption) => {
     onChange(value);
     setDropActive(false);
   };

@@ -1,10 +1,11 @@
+import { FC, useState } from "react";
+import Image from 'next/image';
 import { IsortOrdersUser } from "@/apps/types";
 import { IBasketProduct } from "@/features/Basket/libs/types/IBasketSlice";
 import { formatterRub, formatterRuTime } from "@/features/CatalogPage/libs/helper";
 import { formattedPhone } from "@/features/CatalogPage/libs/helper/formattedPhone";
 import { AccordionBird } from "@/shared";
 import { UserIconActive } from "@/shared/components";
-import { FC, useState } from "react";
 
 import styles from './AdminOrderCard.module.scss';
 
@@ -54,7 +55,7 @@ const AdminOrderCard: FC<IUserOrderCard> = ({handleUpdateStatus, order, removeOr
         {order.products.map(product => (
           <li key={product.id} className={styles.product__item}>
             <figure className={styles.product__img}>
-            <img src={product.img} alt="product img" />
+            <Image width={40} height={40} src={product.img} alt="product img" />
             </figure>
             <p className={styles.product_name}>{product.name}</p>
           <p className={styles.product__brand}>{product.brandName}</p>

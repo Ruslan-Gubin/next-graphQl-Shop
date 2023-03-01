@@ -3,13 +3,14 @@ import { IProductType } from '@/apps/types';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import Image from 'next/image';
 import { formatterRub } from '@/features/CatalogPage/libs/helper';
 import { findMaxOpinion, Heart, StarsList } from '@/shared';
 import { useInView } from "react-intersection-observer";
 import { selectBasket } from '@/features';
 import { checkFavorite } from '../../lib/helpers/checkFavorite';
-import styles from './ProductCategoryMobile.module.scss';
 
+import styles from './ProductCategoryMobile.module.scss';
 
 interface IProductCategoryMobile {
 product: IProductType
@@ -34,7 +35,7 @@ const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({product, onClickBuy
         setButtonActive(true)
       }
     })
-  },[basket])
+  },[basket, product._id])
   
   return (
     <article ref={cardRef} className={styles.root}>
@@ -44,9 +45,16 @@ const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({product, onClickBuy
         </div>
         <figure className={styles.image__container}>
           <Link href={`/catalog/${product._id}`}>
-          <img ref={ref}
-           className={styles.img} src={isVisible ? product.photo.images[0].url : ''} 
+          <Image
+          width={500}
+          height={500}
+          ref={ref}
+          className={styles.img}
+          src={isVisible ? product.photo.images[0].url : 'https://res.cloudinary.com/ds289tkqj/image/upload/v1675357978/Hits/icons8-add-image-80_fxoexh.png'} 
             alt="Product imag" />
+          {/* <img ref={ref}
+           className={styles.img} src={isVisible ? product.photo.images[0].url : ''} 
+            alt="Product imag" /> */}
       </Link>
           <figcaption style={hoverCard ? { backgroundColor: 'white'}: {backgroundColor: ''}} className={styles.info__container}>
             <span className={styles.discount}>{product.discount}%</span>

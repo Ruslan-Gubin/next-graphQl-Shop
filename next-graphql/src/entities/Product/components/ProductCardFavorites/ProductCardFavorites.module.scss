@@ -1,34 +1,30 @@
-@use '../../../../apps/styles/common/var';
+@use "../../../../apps/styles/common/var";
 
 .root {
-padding: 12px;
-cursor: pointer;
-position: relative;
+  padding: 12px;
+  cursor: pointer;
+  position: relative;
 
-@media (max-width: 1024px) {
-  background-color: var.$color-white;
-  background-color: rgba(255, 255, 255, 0);
-  border-radius: 0; 
-}
-
-
-&:hover {
-  @media (min-width: 1024px) {
+  @media (max-width: 1024px) {
     background-color: var.$color-white;
-    border-radius: 15px;
-    box-shadow: var.$box-shadow;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 0;
+  }
+
+  &:hover {
+    @media (min-width: 1024px) {
+      background-color: var.$color-white;
+      border-radius: 15px;
+      box-shadow: var.$box-shadow;
+    }
+    & .close__btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      display: block;
+    }
   }
   & .close__btn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    display: block;
-  }
-
-  
-
-}
-& .close__btn {
     display: none;
     @media (max-width: 1024px) {
       position: absolute;
@@ -38,9 +34,14 @@ position: relative;
     }
   }
 
+  img {
+    width: auto;
+    height: auto;
+  }
 
-  & .product__img {
-    width: 100%;
+   .product__img {
+    width: auto;
+    height: auto;
     margin-bottom: 5px;
     border-radius: 10px;
   }
@@ -77,7 +78,7 @@ position: relative;
       font-size: 0.9rem;
     }
   }
-  
+
   & .description {
     color: var.$color-secondary;
     width: 100%;
@@ -99,10 +100,5 @@ position: relative;
     &:hover {
       background-color: var.$color-shop-button-active;
     }
-
-   
   }
-
-
-
 }

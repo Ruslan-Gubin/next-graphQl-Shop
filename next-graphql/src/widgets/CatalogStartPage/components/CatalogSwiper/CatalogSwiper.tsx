@@ -51,7 +51,7 @@ const CatalogSwiper: FC<ICatelogSwiper> = ({catalogImages, href}) => {
     return () => {
       clearInterval(timer)
     }
-  },[])
+  },[catalogImages, finish])
 
  
   return (
@@ -64,7 +64,8 @@ const CatalogSwiper: FC<ICatelogSwiper> = ({catalogImages, href}) => {
       <figure 
       onClick={() => handleRouter()}
       className={styles.img__container}>
-        <img src={imageActive.img} alt="imag swiper" />
+        <Image width={1400} height={800} src={imageActive.img} alt="imag swiper" />
+        {/* <img src={imageActive.img} alt="imag swiper" /> */}
         <figcaption><p className={styles.name__item}>{imageActive.value}</p></figcaption> 
       </figure>
       {countRef.current < finish -1 &&

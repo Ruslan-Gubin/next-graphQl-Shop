@@ -1,1 +1,1 @@
-export { ProductFeedback } from "./FeedbackList";
+export { FeedbackList } from "./FeedbackList";

@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import Image from 'next/image';
 import { createdProductImagesAction, selectCreatedProductImages } from "../../libs/store/createdProductImagesSlice";
 import { addProductIcons } from "../../constants/addProductIcons";
 import {  useAddImage } from "@/shared";
@@ -19,13 +20,15 @@ const AddProductImages = () => {
         <li 
         onClick={() => dispatch(createdProductImagesAction.removeImage({item, arr}))} 
         key={index}>
-          <img  className={styles.images} src={String(item)} alt="Product image" />
+          <Image width={100} height={100} className={styles.images} src={String(item)} alt="Product image" />
       </li>
         ))}
     </ul>
         {images.length < 5 &&
         <>
-        <img 
+        <Image 
+        width={100}
+        height={100} 
         onClick={() => fileRef.current?.click()}
         src={addProductIcons.addProduct}
         alt="Add product icon" 

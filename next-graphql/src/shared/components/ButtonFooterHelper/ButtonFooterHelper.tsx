@@ -1,4 +1,5 @@
 import { FC } from "react";
+import Image from 'next/image';
 
 import styles from "./ButtonFooterHelper.module.scss";
 
@@ -15,7 +16,8 @@ const ButtonFooterHelper: FC<IButtonFooterHelper> = ({
 }) => {
   return (
     <div  onClick={onClick}  className={active ? styles.active : styles.disabled}>
-      <img src={icon} alt="icon helpers" />
+      <Image width={30} height={30} src={icon} alt="icon helpers" />
+      {/* <img src={icon} alt="icon helpers" /> */}
     </div>
   );
 };

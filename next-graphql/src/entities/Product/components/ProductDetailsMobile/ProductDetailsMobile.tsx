@@ -1,7 +1,8 @@
-import { useDetailsContext } from '@/pages/catalog/[id]';
 import { Dispatch, FC, SetStateAction } from 'react';
 import {useRouter} from 'next/router';
 import Link from 'next/link';
+import Image from 'next/image';
+import { useDetailsContext } from '@/pages/catalog/[id]';
 import { Array, findMaxOpinion, Heart, StarsList } from '@/shared';
 import { formatterRub } from '@/features/CatalogPage/libs/helper';
 import { selectBasket } from '@/features';
@@ -43,7 +44,8 @@ const ProductDetailsMobile: FC<IProductDetailsMobile> = ({
         <ul className={styles.header__images}>
           {product.photo.images.map(imag => (
             <li key={imag.url} className={styles.imag}>
-              <img src={imag.url} alt="images" />
+              <Image width={500} height={500} src={imag.url} alt="images" />
+              {/* <img src={imag.url} alt="images" /> */}
           </li>
             ))}
         </ul>

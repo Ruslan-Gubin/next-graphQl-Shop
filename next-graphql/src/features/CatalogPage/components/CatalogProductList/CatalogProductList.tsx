@@ -37,7 +37,7 @@ const CatalogProductList: FC<ICatalogProductList> = ({products, isDesktop}) => {
     setTimeout(() => {
       setQueckMessage(() => ({status: false, text: ''}))
     }, 3000);
-  },[products])
+  },[ dispatch])
 
   const handleAddFavorites = (product: IProductType) => {
     const productOptions = {

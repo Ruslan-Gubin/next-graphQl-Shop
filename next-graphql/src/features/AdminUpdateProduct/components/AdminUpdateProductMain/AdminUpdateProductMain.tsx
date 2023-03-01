@@ -1,11 +1,12 @@
 import { FC, memo } from "react";
 import { IProductType } from "@/apps/types";
-
-import styles from "./AdminUpdateProductMain.module.scss";
+import Image from 'next/image';
 import { AdminTexteria, CustomAdminInput } from "@/shared/components";
 import { addImageIcon } from "../../constants/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUpdateOption, updateOptionAction } from "../../libs/store";
+
+import styles from "./AdminUpdateProductMain.module.scss";
 
 interface IAdminUpdateProductMain {
   productInfo: IProductType;
@@ -86,7 +87,9 @@ const dispatch = useDispatch()
         <ul className={styles.images__container}>
           {productInfo.photo.images.map((item, ind) => (
             <li key={ind}> 
-              <img 
+              <Image
+              width={100}
+              height={100}
               onClick={() => handleRemoveImage(item)}
               className={styles.images__item} src={item.url} 
               alt="image product" />
@@ -94,7 +97,9 @@ const dispatch = useDispatch()
           ))}
               {addImage.map(imagString => (
                 <li key={imagString}>
-                  <img 
+                  <Image
+                  width={100}
+                  height={100} 
                   onClick={() => dispatch(updateOptionAction.cancelAddImages({imag: imagString}))}
                   className={styles.images__item}
                   src={imagString} 
@@ -104,7 +109,9 @@ const dispatch = useDispatch()
                 ))}
           {productInfo.photo.images.length + addImage.length < 5 &&
            <>
-           <img
+           <Image
+           width={80}
+           height={80}
            onClick={() => fileRef.current?.click()}
            src={addImageIcon} 
            alt="icon add image" 

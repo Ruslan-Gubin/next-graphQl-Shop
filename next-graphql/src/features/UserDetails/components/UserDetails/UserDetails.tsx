@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser, userAction } from "@/features/LoginPage";
@@ -9,8 +9,9 @@ import { DELETE_USER, UPDATE_USER } from '../../module';
 import { GET__ONE__USER } from '@/apps/apollo';
 import { GET_ORDERS_LENGTH } from '@/apps/apollo/orderRequest';
 import { UserDetailsOrders, UserDetailsFavorites, UserDetailsButtons } from '../';
-import styles from './UserDetails.module.scss';
 import { Loader } from '@/shared/components';
+import styles from './UserDetails.module.scss';
+
 
 const mockPhoto =
   "https://res.cloudinary.com/ds289tkqj/image/upload/v1675092050/Hits/user-100_1_lbvupp.png";
@@ -35,53 +36,53 @@ const mockPhoto =
     const [activeRemove, setActiveRemove] = useState(false)
     const router = useRouter()
   const dispatch = useDispatch()
-  
-  let initialPhoto: string;
+  const [initPhoto, setInitPhoto] = useState<string>(mockPhoto)
 
   
-  if (userData) {
-    initialPhoto = userData.user.image.url ? userData.user.image.url : mockPhoto
-  }
-  
   useEffect(() => {
+    
+    if (userData) {
+      setInitPhoto(userData.user.image.url ? userData.user.image.url : mockPhoto)
+    }
+
     if (userData) {
       setName(userData.user.name)
       setEmail(userData.user.email)
-      setPhotoUser(initialPhoto)
+      setPhotoUser(initPhoto)
     } 
     
-  },[userData])
+  },[userData, initPhoto])
   
   useEffect(() => {
     if (userData) {
-      if (name !== userData.user.name || email !== userData.user.email || photoUser !== initialPhoto) {
+      if (name !== userData.user.name || email !== userData.user.email || photoUser !== initPhoto) {
         setActiveUpdate(true)
       } else {
         setActiveUpdate(false)
       }
     }
-  },[name, email, photoUser, userData])
+  },[name, email, photoUser, userData, initPhoto])
 
   useEffect(() => {
     if (imag) {
       setPhotoUser(imag)
     }
   },[imag])
+ 
+  const  handleCancelUpdate = useCallback(() => {
+    if (userData) {
+      setName(userData.user.name)
+      setEmail(userData.user.email)
+      setPhotoUser(initPhoto)
+    }
+    cancelImage()
+  },[cancelImage, userData,initPhoto])
 
   useEffect(() => {
     if (activeRemove) {
       handleCancelUpdate()
     }
-  },[activeRemove])
-
-const  handleCancelUpdate = () => {
-  if (userData) {
-    setName(userData.user.name)
-    setEmail(userData.user.email)
-    setPhotoUser(initialPhoto)
-  }
-  cancelImage()
-  }
+  },[activeRemove, handleCancelUpdate])
 
   const handleUpdateUser = async () => {
     setActiveUpdate(false)

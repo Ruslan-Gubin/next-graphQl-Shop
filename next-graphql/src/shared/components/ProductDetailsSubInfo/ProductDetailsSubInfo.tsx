@@ -3,6 +3,7 @@ import { formatterRub } from '@/features/CatalogPage/libs/helper';
 import { useRouter } from "next/router";
 import { useDetailsContext } from '@/pages/catalog/[id]';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Heart } from '../Heart';
 import { useSelector } from 'react-redux';
 import { selectBasket } from '@/features';
@@ -70,7 +71,8 @@ const ProductDetailsSubInfo: FC<IProductDetailsSubInfo> = ({handleRemoveFavorite
 
         <figure>
           <Link href={`/brands/${product.brand._id}`}>
-          <img className={styles.brand__image} src={product.brand.image.url} alt="Brand imag" />
+          <Image width={150} height={50} className={styles.brand__image} src={product.brand.image.url} alt="Brand imag" />
+          {/* <img className={styles.brand__image} src={product.brand.image.url} alt="Brand imag" /> */}
           </Link>
         </figure>
       

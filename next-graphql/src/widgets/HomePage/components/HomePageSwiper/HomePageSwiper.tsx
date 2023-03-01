@@ -1,7 +1,6 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-import Image from 'next/image';
 import { catalogPageAction } from "@/features";
 
 import styles from "./HomePageSwiper.module.scss";
@@ -64,8 +63,9 @@ const HomePageSwiper: FC<IHomePageSwiper> = ({ imgArr }) => {
         </button>
       )}
       <figure onClick={() => handleRouter()} className={styles.img__container}>
+        <picture>
         <img  src={imageActive.img} alt="imag swiper" />
-        {/* <Image sizes='100%' width={1450} height={370} src={imageActive.img} alt="imag swiper" /> */}
+        </picture>
       </figure>
       {countRef.current < finish - 1 && (
         <button

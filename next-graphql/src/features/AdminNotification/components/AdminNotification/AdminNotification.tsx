@@ -3,10 +3,12 @@ import Link from "next/link";
 import { useQuery } from "@apollo/client";
 import { ALL_QUESTIONS } from "@/apps/apollo";
 import { notificationIcons } from "../../lib/assets/linkNotificationIcons";
-import styles from "./AdminNotification.module.scss";
+import Image from 'next/image';
 import { useDispatch } from "react-redux";
 import { adminQuestionAction } from "@/features/AdminQuestionsContent";
 import { GET_NEW_ORDERS_LENGTH } from "@/apps/apollo/orderRequest";
+
+import styles from "./AdminNotification.module.scss";
 
 const AdminNotification: FC = () => {
   const { data, loading } = useQuery(ALL_QUESTIONS);
@@ -19,7 +21,7 @@ const AdminNotification: FC = () => {
       const filterArr = data.questions.filter((item: any) => !item.viewed);
       setLengthViewed(filterArr.length);
     }
-  }, [data]);
+  }, [data, loading]);
 
   return (
     <>
@@ -28,19 +30,19 @@ const AdminNotification: FC = () => {
         onClick={() => dispatch(adminQuestionAction.setMenuSortQuestions({ value: "vieweds" }))}
          className={styles.notificationItem}>
           <Link href={"/admin/questions"}>
-            <img src={notificationIcons.message} alt="message icon" />
+            <Image width={25} height={25}  src={notificationIcons.message} alt="message icon" />
             {lengthViewed > 0 && <small>{lengthViewed}</small>}
           </Link>
         </div>
         <div className={styles.notificationItem}>
           <Link href={"/admin/notification"}>
-            <img src={notificationIcons.notification} alt="notification icon" />
+            <Image width={25} height={25} src={notificationIcons.notification} alt="notification icon" />
             {allOrders && allOrders?.getNewLength.length > 0 && <small>{allOrders?.getNewLength.length}</small>}
           </Link>
         </div>
 
         <div className={styles.menugrid}>
-          <img src={notificationIcons.menuGrid} alt="menu grid icon" />
+          <Image width={25} height={25} src={notificationIcons.menuGrid} alt="menu grid icon" />
         </div>
         <Link href={"/"}>
           <div className={styles.exit}>

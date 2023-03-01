@@ -1,9 +1,10 @@
 import { FC } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import { IBasketProduct } from '@/features/Basket/libs/types/IBasketSlice';
 import { formatterRub } from '@/features/CatalogPage/libs/helper';
 import { CloseProductButton } from '@/shared';
 
-import Link from 'next/link';
 
 import styles from './ProductCardFavorites.module.scss';
 
@@ -22,7 +23,9 @@ const discount = Math.ceil(((product.price - product.oldPrice) / product.oldPric
     <article className={styles.root}>
       <div className={styles.close__btn}><CloseProductButton onClick={removeFavorites} /></div>
         <Link href={`/catalog/${product.id}`}>
-        <img className={styles.product__img} src={product.img} alt="Product imag" />
+          <figure className={styles.product__img}>
+        <Image width={240} height={340} src={product.img} alt="Product imag" />
+          </figure>
    
       <div className={styles.discount__container}>
         <small className={styles.discount__content}>{discount}%</small>

@@ -1,6 +1,6 @@
 import { OPTIONS_DEPARTMENT } from '@/apps/constants';
 import { DropDownMenu } from '@/shared';
-import { FC, useEffect } from 'react';
+import { FC, useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import {  updateProductAction } from '../../libs/store/updateProductSlice';
 import { Ioption, IOptionDepartment } from '../../libs/types/IUpdateProductInitial';
@@ -23,7 +23,7 @@ const AdminProductManagmentHeader: FC<IAdminProductManagmentHeader> = ({
  
   const dispatch = useDispatch()
 
-  const categoryOption = () => {
+  const categoryOption = useCallback(() => {
     const result: Ioption[] = [];
     if (sortCategory) {
       sortCategory.forEach((item) => {
@@ -31,7 +31,7 @@ const AdminProductManagmentHeader: FC<IAdminProductManagmentHeader> = ({
       });
     } 
     return result;
-  };
+  },[sortCategory]);
 
   useEffect(() => {
     if (categoryOption().length > 0) {
@@ -39,7 +39,7 @@ const AdminProductManagmentHeader: FC<IAdminProductManagmentHeader> = ({
         updateProductAction.setCategoriesValue({ value: categoryOption()[0] })
         );
       }
-  }, [subdepartmentMenu]);
+  }, [subdepartmentMenu, categoryOption, dispatch]);
 
   return (
     <header className={styles.root}>
@@ -49,6 +49,7 @@ const AdminProductManagmentHeader: FC<IAdminProductManagmentHeader> = ({
             options={OPTIONS_DEPARTMENT}
             value={departmentMenu}
             onChange={(value) => 
+              //@ts-ignore
               dispatch(updateProductAction.getDepartmentValue({ value }))}
             />
         </li>

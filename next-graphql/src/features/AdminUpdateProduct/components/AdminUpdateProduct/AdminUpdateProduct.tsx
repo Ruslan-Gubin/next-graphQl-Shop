@@ -42,14 +42,14 @@ const AdminUpdateProduct: FC = () => {
     if (imag && !addImage.includes(imag)) {
       dispatch(updateOptionAction.getAddImages({ img: imag }));
     }
-  }, [imag]);
+  }, [imag, addImage, dispatch]);
 
   useEffect(() => {
     if (!loading && data) {
       setProductInfo(data.product);
       dispatch(updateOptionAction.getOptions(data.product.options));
     }
-  }, [data]);
+  }, [data, dispatch, loading]);
 
   useEffect(() => {
     if (addImage.length === 0 && productInfo.photo?.images.length === 0) {

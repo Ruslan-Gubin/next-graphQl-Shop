@@ -1,4 +1,6 @@
 %foto-small {
+  width: auto;
+  height: auto;
   width: 68px;
   height: 92px;
   border-radius: 10px;
@@ -13,61 +15,60 @@
   background-color: black;
   rotate: (90deg);
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 4px;
     left: 0;
     width: 12px;
-  height: 2px;
-  background-color: black;
-  rotate: (35deg);
+    height: 2px;
+    background-color: black;
+    rotate: (35deg);
   }
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: -4px;
     left: 0px;
     width: 12px;
-  height: 2px;
-  background-color: black;
-  rotate: (-35deg);
+    height: 2px;
+    background-color: black;
+    rotate: (-35deg);
   }
 }
 
 %arrow-container {
   position: relative;
-        width: 30px;
-        height: 30px;
-        display: flex;
-        margin: 0 auto;
-        cursor: pointer;
-        &:hover{
-          & .arrow__up {
-            background-color: rgb(194, 56, 199);
-            &::after {
-              background-color: rgb(194, 56, 199);
-            }
-            &::before {
-              background-color: rgb(194, 56, 199);
-            }
-          }
-        }
-        & .arrow__up {
-          position: relative;
-          top: 15px;
-          display: flex;
-          margin: 0 auto;
-          @extend %arrow;
-        } 
-        & .arrow__up_white {
-          position: relative;
-          top: 15px;
-          display: flex;
-          margin: 0 auto;
-          @extend %arrow;
-        } 
+  width: 30px;
+  height: 30px;
+  display: flex;
+  margin: 0 auto;
+  cursor: pointer;
+  &:hover {
+    & .arrow__up {
+      background-color: rgb(194, 56, 199);
+      &::after {
+        background-color: rgb(194, 56, 199);
+      }
+      &::before {
+        background-color: rgb(194, 56, 199);
+      }
+    }
+  }
+  & .arrow__up {
+    position: relative;
+    top: 15px;
+    display: flex;
+    margin: 0 auto;
+    @extend %arrow;
+  }
+  & .arrow__up_white {
+    position: relative;
+    top: 15px;
+    display: flex;
+    margin: 0 auto;
+    @extend %arrow;
+  }
 }
-
 
 .foto__container {
   display: flex;
@@ -89,7 +90,7 @@
 
     & .foto__small_active {
       @extend %foto-small;
-        border: 3px solid rgb(192, 60, 209);
+      border: 3px solid rgb(192, 60, 209);
     }
 
     & .arrow__up_container {
@@ -102,29 +103,29 @@
         background-color: rgba(189, 189, 189, 0.835);
         rotate: (90deg);
         &::after {
-          content: '';
+          content: "";
           position: absolute;
           top: 4px;
           left: 0;
           width: 12px;
-        height: 2px;
-        background-color: rgba(189, 189, 189, 0.835);
-        rotate: (35deg);
+          height: 2px;
+          background-color: rgba(189, 189, 189, 0.835);
+          rotate: (35deg);
         }
         &::before {
-          content: '';
+          content: "";
           position: absolute;
           top: -4px;
           left: 0px;
           width: 12px;
-        height: 2px;
-        background-color: rgba(189, 189, 189, 0.835);
-        rotate: (-35deg);
+          height: 2px;
+          background-color: rgba(189, 189, 189, 0.835);
+          rotate: (-35deg);
         }
       }
     }
-    
-    & .arrow__down_container{
+
+    & .arrow__down_container {
       @extend %arrow-container;
       position: relative;
       width: 30px;
@@ -132,17 +133,17 @@
       display: flex;
       margin: 0 auto;
       cursor: pointer;
-        &:hover{
-          & .arrow__down {
+      &:hover {
+        & .arrow__down {
+          background-color: rgb(194, 56, 199);
+          &::after {
             background-color: rgb(194, 56, 199);
-            &::after {
-              background-color: rgb(194, 56, 199);
-            }
-            &::before {
-              background-color: rgb(194, 56, 199);
-            }
+          }
+          &::before {
+            background-color: rgb(194, 56, 199);
           }
         }
+      }
       & .arrow__down {
         position: relative;
         top: 15px;
@@ -150,7 +151,7 @@
         margin: 0 auto;
         @extend %arrow;
         rotate: (-90deg);
-      } 
+      }
       & .arrow__down_white {
         position: relative;
         top: 15px;
@@ -165,8 +166,8 @@
         &::before {
           background-color: rgba(189, 189, 189, 0.835);
         }
-      } 
-    }   
+      }
+    }
   }
 
   & .foto__big {

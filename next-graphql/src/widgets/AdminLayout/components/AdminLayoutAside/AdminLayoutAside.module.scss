@@ -91,16 +91,16 @@
     cursor: pointer;
     background-color: rgba(50, 54, 60, 0.995);
     position: relative;
-  margin-bottom: 20px;
-  width: 65px;
-  height: 65px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  & img {
-    width: 80%;
-    height: 80%;
-  }
+    margin-bottom: 20px;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    & img {
+      width: 80%;
+      height: 80%;
+    }
   }
 }

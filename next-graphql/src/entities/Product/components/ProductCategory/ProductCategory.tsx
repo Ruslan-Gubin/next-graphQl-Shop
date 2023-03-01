@@ -1,15 +1,15 @@
+import { FC, memo, useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import { IProductType } from '@/apps/types';
 import { formatterRub } from '@/features/CatalogPage/libs/helper';
-import { FC, memo, useEffect, useRef, useState } from 'react';
 import { findMaxOpinion, Heart, StarsList } from '@/shared';
 import { useInView } from "react-intersection-observer";
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { selectBasket } from '@/features';
-import styles from './ProductCategory.module.scss';
 import { checkFavorite } from '../../lib/helpers/checkFavorite';
-
+import styles from './ProductCategory.module.scss';
 
 interface IProductCategory {
 product: IProductType
@@ -50,7 +50,7 @@ const ProductCategoryF: FC<IProductCategory> = ({product, onClickBuy, addFavorit
         setButtonActive(true)
       }
     })
-  },[basket])
+  },[basket, product._id])
   
   return (
     <article ref={cardRef} className={styles.root}>
@@ -60,9 +60,20 @@ const ProductCategoryF: FC<IProductCategory> = ({product, onClickBuy, addFavorit
         </div>
         <figure className={styles.image__container}>
           <Link href={`/catalog/${product._id}`}>
-          <img ref={ref}
-          className={styles.img} src={isVisible ? product.photo.images[0].url : ''} 
+      
+          <Image
+          width={500}
+          height={500}
+          ref={ref}
+          className={styles.img}
+          src={isVisible ? product.photo.images[0].url : 'https://res.cloudinary.com/ds289tkqj/image/upload/v1675357978/Hits/icons8-add-image-80_fxoexh.png'} 
           alt="Product imag" />
+        
+          {/* <img
+          ref={ref}
+          className={styles.img}
+          src={isVisible ? product.photo.images[0].url : ''} 
+          alt="Product imag" /> */}
       </Link>
           <figcaption style={hoverCard ? { backgroundColor: 'white'}: {backgroundColor: ''}} className={styles.info__container}>
           {hoverCard ? 

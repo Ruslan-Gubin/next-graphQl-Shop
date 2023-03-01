@@ -1,4 +1,4 @@
-
+import Image from 'next/image';
 import { IBasketProduct } from '@/features/Basket/libs/types/IBasketSlice';
 import { formatterRub } from '@/features/CatalogPage/libs/helper';
 import { Heart, RemoveIcon } from '@/shared';
@@ -19,8 +19,7 @@ const ProductCardBasket = ({product, addFavorite, decrement, increment, removePr
   return (
     <article className={styles.root}>
       <figure className={styles.product__info_container}>
-        <img className={styles.product__info_img} src={product.img} alt="Product Image" />
-        <figcaption className={styles.product__description_container}>
+      <Image width={96} height={128} className={styles.product__info_img} src={product.img} alt="Product Image" />        <figcaption className={styles.product__description_container}>
           <p className={styles.product__info_description}>{product.name},{product.brandName}</p>
           <p className={styles.product__info_color}>{product.color}</p>
         </figcaption>
