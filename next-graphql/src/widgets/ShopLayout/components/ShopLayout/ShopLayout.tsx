@@ -2,8 +2,9 @@ import { FC, useState } from "react";
 import { useSelector } from "react-redux";
 import Head from "next/head";
 import Link from "next/link";
+import { FooterShop } from "@/widgets/FooterShop";
 
-import { FooterShop } from "../../../../widgets";
+// import { FooterShop } from "../../../../widgets";
 import * as features from "../../../../features";
 import { ShopLayoutAside } from "../ShopLayoutAside";
 import { ShopLayoutHeader } from "../ShopLayoutHeader";
