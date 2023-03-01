@@ -66,22 +66,23 @@
       }
     ]
   },
-  "include": [
-    "src",
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "types.d.ts",
-    "src/store/movie-api/testSlice",
-    "src/entities/User/api/updateUserData",
-    "src/entities/User/api/fetcthUserData",
-    "src/entities/User/api/vreaterNewUser",
-    "src/entities/User/api/mappers/mapUserDataToApi",
-    "src/entities/User/api/mapUserDataFromApi",
-    "src/shared/api/axiosInstance",
-    "src/shared/api/rtkApi",
-    ".next/types/**/*.ts"
-  ],
+  // "include": [
+  //   "src",
+  //   "next-env.d.ts",
+  //   "**/*.ts",
+  //   "**/*.tsx",
+  //   "types.d.ts",
+  //   "src/store/movie-api/testSlice",
+  //   "src/entities/User/api/updateUserData",
+  //   "src/entities/User/api/fetcthUserData",
+  //   "src/entities/User/api/vreaterNewUser",
+  //   "src/entities/User/api/mappers/mapUserDataToApi",
+  //   "src/entities/User/api/mapUserDataFromApi",
+  //   "src/shared/api/axiosInstance",
+  //   "src/shared/api/rtkApi",
+  //   ".next/types/**/*.ts"
+  // ],
+  "include": ["src/**/*.tsx", "src/**/*.ts"],
   "exclude": [
     "node_modules",
     "src/**/*.test.ts"
