@@ -83,19 +83,19 @@ const HomePage = ({ categoryData , maxWievsProducts, newProducts, maxDiscountPro
           ))}
       </ul>
 
-      {watchedProduct.length > 0 && (
+      {newProducts.length > 0 && (
         <CatatlogProductList
         title="Новинки"
         productList={newProducts}
         />
         )}
-      {watchedProduct.length > 0 && (
+      {maxDiscountProducts.length > 0 && (
         <CatatlogProductList
         title="Выгодные"
         productList={maxDiscountProducts}
         />
         )}
-      {watchedProduct.length > 0 && (
+      {maxWievsProducts.length > 0 && (
         <CatatlogProductList
         title="Популярное"
         productList={maxWievsProducts}
@@ -106,7 +106,7 @@ const HomePage = ({ categoryData , maxWievsProducts, newProducts, maxDiscountPro
             title="Вы недавно смотрели"
             productList={watchedProduct}
           />
-          )}
+        )}
 
         <HomePageFooter />
 
