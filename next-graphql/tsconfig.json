@@ -51,7 +51,7 @@
 
 
 
-    // "baseUrl": "src",
+    "baseUrl": "src/",
     // "paths": {
     //   "@/*": [
     //     "./*"
@@ -67,6 +67,7 @@
     ]
   },
   "include": [
+    "src",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
