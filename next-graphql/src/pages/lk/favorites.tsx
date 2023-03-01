@@ -1,6 +1,6 @@
-import { UserFavorites } from "@/features";
-import { LKHeader } from "@/shared";
-import { ShopLayout } from "@/widgets";
+import { UserFavorites } from "../../features";
+import { LKHeader } from "../../shared";
+import { ShopLayout } from "../../widgets";
 
 
 const Favorites = () => {

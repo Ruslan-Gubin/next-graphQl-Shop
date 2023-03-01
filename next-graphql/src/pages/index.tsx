@@ -1,12 +1,11 @@
-import { client } from "@/apps/apollo";
+import { client } from "../apps/apollo";
 import { NextPageContext} from 'next';
-import { ShopLayout } from "@/widgets/ShopLayout";
-// import { HomePage } from "@/widgets";
+import { ShopLayout } from "../widgets";
 import { HomePage } from '../widgets'
-import { GET_CATEGORYES } from "@/apps/apollo/CategoryRequest";
-import { ICategoryType, IProductType } from "@/apps/types";
-import styles from "@/apps/styles/pages/Home.module.scss";
-import { GET__MAXDISCOUNT__ALLPRODUCT, GET__MAXVIEWS__ALLPRODUCT, GET__NEW__ALLPRODUCT } from "@/apps/apollo/productRequest/productRequest";
+import { GET_CATEGORYES } from "../apps/apollo/CategoryRequest";
+import { ICategoryType, IProductType } from "../apps/types";
+import styles from "../apps/styles/pages/Home.module.scss";
+import { GET__MAXDISCOUNT__ALLPRODUCT, GET__MAXVIEWS__ALLPRODUCT, GET__NEW__ALLPRODUCT } from "../apps/apollo/productRequest/productRequest";
 
 interface IHome {
   categoryData:  ICategoryType[] 

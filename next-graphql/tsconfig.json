@@ -21,16 +21,32 @@
 
 
 
-    "baseUrl": "src",
+    // "baseUrl": "src",
 
     "paths": {
-      "@/apps/*": [ "apps/*" ],
-      "@/entities/*": [ "entities/*" ],
-      "@/pages/*": [ "pages/*" ],
-      "@/shared/*": [ "shared/*" ],
+      "@/apps": [ "apps/*" ],
+      "@/entities": [ "entities/*" ],
+      "@/pages": [ "pages/*" ],
+      "@/shared": [ "shared/*" ],
       "@/widgets": [ "widgets/*" ],
-      "@/features/": [ "features/*" ],
+      "features": [ "features" ],
     },
+
+    // "baseUrl": "src",
+    // "paths": {
+    //   "@/widgets": ["../widgets/*"],
+    //   // "utils": ["utils"],
+    //   // "pages": ["pages"],
+    //   // "modules": ["modules"],
+    //   // "hooks": ["hooks"],
+    //   // "data": ["data"],
+    //   // "constants": ["constants"],
+    //   // "assets": ["assets"],
+    //   // "components": ["App/components"],
+    //   // "ui": ["App/components/Ui"], 
+    //   // "game": ["App/components/Game"], 
+    //   // "scss": ["scss"], 
+    // },
 
 
 
