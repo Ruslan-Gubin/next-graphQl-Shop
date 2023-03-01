@@ -64,12 +64,14 @@ if (viewsData) {
        {load1 || load2 || load3 || load4 &&
       <LoaderShop/>
        }
+       {catData && viewsData && newData && discoutData &&
         <HomePage
         categoryData={catData.categorys}
         maxWievsProducts={viewsData.getMaxViewsProducts}
         newProducts={newData.getNewProducts}
         maxDiscountProducts={discoutData.getMaxDiscountProducts}
         />
+      }
         {/* <HomePage
         categoryData={error ? catData : categoryData}
         maxWievsProducts={error ? viewsData : maxWievsProducts}
