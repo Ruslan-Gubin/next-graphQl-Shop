@@ -16,18 +16,17 @@ interface IHome {
 
 export default function Home({categoryData, maxWievsProducts, newProducts, maxDiscountProducts}:IHome) {
 
-  return (
-    <div>Home page</div>
-    // <ShopLayout title="OnlineShop" keywords="Start project in home page">
-    //   <section data-testid="test-root-home" className={styles.root}>
-    //     <HomePage
-    //     categoryData={categoryData}
-    //     maxWievsProducts={maxWievsProducts}
-    //     newProducts={newProducts}
-    //     maxDiscountProducts={maxDiscountProducts}
-    //     />
-    //   </section>
-    // </ShopLayout>
+  return (  
+    <ShopLayout title="OnlineShop" keywords="Start project in home page">
+      <section data-testid="test-root-home" className={styles.root}>
+        <HomePage
+        categoryData={categoryData}
+        maxWievsProducts={maxWievsProducts}
+        newProducts={newProducts}
+        maxDiscountProducts={maxDiscountProducts}
+        />
+      </section>
+    </ShopLayout>
   );
 }
 
