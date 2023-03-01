@@ -45,10 +45,16 @@ export default function Home({ error , categoryData, maxWievsProducts, newProduc
     variables: {limit: 5}
   })
 
-  const router = useRouter()
-  console.log(error, categoryData, maxWievsProducts, newProducts, maxDiscountProducts);
 
+  if (error) {
+    console.log(error, categoryData,
+    maxWievsProducts, newProducts,
+    maxDiscountProducts);
+  }
 
+if (catData) {
+  console.log(catData.categorys);
+}
 
 
   // if (error) {
@@ -72,10 +78,10 @@ export default function Home({ error , categoryData, maxWievsProducts, newProduc
       <LoaderShop/>
       : 
         <HomePage
-        categoryData={catData && catData.categorys}
-        maxWievsProducts={viewsData && viewsData.getMaxViewsProducts}
-        newProducts={newData && newData.getNewProducts}
-        maxDiscountProducts={discoutData && discoutData.getMaxDiscountProducts}
+        categoryData={catData.categorys}
+        maxWievsProducts={viewsData.getMaxViewsProducts}
+        newProducts={newData.getNewProducts}
+        maxDiscountProducts={discoutData.getMaxDiscountProducts}
         />
       }
         {/* <HomePage
