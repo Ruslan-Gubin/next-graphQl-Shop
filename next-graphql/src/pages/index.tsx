@@ -46,16 +46,16 @@ export default function Home({ error , categoryData, maxWievsProducts, newProduc
   })
 
   const router = useRouter()
-  console.log(error);
+  console.log(error, categoryData, maxWievsProducts, newProducts, maxDiscountProducts);
 
 
 
 
-  if (error || router.isFallback) {
-    router.push('/lk/details')
-    return <Error statusCode={error} />
-    console.log(error)
-  }
+  // if (error) {
+  //   router.push('/lk/details')
+  //   return <Error statusCode={error} />
+  //   console.log(error)
+  // }
    
       // if (!router.isFallback && !categoryData.length) {
       //     return <div>error...</div> ;
