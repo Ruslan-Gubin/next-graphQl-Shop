@@ -90,38 +90,50 @@ export default function Home({ error , categoryData, maxWievsProducts, newProduc
 }
 
 export const getStaticProps   = async ({req, query, }: NextPageContext) => {
+ try {
+   const { data: categoryData } = await client.query({
+     query: GET_CATEGORYES,
+   });
+   const { data: maxWievsProducts } = await client.query({
+     query: GET__MAXVIEWS__ALLPRODUCT,
+     variables: {
+       limit: 5,
+     }
+   });
+   const { data: newProducts } = await client.query({
+     query: GET__NEW__ALLPRODUCT,
+     variables: {
+       limit: 5,
+     }
+   });
+   const { data: maxDiscountProducts } = await client.query({
+     query: GET__MAXDISCOUNT__ALLPRODUCT,
+     variables: {
+       limit: 5,
+     }
+   });
  
-    const { data: categoryData } = await client.query({
-      query: GET_CATEGORYES,
-    });
-    const { data: maxWievsProducts } = await client.query({
-      query: GET__MAXVIEWS__ALLPRODUCT,
-      variables: {
-        limit: 5,
-      }
-    });
-    const { data: newProducts } = await client.query({
-      query: GET__NEW__ALLPRODUCT,
-      variables: {
-        limit: 5,
-      }
-    });
-    const { data: maxDiscountProducts } = await client.query({
-      query: GET__MAXDISCOUNT__ALLPRODUCT,
-      variables: {
-        limit: 5,
-      }
-    });
+   return {
+     props: {
+       error: false, 
+       categoryData: categoryData.categorys,
+       maxWievsProducts: maxWievsProducts.getMaxViewsProducts,
+       newProducts: newProducts.getNewProducts,
+       maxDiscountProducts: maxDiscountProducts.getMaxDiscountProducts, 
+     },
+   };
   
-    return {
-      props: {
-        error: false, 
-        categoryData: categoryData.categorys,
-        maxWievsProducts: maxWievsProducts.getMaxViewsProducts,
-        newProducts: newProducts.getNewProducts,
-        maxDiscountProducts: maxDiscountProducts.getMaxDiscountProducts, 
-      },
-    };
+ } catch  {
+  return {
+    props: {
+      error: true, 
+      categoryData: [],
+      maxWievsProducts: [],
+      newProducts: [],
+      maxDiscountProducts: [], 
+    },
+  };
+ }
    
 };
 
