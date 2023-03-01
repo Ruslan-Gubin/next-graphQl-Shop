@@ -1,3 +1,4 @@
+//@ts-ignore
 export { FooterShop } from "./FooterShop/components/FooterShop";
 export { AdminLayout } from "../widgets/AdminLayout";
 export {
