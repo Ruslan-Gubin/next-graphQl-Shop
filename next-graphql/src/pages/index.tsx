@@ -63,9 +63,16 @@ export const getServerSideProps = async ({req, query, }: NextPageContext) => {
         maxDiscountProducts: maxDiscountProducts.getMaxDiscountProducts, 
       },
     };
-  } catch (error) {
-    console.log(error)
-  } 
+  } catch  {
+    return {
+      props: {
+        categoryData: null,
+        maxWievsProducts: null,
+        newProducts: null,
+        maxDiscountProducts: null, 
+      },
+    }
+    } 
 };
 
 
