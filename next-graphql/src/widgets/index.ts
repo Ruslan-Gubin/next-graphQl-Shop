@@ -1,6 +1,6 @@
 
-export { FooterShop } from "../widgets/FooterShop";
-export { AdminLayout } from "../widgets/AdminLayout";
+export { FooterShop } from "./FooterShop";
+export { AdminLayout } from "./AdminLayout";
 export {
   ShopLayout,
   ShopLayoutAside,
@@ -8,8 +8,8 @@ export {
   layoutShopReducer,
   selectLayoutShop,
 } from "./ShopLayout";
-export { CatalogStartPage } from "../widgets/CatalogStartPage";
-export { ProductDetailsPage } from "../widgets/ProductDetailsPage";
-export { ProductFeedback } from "../widgets/ProductFeedback";
-export { HomePage } from "../widgets/HomePage";
-export { BrandPage } from '../widgets/BrandPage'
+export { CatalogStartPage } from "./CatalogStartPage";
+export { ProductDetailsPage } from "./ProductDetailsPage";
+export { ProductFeedback } from "./ProductFeedback";
+export { HomePage } from "./HomePage";
+export { BrandPage } from './BrandPage'
