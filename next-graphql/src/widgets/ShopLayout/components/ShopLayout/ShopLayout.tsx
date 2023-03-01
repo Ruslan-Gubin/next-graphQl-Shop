@@ -2,16 +2,18 @@ import { FC, useState } from "react";
 import { useSelector } from "react-redux";
 import Head from "next/head";
 import Link from "next/link";
-import { FooterShop } from "../../../../widgets";
+import { FooterShop } from "../../../../widgets/FooterShop/components/FooterShop/FooterShop";
+
+// import { FooterShop } from "../../../../widgets";
 import * as features from "../../../../features";
 import { ShopLayoutAside } from "../ShopLayoutAside";
 import { ShopLayoutHeader } from "../ShopLayoutHeader";
-
-import styles from "./ShopLayout.module.scss";
 import { selectLayoutShop } from "../../lib/store";
 import { useMatchMedia } from "../../../../features/CatalogPage/libs/hooks/use-match-media";
 import { ShopLayoutHeaderMobile } from "../ShopLayoutHeaderMobile";
 import { LayoutSearchMobile } from "../LayoutSearchMobile";
+
+import styles from "./ShopLayout.module.scss";
 
 interface IShopLayout {
   children: React.ReactNode;
