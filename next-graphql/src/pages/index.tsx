@@ -18,14 +18,15 @@ export default function Home({categoryData, maxWievsProducts, newProducts, maxDi
 
   return (  
     <ShopLayout title="OnlineShop" keywords="Start project in home page">
-      <section data-testid="test-root-home" className={styles.root}>
+      {/* <section data-testid="test-root-home" className={styles.root}>
         <HomePage
         categoryData={categoryData}
         maxWievsProducts={maxWievsProducts}
         newProducts={newProducts}
         maxDiscountProducts={maxDiscountProducts}
         />
-      </section>
+      </section> */}
+      home
     </ShopLayout>
   );
 }
