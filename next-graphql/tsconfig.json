@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "module": "esnext",
     "baseUrl": "src",
     "paths": {
       "@/widgets/*": [
@@ -28,7 +29,6 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "module": "esnext"
   },
   "include": [
     "src",
