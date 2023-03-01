@@ -17,16 +17,17 @@ interface IHome {
 export default function Home({categoryData, maxWievsProducts, newProducts, maxDiscountProducts}:IHome) {
 
   return (
-    <ShopLayout title="OnlineShop" keywords="Start project in home page">
-      <section data-testid="test-root-home" className={styles.root}>
-        <HomePage
-        categoryData={categoryData}
-        maxWievsProducts={maxWievsProducts}
-        newProducts={newProducts}
-        maxDiscountProducts={maxDiscountProducts}
-        />
-      </section>
-    </ShopLayout>
+    <div>Home page</div>
+    // <ShopLayout title="OnlineShop" keywords="Start project in home page">
+    //   <section data-testid="test-root-home" className={styles.root}>
+    //     <HomePage
+    //     categoryData={categoryData}
+    //     maxWievsProducts={maxWievsProducts}
+    //     newProducts={newProducts}
+    //     maxDiscountProducts={maxDiscountProducts}
+    //     />
+    //   </section>
+    // </ShopLayout>
   );
 }
 
@@ -64,7 +65,7 @@ export const getServerSideProps = async ({req, query, }: NextPageContext) => {
     };
   } catch (error) {
     console.log(error)
-  }
+  } 
 };
 
 
