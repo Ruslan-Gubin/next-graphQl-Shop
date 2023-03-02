@@ -35,18 +35,28 @@ export default async function getPosts(
     "body": JSON.stringify(categoryes)
   };
   
-  const response = await fetch(endpoint, options);
-  if (!response) {
-    return
+  try {
+    const response = await fetch(endpoint, options);
+    if (!response) {
+      return
+    }
+    const data  = await response.json()
+    if (!data) {
+      return
+    }
+    const respData = await data.data.categorys
+  
+    if (!respData) {
+      throw new Error('Error respData')
+    }
+  
+  
+    return res.status(200).json(respData);
+  } catch (error) {
+    return res.status(404).json({error: error.message})
   }
-  const data  = await response.json()
-  if (!data) {
-    return
-  }
-  const respData = await data.data.categorys
 
 
 
-  return res.status(200).json(respData);
   // return res.status(200).json({ success: true, id: req.body.id });
 }
