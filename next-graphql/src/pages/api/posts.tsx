@@ -23,7 +23,7 @@ export default async function getPosts(
   // const placeholderData = await response.json()
   console.log(req.body);
 
-  const endpoint = "http://localhost:3005/react-graphql";
+  const endpoint = `${process.env.API_HOST}`;
   const headers = {
     "content-type": "application/json",
     // "Authorization": "<token>"

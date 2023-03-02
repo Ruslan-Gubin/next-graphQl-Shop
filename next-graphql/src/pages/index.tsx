@@ -118,39 +118,26 @@ export default function Home({testData, categoryData, error,  maxWievsProducts, 
 
 export const getServerSideProps = async ({req, query,res }: NextPageContext) => {
   try { 
-  //   const { data: categoryData } = await client.query({
-  //          query: GET_CATEGORYES,
-  //        });
 
-  // const res = await fetch(`https://jsonplaceholder.typicode.com/todos`)
-  // const placeholderData = await res.json()
-
-  // const endpoint = "http://localhost:3005/react-graphql";
-  // const headers = {
-  //   "content-type": "application/json",
-  //   // "Authorization": "<token>"
-  // };
+  const endpoint = `${process.env.API_HOST}`;
+  const headers = {
+    "content-type": "application/json",
+    // "Authorization": "<token>"
+  };
   
-  // const options = {
-  //   "method": "POST",
-  //   "headers": headers,
-  //   "body": JSON.stringify(categoryes)
-  // };
+  const options = {
+    "method": "POST",
+    "headers": headers,
+    "body": JSON.stringify(categoryes)
+  };
   
-  // const response = await fetch(endpoint, options);
-  // if (!response) {
-  //   return
-  // }
-  // const data  = await response.json()
-  // if (!data) {
-  //   return
-  // }
+  // const resp = await fetch('https://online-shop-next-8pcjpvtwe-ruslan-gubin.vercel.app/api/posts')
+  // const localData = await resp.json()
+  // console.log(localData)
+  const response = await fetch(endpoint, options);
+  const data  = await response.json()
+  // console.log(data.data)
   // const respData = await data.data.categorys
-
-  const response = await fetch('http://localhost:3000/api/posts')
-  const respData = await response.json()
-  console.log(respData)
-
   // const categorys = await graphQlFetch(categoryes)
       // console.log(categorys.data.categorys);
 
@@ -163,7 +150,7 @@ export const getServerSideProps = async ({req, query,res }: NextPageContext) => 
 //     const testRes = await resData.json()
 // console.log('resData ---', categorys.data); 
 
-// console.log(categorys.data);
+
     // if (!respData) {
     //   return  {
     //     notFound: true,
@@ -173,7 +160,7 @@ export const getServerSideProps = async ({req, query,res }: NextPageContext) => 
       return {
         props: {
         categoryData: [],
-        testData: respData, 
+        testData: data, 
       },
       // revalidate: 10,
     };
@@ -182,8 +169,8 @@ export const getServerSideProps = async ({req, query,res }: NextPageContext) => 
    return {
      props: {
        error: error, 
-       categoryData:  [] ,
-       testData: [],
+       categoryData:  null ,
+       testData: null,
      },
    };
   }
