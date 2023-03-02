@@ -41,7 +41,6 @@ const HomePage = ({ categoryData , maxWievsProducts, newProducts, maxDiscountPro
     const findHref = OPTIONS_DEPARTMENT.find(
       (item) => item.label === catalog.department
     );
-    console.log(findHref?.href);
     router.push(`${findHref?.href}/${catalog.sub_department}`);
   };
 

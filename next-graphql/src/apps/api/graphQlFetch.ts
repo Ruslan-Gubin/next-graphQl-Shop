@@ -1,4 +1,5 @@
-const graphQlFetch = async (graphqlQuery: {}) => {
+const graphQlFetch = async (graphqlQuery) => {
+  // const endpoint = `https://online-shop-bf1a.onrender.com/react-graphql`;
   const endpoint = `${process.env.API_HOST}`;
   const headers = {
     "content-type": "application/json",
@@ -12,9 +13,19 @@ const graphQlFetch = async (graphqlQuery: {}) => {
   };
 
       const response = await fetch(endpoint, options);
-      const error = !response.ok ? false : response.status
+      const error = response.ok ? false : true
+      const status = response.status
       const  data  = await response.json();
-      return error ? data : error
+
+      if (!data) {
+        throw new Error(`Error fetch ${response.url}`)
+      }
+
+      return {
+        data: data && data,
+        error: error ,
+        status: status,
+      } 
 }
 
 export { graphQlFetch }

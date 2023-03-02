@@ -1,37 +1,22 @@
-import { client } from "../apps/apollo";
+import {  useQuery } from "@apollo/client";
 import { NextPageContext} from 'next';
 import { ShopLayout } from "../widgets";
 import { HomePage } from '../widgets';
-import { GET_CATEGORYES } from "../apps/apollo/CategoryRequest";
-import { ICategoryType, IProductType } from "../apps/types";
-import styles from "../apps/styles/pages/Home.module.scss";
 import { GET__MAXDISCOUNT__ALLPRODUCT, GET__MAXVIEWS__ALLPRODUCT, GET__NEW__ALLPRODUCT } from "../apps/apollo/productRequest/productRequest";
-import { useQuery } from "@apollo/client";
 import { LoaderShop } from "../shared";
-import { useEffect, useState } from "react";
 import { graphQlFetch } from "../apps/api/graphQlFetch";
+import { categoryes, getMaxDiscount, getNewProducts, maxViewsAllProduct } from "../apps/api";
+import { ICategoryType, IProductType } from "../apps/types";
+import { GET_CATEGORYES } from '../apps/apollo/CategoryRequest';
 
-const categoryes = {
-  query: `query {
-    categorys{
-      name
-      sub_department
-      _id
-      department
-      image {
-        url
-      }
-    }
-  }`,
-  "variables": {}
-}
+import styles from "../apps/styles/pages/Home.module.scss";
+
 
 interface IHome {
-  categoryData:  ICategoryType[] 
-  maxWievsProducts: IProductType[]
-  newProducts: IProductType[]
-  maxDiscountProducts: IProductType[]
-  testData: any
+  categoryData:  ICategoryType[] | null
+  maxWievsProducts: IProductType[] | null
+  newProducts: IProductType[] | null
+  maxDiscountProducts: IProductType[] | null
   error: boolean
 }
 
@@ -49,68 +34,41 @@ Error.getInitialProps = ({ res, err }) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404
   return { statusCode }
 }
-export default function Home({testData, categoryData, error,  maxWievsProducts, newProducts, maxDiscountProducts}:IHome) {
-  // const {data: catData, loading: load1} = useQuery(GET_CATEGORYES)
-  const {data: viewsData, loading: load2} = useQuery(GET__MAXVIEWS__ALLPRODUCT,{
-    variables: {limit: 5}
+
+export default function Home({ categoryData, error,  maxWievsProducts, newProducts, maxDiscountProducts}:IHome) {
+  const {data: moreCategoryData ,loading} = useQuery(GET_CATEGORYES, {
+    skip: !!categoryData
   })
-  const {data: newData, loading: load3} = useQuery(GET__NEW__ALLPRODUCT,{
-    variables: {limit: 5}
+  const {data: moremaxViewsProducts ,loading:loadMaxViews} = useQuery(GET__MAXVIEWS__ALLPRODUCT, {
+    variables: {limit: 5},
+    skip: !!maxWievsProducts
   })
-  const {data: discoutData, loading: load4} = useQuery(GET__MAXDISCOUNT__ALLPRODUCT,{
-    variables: {limit: 5}
+  const {data: moreNewProducts ,loading:loadNewProductss} = useQuery(GET__NEW__ALLPRODUCT, {
+    variables: {limit: 5},
+    skip: !!newProducts
   })
-  const [catData, setCatData] = useState([])
+  const {data: moreMaxDiscountProducts ,loading:loadMaxDiscountProducts} = useQuery(GET__MAXDISCOUNT__ALLPRODUCT, {
+    variables: {limit: 5},
+    skip: !!maxDiscountProducts
+  })
 
-  console.log(error);
-  console.log('categoryData', categoryData);
-  console.log('data_________')
-  console.log('testData', testData);
-  
-  
-  useEffect(() => {
-    if (!testData || !categoryData) {
-    graphQlFetch(categoryes)
-      .then((data) => {
-        setCatData(data.categorys)
-      })
-      .catch(error => console.log(error))
-    }
-  },[testData, categoryData])
-  // console.log(catData);
-
-
-  // if (error) {
-  //   console.log(error, categoryData,
-  //   maxWievsProducts, newProducts,
-  //   maxDiscountProducts);
-  // }
-
-
+  if (error) {
+    return <Error statusCode={error}/>
+  }
 
   return (  
     <ShopLayout title="OnlineShop" keywords="Start project in home page">
       <section data-testid="test-root-home" className={styles.root}>
-       {!catData || load2 || load3 || load4 ?
-      <LoaderShop/>
-        :
-        <>
-       {catData && viewsData && newData && discoutData &&
-        <HomePage
-        categoryData={catData}
-        maxWievsProducts={viewsData.getMaxViewsProducts}
-        newProducts={newData.getNewProducts}
-        maxDiscountProducts={discoutData.getMaxDiscountProducts}
-        />
+
+      {loading || loadMaxDiscountProducts || loadMaxViews || loadNewProductss && 
+      <LoaderShop />
       }
-      </>
-    }
-        {/* <HomePage
-        categoryData={error ? catData : categoryData}
-        maxWievsProducts={error ? viewsData : maxWievsProducts}
-        newProducts={error ? newData : newProducts}
-        maxDiscountProducts={error ? discoutData : maxDiscountProducts}
-        /> */}
+        <HomePage
+        categoryData={categoryData ? categoryData :( !loading && moreCategoryData.categorys)}
+        maxWievsProducts={maxWievsProducts ? maxWievsProducts : (!loadMaxViews && moremaxViewsProducts?.getMaxViewsProducts)}
+        newProducts={newProducts ? newProducts :(!loadNewProductss && moreNewProducts.getNewProducts)}
+        maxDiscountProducts={maxDiscountProducts ? maxDiscountProducts : (!loadMaxDiscountProducts && moreMaxDiscountProducts.getMaxDiscountProducts)}
+        />
       </section>
     </ShopLayout>
   );
@@ -118,27 +76,13 @@ export default function Home({testData, categoryData, error,  maxWievsProducts, 
 
 export const getServerSideProps = async ({req, query,res }: NextPageContext) => {
   try { 
-
-  const endpoint = `${process.env.API_HOST}`;
-  const headers = {
-    "content-type": "application/json",
-  };
-  
-  const options = {
-    "method": "POST",
-    "headers": headers,
-    "body": JSON.stringify(categoryes)
-  };
-  
-  const response = await fetch(endpoint, options);
-  const data  = await response.json()
-
-
-  
-  const categorys = await graphQlFetch(categoryes)
+  const {data: categorys, error: errCategory} = await graphQlFetch(categoryes)
+  const {data: maxWievsProducts, error: errNewProd} = await graphQlFetch({...maxViewsAllProduct, variables: {limit: 5}})
+  const {data: newProducts, error: errNewProducts} = await graphQlFetch({...getNewProducts, variables: {limit: 5}})
+  const {data: maxDiscountProducts, error: errMaxDiscountProducts} = await graphQlFetch({...getMaxDiscount, variables: {limit: 5}})
  
 
-    if (!data || !categorys) {
+    if (errCategory || errNewProd || errNewProducts || errMaxDiscountProducts ) {
       return  {
         notFound: true,
       }
@@ -146,9 +90,11 @@ export const getServerSideProps = async ({req, query,res }: NextPageContext) => 
 
       return {
         props: {
-        categoryData: data.data.categorys,
-        testData: categorys.data.categorys, 
-        error: false
+        error: false, 
+        categoryData: categorys.data.categorys,
+        maxWievsProducts: maxWievsProducts.data.getMaxViewsProducts,
+        newProducts: newProducts.data.getNewProducts,
+        maxDiscountProducts: maxDiscountProducts.data.getMaxDiscountProducts,
       },
     };
    
@@ -156,61 +102,15 @@ export const getServerSideProps = async ({req, query,res }: NextPageContext) => 
    return {
      props: {
        error: error, 
-       categoryData:  null ,
-       testData: null,
+       categoryData:  [] ,
+       maxWievsProducts: null,
+       newProducts: null,
+       maxDiscountProducts: null,
      },
    };
   }
     
  };
-
-// export const getStaticProps   = async ({req, query, }: NextPageContext) => {
-//  try {
-//    const { data: categoryData } = await client.query({
-//      query: GET_CATEGORYES,
-//    });
-//    const { data: maxWievsProducts } = await client.query({
-//      query: GET__MAXVIEWS__ALLPRODUCT,
-//      variables: {
-//        limit: 5,
-//      }
-//    });
-//    const { data: newProducts } = await client.query({
-//      query: GET__NEW__ALLPRODUCT,
-//      variables: {
-//        limit: 5,
-//      }
-//    });
-//    const { data: maxDiscountProducts } = await client.query({
-//      query: GET__MAXDISCOUNT__ALLPRODUCT,
-//      variables: {
-//        limit: 5,
-//      }
-//    });
- 
-//    return {
-//      props: {
-//        error: false, 
-//        categoryData: categoryData.categorys,
-//        maxWievsProducts: maxWievsProducts.getMaxViewsProducts,
-//        newProducts: newProducts.getNewProducts,
-//        maxDiscountProducts: maxDiscountProducts.getMaxDiscountProducts, 
-//      },
-//    };
-  
-//  } catch  {
-//   return {
-//     props: {
-//       error: true, 
-//       categoryData: [],
-//       maxWievsProducts: [],
-//       newProducts: [],
-//       maxDiscountProducts: [], 
-//     },
-//   };
-//  }
-   
-// };
 
 // export const getStaticPaths =  async () => {
 //   try {
