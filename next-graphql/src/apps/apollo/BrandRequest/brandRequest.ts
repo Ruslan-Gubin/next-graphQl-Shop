@@ -8,6 +8,14 @@ const ALL_BRENDS = gql`
 }
 `;
 
+const allBrandsId = {
+  query: `query{
+    brands{
+      _id
+    }
+  }`
+}
+
 const CREATED_BRAND = gql`
 mutation(
   $brand_name: String!
@@ -27,4 +35,5 @@ mutation(
 export {
   CREATED_BRAND, 
   ALL_BRENDS,
+  allBrandsId,
 };
