@@ -118,9 +118,9 @@ export default function Home({testData, categoryData, error,  maxWievsProducts, 
 
 export const getServerSideProps = async ({req, query,res }: NextPageContext) => {
   try { 
-    const { data: categoryData } = await client.query({
-           query: GET_CATEGORYES,
-         });
+  //   const { data: categoryData } = await client.query({
+  //          query: GET_CATEGORYES,
+  //        });
 
   const res = await fetch(`https://jsonplaceholder.typicode.com/todos`)
   const placeholderData = await res.json()
@@ -163,17 +163,18 @@ export const getServerSideProps = async ({req, query,res }: NextPageContext) => 
 
       return {
         props: {
-        categoryData: categoryData,
+        categoryData: placeholderData,
         testData: respData, 
       },
       // revalidate: 10,
     };
    
-  } catch  {
+  } catch(error)  {
    return {
      props: {
-       error: true, 
-       categoryData:  [] 
+       error: error.message, 
+       categoryData:  [] ,
+       testData: [],
      },
    };
   }
