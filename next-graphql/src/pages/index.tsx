@@ -8,6 +8,23 @@ import styles from "../apps/styles/pages/Home.module.scss";
 import { GET__MAXDISCOUNT__ALLPRODUCT, GET__MAXVIEWS__ALLPRODUCT, GET__NEW__ALLPRODUCT } from "../apps/apollo/productRequest/productRequest";
 import { useQuery } from "@apollo/client";
 import { LoaderShop } from "../shared";
+import { useEffect, useState } from "react";
+import { graphQlFetch } from "../apps/api/graphQlFetch";
+
+const categoryes = {
+  query: `query {
+    categorys{
+      name
+      sub_department
+      _id
+      department
+      image {
+        url
+      }
+    }
+  }`,
+  "variables": {}
+}
 
 interface IHome {
   categoryData:  ICategoryType[] 
@@ -31,9 +48,8 @@ Error.getInitialProps = ({ res, err }) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404
   return { statusCode }
 }
-
-export default function Home({ error , categoryData, maxWievsProducts, newProducts, maxDiscountProducts}:IHome) {
-  const {data: catData, loading: load1} = useQuery(GET_CATEGORYES)
+export default function Home({categoryData, error ,  maxWievsProducts, newProducts, maxDiscountProducts}:IHome) {
+  // const {data: catData, loading: load1} = useQuery(GET_CATEGORYES)
   const {data: viewsData, loading: load2} = useQuery(GET__MAXVIEWS__ALLPRODUCT,{
     variables: {limit: 5}
   })
@@ -43,31 +59,39 @@ export default function Home({ error , categoryData, maxWievsProducts, newProduc
   const {data: discoutData, loading: load4} = useQuery(GET__MAXDISCOUNT__ALLPRODUCT,{
     variables: {limit: 5}
   })
+  const [catData, setCatData] = useState([])
+  
+  console.log(categoryData);
+  
+  useEffect(() => {
+    
+    graphQlFetch(categoryes)
+    .then((data) => {
+      setCatData(data.categorys)
+    })
+    .catch(error => console.log(error))
+  },[])
+  // console.log(catData);
 
 
-  if (error) {
-    console.log(error, categoryData,
-    maxWievsProducts, newProducts,
-    maxDiscountProducts);
-  }
+  // if (error) {
+  //   console.log(error, categoryData,
+  //   maxWievsProducts, newProducts,
+  //   maxDiscountProducts);
+  // }
 
-if (viewsData) {
-  console.log(viewsData.getMaxViewsProducts);
-}
+
 
   return (  
     <ShopLayout title="OnlineShop" keywords="Start project in home page">
       <section data-testid="test-root-home" className={styles.root}>
-       {/* {load1 || load2 || load3 || load4 &&
-       <LoaderShop/>
-       } */}
-       {load1 || load2 || load3 || load4 ?
+       {!catData || load2 || load3 || load4 ?
       <LoaderShop/>
         :
         <>
        {catData && viewsData && newData && discoutData &&
         <HomePage
-        categoryData={catData.categorys}
+        categoryData={catData}
         maxWievsProducts={viewsData.getMaxViewsProducts}
         newProducts={newData.getNewProducts}
         maxDiscountProducts={discoutData.getMaxDiscountProducts}
@@ -86,52 +110,80 @@ if (viewsData) {
   );
 }
 
-export const getStaticProps   = async ({req, query, }: NextPageContext) => {
- try {
-   const { data: categoryData } = await client.query({
-     query: GET_CATEGORYES,
-   });
-   const { data: maxWievsProducts } = await client.query({
-     query: GET__MAXVIEWS__ALLPRODUCT,
-     variables: {
-       limit: 5,
-     }
-   });
-   const { data: newProducts } = await client.query({
-     query: GET__NEW__ALLPRODUCT,
-     variables: {
-       limit: 5,
-     }
-   });
-   const { data: maxDiscountProducts } = await client.query({
-     query: GET__MAXDISCOUNT__ALLPRODUCT,
-     variables: {
-       limit: 5,
-     }
-   });
- 
+export const getStaticProps = async ({req, query, }: NextPageContext) => {
+  try {
+  const categorys: ICategoryType[] = [];    
+
+ await graphQlFetch(categoryes)
+    .then((data: {categorys: ICategoryType[]}) => {
+      categorys.push(...data.categorys)
+    })
+    .catch(error => console.log(error))
+     
+    return {
+      props: {
+        error: false,
+        categoryData: categorys.length ? categorys : [] 
+      },
+    };
+   
+  } catch  {
    return {
      props: {
-       error: false, 
-       categoryData: categoryData.categorys,
-       maxWievsProducts: maxWievsProducts.getMaxViewsProducts,
-       newProducts: newProducts.getNewProducts,
-       maxDiscountProducts: maxDiscountProducts.getMaxDiscountProducts, 
+       error: true, 
+       categoryData:  [] 
      },
    };
+  }
+    
+ };
+
+// export const getStaticProps   = async ({req, query, }: NextPageContext) => {
+//  try {
+//    const { data: categoryData } = await client.query({
+//      query: GET_CATEGORYES,
+//    });
+//    const { data: maxWievsProducts } = await client.query({
+//      query: GET__MAXVIEWS__ALLPRODUCT,
+//      variables: {
+//        limit: 5,
+//      }
+//    });
+//    const { data: newProducts } = await client.query({
+//      query: GET__NEW__ALLPRODUCT,
+//      variables: {
+//        limit: 5,
+//      }
+//    });
+//    const { data: maxDiscountProducts } = await client.query({
+//      query: GET__MAXDISCOUNT__ALLPRODUCT,
+//      variables: {
+//        limit: 5,
+//      }
+//    });
+ 
+//    return {
+//      props: {
+//        error: false, 
+//        categoryData: categoryData.categorys,
+//        maxWievsProducts: maxWievsProducts.getMaxViewsProducts,
+//        newProducts: newProducts.getNewProducts,
+//        maxDiscountProducts: maxDiscountProducts.getMaxDiscountProducts, 
+//      },
+//    };
   
- } catch  {
-  return {
-    props: {
-      error: true, 
-      categoryData: [],
-      maxWievsProducts: [],
-      newProducts: [],
-      maxDiscountProducts: [], 
-    },
-  };
- }
+//  } catch  {
+//   return {
+//     props: {
+//       error: true, 
+//       categoryData: [],
+//       maxWievsProducts: [],
+//       newProducts: [],
+//       maxDiscountProducts: [], 
+//     },
+//   };
+//  }
    
-};
+// };
 
 
