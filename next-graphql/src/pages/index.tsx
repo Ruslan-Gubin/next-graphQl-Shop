@@ -161,11 +161,11 @@ export const getServerSideProps = async ({req, query,res }: NextPageContext) => 
 // console.log('resData ---', categorys.data); 
 
 // console.log(categorys.data);
-    // if (!categoryes) {
-    //   return  {
-    //     notFound: true,
-    //   }
-    // }    
+    if (!respData) {
+      return  {
+        notFound: true,
+      }
+    }    
 
       return {
         props: {
@@ -178,7 +178,7 @@ export const getServerSideProps = async ({req, query,res }: NextPageContext) => 
   } catch(error)  {
    return {
      props: {
-       error: error.message, 
+       error: error, 
        categoryData:  [] ,
        testData: [],
      },
