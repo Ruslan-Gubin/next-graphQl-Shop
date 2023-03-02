@@ -65,7 +65,6 @@ export default function Home({testData, categoryData,   maxWievsProducts, newPro
   console.log('categoryData', categoryData);
   console.log('data_________')
   console.log('testData', testData);
-  console.log('data_________')
   
   useEffect(() => {
     if (!testData && categoryData) {
