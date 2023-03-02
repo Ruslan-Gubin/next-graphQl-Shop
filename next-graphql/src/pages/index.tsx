@@ -120,7 +120,7 @@ export const getServerSideProps = async ({req, query,res }: NextPageContext) => 
   const test = 10 
 
   const res = await fetch(`https://jsonplaceholder.typicode.com/todos`)
-  const testData = await res.json()
+  const placeholderData = await res.json()
 
 const resData = await graphQlFetch(categoryes)
     .then((data: {categorys: ICategoryType[]}) => {
@@ -130,18 +130,18 @@ const resData = await graphQlFetch(categoryes)
       // console.log(categorys)
     })
     .catch(error => console.log(error))
-console.log('resData ---',resData[3]); 
-    if (!categoryes) {
-      return  {
-        notFound: true,
-      }
-    }    
+console.log('resData ---',resData); 
+    // if (!categoryes) {
+    //   return  {
+    //     notFound: true,
+    //   }
+    // }    
 
       return {
         props: {
         error: false,
         categoryData: resData,
-        testData,
+        testData: placeholderData,
         test 
       },
       // revalidate: 10,
