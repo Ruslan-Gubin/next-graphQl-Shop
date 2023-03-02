@@ -32,6 +32,7 @@ interface IHome {
   newProducts: IProductType[]
   maxDiscountProducts: IProductType[]
   testData: any
+  error: boolean
 }
 
 function Error({ statusCode }) {
@@ -48,7 +49,7 @@ Error.getInitialProps = ({ res, err }) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404
   return { statusCode }
 }
-export default function Home({testData, categoryData,   maxWievsProducts, newProducts, maxDiscountProducts}:IHome) {
+export default function Home({testData, categoryData, error,  maxWievsProducts, newProducts, maxDiscountProducts}:IHome) {
   // const {data: catData, loading: load1} = useQuery(GET_CATEGORYES)
   const {data: viewsData, loading: load2} = useQuery(GET__MAXVIEWS__ALLPRODUCT,{
     variables: {limit: 5}
@@ -60,8 +61,8 @@ export default function Home({testData, categoryData,   maxWievsProducts, newPro
     variables: {limit: 5}
   })
   const [catData, setCatData] = useState([])
-  
-  
+
+  console.log(error);
   console.log('categoryData', categoryData);
   console.log('data_________')
   console.log('testData', testData);
@@ -123,6 +124,7 @@ export const getServerSideProps = async ({req, query,res }: NextPageContext) => 
 
   const res = await fetch(`https://jsonplaceholder.typicode.com/todos`)
   const placeholderData = await res.json()
+
   const endpoint = "http://localhost:3005/react-graphql";
   const headers = {
     "content-type": "application/json",
@@ -137,10 +139,10 @@ export const getServerSideProps = async ({req, query,res }: NextPageContext) => 
   
   const response = await fetch(endpoint, options);
   const data  = await response.json()
-  const string =  JSON.stringify(data)
-  const json = await JSON.parse(string)
-  console.log(json.data)
-      const categorys = await graphQlFetch(categoryes)
+  const respData = await data.data.categorys
+  console.log(respData)
+
+  // const categorys = await graphQlFetch(categoryes)
       // console.log(categorys.data.categorys);
 
 // const {categorys} = await graphQlFetch(categoryes)
@@ -162,7 +164,7 @@ export const getServerSideProps = async ({req, query,res }: NextPageContext) => 
       return {
         props: {
         categoryData: categoryData,
-        testData: string, 
+        testData: respData, 
       },
       // revalidate: 10,
     };
