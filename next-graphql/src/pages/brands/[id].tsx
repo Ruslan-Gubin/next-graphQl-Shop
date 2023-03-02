@@ -7,6 +7,7 @@ import { GET__ONE_BRAND } from "../../widgets/BrandPage";
 import { ShopLayout } from "../../widgets/ShopLayout";
 import { useRouter } from "next/router";
 
+
 const ProductDetails = ({ brand }: { brand: IBrandType }) => {
   const router = useRouter();
   const { data: reserveBrand, loading } = useQuery(GET__ONE_BRAND, {
@@ -29,9 +30,6 @@ const ProductDetails = ({ brand }: { brand: IBrandType }) => {
   );
 };
 
-interface IPromiseProps {
-  brand: string | undefined | string[];
-}
 
 export const getStaticPaths = async () => {
   try {
