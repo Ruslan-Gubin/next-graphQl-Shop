@@ -123,7 +123,7 @@ export const getStaticProps = async ({req, query, }: NextPageContext) => {
     return {
       props: {
         error: false,
-        categoryData: categorys.length ? categorys : [] 
+        categoryData: categorys 
       },
     };
    
