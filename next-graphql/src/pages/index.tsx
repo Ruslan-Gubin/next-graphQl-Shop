@@ -126,7 +126,7 @@ export const getStaticProps = async ({req, query, }: NextPageContext) => {
     return {
       props: {
         error: false,
-        categoryData: categorys,
+        categoryData: await Promise.all(categorys),
         test 
       },
       revalidate: 10,
