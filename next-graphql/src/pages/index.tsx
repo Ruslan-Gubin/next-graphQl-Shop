@@ -33,6 +33,7 @@ interface IHome {
   maxDiscountProducts: IProductType[]
   error: boolean
   test: number
+  testData: any
 }
 
 function Error({ statusCode }) {
@@ -49,7 +50,7 @@ Error.getInitialProps = ({ res, err }) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404
   return { statusCode }
 }
-export default function Home({test, categoryData, error ,  maxWievsProducts, newProducts, maxDiscountProducts}:IHome) {
+export default function Home({testData, test, categoryData, error ,  maxWievsProducts, newProducts, maxDiscountProducts}:IHome) {
   // const {data: catData, loading: load1} = useQuery(GET_CATEGORYES)
   const {data: viewsData, loading: load2} = useQuery(GET__MAXVIEWS__ALLPRODUCT,{
     variables: {limit: 5}
@@ -64,6 +65,7 @@ export default function Home({test, categoryData, error ,  maxWievsProducts, new
   
   console.log(categoryData);
   console.log(test);
+  console.log(testData);
   
   useEffect(() => {
     
@@ -117,6 +119,9 @@ export const getServerSideProps = async ({req, query, }: NextPageContext) => {
   const categorys = [];   
   const test = 10 
 
+  const res = await fetch(`https://jsonplaceholder.typicode.com/todos`)
+  const testData = await res.json()
+
  await graphQlFetch(categoryes)
     .then((data: {categorys: ICategoryType[]}) => {
       categorys.push(...data.categorys)
@@ -133,6 +138,7 @@ console.log(categoryes);
         props: {
         error: false,
         categoryData: categorys,
+        testData,
         test 
       },
       // revalidate: 10,
