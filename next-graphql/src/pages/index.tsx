@@ -122,7 +122,6 @@ export const getServerSideProps = async ({req, query,res }: NextPageContext) => 
   const endpoint = `${process.env.API_HOST}`;
   const headers = {
     "content-type": "application/json",
-    // "Authorization": "<token>"
   };
   
   const options = {
@@ -131,38 +130,26 @@ export const getServerSideProps = async ({req, query,res }: NextPageContext) => 
     "body": JSON.stringify(categoryes)
   };
   
-  // const resp = await fetch('https://online-shop-next-8pcjpvtwe-ruslan-gubin.vercel.app/api/posts')
-  // const localData = await resp.json()
-  // console.log(localData)
   const response = await fetch(endpoint, options);
   const data  = await response.json()
-  // console.log(data.data)
-  // const respData = await data.data.categorys
-  // const categorys = await graphQlFetch(categoryes)
-      // console.log(categorys.data.categorys);
-
-// const {categorys} = await graphQlFetch(categoryes)
-    // .then((data: {categorys: ICategoryType[]}) => {
-    //   return data.categorys
-    // })
-    // .catch(error => console.log(error))
-    
-//     const testRes = await resData.json()
-// console.log('resData ---', categorys.data); 
 
 
-    // if (!respData) {
-    //   return  {
-    //     notFound: true,
-    //   }
-    // }    
+  
+  const categorys = await graphQlFetch(categoryes)
+ 
+
+    if (!data || !categorys) {
+      return  {
+        notFound: true,
+      }
+    }    
 
       return {
         props: {
-        categoryData: [],
-        testData: data, 
+        categoryData: data.data.categorys,
+        testData: categorys.data.categorys, 
+        error: false
       },
-      // revalidate: 10,
     };
    
   } catch(error)  {
