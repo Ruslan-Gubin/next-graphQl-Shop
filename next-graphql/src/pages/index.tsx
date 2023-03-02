@@ -122,30 +122,33 @@ export const getServerSideProps = async ({req, query,res }: NextPageContext) => 
   //          query: GET_CATEGORYES,
   //        });
 
-  const res = await fetch(`https://jsonplaceholder.typicode.com/todos`)
-  const placeholderData = await res.json()
+  // const res = await fetch(`https://jsonplaceholder.typicode.com/todos`)
+  // const placeholderData = await res.json()
 
-  const endpoint = "http://localhost:3005/react-graphql";
-  const headers = {
-    "content-type": "application/json",
-    // "Authorization": "<token>"
-  };
+  // const endpoint = "http://localhost:3005/react-graphql";
+  // const headers = {
+  //   "content-type": "application/json",
+  //   // "Authorization": "<token>"
+  // };
   
-  const options = {
-    "method": "POST",
-    "headers": headers,
-    "body": JSON.stringify(categoryes)
-  };
+  // const options = {
+  //   "method": "POST",
+  //   "headers": headers,
+  //   "body": JSON.stringify(categoryes)
+  // };
   
-  const response = await fetch(endpoint, options);
-  if (!response) {
-    return
-  }
-  const data  = await response.json()
-  if (!data) {
-    return
-  }
-  const respData = await data.data.categorys
+  // const response = await fetch(endpoint, options);
+  // if (!response) {
+  //   return
+  // }
+  // const data  = await response.json()
+  // if (!data) {
+  //   return
+  // }
+  // const respData = await data.data.categorys
+
+  const response = await fetch('http://localhost:3000/api/posts')
+  const respData = await response.json()
   console.log(respData)
 
   // const categorys = await graphQlFetch(categoryes)
@@ -161,15 +164,15 @@ export const getServerSideProps = async ({req, query,res }: NextPageContext) => 
 // console.log('resData ---', categorys.data); 
 
 // console.log(categorys.data);
-    if (!respData) {
-      return  {
-        notFound: true,
-      }
-    }    
+    // if (!respData) {
+    //   return  {
+    //     notFound: true,
+    //   }
+    // }    
 
       return {
         props: {
-        categoryData: placeholderData,
+        categoryData: [],
         testData: respData, 
       },
       // revalidate: 10,
