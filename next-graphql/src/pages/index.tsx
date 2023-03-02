@@ -32,6 +32,7 @@ interface IHome {
   newProducts: IProductType[]
   maxDiscountProducts: IProductType[]
   error: boolean
+  test: number
 }
 
 function Error({ statusCode }) {
@@ -48,7 +49,7 @@ Error.getInitialProps = ({ res, err }) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404
   return { statusCode }
 }
-export default function Home({categoryData, error ,  maxWievsProducts, newProducts, maxDiscountProducts}:IHome) {
+export default function Home({test, categoryData, error ,  maxWievsProducts, newProducts, maxDiscountProducts}:IHome) {
   // const {data: catData, loading: load1} = useQuery(GET_CATEGORYES)
   const {data: viewsData, loading: load2} = useQuery(GET__MAXVIEWS__ALLPRODUCT,{
     variables: {limit: 5}
@@ -62,6 +63,7 @@ export default function Home({categoryData, error ,  maxWievsProducts, newProduc
   const [catData, setCatData] = useState([])
   
   console.log(categoryData);
+  console.log(test);
   
   useEffect(() => {
     
@@ -112,7 +114,8 @@ export default function Home({categoryData, error ,  maxWievsProducts, newProduc
 
 export const getStaticProps = async ({req, query, }: NextPageContext) => {
   try {
-  const categorys: ICategoryType[] = [];    
+  const categorys: ICategoryType[] = [];   
+  const test = 10 
 
  await graphQlFetch(categoryes)
     .then((data: {categorys: ICategoryType[]}) => {
@@ -123,8 +126,10 @@ export const getStaticProps = async ({req, query, }: NextPageContext) => {
     return {
       props: {
         error: false,
-        categoryData: categorys 
+        categoryData: categorys,
+        test 
       },
+      revalidate: 10,
     };
    
   } catch  {
