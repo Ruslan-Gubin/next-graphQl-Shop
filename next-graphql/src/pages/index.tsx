@@ -141,7 +141,7 @@ export const getServerSideProps = async ({req, query,res }: NextPageContext) => 
 //     const testRes = await resData.json()
 // console.log('resData ---', categorys.data); 
 
-
+// console.log(categorys.data);
     // if (!categoryes) {
     //   return  {
     //     notFound: true,
