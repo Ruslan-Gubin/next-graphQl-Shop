@@ -112,9 +112,9 @@ export default function Home({test, categoryData, error ,  maxWievsProducts, new
   );
 }
 
-export const getStaticProps = async ({req, query, }: NextPageContext) => {
+export const getServerSideProps = async ({req, query, }: NextPageContext) => {
   try {
-  const categorys: ICategoryType[] = [];   
+  const categorys = [];   
   const test = 10 
 
  await graphQlFetch(categoryes)
@@ -122,14 +122,20 @@ export const getStaticProps = async ({req, query, }: NextPageContext) => {
       categorys.push(...data.categorys)
     })
     .catch(error => console.log(error))
-     
-    return {
-      props: {
+console.log(categoryes);
+    if (!categoryes) {
+      return  {
+        notFound: true,
+      }
+    }    
+
+      return {
+        props: {
         error: false,
-        categoryData: await Promise.all(categorys),
+        categoryData: categorys,
         test 
       },
-      revalidate: 10,
+      // revalidate: 10,
     };
    
   } catch  {
