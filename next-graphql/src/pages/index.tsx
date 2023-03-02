@@ -48,7 +48,7 @@ Error.getInitialProps = ({ res, err }) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404
   return { statusCode }
 }
-export default function Home({testData,    maxWievsProducts, newProducts, maxDiscountProducts}:IHome) {
+export default function Home({testData, categoryData,   maxWievsProducts, newProducts, maxDiscountProducts}:IHome) {
   // const {data: catData, loading: load1} = useQuery(GET_CATEGORYES)
   const {data: viewsData, loading: load2} = useQuery(GET__MAXVIEWS__ALLPRODUCT,{
     variables: {limit: 5}
@@ -62,16 +62,20 @@ export default function Home({testData,    maxWievsProducts, newProducts, maxDis
   const [catData, setCatData] = useState([])
   
   
-  // console.log('categoryData', categoryData);
+  console.log('categoryData', categoryData);
+  console.log('data_________')
   console.log('testData', testData);
+  console.log('data_________')
   
   useEffect(() => {
-    graphQlFetch(categoryes)
-    .then((data) => {
-      setCatData(data.categorys)
-    })
-    .catch(error => console.log(error))
-  },[])
+    if (!testData && categoryData) {
+      graphQlFetch(categoryes)
+      .then((data) => {
+        setCatData(data.categorys)
+      })
+      .catch(error => console.log(error))
+    }
+  },[testData, categoryData])
   // console.log(catData);
 
 
@@ -113,6 +117,9 @@ export default function Home({testData,    maxWievsProducts, newProducts, maxDis
 
 export const getServerSideProps = async ({req, query,res }: NextPageContext) => {
   try { 
+    const { data: categoryData } = await client.query({
+           query: GET_CATEGORYES,
+         });
 
   // const res = await fetch(`https://jsonplaceholder.typicode.com/todos`)
   // const placeholderData = await res.json()
@@ -150,7 +157,7 @@ export const getServerSideProps = async ({req, query,res }: NextPageContext) => 
 
       return {
         props: {
-        // categoryData: categorys,
+        categoryData: categoryData,
         testData: categorys.data, 
       },
       // revalidate: 10,
