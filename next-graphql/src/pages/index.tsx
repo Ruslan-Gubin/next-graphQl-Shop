@@ -162,7 +162,7 @@ export const getServerSideProps = async ({req, query,res }: NextPageContext) => 
       return {
         props: {
         categoryData: categoryData,
-        testData: json.data, 
+        testData: string, 
       },
       // revalidate: 10,
     };
