@@ -114,23 +114,23 @@ export default function Home({testData,    maxWievsProducts, newProducts, maxDis
 export const getServerSideProps = async ({req, query,res }: NextPageContext) => {
   try { 
 
-  const res = await fetch(`https://jsonplaceholder.typicode.com/todos`)
-  const placeholderData = await res.json()
+  // const res = await fetch(`https://jsonplaceholder.typicode.com/todos`)
+  // const placeholderData = await res.json()
 
-  // const endpoint = "http://localhost:3005/react-graphql";
-  // const headers = {
-  //   "content-type": "application/json",
-  //   // "Authorization": "<token>"
-  // };
+  const endpoint = "http://localhost:3005/react-graphql";
+  const headers = {
+    "content-type": "application/json",
+    // "Authorization": "<token>"
+  };
 
-  // const options = {
-  //   "method": "POST",
-  //   "headers": headers,
-  //   "body": JSON.stringify(categoryes)
-  // };
+  const options = {
+    "method": "POST",
+    "headers": headers,
+    "body": JSON.stringify(categoryes)
+  };
 
-  //     const response = await fetch(endpoint, options);
-  //     const categorys  = await response.json()
+      const response = await fetch(endpoint, options);
+      const categorys  = await response.json()
 
 // const {categorys} = await graphQlFetch(categoryes)
     // .then((data: {categorys: ICategoryType[]}) => {
@@ -151,7 +151,7 @@ export const getServerSideProps = async ({req, query,res }: NextPageContext) => 
       return {
         props: {
         // categoryData: categorys,
-        testData: placeholderData, 
+        testData: categorys, 
       },
       // revalidate: 10,
     };
