@@ -121,23 +121,27 @@ export const getServerSideProps = async ({req, query,res }: NextPageContext) => 
            query: GET_CATEGORYES,
          });
 
-  // const res = await fetch(`https://jsonplaceholder.typicode.com/todos`)
-  // const placeholderData = await res.json()
-
+  const res = await fetch(`https://jsonplaceholder.typicode.com/todos`)
+  const placeholderData = await res.json()
   const endpoint = "http://localhost:3005/react-graphql";
   const headers = {
     "content-type": "application/json",
     // "Authorization": "<token>"
   };
-
+  
   const options = {
     "method": "POST",
     "headers": headers,
     "body": JSON.stringify(categoryes)
   };
-
-      const response = await fetch(endpoint, options);
-      const {data}  = await response.json()
+  
+  const response = await fetch(endpoint, options);
+  const data  = await response.json()
+  const string =  JSON.stringify(data)
+  const json = await JSON.parse(string)
+  console.log(json.data)
+      const categorys = await graphQlFetch(categoryes)
+      // console.log(categorys.data.categorys);
 
 // const {categorys} = await graphQlFetch(categoryes)
     // .then((data: {categorys: ICategoryType[]}) => {
@@ -158,7 +162,7 @@ export const getServerSideProps = async ({req, query,res }: NextPageContext) => 
       return {
         props: {
         categoryData: categoryData,
-        testData: data, 
+        testData: json.data, 
       },
       // revalidate: 10,
     };
