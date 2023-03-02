@@ -114,20 +114,23 @@ export default function Home({testData, test, categoryData, error ,  maxWievsPro
   );
 }
 
-export const getServerSideProps = async ({req, query, }: NextPageContext) => {
+export const getServerSideProps = async ({req, query,res }: NextPageContext) => {
   try {
-  const categorys = [];   
+  let categorys = [];   
   const test = 10 
 
   const res = await fetch(`https://jsonplaceholder.typicode.com/todos`)
   const testData = await res.json()
 
- await graphQlFetch(categoryes)
+const resData = await graphQlFetch(categoryes)
     .then((data: {categorys: ICategoryType[]}) => {
-      categorys.push(...data.categorys)
+      // categorys.push(...data.categorys)
+      return data.categorys
+      // categorys = await data.categorys
+      // console.log(categorys)
     })
     .catch(error => console.log(error))
-console.log(categoryes);
+console.log('resData ---',resData[3]); 
     if (!categoryes) {
       return  {
         notFound: true,
@@ -137,7 +140,7 @@ console.log(categoryes);
       return {
         props: {
         error: false,
-        categoryData: categorys,
+        categoryData: resData,
         testData,
         test 
       },
