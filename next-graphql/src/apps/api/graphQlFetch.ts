@@ -10,14 +10,13 @@ const graphQlFetch = async (graphqlQuery: {}) => {
     "headers": headers,
     "body": JSON.stringify(graphqlQuery)
   };
-  try {
+
       const response = await fetch(endpoint, options);
+      const error = !response.ok ? false : response.status
       const { data } = await response.json();
-      return data
+      return error ? data : error
     
-  } catch (error) {
-    throw new Error(`${error.message}`)
-  }
+
 }
 
 export { graphQlFetch }

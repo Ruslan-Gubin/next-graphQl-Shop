@@ -32,7 +32,6 @@ interface IHome {
   newProducts: IProductType[]
   maxDiscountProducts: IProductType[]
   error: boolean
-  test: number
   testData: any
 }
 
@@ -50,7 +49,7 @@ Error.getInitialProps = ({ res, err }) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404
   return { statusCode }
 }
-export default function Home({testData, test, categoryData, error ,  maxWievsProducts, newProducts, maxDiscountProducts}:IHome) {
+export default function Home({testData, error, categoryData,  maxWievsProducts, newProducts, maxDiscountProducts}:IHome) {
   // const {data: catData, loading: load1} = useQuery(GET_CATEGORYES)
   const {data: viewsData, loading: load2} = useQuery(GET__MAXVIEWS__ALLPRODUCT,{
     variables: {limit: 5}
@@ -63,9 +62,9 @@ export default function Home({testData, test, categoryData, error ,  maxWievsPro
   })
   const [catData, setCatData] = useState([])
   
-  console.log(categoryData);
-  console.log(test);
-  console.log(testData);
+  console.log('Error:',error);
+  console.log('categoryData', categoryData);
+  // console.log('testData', testData[0]);
   
   useEffect(() => {
     
@@ -116,21 +115,21 @@ export default function Home({testData, test, categoryData, error ,  maxWievsPro
 
 export const getServerSideProps = async ({req, query,res }: NextPageContext) => {
   try {
-  let categorys = [];   
-  const test = 10 
+  // let categorys = [];  
 
   const res = await fetch(`https://jsonplaceholder.typicode.com/todos`)
   const placeholderData = await res.json()
 
-const resData = await graphQlFetch(categoryes)
-    .then((data: {categorys: ICategoryType[]}) => {
-      // categorys.push(...data.categorys)
-      return data.categorys
-      // categorys = await data.categorys
-      // console.log(categorys)
-    })
-    .catch(error => console.log(error))
-console.log('resData ---',resData); 
+const {categorys} = await graphQlFetch(categoryes)
+    // .then((data: {categorys: ICategoryType[]}) => {
+    //   return data.categorys
+    // })
+    // .catch(error => console.log(error))
+    
+//     const testRes = await resData.json()
+console.log('resData ---',categorys); 
+
+
     // if (!categoryes) {
     //   return  {
     //     notFound: true,
@@ -140,9 +139,8 @@ console.log('resData ---',resData);
       return {
         props: {
         error: false,
-        categoryData: resData,
-        testData: placeholderData,
-        test 
+        categoryData: categorys,
+        testData: placeholderData, 
       },
       // revalidate: 10,
     };
