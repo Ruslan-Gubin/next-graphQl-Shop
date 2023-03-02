@@ -3,7 +3,6 @@ import { gql } from "@apollo/client";
 const ALL_BRENDS = gql`
   query{
   brands{
-    name
     _id
   }
 }
