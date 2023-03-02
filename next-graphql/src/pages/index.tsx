@@ -31,7 +31,6 @@ interface IHome {
   maxWievsProducts: IProductType[]
   newProducts: IProductType[]
   maxDiscountProducts: IProductType[]
-  error: boolean
   testData: any
 }
 
@@ -49,7 +48,7 @@ Error.getInitialProps = ({ res, err }) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404
   return { statusCode }
 }
-export default function Home({testData, error, categoryData,  maxWievsProducts, newProducts, maxDiscountProducts}:IHome) {
+export default function Home({testData,  categoryData,  maxWievsProducts, newProducts, maxDiscountProducts}:IHome) {
   // const {data: catData, loading: load1} = useQuery(GET_CATEGORYES)
   const {data: viewsData, loading: load2} = useQuery(GET__MAXVIEWS__ALLPRODUCT,{
     variables: {limit: 5}
@@ -62,12 +61,11 @@ export default function Home({testData, error, categoryData,  maxWievsProducts, 
   })
   const [catData, setCatData] = useState([])
   
-  console.log('Error:',error);
+  
   console.log('categoryData', categoryData);
   console.log('testData', testData);
   
   useEffect(() => {
-    
     graphQlFetch(categoryes)
     .then((data) => {
       setCatData(data.categorys)
@@ -133,8 +131,6 @@ export const getServerSideProps = async ({req, query,res }: NextPageContext) => 
 
       const response = await fetch(endpoint, options);
       const categorys  = await response.json()
-      // .then(data => console.log(data.data))
-      // const test = await JSON.stringify(categoryes)
 
 // const {categorys} = await graphQlFetch(categoryes)
     // .then((data: {categorys: ICategoryType[]}) => {
@@ -143,7 +139,7 @@ export const getServerSideProps = async ({req, query,res }: NextPageContext) => 
     // .catch(error => console.log(error))
     
 //     const testRes = await resData.json()
-console.log('resData ---', categorys.data.categorys[0]); 
+// console.log('resData ---', categorys.data); 
 
 
     // if (!categoryes) {
@@ -154,8 +150,7 @@ console.log('resData ---', categorys.data.categorys[0]);
 
       return {
         props: {
-        error: false,
-        categoryData: categorys.data.categorys,
+        categoryData: categorys,
         testData: placeholderData, 
       },
       // revalidate: 10,
