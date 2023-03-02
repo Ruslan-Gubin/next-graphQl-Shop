@@ -238,4 +238,47 @@ export const getServerSideProps = async ({req, query,res }: NextPageContext) => 
    
 // };
 
+// export const getStaticPaths =  async () => {
+//   try {
+//     const response = await fetch('http://localhost:3000/api/posts')
+//     const data = await response.json()
+  
+//     const patch = data.map(({id}) => ({
+//       params: {id: id.toString()},
+//     }));
+  
+//     return {
+//       patch,
+//       fallback: false,
+//     }
+//   } catch (error) {
+//     return {
+//       patch: null,
+//       fallback: true,
+//     }
+//   }
+// };
+
+// export const getStaticProps = async (context) => {
+//   try {
+//     const { id } = context.params;
+//     const response = await fetch(`http://localhost:3000/api/posts/${id}`)
+//     const data = await response.json()
+  
+//     if (!data) {
+//       return {
+//         notFound: true
+//       }
+//     }
+  
+//     return {
+//       props: { post: data}
+//     }
+//   } catch (error) {
+//     return {
+//       props: {post: []}
+//     }
+//   }
+// }
+
 
