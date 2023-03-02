@@ -138,7 +138,13 @@ export const getServerSideProps = async ({req, query,res }: NextPageContext) => 
   };
   
   const response = await fetch(endpoint, options);
+  if (!response) {
+    throw new Error('response error')
+  }
   const data  = await response.json()
+  if (!data) {
+    throw new Error('data error')
+  }
   const respData = await data.data.categorys
   console.log(respData)
 
