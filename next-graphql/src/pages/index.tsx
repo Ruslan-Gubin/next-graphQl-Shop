@@ -64,7 +64,7 @@ export default function Home({testData, error, categoryData,  maxWievsProducts, 
   
   console.log('Error:',error);
   console.log('categoryData', categoryData);
-  // console.log('testData', testData[0]);
+  console.log('testData', testData[0]);
   
   useEffect(() => {
     
@@ -114,20 +114,36 @@ export default function Home({testData, error, categoryData,  maxWievsProducts, 
 }
 
 export const getServerSideProps = async ({req, query,res }: NextPageContext) => {
-  try {
-  // let categorys = [];  
+  try { 
 
   const res = await fetch(`https://jsonplaceholder.typicode.com/todos`)
   const placeholderData = await res.json()
 
-const {categorys} = await graphQlFetch(categoryes)
+  const endpoint = "http://localhost:3005/react-graphql";
+  const headers = {
+    "content-type": "application/json",
+    // "Authorization": "<token>"
+  };
+
+  const options = {
+    "method": "POST",
+    "headers": headers,
+    "body": JSON.stringify(categoryes)
+  };
+
+      const response = await fetch(endpoint, options);
+      const categorys  = await response.json()
+      // .then(data => console.log(data.data))
+      // const test = await JSON.stringify(categoryes)
+
+// const {categorys} = await graphQlFetch(categoryes)
     // .then((data: {categorys: ICategoryType[]}) => {
     //   return data.categorys
     // })
     // .catch(error => console.log(error))
     
 //     const testRes = await resData.json()
-console.log('resData ---',categorys); 
+console.log('resData ---', categorys.data.categorys[0]); 
 
 
     // if (!categoryes) {
@@ -139,7 +155,7 @@ console.log('resData ---',categorys);
       return {
         props: {
         error: false,
-        categoryData: categorys,
+        categoryData: categorys.data.categorys,
         testData: placeholderData, 
       },
       // revalidate: 10,
