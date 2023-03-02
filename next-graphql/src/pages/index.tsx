@@ -64,7 +64,7 @@ export default function Home({testData, error, categoryData,  maxWievsProducts, 
   
   console.log('Error:',error);
   console.log('categoryData', categoryData);
-  console.log('testData', testData[0]);
+  console.log('testData', testData);
   
   useEffect(() => {
     
