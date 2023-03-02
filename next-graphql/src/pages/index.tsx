@@ -66,9 +66,10 @@ export default function Home({testData, categoryData,   maxWievsProducts, newPro
   console.log('data_________')
   console.log('testData', testData);
   
+  
   useEffect(() => {
-    if (!testData && categoryData) {
-      graphQlFetch(categoryes)
+    if (!testData || !categoryData) {
+    graphQlFetch(categoryes)
       .then((data) => {
         setCatData(data.categorys)
       })
@@ -136,7 +137,7 @@ export const getServerSideProps = async ({req, query,res }: NextPageContext) => 
   };
 
       const response = await fetch(endpoint, options);
-      const categorys  = await response.json()
+      const {data}  = await response.json()
 
 // const {categorys} = await graphQlFetch(categoryes)
     // .then((data: {categorys: ICategoryType[]}) => {
@@ -157,7 +158,7 @@ export const getServerSideProps = async ({req, query,res }: NextPageContext) => 
       return {
         props: {
         categoryData: categoryData,
-        testData: categorys.data, 
+        testData: data, 
       },
       // revalidate: 10,
     };
