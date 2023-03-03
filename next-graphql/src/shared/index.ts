@@ -24,6 +24,7 @@ export {
   CloseProductButton,
   BurgerButton,
   LoaderShop,
+  Error,
 } from "./components";
 
 export { queckMessage, findMaxOpinion } from "./lib";

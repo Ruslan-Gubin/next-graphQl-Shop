@@ -7,6 +7,7 @@ import { ShopLayout } from "../../widgets/ShopLayout";
 import { useRouter } from "next/router";
 import { graphQlFetch } from "../../apps/api";
 import { getOneBrandFetch } from "../../widgets/BrandPage/models/brandRequest";
+import { GetStaticProps } from 'next'
 
 const ProductDetails = ({ brand }: { brand: IBrandType }) => {
   const router = useRouter();
@@ -48,7 +49,7 @@ export const getStaticPaths = async () => {
   }
 };
 
-export const getStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
   try {
     const { id } = context.params;
 

@@ -3,9 +3,10 @@ import { useSelector } from "react-redux";
 import Head from "next/head";
 import Link from "next/link";
 
+import { FooterShop } from "../../../FooterShop/components/FooterShop/FooterShop";
 
 import * as features from "../../../../features";
-// import { FooterShop } from "../../../../widgets";
+
 import { ShopLayoutAside } from "../ShopLayoutAside";
 import { ShopLayoutHeader } from "../ShopLayoutHeader";
 import { selectLayoutShop } from "../../lib/store";
@@ -71,7 +72,7 @@ const ShopLayout: FC<IShopLayout> = ({ children, title, keywords }) => {
             {children}
           </div>
         </main>
-         {/* <FooterShop /> */}
+         <FooterShop />
         <features.FooterButtonHelpers />
       </section>
        

@@ -29,3 +29,4 @@ export { UserIconActive } from "./UserIconActive";
 export { NoContentAdmin } from "./NoContentAdmin";
 export { BurgerButton } from "./BurgerButton";
 export { LoaderShop } from "./LoaderShop";
+export { Error } from "./Error";

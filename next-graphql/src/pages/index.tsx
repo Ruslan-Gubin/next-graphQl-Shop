@@ -7,7 +7,7 @@ import {
   GET__MAXVIEWS__ALLPRODUCT,
   GET__NEW__ALLPRODUCT,
 } from "../apps/apollo/productRequest/productRequest";
-import { LoaderShop } from "../shared";
+import { Error, LoaderShop } from "../shared";
 import { graphQlFetch } from "../apps/api/graphQlFetch";
 import {
   categoryes,
@@ -27,21 +27,6 @@ interface IHome {
   maxDiscountProducts: IProductType[] | null;
   error: boolean;
 }
-
-function Error({ statusCode }) {
-  return (
-    <p>
-      {statusCode
-        ? `An error ${statusCode} occurred on server`
-        : "An error occurred on client"}
-    </p>
-  );
-}
-
-Error.getInitialProps = ({ res, err }) => {
-  const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
-  return { statusCode };
-};
 
 export default function Home({
   categoryData,
