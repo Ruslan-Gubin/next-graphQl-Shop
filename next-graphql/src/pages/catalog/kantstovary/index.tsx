@@ -33,17 +33,18 @@ const Kanstovary = ({
 
 export const getServerSideProps = async ({req, query, }: NextPageContext) => {
   try {
+    const department = 'stationery'
     const { data: categoryData, error: errCategoryData } = await graphQlFetch({
       ...sortCategoryFromCatalog,
-      variables: { department: "stationery" },
+      variables: { department },
     });
     const { data: newProduct, error: errNewProduct } = await graphQlFetch({
       ...sortProductDepartment,
-      variables: { department: "stationery", sortValue: "new" },
+      variables: { department, sortValue: "new" },
     });
     const { data: popularProduct, error: errPopularProduct } = await graphQlFetch({
       ...sortProductDepartment,
-      variables: { department: "stationery", sortValue: "popular" },
+      variables: { department, sortValue: "popular" },
     });
 
       if (errCategoryData || errNewProduct || errPopularProduct) {
