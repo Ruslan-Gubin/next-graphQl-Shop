@@ -53,7 +53,7 @@ const ModalQuestionsMessage: React.FC<IModalQuestionsMessage> = ({
               <LoaderShop />
             ) : (
               <>
-                {!loading &&
+                {!loading && questions.question.dialog &&
                   questions.question.dialog.map((message, ind: number) => (
                     <li key={ind}>
                       {message.name !== "Guest" ? (
