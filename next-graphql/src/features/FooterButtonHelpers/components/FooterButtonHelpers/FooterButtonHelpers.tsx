@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { ModalQuestionsMessage } from "../../../../entities";
 import { ButtonFooterHelper } from "../../../../shared/components";
 import { buttonIcon } from "../../lib/assets/buttonIcon";
@@ -12,9 +12,10 @@ import styles from "./FooterButtonHelpers.module.scss";
 
 const FooterButtonHelpers: FC = () => {
   const [createQuestion, {}] = useMutation(ADD_QUESTIONS);
-  const { modalStatus, textQuestion, questionsId } =
+  const { textQuestion, questionsId } =
     useSelector(selectQuestions);
   const dispatch = useDispatch();
+  const [modalActive, setModalActive] = useState(false)
   const [addCommentQuestion, {}] = useMutation(ADD_COMMENT_QUESTION);
 
   const handleAddQuestion = async () => {
@@ -56,19 +57,19 @@ const FooterButtonHelpers: FC = () => {
           icon={buttonIcon.arrowUp}
           onClick={() => window.scrollTo(0, 0)}
         />
-        {modalStatus ? (
+        {modalActive ? (
           <ModalQuestionsMessage
             setMessage={(value) =>
             dispatch(questionsAction.getValueInput({ value }))
             }
             message={textQuestion}
-            closeModal={() => dispatch(questionsAction.getActivModal())}
+            closeModal={() => setModalActive(() => false)}
             handleAddQuestion={handleAddQuestion}
           />
         ) : (
             <ButtonFooterHelper
             icon={buttonIcon.chatIcon}
-            onClick={() => dispatch(questionsAction.getActivModal())}
+            onClick={() => setModalActive(() => true)}
             />
         )}
       </div>

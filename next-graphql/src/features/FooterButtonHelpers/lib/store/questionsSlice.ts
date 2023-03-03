@@ -2,29 +2,19 @@ import { TypeRootState } from "../../../../apps/store/srote";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface IInitialState {
-  modalStatus: boolean;
   textQuestion: string;
-  questionsId: string | null;
+  questionsId: string | '';
 }
 
 const initialState: IInitialState = {
-  modalStatus: false,
   textQuestion: "",
-  questionsId: null,
+  questionsId: '',
 };
 
 const questionsSlice = createSlice({
   name: "questions",
   initialState,
   reducers: {
-
-    getActivModal(state) {
-      if (!state.modalStatus) {
-        state.modalStatus = true;
-      } else {
-        state.modalStatus = false;
-      }
-    },
 
     getValueInput(state, action: PayloadAction<{value: string}>) {
       state.textQuestion = action.payload.value

@@ -23,12 +23,12 @@ const ModalQuestionsMessage: React.FC<IModalQuestionsMessage> = ({
   message,
   setMessage,
 }) => {
-  const { modalStatus, questionsId } = useSelector(selectQuestions);
+  const { questionsId } = useSelector(selectQuestions);
   const { data: questions, loading } = useQuery<{ question: IDialogQuestion }>(
     ONE_QUESTIONS,
     {
       variables: { id: questionsId },
-      skip: !modalStatus,
+      skip: !questionsId,
     }
   );
 
@@ -53,7 +53,7 @@ const ModalQuestionsMessage: React.FC<IModalQuestionsMessage> = ({
               <LoaderShop />
             ) : (
               <>
-                {!loading && questions.question.dialog &&
+                {!loading && questions &&
                   questions.question.dialog.map((message, ind: number) => (
                     <li key={ind}>
                       {message.name !== "Guest" ? (
