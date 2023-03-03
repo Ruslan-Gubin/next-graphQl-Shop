@@ -69,5 +69,48 @@ const sortProductDepartment = {
   }`
 }
 
+const sortProductsCatalog = {
+  query: ` query (
+    $department: String!
+    $sub_department: String!
+    $sortProperty: sortPropertyScale
+  ) {
+    sortProductCatalog(
+      department: $department
+      sub_department: $sub_department
+      sortProperty: $sortProperty
+    ) {
+      _id
+      name
+      price
+      oldPrice
+      discount
+      count
+      category_id
+      brand_id
 
-export { maxViewsAllProduct,getNewProducts, getMaxDiscount , sortProductDepartment}
+      feedbacks {
+        user_opinion
+      }
+
+      category {
+        name
+        _id
+      }
+      brand {
+        name
+        _id
+      }
+
+      photo {
+        images {
+          url
+        }
+      }
+    }
+  }
+  `
+}
+
+
+export { sortProductsCatalog, maxViewsAllProduct,getNewProducts, getMaxDiscount , sortProductDepartment}

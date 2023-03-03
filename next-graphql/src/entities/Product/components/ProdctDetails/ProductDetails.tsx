@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useDetailsContext } from '../../../../pages/catalog/[id]';
+import { useDetailsContext } from '../../../../pages/details/[id]';
 import { ImagesProductDetails, ProductDetailsButton, ProductDetailsDescription, ProductDetailsSubInfo, QueckMessage } from '../../../../shared';
 import { basketAction } from '../../../../features';
 import { ProductDetailsMobile } from '../ProductDetailsMobile';

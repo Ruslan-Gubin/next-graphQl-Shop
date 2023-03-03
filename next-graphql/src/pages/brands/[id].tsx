@@ -9,7 +9,7 @@ import { graphQlFetch } from "../../apps/api";
 import { getOneBrandFetch } from "../../widgets/BrandPage/models/brandRequest";
 import { GetStaticProps } from 'next'
 
-const ProductDetails = ({ brand }: { brand: IBrandType }) => {
+const Brands = ({ brand }: { brand: IBrandType }) => {
   const router = useRouter();
   const { data: reserveBrand, loading } = useQuery(GET__ONE_BRAND, {
     variables: { id: router.query.id },
@@ -76,4 +76,4 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 };
 
-export default ProductDetails;
+export default Brands;

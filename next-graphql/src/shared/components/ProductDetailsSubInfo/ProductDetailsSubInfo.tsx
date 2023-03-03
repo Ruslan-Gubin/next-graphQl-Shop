@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { formatterRub } from '../../../features/CatalogPage/libs/helper';
 import { useRouter } from "next/router";
-import { useDetailsContext } from '../../../pages/catalog/[id]';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Heart } from '../Heart';
@@ -10,6 +9,7 @@ import { selectBasket } from '../../../features';
 import styles from './ProductDetailsSubInfo.module.scss';
 import { checkFavorite } from '../../../entities/Product/lib/helpers/checkFavorite';
 import { checkBasket } from '../../../entities/Product/lib/helpers/checkBasket';
+import { useDetailsContext } from '../../../pages/details/[id]';
 
 interface IProductDetailsSubInfo {
   handleAddBasket: () => void

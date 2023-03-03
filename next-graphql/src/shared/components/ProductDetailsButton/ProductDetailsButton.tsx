@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { useRouter } from "next/router";
-import { useDetailsContext } from "../../../pages/catalog/[id]";
 import { selectBasket } from "../../../features";
 import { formatterRub } from "../../../features/CatalogPage/libs/helper";
 import { useSelector } from "react-redux";
@@ -8,6 +7,7 @@ import { Heart } from "../Heart";
 import { checkFavorite } from "../../../entities/Product/lib/helpers/checkFavorite";
 import { checkBasket } from "../../../entities/Product/lib/helpers/checkBasket";
 import styles from "./ProductDetailsButton.module.scss";
+import { useDetailsContext } from "../../../pages/details/[id]";
 
 interface IProductDetailsButton {
   handleAddBasket: () => void

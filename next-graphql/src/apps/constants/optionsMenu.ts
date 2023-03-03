@@ -9,6 +9,7 @@ interface IOptionDepartment {
   value: string;
   label: string;
   subdepartment: Ioption[];
+  department_href: string;
   id?: string;
   img: string;
   href: string;
@@ -108,6 +109,7 @@ const OPTIONS_DEPARTMENT: IOptionDepartment[] = [
   {
     value: "Канцтовары",
     label: "stationery",
+    department_href: 'kantstovary',
     href: "/catalog/kantstovary",
     img_layout:
       "https://res.cloudinary.com/ds289tkqj/image/upload/v1676058037/Hits/vypadashka_paper_eitopt.jpg",
@@ -117,6 +119,7 @@ const OPTIONS_DEPARTMENT: IOptionDepartment[] = [
   {
     value: "Сад и дача",
     label: "garden-and-cottage",
+    department_href: 'dachniy-sezon',
     href: "/catalog/dachniy-sezon",
     img_layout:
       "https://res.cloudinary.com/ds289tkqj/image/upload/v1676058217/Hits/1620304015_39-p-tsveti-na-dache-dlya-lenivikh-foto-39_w8powz.jpg",
@@ -126,6 +129,7 @@ const OPTIONS_DEPARTMENT: IOptionDepartment[] = [
   {
     value: "Игрушки",
     label: "toys",
+    department_href: 'igrushki',
     href: "/catalog/igrushki",
     img_layout:
       "https://res.cloudinary.com/ds289tkqj/image/upload/v1676059111/Hits/1655981923937913643_vgxnrp.webp",
@@ -135,6 +139,7 @@ const OPTIONS_DEPARTMENT: IOptionDepartment[] = [
   {
     value: "Кухня",
     label: "kitchen",
+    department_href: 'kuhnya',
     href: "/catalog/kuhnya",
     img_layout:
       "https://res.cloudinary.com/ds289tkqj/image/upload/v1676058216/Hits/4606c7e80ab7440c69b773d7f71104b4_xizwcy.jpg",

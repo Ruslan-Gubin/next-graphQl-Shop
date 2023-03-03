@@ -3,12 +3,12 @@ import { useMutation } from "@apollo/client";
 import { useSelector } from "react-redux";
 import Image from 'next/image';
 import { selectUser } from "../../../../features";
-import { useDetailsContext } from "../../../../pages/catalog/[id]";
 import { findMaxOpinion, Modal, QueckMessage, queckMessage, StarsList, useAddImage } from "../../../../shared";
 import { CREATE_FEEDBACK } from "../../models/feedbackRequest";
 import { StarsOpinionFeedback } from "../StarsOpinionFeedback";
 
 import styles from './ProductFeedback.module.scss';
+import { useDetailsContext } from "../../../../pages/details/[id]";
 
 const addImageIcon = 'https://res.cloudinary.com/ds289tkqj/image/upload/v1675358473/Hits/icons8-add-image-96_utykso.png';
 const starsGrayIcon = '/stars-gray.png';

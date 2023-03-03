@@ -1,8 +1,8 @@
 import { FC, useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { useDetailsContext } from '../../../pages/catalog/[id]';
 import { ProductListImag } from '../ProductListImag';
 import styles from './ImagesProductDetails.module.scss';
+import { useDetailsContext } from '../../../pages/details/[id]';
 
 interface IImagesProductDetails {
 

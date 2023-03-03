@@ -1,13 +1,13 @@
 import { FC } from 'react';
 import { ProductDetails, selectProductDetails } from '../../../../entities';
 import { ProductDetailsHeader } from '../ProductDetailsHeader';
-import {  useDetailsContext } from '../../../../pages/catalog/[id]';
 
 import styles from './ProductDetailsPage.module.scss';
 import { ProductFeedback } from '../../../../widgets/ProductFeedback';
 import { FeedbackList } from '../../../../widgets/ProductFeedback/components/FeedbackList/FeedbackList';
 import { CatatlogProductList } from '../../../../widgets/CatalogStartPage/components/CatatlogProductList';
 import { useSelector } from 'react-redux';
+import { useDetailsContext } from '../../../../pages/details/[id]';
 
  
 const ProductDetailsPage: FC = () => {

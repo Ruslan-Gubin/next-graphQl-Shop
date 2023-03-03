@@ -1,11 +1,11 @@
 import { FC, useEffect, useState } from "react";
-import { useDetailsContext } from "../../../../pages/catalog/[id]";
 import { useMutation } from "@apollo/client";
 import { REMOVE_FEEDBACK } from "../../models/feedbackRequest";
 import { FeedbackProductCard } from "../../../../entities/Feedback";
 import { Array, queckMessage, QueckMessage } from "../../../../shared";
 
 import styles from "./FeedbackList.module.scss";
+import { useDetailsContext } from "../../../../pages/details/[id]";
 
 const FeedbackList: FC = () => {
   const { product, refetch } = useDetailsContext();

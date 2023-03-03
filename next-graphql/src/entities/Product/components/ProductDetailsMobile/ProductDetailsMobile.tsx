@@ -2,7 +2,6 @@ import { Dispatch, FC, SetStateAction } from 'react';
 import {useRouter} from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useDetailsContext } from '../../../../pages/catalog/[id]';
 import { Array, findMaxOpinion, Heart, StarsList } from '../../../../shared';
 import { formatterRub } from '../../../../features/CatalogPage/libs/helper';
 import { selectBasket } from '../../../../features';
@@ -11,6 +10,7 @@ import { checkFavorite } from '../../lib/helpers/checkFavorite';
 import { checkBasket } from '../../lib/helpers/checkBasket';
 
 import styles from './ProductDetailsMobile.module.scss';
+import { useDetailsContext } from '../../../../pages/details/[id]';
 
 interface IProductDetailsMobile {
   characteristic: boolean;
