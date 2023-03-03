@@ -1,4 +1,5 @@
-import { INavListArray } from "./INavListArray";
+import { INavListArray } from "../types/INavListArray";
+
 
 const navListArray: INavListArray[] = [
   {

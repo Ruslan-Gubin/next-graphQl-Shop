@@ -1,4 +1,4 @@
-import { navListArray } from '../../model/navListArray';
+import { navListArray } from '../../lib/data/navListArray';
 import { FooterNavigationList } from '../FooterNavigationList';
 
 

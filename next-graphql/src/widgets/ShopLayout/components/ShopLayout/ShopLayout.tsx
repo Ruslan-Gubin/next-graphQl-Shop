@@ -2,9 +2,8 @@ import { FC, useState } from "react";
 import { useSelector } from "react-redux";
 import Head from "next/head";
 import Link from "next/link";
-
-
 import * as features from "../../../../features";
+
 
 import { ShopLayoutAside } from "../ShopLayoutAside";
 import { ShopLayoutHeader } from "../ShopLayoutHeader";
@@ -13,10 +12,10 @@ import { useMatchMedia } from "../../../../features/CatalogPage/libs/hooks/use-m
 import { ShopLayoutHeaderMobile } from "../ShopLayoutHeaderMobile";
 import { LayoutSearchMobile } from "../LayoutSearchMobile";
 
-// import { FooterShop } from "../../../FooterShop/components/FooterShop/FooterShop";
 import styles from "./ShopLayout.module.scss";
-import { FooterNavigation } from "../../../FooterShop/components/FooterNavigation";
-import { FooterCopyrights } from "../../../FooterShop/components/FooterCopyrights";
+import { FooterNavigation } from "../FooterNavigation";
+import { FooterCopyrights } from "../FooterCopyrights";
+
 
 interface IShopLayout {
   children: React.ReactNode;
@@ -75,12 +74,12 @@ const ShopLayout: FC<IShopLayout> = ({ children, title, keywords }) => {
           </div>
         </main>
 
-        <footer className={styles.footer__wrapper}>
-      <section className={styles.footer__container}>
+        <section className={styles.footer__wrapper}>
+      <div className={styles.footer__container}>
       <FooterNavigation />
       <FooterCopyrights />
-      </section>
-    </footer>
+      </div>
+    </section>
 
          {/* <FooterShop /> */}
         <features.FooterButtonHelpers />

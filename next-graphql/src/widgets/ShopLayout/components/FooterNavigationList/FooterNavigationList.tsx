@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import Link from 'next/link';
 import { AccordionBird } from '../../../../shared';
-import { INavListArray } from '../../model/INavListArray';
+import { INavListArray } from '../../lib/types/INavListArray';
 
 import styles from './FooterNavigationList.module.scss';
 
