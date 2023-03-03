@@ -51,5 +51,23 @@ const getMaxDiscount = {
   }`
 }
 
+const sortProductDepartment = {
+  query: `query ($department: String!, $sortValue: String!) {
+    sortProductDepartment(department: $department, sortValue: $sortValue) {
+      name
+      _id
+      discount
+      price
+      oldPrice
+      name
+      photo {
+        images {
+          url
+        }
+      }
+    }
+  }`
+}
 
-export { maxViewsAllProduct,getNewProducts, getMaxDiscount }
+
+export { maxViewsAllProduct,getNewProducts, getMaxDiscount , sortProductDepartment}

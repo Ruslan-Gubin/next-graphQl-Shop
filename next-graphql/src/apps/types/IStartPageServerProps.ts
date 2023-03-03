@@ -3,9 +3,9 @@ import { IProductType } from "./IProductType"
 
 
 interface IStartPageServerProps {
-  categoryData: {sortCategoryFromCatalog: ICategoryType[]}
-  newProduct: {sortProductDepartment: IProductType[]}
-  popularProduct: {sortProductDepartment: IProductType[]}
+  categoryData:  ICategoryType[]
+  newProduct:  IProductType[]
+  popularProduct: IProductType[]
 }
 
 export type {IStartPageServerProps}

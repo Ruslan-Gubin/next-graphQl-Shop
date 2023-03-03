@@ -1,10 +1,8 @@
 import { NextPageContext} from 'next';
-import { client } from "../../../apps/apollo";
-import { SORT_CATEGORY_FROM_CATALOG } from "../../../apps/apollo/CategoryRequest";
-import { SORT_PRODUCT_DEPARTMENT } from "../../../apps/apollo/productRequest";
+import { graphQlFetch, sortCategoryFromCatalog, sortProductDepartment } from '../../../apps/api';
 import { OPTIONS_STATIONERY_SUBDEPARTMENT } from "../../../apps/constants";
 import { IStartPageServerProps } from "../../../apps/types";
-import { Loader } from "../../../shared/components";
+import { LoaderShop } from "../../../shared/components";
 import { CatalogStartPage, ShopLayout } from "../../../widgets";
 
 
@@ -17,12 +15,12 @@ const Kanstovary = ({
   return (
     <ShopLayout title="Канстовары" keywords="Канстовары">
       {!categoryData || !newProduct || !popularProduct ? (
-        <Loader />
+        <LoaderShop />
       ) : (
         <CatalogStartPage
-          newSortProduct={newProduct.sortProductDepartment}
-          popularProduct={popularProduct.sortProductDepartment}
-          catalogData={categoryData.sortCategoryFromCatalog}
+          newSortProduct={newProduct}
+          popularProduct={popularProduct}
+          catalogData={categoryData}
           href={"/catalog/kantstovary"}
           title="Канцтовары"
           navValueArray={OPTIONS_STATIONERY_SUBDEPARTMENT}
@@ -34,38 +32,42 @@ const Kanstovary = ({
 
 
 export const getServerSideProps = async ({req, query, }: NextPageContext) => {
-  const { data: categoryData, loading: categoryLoad } = await client.query({
-    query: SORT_CATEGORY_FROM_CATALOG,
-    variables: { 
-      department: "stationery",
-    },
-  });
-  const { data: newProduct, loading: newProductLoading } = await client.query({
-    query: SORT_PRODUCT_DEPARTMENT,
-    variables: {
-      department: "stationery",
-      sortValue: "new",
-    },
-  });
-  const { data: popularProduct, loading: popularProductLoading } =
-    await client.query({
-      query: SORT_PRODUCT_DEPARTMENT,
-      variables: {
-        department: "stationery",
-        sortValue: "popular",
-      },
+  try {
+    const { data: categoryData, error: errCategoryData } = await graphQlFetch({
+      ...sortCategoryFromCatalog,
+      variables: { department: "stationery" },
+    });
+    const { data: newProduct, error: errNewProduct } = await graphQlFetch({
+      ...sortProductDepartment,
+      variables: { department: "stationery", sortValue: "new" },
+    });
+    const { data: popularProduct, error: errPopularProduct } = await graphQlFetch({
+      ...sortProductDepartment,
+      variables: { department: "stationery", sortValue: "popular" },
     });
 
-  return {
-    props: {
-      categoryData,
-      categoryLoad,
-      newProduct,
-      newProductLoading,
-      popularProduct,
-      popularProductLoading,
-    },
-  };
+      if (errCategoryData || errNewProduct || errPopularProduct) {
+        return {
+          notFound: true,
+        };
+      }
+  
+    return {
+      props: {
+        categoryData: categoryData.data.sortCategoryFromCatalog,
+        newProduct: newProduct.data.sortProductDepartment,
+        popularProduct: popularProduct.data.sortProductDepartment,
+      },
+    };
+  } catch {
+    return {
+      props: {
+        categoryData: null,
+        newProduct: null,
+        popularProduct: null,
+      },
+    };
+  }
 };
 
 export default Kanstovary;

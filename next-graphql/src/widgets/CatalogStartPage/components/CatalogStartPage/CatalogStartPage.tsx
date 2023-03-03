@@ -1,14 +1,15 @@
 import { FC } from "react";
+import { useRouter } from 'next/router';
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
 import { CatalogSwiper } from "../CatalogSwiper";
 import { CategoryCard } from "../CategoryCard";
-import { useRouter } from 'next/router';
 import { CatatlogProductList } from "../CatatlogProductList";
 import { ICategoryType, IProductType } from "../../../../apps/types";
-import styles from "./CatalogStartPage.module.scss";
-import { useDispatch, useSelector } from "react-redux";
 import { catalogPageAction } from "../../../../features";
 import { selectProductDetails } from "../../../../entities";
+
+import styles from "./CatalogStartPage.module.scss";
 
 interface ICatalogStartPage {
   title: string;
