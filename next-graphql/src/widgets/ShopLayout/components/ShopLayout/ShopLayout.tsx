@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import Head from "next/head";
 import Link from "next/link";
 
-import { FooterShop } from "../../../FooterShop/components/FooterShop/FooterShop";
 
 import * as features from "../../../../features";
 
@@ -14,6 +13,7 @@ import { useMatchMedia } from "../../../../features/CatalogPage/libs/hooks/use-m
 import { ShopLayoutHeaderMobile } from "../ShopLayoutHeaderMobile";
 import { LayoutSearchMobile } from "../LayoutSearchMobile";
 
+import { FooterShop } from "../../../FooterShop/components/FooterShop/FooterShop";
 import styles from "./ShopLayout.module.scss";
 
 interface IShopLayout {
