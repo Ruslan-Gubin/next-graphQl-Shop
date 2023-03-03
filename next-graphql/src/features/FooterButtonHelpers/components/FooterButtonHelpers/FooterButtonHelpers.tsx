@@ -4,8 +4,8 @@ import { ButtonFooterHelper } from "../../../../shared/components";
 import { buttonIcon } from "../../lib/assets/buttonIcon";
 import { useDispatch, useSelector } from "react-redux";
 import { questionsAction, selectQuestions } from "../../lib/store";
-import { useMutation, useQuery } from "@apollo/client";
-import { ADD_COMMENT_QUESTION, ONE_QUESTIONS  } from "../../../../apps/apollo";
+import { useMutation } from "@apollo/client";
+import { ADD_COMMENT_QUESTION } from "../../../../apps/apollo";
 import { ADD_QUESTIONS } from "../../models/questionRequest";
 
 import styles from "./FooterButtonHelpers.module.scss";
@@ -14,9 +14,6 @@ const FooterButtonHelpers: FC = () => {
   const [createQuestion, {}] = useMutation(ADD_QUESTIONS);
   const { modalStatus, textQuestion, questionsId } =
     useSelector(selectQuestions);
-  const { data: questions = [], loading } = useQuery(ONE_QUESTIONS, {
-    variables: { id: questionsId },
-  });
   const dispatch = useDispatch();
   const [addCommentQuestion, {}] = useMutation(ADD_COMMENT_QUESTION);
 
@@ -61,9 +58,8 @@ const FooterButtonHelpers: FC = () => {
         />
         {modalStatus ? (
           <ModalQuestionsMessage
-            dialogs={questions.question?.dialog}
             setMessage={(value) =>
-              dispatch(questionsAction.getValueInput({ value }))
+            dispatch(questionsAction.getValueInput({ value }))
             }
             message={textQuestion}
             closeModal={() => dispatch(questionsAction.getActivModal())}

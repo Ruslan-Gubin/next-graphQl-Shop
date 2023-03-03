@@ -1,9 +1,9 @@
 const graphQlFetch = async (graphqlQuery) => {
 
 
-  // const endpoint = `https://online-shop-bf1a.onrender.com/react-graphql`;
+  const endpoint = `https://online-shop-bf1a.onrender.com/react-graphql`;
   // const endpoint = `http://localhost:3005/react-graphql`;
-  const endpoint = `${process.env.API_HOST}`;
+  // const endpoint = `${process.env.API_HOST}`;
   
   
   const headers = {

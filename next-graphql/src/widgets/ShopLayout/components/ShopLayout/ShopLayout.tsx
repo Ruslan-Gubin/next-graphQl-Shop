@@ -1,20 +1,18 @@
 import { FC, useState } from "react";
-import { useSelector } from "react-redux";
 import Head from "next/head";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 import * as features from "../../../../features";
-
-
 import { ShopLayoutAside } from "../ShopLayoutAside";
 import { ShopLayoutHeader } from "../ShopLayoutHeader";
 import { selectLayoutShop } from "../../lib/store";
 import { useMatchMedia } from "../../../../features/CatalogPage/libs/hooks/use-match-media";
 import { ShopLayoutHeaderMobile } from "../ShopLayoutHeaderMobile";
 import { LayoutSearchMobile } from "../LayoutSearchMobile";
-
-import styles from "./ShopLayout.module.scss";
 import { FooterNavigation } from "../FooterNavigation";
 import { FooterCopyrights } from "../FooterCopyrights";
+
+import styles from "./ShopLayout.module.scss";
 
 
 interface IShopLayout {
@@ -80,8 +78,6 @@ const ShopLayout: FC<IShopLayout> = ({ children, title, keywords }) => {
       <FooterCopyrights />
       </div>
     </section>
-
-         {/* <FooterShop /> */}
         <features.FooterButtonHelpers />
       </section>
        
