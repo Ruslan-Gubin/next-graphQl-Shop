@@ -12,11 +12,10 @@ import styles from "./FooterButtonHelpers.module.scss";
 
 const FooterButtonHelpers: FC = () => {
   const [createQuestion, {}] = useMutation(ADD_QUESTIONS);
-  const { textQuestion, questionsId } =
-    useSelector(selectQuestions);
-  const dispatch = useDispatch();
-  const [modalActive, setModalActive] = useState(false)
+  const { textQuestion, questionsId } = useSelector(selectQuestions);
+  const [modalActive, setModalActive] = useState(false);
   const [addCommentQuestion, {}] = useMutation(ADD_COMMENT_QUESTION);
+  const dispatch = useDispatch();
 
   const handleAddQuestion = async () => {
     const variables = {
@@ -24,7 +23,7 @@ const FooterButtonHelpers: FC = () => {
       name: "Guest",
       viewed: false,
     };
-   
+
     if (!questionsId) {
       await createQuestion({
         variables,
@@ -49,7 +48,6 @@ const FooterButtonHelpers: FC = () => {
     dispatch(questionsAction.textValueClear());
   };
 
-
   return (
     <>
       <div className={styles.root}>
@@ -60,17 +58,17 @@ const FooterButtonHelpers: FC = () => {
         {modalActive ? (
           <ModalQuestionsMessage
             setMessage={(value) =>
-            dispatch(questionsAction.getValueInput({ value }))
+              dispatch(questionsAction.getValueInput({ value }))
             }
             message={textQuestion}
             closeModal={() => setModalActive(() => false)}
             handleAddQuestion={handleAddQuestion}
           />
         ) : (
-            <ButtonFooterHelper
+          <ButtonFooterHelper
             icon={buttonIcon.chatIcon}
             onClick={() => setModalActive(() => true)}
-            />
+          />
         )}
       </div>
     </>
