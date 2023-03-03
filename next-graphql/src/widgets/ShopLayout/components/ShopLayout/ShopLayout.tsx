@@ -13,8 +13,10 @@ import { useMatchMedia } from "../../../../features/CatalogPage/libs/hooks/use-m
 import { ShopLayoutHeaderMobile } from "../ShopLayoutHeaderMobile";
 import { LayoutSearchMobile } from "../LayoutSearchMobile";
 
-import { FooterShop } from "../../../FooterShop/components/FooterShop/FooterShop";
+// import { FooterShop } from "../../../FooterShop/components/FooterShop/FooterShop";
 import styles from "./ShopLayout.module.scss";
+import { FooterNavigation } from "../../../FooterShop/components/FooterNavigation";
+import { FooterCopyrights } from "../../../FooterShop/components/FooterCopyrights";
 
 interface IShopLayout {
   children: React.ReactNode;
@@ -72,7 +74,15 @@ const ShopLayout: FC<IShopLayout> = ({ children, title, keywords }) => {
             {children}
           </div>
         </main>
-         <FooterShop />
+
+        <footer className={styles.footer__wrapper}>
+      <section className={styles.footer__container}>
+      <FooterNavigation />
+      <FooterCopyrights />
+      </section>
+    </footer>
+
+         {/* <FooterShop /> */}
         <features.FooterButtonHelpers />
       </section>
        

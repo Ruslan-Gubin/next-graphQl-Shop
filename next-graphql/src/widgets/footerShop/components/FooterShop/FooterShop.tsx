@@ -6,7 +6,7 @@ import styles from './FooterShop.module.scss';
 const FooterShop = () => {
   
   return (
-    <footer className={styles.root}>
+    <footer className={styles.footer__wrapper}>
       <section className={styles.footer__container}>
       <FooterNavigation />
       <FooterCopyrights />

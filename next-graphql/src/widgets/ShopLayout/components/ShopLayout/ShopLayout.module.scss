@@ -41,6 +41,22 @@ position: relative;
  
 }
 
+.footer__wrapper {
+  background-color: #410e6b;
+  & .footer__container {
+
+    padding: 68px 0 47px 0;
+    
+    width: 75%;
+    margin: 0 auto;
+    @media (max-width: 1500px) {
+      width: 95%;
+    }
+    
+    
+  }
+}
+
 .adminLink {
   background-image: linear-gradient(
     to left,
