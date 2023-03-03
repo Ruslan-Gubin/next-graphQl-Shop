@@ -31,7 +31,8 @@ const Kuhnya = ({
   );
 };
 
-export const getServerSideProps = async ({ }: NextPageContext) => {
+export const getStaticProps = async (context) => {
+  console.log(context)
   try {
     const department = 'kitchen'
     const { data: categoryData, error: errCategoryData } = await graphQlFetch({

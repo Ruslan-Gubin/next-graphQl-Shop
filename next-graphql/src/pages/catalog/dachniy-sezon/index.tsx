@@ -52,7 +52,7 @@ export const getServerSideProps = async ({ }: NextPageContext) => {
           notFound: true,
         };
       }
-  
+
     return {
       props: {
         categoryData: categoryData.data.sortCategoryFromCatalog,
