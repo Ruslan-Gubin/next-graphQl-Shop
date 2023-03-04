@@ -46,8 +46,8 @@ const  GET_CATEGORYES = gql`
 query {
   categorys{
     name
-    sub_department
     _id
+    sub_department
     department
     image {
     url

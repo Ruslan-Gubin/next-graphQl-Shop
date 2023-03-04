@@ -4,8 +4,8 @@ const categoryes = {
   query: `query {
     categorys{
       name
-      sub_department
       _id
+      sub_department
       department
       image {
         url

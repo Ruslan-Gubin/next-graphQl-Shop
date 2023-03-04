@@ -327,6 +327,8 @@ query($limit: Int){
     price
     oldPrice
     _id
+    sub_department
+    department
     discount
     photo {
       images {
@@ -342,6 +344,8 @@ query($limit: Int){
     name
     price
     oldPrice
+    sub_department
+    department
     _id
     discount
     photo {
@@ -358,6 +362,8 @@ query($limit: Int){
     name
     price
     oldPrice
+    sub_department
+    department
     _id
     discount
     photo {

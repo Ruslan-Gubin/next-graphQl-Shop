@@ -1,14 +1,15 @@
-import { FC, FormEvent, useState } from "react";
+import { FC, FormEvent, useEffect, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { useSelector } from "react-redux";
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { selectUser } from "../../../../features";
 import { findMaxOpinion, Modal, QueckMessage, queckMessage, StarsList, useAddImage } from "../../../../shared";
 import { CREATE_FEEDBACK } from "../../models/feedbackRequest";
 import { StarsOpinionFeedback } from "../StarsOpinionFeedback";
+import { useDetailsContext } from "../../../ProductDetailsPage/libs/context/detailsContext";
 
 import styles from './ProductFeedback.module.scss';
-import { useDetailsContext } from "../../../ProductDetailsPage/libs/context/detailsContext";
 
 
 const addImageIcon = 'https://res.cloudinary.com/ds289tkqj/image/upload/v1675358473/Hits/icons8-add-image-96_utykso.png';
@@ -17,7 +18,7 @@ const starsPinkIcon = '/icons8-christmas-star-52.png';
 
 const ProductFeedback: FC = () => {
   const {user} = useSelector(selectUser)
-  const { product, refetch } =  useDetailsContext()
+  const { product } =  useDetailsContext()
   const [createFeedback] = useMutation(CREATE_FEEDBACK)
   const [feedbackText, setFeedbackText] = useState('')
   const [opinion, setOpinion] = useState(0)
@@ -26,6 +27,8 @@ const ProductFeedback: FC = () => {
   const [formActive, setFormActive] = useState(false)
   const {fileRef, imag, changeFile, cancelImage} = useAddImage()
   const [submitActive, setSubmitActive] = useState(false)
+  const router = useRouter()
+
 
   const handleUpdateStarsList = (index: number) => {
     const pink: string[] = []
@@ -57,7 +60,9 @@ const ProductFeedback: FC = () => {
       setStars([starsGrayIcon,starsGrayIcon,starsGrayIcon,starsGrayIcon,starsGrayIcon])
       queckMessage(setQueckModal, `Отзыв создан ${user.name}`)
       setSubmitActive(false)
-      refetch()
+      router.push({
+        query: router.query
+        },'', { scroll: false })
     })
     .catch(error => {
       queckMessage(setQueckModal, error.message)
@@ -74,7 +79,15 @@ const ProductFeedback: FC = () => {
       <StarsList count={findMaxOpinion(product && product.feedbacks)}/>
     {product?.feedbacks.length > 0 &&  <p>На основе {product?.feedbacks.length} отзывов</p>}
         </div>
-      <div onClick={() => setFormActive(!formActive)} className={styles.list__container}>
+      <div 
+      onClick={() => {
+        if (!user.name) {
+          router.push('/security/login')
+        } else {
+          setFormActive(!formActive)
+        }
+      }} 
+      className={styles.list__container}>
       <div className={styles.square}></div>  
       <div className={styles.list__line}>
       </div>

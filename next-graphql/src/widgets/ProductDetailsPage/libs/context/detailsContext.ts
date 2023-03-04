@@ -9,6 +9,7 @@ interface IProductDetails {
   department: {name: string, href: string}
   subDepartment: {name: string, href: string}
   media: {isDesktop: boolean | undefined, isMobile: boolean | undefined, isTablet: boolean | undefined}
+  departmentHrefName: string;
 }
 
 export const DetailsContext = createContext<IProductDetails | null>(null)

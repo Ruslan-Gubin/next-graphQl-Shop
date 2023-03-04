@@ -5,6 +5,8 @@ const maxViewsAllProduct = {
       price
       oldPrice
       _id
+      sub_department
+      department
       discount
       photo {
         images {
@@ -22,6 +24,8 @@ const getNewProducts = {
       price
       oldPrice
       _id
+      sub_department
+      department
       discount
       photo {
         images {
@@ -39,6 +43,8 @@ const getMaxDiscount = {
       price
       oldPrice
       _id
+      sub_department
+      department
       discount
       photo {
         images {

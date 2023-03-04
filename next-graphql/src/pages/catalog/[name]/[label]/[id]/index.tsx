@@ -7,7 +7,7 @@ import { ProductDetailsPage, ShopLayout } from "../../../../../widgets";
 import { GetStaticPaths } from 'next';
 import { IDetailsProductPaths } from '../../../../../apps/types';
 
-const ProductDetails = ({erroCode, product, department, subDepartment, similarProduct, product_id}) => {
+const ProductDetails = ({erroCode, product, department, subDepartment, similarProduct, product_id, departmentHrefName}) => {
 const router = useRouter()
 
   if (erroCode) {
@@ -19,7 +19,7 @@ const router = useRouter()
       {router.isFallback ?
       <LoaderShop />
       :
-      <ProductDetailsPage department={department} subDepartment={subDepartment} similarProduct={similarProduct} product_id={product_id} />
+      <ProductDetailsPage departmentHrefName={departmentHrefName} product={product} department={department} subDepartment={subDepartment} similarProduct={similarProduct} product_id={product_id} />
       }
     </ShopLayout>
   );
@@ -50,7 +50,7 @@ const paths: IDetailsProductPaths[] = products.data.products.map(item => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
-    const { id, label } = context.params
+    const { id, label, name } = context.params
     let erroCode: number | boolean = false;
     const { data: product, error: errProduct } = await graphQlFetch({
       ...getOneProductUpdateViews,
@@ -90,6 +90,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       props: { 
         erroCode,
         product: productDetails,
+        departmentHrefName: name,
         similarProduct: similarProduct.data.sortSimilarProduct,
         department: {
           name: findDepartment?.value,
@@ -101,7 +102,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
         },
         product_id: id,
     },
-    revalidate: 1,
+    // revalidate: 1,
     };
   } catch {
     return {

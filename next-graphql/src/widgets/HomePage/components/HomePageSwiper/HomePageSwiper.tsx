@@ -24,7 +24,6 @@ const HomePageSwiper: FC<IHomePageSwiper> = ({ imgArr }) => {
         id: "",
       })
     );
-    console.log(imageActive)
     router.push({
       pathname: '/catalog/[name]',
       query: {name: imageActive.href}

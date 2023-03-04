@@ -96,6 +96,7 @@ export default function Home({
 }
 
 export const getServerSideProps = async ({
+
 }: NextPageContext) => {
   try {
     const { data: categorys, error: errCategory } = await graphQlFetch(
