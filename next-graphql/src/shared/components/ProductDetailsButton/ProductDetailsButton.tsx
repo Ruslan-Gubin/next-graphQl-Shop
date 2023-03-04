@@ -7,7 +7,7 @@ import { Heart } from "../Heart";
 import { checkFavorite } from "../../../entities/Product/lib/helpers/checkFavorite";
 import { checkBasket } from "../../../entities/Product/lib/helpers/checkBasket";
 import styles from "./ProductDetailsButton.module.scss";
-import { useDetailsContext } from "../../../pages/details/[id]";
+import { useDetailsContext } from "../../../widgets/ProductDetailsPage/libs/context/detailsContext";
 
 interface IProductDetailsButton {
   handleAddBasket: () => void

@@ -10,7 +10,7 @@ import { checkFavorite } from '../../lib/helpers/checkFavorite';
 import { checkBasket } from '../../lib/helpers/checkBasket';
 
 import styles from './ProductDetailsMobile.module.scss';
-import { useDetailsContext } from '../../../../pages/details/[id]';
+import { useDetailsContext } from '../../../../widgets/ProductDetailsPage/libs/context/detailsContext';
 
 interface IProductDetailsMobile {
   characteristic: boolean;

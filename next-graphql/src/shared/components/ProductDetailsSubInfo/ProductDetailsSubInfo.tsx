@@ -9,7 +9,7 @@ import { selectBasket } from '../../../features';
 import styles from './ProductDetailsSubInfo.module.scss';
 import { checkFavorite } from '../../../entities/Product/lib/helpers/checkFavorite';
 import { checkBasket } from '../../../entities/Product/lib/helpers/checkBasket';
-import { useDetailsContext } from '../../../pages/details/[id]';
+import { useDetailsContext } from '../../../widgets/ProductDetailsPage/libs/context/detailsContext';
 
 interface IProductDetailsSubInfo {
   handleAddBasket: () => void

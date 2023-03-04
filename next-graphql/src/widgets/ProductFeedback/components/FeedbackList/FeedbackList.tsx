@@ -3,9 +3,9 @@ import { useMutation } from "@apollo/client";
 import { REMOVE_FEEDBACK } from "../../models/feedbackRequest";
 import { FeedbackProductCard } from "../../../../entities/Feedback";
 import { Array, queckMessage, QueckMessage } from "../../../../shared";
+import { useDetailsContext } from "../../../ProductDetailsPage/libs/context/detailsContext";
 
 import styles from "./FeedbackList.module.scss";
-import { useDetailsContext } from "../../../../pages/details/[id]";
 
 const FeedbackList: FC = () => {
   const { product, refetch } = useDetailsContext();

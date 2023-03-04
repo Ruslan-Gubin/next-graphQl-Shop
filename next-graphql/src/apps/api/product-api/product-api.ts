@@ -1,6 +1,4 @@
-
-
-const maxViewsAllProduct = { 
+const maxViewsAllProduct = {
   query: `query($limit: Int){
     getMaxViewsProducts(limit: $limit){
       name
@@ -14,8 +12,8 @@ const maxViewsAllProduct = {
         }
       }
     }
-  }`
- }
+  }`,
+};
 
 const getNewProducts = {
   query: `query($limit: Int){
@@ -31,8 +29,8 @@ const getNewProducts = {
         }
       }
     }
-  }`
-}
+  }`,
+};
 
 const getMaxDiscount = {
   query: `query($limit: Int){
@@ -48,8 +46,8 @@ const getMaxDiscount = {
         }
       }
     }
-  }`
-}
+  }`,
+};
 
 const sortProductDepartment = {
   query: `query ($department: String!, $sortValue: String!) {
@@ -66,8 +64,8 @@ const sortProductDepartment = {
         }
       }
     }
-  }`
-}
+  }`,
+};
 
 const sortProductsCatalog = {
   query: ` query (
@@ -109,8 +107,124 @@ const sortProductsCatalog = {
       }
     }
   }
+  `,
+};
+
+const getAllProductId = {
+  query: `
+  query {
+    products {
+      _id
+      sub_department
+      department
+    }
+  }
+  `,
+};
+
+const getOneProductUpdateViews = {
+  query: `mutation($id: ID!) {
+    productDetail(id: $id) {
+      _id
+      name
+      price
+      oldPrice
+      discount
+      count
+      description
+      colors_names
+      sub_department
+      department
+      photo_count
+      views
+      category_id
+      options {
+        name
+        value
+      }
+      brand {
+        name
+        _id
+        image {
+          url
+        }
+      }
+      category {
+        sub_department
+        department
+        name
+        _id
+      }
+
+      feedbacks {
+      _id
+      text
+      user_id
+      img {
+      url
+      }
+      user_opinion 
+      like
+      dislike
+      createdAt
+      user {
+      _id
+      name
+      image {
+      url
+      }
+      }
+      }
+
+
+      photo {
+        images {
+          url
+        }
+      }
+    }
+  }
+  `
+}
+
+const sortProductSimilar = {
+  query: `query (
+    $department: String!,
+    $sub_department: String!
+    $category_id: String!
+    $exception: String!
+    ) {
+      sortSimilarProduct(
+      department: $department,
+      sub_department: $sub_department
+      category_id: $category_id
+      exception: $exception
+      ) {
+        name
+        _id
+        discount
+        price
+        oldPrice
+        name
+        photo {
+          images {
+            url
+          }
+        }
+      }
+    }
   `
 }
 
 
-export { sortProductsCatalog, maxViewsAllProduct,getNewProducts, getMaxDiscount , sortProductDepartment}
+
+export {
+  getAllProductId,
+  sortProductsCatalog,
+  maxViewsAllProduct,
+  getNewProducts,
+  getMaxDiscount,
+  sortProductDepartment,
+  getOneProductUpdateViews,
+  sortProductSimilar,
+};

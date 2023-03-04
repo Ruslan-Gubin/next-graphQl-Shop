@@ -1,6 +1,6 @@
-
 import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
-import { useDetailsContext } from "../../../pages/details/[id]";
+import { useDetailsContext } from "../../../widgets/ProductDetailsPage/libs/context/detailsContext";
+
 
 import styles from "./ProductDetailsDescription.module.scss";
 

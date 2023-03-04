@@ -9,4 +9,7 @@ export {
   getMaxDiscount,
   sortProductDepartment,
   sortProductsCatalog,
+  getAllProductId,
+  getOneProductUpdateViews,
+  sortProductSimilar,
 } from "./product-api/product-api";

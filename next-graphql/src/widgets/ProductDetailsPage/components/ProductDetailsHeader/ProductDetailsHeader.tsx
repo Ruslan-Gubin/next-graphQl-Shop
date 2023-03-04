@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { catalogPageAction } from '../../../../features';
 import { Array, findMaxOpinion, StarsList } from '../../../../shared';
 import styles from './ProductDetailsHeader.module.scss';
-import { useDetailsContext } from '../../../../pages/details/[id]';
+import { useDetailsContext } from '../../libs/context/detailsContext';
 
 
 const ProductDetailsHeader: FC = () => {

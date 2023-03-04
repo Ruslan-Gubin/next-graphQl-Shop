@@ -1,3 +1,4 @@
+
 const graphQlFetch = async (graphqlQuery) => {
 
 
@@ -18,7 +19,7 @@ const graphQlFetch = async (graphqlQuery) => {
   };
 
       const response = await fetch(endpoint, options);
-      const error = response.ok ? false : true
+      const error = response.ok ? false : response.status
       const status = response.status
       const  data  = await response.json();
 
