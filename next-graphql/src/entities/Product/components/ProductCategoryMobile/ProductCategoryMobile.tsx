@@ -2,7 +2,6 @@ import { FC, memo, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useInView } from "react-intersection-observer";
 import { selectBasket } from '../../../../features';
 import { formatterRub } from '../../../../features/CatalogPage/libs/helper';
@@ -18,12 +17,11 @@ product: IProductType
 onClickBuy: (value: IProductType) => void
 addFavorites: () => void
 removeFavorites: () => void
-handleRouterProduct: (href: {name: string, label: string, id: string}) => void
 }
 
-const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({handleRouterProduct, product, onClickBuy, addFavorites, removeFavorites }) => {
+const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({ product, onClickBuy, addFavorites, removeFavorites }) => {
   const {basket, favorites} = useSelector(selectBasket)
-  const [hoverCard, setHover] = useState(false)
+  const [hoverCard] = useState(false)
   const [ref, isVisible] = useInView({ threshold: 0.5, triggerOnce: true });
   const [buttonActive, setButtonActive] = useState(false)
   const cardRef = useRef<HTMLElement>(null)
@@ -40,7 +38,7 @@ const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({handleRouterProduct
   },[basket, product._id])
 
   const nameHref = OPTIONS_DEPARTMENT.find(item => item.label === product.department)
-  console.log(nameHref?.department_href)
+
   return (
     <article ref={cardRef} className={styles.root}>
       <header>
@@ -48,24 +46,17 @@ const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({handleRouterProduct
         <Heart active={checkFavorite(favorites, product)} handleAddFavorite={addFavorites} removeFavorites={removeFavorites}/>
         </div>
         <figure className={styles.image__container}>
-        {/* <Link 
+        <Link 
           href={{
             pathname: '/catalog/[name]/[label]/[id]',
             query: {name: nameHref?.department_href, label: product.sub_department, id: product._id}
-        }}> */}
-
-          <Image
-          onClick={() => handleRouterProduct({name: nameHref.department_href, label: product.sub_department, id: product._id})}
-          width={500}
-          height={500}
-          ref={ref}
-          className={styles.img}
-          src={isVisible ? product.photo.images[0].url : 'https://res.cloudinary.com/ds289tkqj/image/upload/v1675357978/Hits/icons8-add-image-80_fxoexh.png'} 
-            alt="Product imag" />
-          {/* <img ref={ref}
+        }}>
+          <picture>
+          <img ref={ref}
            className={styles.img} src={isVisible ? product.photo.images[0].url : ''} 
-            alt="Product imag" /> */}
-      {/* </Link> */}
+          alt="Product imag" />
+          </picture>
+      </Link>
           <figcaption style={hoverCard ? { backgroundColor: 'white'}: {backgroundColor: ''}} className={styles.info__container}>
             <span className={styles.discount}>{product.discount}%</span>
             <div className={styles.price__container}>

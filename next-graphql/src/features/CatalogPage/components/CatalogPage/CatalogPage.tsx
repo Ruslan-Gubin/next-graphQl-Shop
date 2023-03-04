@@ -29,7 +29,6 @@ interface ICatalogPage {
   department: string;
   sub_department: string;
   sub_departmentName:string;
-  departmentHref: string;
 }
 
 const CatalogPage: FC<ICatalogPage> = ({
@@ -40,7 +39,6 @@ const CatalogPage: FC<ICatalogPage> = ({
   optionDepartment,
   label,
   sub_departmentName,
-  departmentHref,
 }) => {
   const { watchedProduct } = useSelector(selectProductDetails)
   const { perPage} = useSelector(selectCatalogPage) 
@@ -88,7 +86,10 @@ const CatalogPage: FC<ICatalogPage> = ({
     setSubDepartmentValue(() => ({ value: value.value, label: value.label }));
     setCategoryValue({ value: "Категория", label: "Категория", id: "" });
     setBrandValue({ value: "Бренд", label: "Бренд", id: "" });
-    router.push(`/catalog/${href}/${value.label}`);
+    router.push({
+      pathname: '/catalog/[name]/[label]',
+      query: {name: href, label: value.label}
+    });
   };
 
   useEffect(() => {

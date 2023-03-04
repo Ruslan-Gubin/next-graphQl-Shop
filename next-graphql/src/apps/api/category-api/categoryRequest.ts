@@ -22,6 +22,7 @@ const sortCategoryFromCatalog = {
       department: $department
     ) {
       name
+      department
       sub_department
       _id
       image {

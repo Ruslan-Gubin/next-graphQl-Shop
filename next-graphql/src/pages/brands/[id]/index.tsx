@@ -1,18 +1,16 @@
 import { useQuery } from "@apollo/client";
-import { allBrandsId } from "../../apps/apollo/BrandRequest";
-import { IBrandType } from "../../apps/types";
-import { BrandPage } from "../../widgets";
-import { GET__ONE_BRAND } from "../../widgets/BrandPage";
-import { ShopLayout } from "../../widgets/ShopLayout";
-import { useRouter } from "next/router";
-import { graphQlFetch } from "../../apps/api";
-import { getOneBrandFetch } from "../../widgets/BrandPage/models/brandRequest";
+import { allBrandsId } from "../../../apps/apollo/BrandRequest";
+import { IBrandType } from "../../../apps/types";
+import { BrandPage } from "../../../widgets";
+import { GET__ONE_BRAND } from "../../../widgets/BrandPage";
+import { ShopLayout } from "../../../widgets/ShopLayout";
+import { graphQlFetch } from "../../../apps/api";
+import { getOneBrandFetch } from "../../../widgets/BrandPage/models/brandRequest";
 import { GetStaticProps } from 'next'
 
-const Brands = ({ brand }: { brand: IBrandType }) => {
-  const router = useRouter();
+const Brands = ({ brand, id }: { brand: IBrandType, id: string }) => {
   const { data: reserveBrand, loading } = useQuery(GET__ONE_BRAND, {
-    variables: { id: router.query.id },
+    variables: { id },
     skip: Boolean(brand),
   });
 
@@ -65,12 +63,16 @@ export const getStaticProps: GetStaticProps = async (context) => {
     }
 
     return {
-      props: { brand: brand.data.brand },
+      props: { 
+        brand: brand.data.brand,
+        id
+      },
     };
   } catch (error) {
     return {
       props: {
         brand: null,
+        id: null,
       },
     };
   }

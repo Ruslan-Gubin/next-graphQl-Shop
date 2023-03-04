@@ -1,9 +1,9 @@
 import { FC } from "react";
+import { useSelector } from "react-redux";
 import { CatalogProductList } from "../../../../features/CatalogPage/components/CatalogProductList/CatalogProductList";
 import { useMatchMedia } from "../../../../features/CatalogPage/libs/hooks/use-match-media";
 import { BrandPageHeader } from "../BrandPageHeader";
 import { IBrandType } from "../../../../apps/types";
-import { useSelector } from "react-redux";
 import { selectProductDetails } from "../../../../entities";
 import { CatatlogProductList } from "../../../../widgets/CatalogStartPage/components/CatatlogProductList";
 

@@ -24,6 +24,8 @@ const productDetailsSlice = createSlice({
         oldPrice: action.payload.product.oldPrice,
         name: action.payload.product.name,
         discount: action.payload.product.discount,
+        department: action.payload.product.department,
+        sub_department: action.payload.product.sub_department,
       }
       const wathed = state.watchedProduct.some(item => item._id === newProduct._id)
       if (!wathed) {

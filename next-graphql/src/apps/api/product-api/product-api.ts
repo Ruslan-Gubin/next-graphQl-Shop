@@ -54,6 +54,8 @@ const sortProductDepartment = {
     sortProductDepartment(department: $department, sortValue: $sortValue) {
       name
       _id
+      department
+      sub_department
       discount
       price
       oldPrice
@@ -201,6 +203,8 @@ const sortProductSimilar = {
       exception: $exception
       ) {
         name
+        department
+        sub_department
         _id
         discount
         price

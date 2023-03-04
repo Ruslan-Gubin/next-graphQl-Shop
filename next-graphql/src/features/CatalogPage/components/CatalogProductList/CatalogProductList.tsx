@@ -1,6 +1,5 @@
 import { FC, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useRouter } from "next/router";
 import {  selectCatalogPage } from '../../store';
 import { IProductType } from '../../../../apps/types';
 import { ProductCategory } from '../../../../entities';
@@ -19,7 +18,6 @@ const CatalogProductList: FC<ICatalogProductList> = ({products, isDesktop}) => {
   const { sizeCard } = useSelector(selectCatalogPage)
   const [quickMessage, setQueckMessage] = useState({status: false, text: ''})
   const dispatch = useDispatch()
-  const router = useRouter()
   
 
   const handleClickBuy = useCallback((product: IProductType) => {
@@ -84,27 +82,18 @@ const CatalogProductList: FC<ICatalogProductList> = ({products, isDesktop}) => {
     return result
   }
 
-const handleRouterProduct = useCallback((href: {name: string, label: string, id: string}) => {
-  console.log(href)
-  router.push({
-    pathname: `/catalog/[name]/[label]/[id]`,
-    query: href
-  })
-}, [ router])
-
   return (
     <section className={styles.root}>
       <QueckMessage active={quickMessage.status} message={quickMessage.text}/>
       <ul className={styles.product__list_container}>
         {products && filterPage(products).map(product => (
           <li className={sizeCard === 'small' ? styles.product__item_small : styles.product__item_big} key={product._id}>
-            {isDesktop ?
+          {isDesktop ?
           <ProductCategory
           addFavorites={() => handleAddFavorites(product)}
           removeFavorites={() => handleRemoveFavorites(product._id)}
           onClickBuy={() => handleClickBuy(product)} 
           product={product}
-          handleRouterProduct={handleRouterProduct}
           />
           : 
           <ProductCategoryMobile
@@ -112,7 +101,6 @@ const handleRouterProduct = useCallback((href: {name: string, label: string, id:
           removeFavorites={() => handleRemoveFavorites(product._id)}
           onClickBuy={() => handleClickBuy(product)} 
           product={product}
-          handleRouterProduct={handleRouterProduct}
           />
         }
           </li>

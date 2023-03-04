@@ -29,12 +29,11 @@ interface IStationeryProps {
   sub_departmentName: string;
   href: string;
   erroCode: boolean | number;
-  departmentHref: string;
 }
 
 
 
-const NavOptionSubdepartment = ({departmentHref, erroCode, href, sub_departmentName, value, label, products, sub_department, optionDepartment}: IStationeryProps) => {
+const NavOptionSubdepartment = ({ erroCode, href, sub_departmentName, value, label, products, sub_department, optionDepartment}: IStationeryProps) => {
   const router = useRouter()
 
   if (erroCode) {
@@ -54,7 +53,6 @@ const NavOptionSubdepartment = ({departmentHref, erroCode, href, sub_departmentN
         optionDepartment={optionDepartment}
         department={label}
         sub_department={sub_department}
-        departmentHref={departmentHref}
       />
       }
     </ShopLayout>
@@ -101,14 +99,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
     return {
       props: {
        erroCode,
-       departmentHref: name,
        sub_department:  label,
        products: products.data.sortProductCatalog, 
        value: findCategory.value,
        label: findCategory.label,
        optionDepartment: findCategory.subdepartment,
        sub_departmentName: findCategory.value,
-       href: findCategory.department_href 
+       href: name 
       },
     };
   } catch {

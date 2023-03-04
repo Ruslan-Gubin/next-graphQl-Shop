@@ -1,6 +1,5 @@
 import { FC, memo, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { IProductType } from '../../../../apps/types';
 import { formatterRub } from '../../../../features/CatalogPage/libs/helper';
 import { findMaxOpinion, Heart, StarsList } from '../../../../shared';
@@ -9,18 +8,17 @@ import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { selectBasket } from '../../../../features';
 import { checkFavorite } from '../../lib/helpers/checkFavorite';
-import styles from './ProductCategory.module.scss';
 import { OPTIONS_DEPARTMENT } from '../../../../apps/constants';
+import styles from './ProductCategory.module.scss';
 
 interface IProductCategory {
 product: IProductType
 onClickBuy: (value: IProductType) => void
 addFavorites: () => void
 removeFavorites: () => void
-handleRouterProduct: (href: {name: string, label: string, id: string}) => void
 }
 
-const ProductCategoryF: FC<IProductCategory> = ({handleRouterProduct, product, onClickBuy, addFavorites,removeFavorites}) => {
+const ProductCategoryF: FC<IProductCategory> = ({ product, onClickBuy, addFavorites,removeFavorites }) => {
   const {basket, favorites} = useSelector(selectBasket)
   const [hoverCard, setHover] = useState(false)
   const [buttonActive, setButtonActive] = useState(false)
@@ -63,27 +61,19 @@ const ProductCategoryF: FC<IProductCategory> = ({handleRouterProduct, product, o
         <Heart active={checkFavorite(favorites, product)} handleAddFavorite={addFavorites} removeFavorites={removeFavorites}/>
         </div>
         <figure className={styles.image__container}>
-          {/* <Link 
+          <Link 
           href={{
             pathname: '/catalog/[name]/[label]/[id]',
             query: {name: nameHref?.department_href, label: product.sub_department, id: product._id}
-        }}> */}
-      
-          <Image
-          onClick={() => handleRouterProduct({name: nameHref.department_href, label: product.sub_department, id: product._id})}
-          width={500}
-          height={500}
-          ref={ref}
-          className={styles.img}
-          src={isVisible ? product.photo.images[0].url : 'https://res.cloudinary.com/ds289tkqj/image/upload/v1675357978/Hits/icons8-add-image-80_fxoexh.png'} 
-          alt="Product imag" />
-        
-          {/* <img
+        }}>
+        <picture>
+          <img
           ref={ref}
           className={styles.img}
           src={isVisible ? product.photo.images[0].url : ''} 
-          alt="Product imag" /> */}
-      {/* </Link> */}
+          alt="Product imag" />
+          </picture>
+      </Link>
           <figcaption style={hoverCard ? { backgroundColor: 'white'}: {backgroundColor: ''}} className={styles.info__container}>
           {hoverCard ? 
            <div className={styles.viewing}>

@@ -1,6 +1,5 @@
 import  { FC, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
 import { useDispatch } from 'react-redux';
 import { catalogPageAction } from '../../../../features';
 
@@ -8,24 +7,27 @@ import styles from './CatalogSwiper.module.scss';
 
 interface ICatelogSwiper {
   catalogImages: {value: string, label: string, img: string}[]
-  href?: string
+  catalogName: string;
 }
 
 
-const CatalogSwiper: FC<ICatelogSwiper> = ({catalogImages, href}) => {
+const CatalogSwiper: FC<ICatelogSwiper> = ({catalogName, catalogImages}) => {
   const [imageActive, setImageActive] = useState(catalogImages[0])
   const countRef = useRef<number>(0)
   const finish = catalogImages.length - 1 
   const router = useRouter()
   const dispatch = useDispatch()
 
+  useEffect(() => {
+    setImageActive(catalogImages[0])
+  },[catalogImages])
+
   const handleRouter = () => {
     dispatch(catalogPageAction.setCategoryValue({value: "Категория", label: "Категория", id: ""}))
-    if (href) {
-      router.push(`${href}/${imageActive.label}`)
-    } else {
-      router.push(`${imageActive.label}`)
-    }
+      router.push({
+        pathname: '/catalog/[name]/[label]',
+        query: {name: catalogName, label: imageActive.label}
+      })
   }
 
   const handleButtonArray = (value: string) => {
@@ -64,8 +66,9 @@ const CatalogSwiper: FC<ICatelogSwiper> = ({catalogImages, href}) => {
       <figure 
       onClick={() => handleRouter()}
       className={styles.img__container}>
-        <Image width={1400} height={800} src={imageActive.img} alt="imag swiper" />
-        {/* <img src={imageActive.img} alt="imag swiper" /> */}
+       <picture>
+        <img src={imageActive.img} alt="imag swiper" />
+       </picture>
         <figcaption><p className={styles.name__item}>{imageActive.value}</p></figcaption> 
       </figure>
       {countRef.current < finish -1 &&

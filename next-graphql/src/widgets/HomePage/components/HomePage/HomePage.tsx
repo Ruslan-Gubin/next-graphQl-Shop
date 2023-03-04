@@ -1,7 +1,7 @@
-import { selectProductDetails } from "../../../../entities";
 import { useDispatch, useSelector } from "react-redux"; 
 import { useRouter } from "next/router";
 import Image from 'next/image';
+import { selectProductDetails } from "../../../../entities";
 import { CatatlogProductList } from "../../../../widgets/CatalogStartPage/components/CatatlogProductList";
 import { swiperHomeData } from "../../libs";
 import { brandLendingList } from "../../libs/data/brandLendingList";
@@ -41,7 +41,11 @@ const HomePage = ({ categoryData , maxWievsProducts, newProducts, maxDiscountPro
     const findHref = OPTIONS_DEPARTMENT.find(
       (item) => item.label === catalog.department
     );
-    router.push(`${findHref?.href}/${catalog.sub_department}`);
+
+    router.push({
+      pathname: '/catalog/[name]/[label]',
+      query: { name: findHref.department_href, label: catalog.sub_department }
+    });
   };
 
   return (
@@ -55,8 +59,13 @@ const HomePage = ({ categoryData , maxWievsProducts, newProducts, maxDiscountPro
           <li
             className={styles.brand__item}
             key={brand.name}
-            onClick={() => router.push(`${brand.href}`)}
-          >
+            onClick={() => {
+              router.push({
+                pathname: '/brands/[id]',
+                query: { id: brand.id}
+              })
+            }}
+            >
             <Image
               width={400}
               height={300}
@@ -64,7 +73,7 @@ const HomePage = ({ categoryData , maxWievsProducts, newProducts, maxDiscountPro
               title={brand.name}
               src={brand.img}
               alt="brand img"
-            />
+              />
           </li>
         ))}
       </ul>

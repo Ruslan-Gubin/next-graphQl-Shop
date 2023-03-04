@@ -8,33 +8,38 @@ import { CatatlogProductList } from "../CatatlogProductList";
 import { ICategoryType, IProductType } from "../../../../apps/types";
 import { catalogPageAction } from "../../../../features";
 import { selectProductDetails } from "../../../../entities";
+import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
 
 import styles from "./CatalogStartPage.module.scss";
 
 interface ICatalogStartPage {
   title: string;
   navValueArray: { value: string; label: string; img: string }[];
-  href: string;
   catalogData: ICategoryType[];
   newSortProduct: IProductType[];
   popularProduct: IProductType[];
+  catalogName: string;
 }
 
 const CatalogStartPage: FC<ICatalogStartPage> = ({
   popularProduct,
   title,
   navValueArray,
-  href,
   catalogData,
   newSortProduct,
+  catalogName,
 }) => {
   const { watchedProduct } = useSelector(selectProductDetails)
   const dispatch = useDispatch()
   const router = useRouter()
 
-  const handleClickCategory = (catalog: {name: string, _id: string, sub_department: string}) => {
+  const handleClickCategory = (catalog: {name: string, _id: string, sub_department: string, department: string}) => {
+    const nameHref = OPTIONS_DEPARTMENT.find(item => item.label === catalog.department)
     dispatch(catalogPageAction.setCategoryValue({value: catalog.name, label: catalog.name, id: catalog._id}))
-    router.push(`${href}/${catalog.sub_department}`)
+    router.push({
+      pathname: '/catalog/[name]/[label]',
+      query: {name: nameHref?.department_href, label: catalog.sub_department}
+    })
   }
 
   return (
@@ -55,13 +60,21 @@ const CatalogStartPage: FC<ICatalogStartPage> = ({
           <h3>{title}</h3>
           <ul>
             {navValueArray.map((nav) => (
-              <Link key={nav.value} href={`${href}/${nav.label}`}  >
-                <li
-                onClick={() => dispatch(catalogPageAction.setCategoryValue({
-                  value: "Категория", label: "Категория", id: ""
-                }))}
-                className={styles.nav__item}>{nav.value}</li>
-              </Link>
+              <Link 
+              key={nav.value}
+              href={{
+                  pathname: '/catalog/[name]/[label]',
+                  query: {name: catalogName, label: nav.label}
+                }}
+                >
+              <li
+                onClick={() => {
+                  dispatch(catalogPageAction.setCategoryValue({ value: "Категория", label: "Категория", id: ""}))
+                }}
+              className={styles.nav__item}>
+                  {nav.value}
+                  </li>
+               </Link>
             ))}
           </ul>
         </nav>
@@ -71,7 +84,13 @@ const CatalogStartPage: FC<ICatalogStartPage> = ({
        
           <ul className={styles.categori__container_mobile}>
             {navValueArray.map((nav) => (
-              <Link key={nav.value} href={`${href}/${nav.label}`}  >
+              <Link 
+              key={nav.value}
+              href={{
+                  pathname: '/catalog/[name]/[label]',
+                  query: {name: catalogName, label: nav.label}
+                }}
+                >
                 <li
                 onClick={() => dispatch(catalogPageAction.setCategoryValue({
                   value: "Категория", label: "Категория", id: ""
@@ -82,7 +101,9 @@ const CatalogStartPage: FC<ICatalogStartPage> = ({
           </ul>
           {navValueArray.length &&
           <CatalogSwiper
-          href={href} catalogImages={navValueArray} />
+          catalogName={catalogName}
+          catalogImages={navValueArray} 
+          />
           }
           <ul className={styles.category__container}>
             {catalogData.length > 0 && catalogData.map((catalog: any) => (
