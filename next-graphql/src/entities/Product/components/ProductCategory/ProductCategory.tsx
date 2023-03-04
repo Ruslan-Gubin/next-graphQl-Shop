@@ -16,9 +16,12 @@ product: IProductType
 onClickBuy: (value: IProductType) => void
 addFavorites: () => void
 removeFavorites: () => void
+departmentHref: string;
+sub_department: string;
+handleRouterProduct: (id: string) => void
 }
 
-const ProductCategoryF: FC<IProductCategory> = ({product, onClickBuy, addFavorites,removeFavorites}) => {
+const ProductCategoryF: FC<IProductCategory> = ({handleRouterProduct,sub_department, departmentHref, product, onClickBuy, addFavorites,removeFavorites}) => {
   const {basket, favorites} = useSelector(selectBasket)
   const [hoverCard, setHover] = useState(false)
   const [buttonActive, setButtonActive] = useState(false)
@@ -59,9 +62,14 @@ const ProductCategoryF: FC<IProductCategory> = ({product, onClickBuy, addFavorit
         <Heart active={checkFavorite(favorites, product)} handleAddFavorite={addFavorites} removeFavorites={removeFavorites}/>
         </div>
         <figure className={styles.image__container}>
-          <Link href={`/catalog/${product._id}`}>
+          <Link 
+          href={{
+            pathname: '/catalog/[name]/[label]/[id]',
+            query: {name: departmentHref, label: sub_department, id: product._id}
+        }}>
       
           <Image
+          // onClick={() => handleRouterProduct(product._id)}
           width={500}
           height={500}
           ref={ref}

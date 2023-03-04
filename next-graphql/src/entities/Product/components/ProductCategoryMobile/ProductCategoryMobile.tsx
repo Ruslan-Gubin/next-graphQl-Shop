@@ -1,14 +1,14 @@
 import { FC, memo, useEffect, useRef, useState } from 'react';
-import { IProductType } from '../../../../apps/types';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
-import { formatterRub } from '../../../../features/CatalogPage/libs/helper';
-import { findMaxOpinion, Heart, StarsList } from '../../../../shared';
 import { useInView } from "react-intersection-observer";
 import { selectBasket } from '../../../../features';
+import { formatterRub } from '../../../../features/CatalogPage/libs/helper';
 import { checkFavorite } from '../../lib/helpers/checkFavorite';
+import { IProductType } from '../../../../apps/types';
+import { findMaxOpinion, Heart, StarsList } from '../../../../shared';
 
 import styles from './ProductCategoryMobile.module.scss';
 
@@ -17,9 +17,11 @@ product: IProductType
 onClickBuy: (value: IProductType) => void
 addFavorites: () => void
 removeFavorites: () => void
+departmentHref: string
+sub_department: string
 }
 
-const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({product, onClickBuy, addFavorites, removeFavorites}) => {
+const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({departmentHref, sub_department, product, onClickBuy, addFavorites, removeFavorites}) => {
   const {basket, favorites} = useSelector(selectBasket)
   const [hoverCard, setHover] = useState(false)
   const [ref, isVisible] = useInView({ threshold: 0.5, triggerOnce: true });
@@ -44,7 +46,12 @@ const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({product, onClickBuy
         <Heart active={checkFavorite(favorites, product)} handleAddFavorite={addFavorites} removeFavorites={removeFavorites}/>
         </div>
         <figure className={styles.image__container}>
-          <Link href={`/catalog/${product._id}`}>
+        <Link 
+          href={{
+          pathname: '/catalog/[name]/[label]/[id]',
+          query: {name: departmentHref, label: sub_department, id: product._id}
+        }}>
+
           <Image
           width={500}
           height={500}

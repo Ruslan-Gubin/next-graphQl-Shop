@@ -14,12 +14,12 @@ import {
   sortOptionsDropDown,
   sortProductFilter,
 } from "../../libs/helper";
-import styles from "./CatalogPage.module.scss";
 import { useMatchMedia } from "../../libs/hooks/use-match-media";
 import { CatalogPageHeaderMobile } from "../CatalogPageHeaderMobile";
 import { LoaderShop } from "../../../../shared";
 import { selectProductDetails } from "../../../../entities";
 import { CatatlogProductList } from "../../../../widgets/CatalogStartPage/components/CatatlogProductList";
+import styles from "./CatalogPage.module.scss";
 
 interface ICatalogPage {
   href: string;
@@ -28,7 +28,8 @@ interface ICatalogPage {
   label: string;
   department: string;
   sub_department: string;
-  sub_departmentName:string
+  sub_departmentName:string;
+  departmentHref: string;
 }
 
 const CatalogPage: FC<ICatalogPage> = ({
@@ -39,6 +40,7 @@ const CatalogPage: FC<ICatalogPage> = ({
   optionDepartment,
   label,
   sub_departmentName,
+  departmentHref,
 }) => {
   const { watchedProduct } = useSelector(selectProductDetails)
   const { perPage} = useSelector(selectCatalogPage) 
@@ -164,6 +166,8 @@ const CatalogPage: FC<ICatalogPage> = ({
         }
           <CatalogProductList
           isDesktop={isDesktop}
+          departmentHref={departmentHref}
+          sub_department={sub_department}
           products={sortProductFilter(
             productsFilter,
             categoryValue,

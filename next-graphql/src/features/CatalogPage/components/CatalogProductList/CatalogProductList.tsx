@@ -1,25 +1,27 @@
 import { FC, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from "next/router";
 import {  selectCatalogPage } from '../../store';
 import { IProductType } from '../../../../apps/types';
 import { ProductCategory } from '../../../../entities';
 import { ProductCategoryMobile } from '../../../../entities/Product/components';
 import { basketAction } from '../../../../features';
 import { QueckMessage } from '../../../../shared';
-
 import styles from './CatalogProductList.module.scss';
 
 interface ICatalogProductList {
-  products: IProductType[]
-  isDesktop: boolean | undefined
+  products: IProductType[];
+  isDesktop: boolean | undefined;
+  departmentHref: string;
+  sub_department: string;
 }
 
-const CatalogProductList: FC<ICatalogProductList> = ({products, isDesktop}) => {
+const CatalogProductList: FC<ICatalogProductList> = ({products, isDesktop, departmentHref, sub_department}) => {
   const {page, perPage} = useSelector(selectCatalogPage)
   const { sizeCard } = useSelector(selectCatalogPage)
   const [quickMessage, setQueckMessage] = useState({status: false, text: ''})
   const dispatch = useDispatch()
-
+  const router = useRouter()
   
 
   const handleClickBuy = useCallback((product: IProductType) => {
@@ -84,7 +86,16 @@ const CatalogProductList: FC<ICatalogProductList> = ({products, isDesktop}) => {
     return result
   }
 
-
+const handleRouterProduct = useCallback((id: string) => {
+  router.push({
+    pathname: `/catalog/[name]/[label]/${id}`,
+    // pathname: `/catalog/${departmentHref}/${sub_department}/${id}`,
+    query: {name: departmentHref, label: sub_department}
+  })
+  // console.log(`catalog/${departmentHref}/${sub_department}/${id}`);
+  // router.push(`/catalog/[${departmentHref}]/${sub_department}/${id}`)
+  // router.push(`${departmentHref}/${sub_department}/${id}`)
+}, [])
 
   return (
     <section className={styles.root}>
@@ -98,6 +109,9 @@ const CatalogProductList: FC<ICatalogProductList> = ({products, isDesktop}) => {
           removeFavorites={() => handleRemoveFavorites(product._id)}
           onClickBuy={() => handleClickBuy(product)} 
           product={product}
+          departmentHref={departmentHref}
+          handleRouterProduct={handleRouterProduct}
+          sub_department={sub_department}
           />
           : 
           <ProductCategoryMobile
@@ -105,6 +119,8 @@ const CatalogProductList: FC<ICatalogProductList> = ({products, isDesktop}) => {
           removeFavorites={() => handleRemoveFavorites(product._id)}
           onClickBuy={() => handleClickBuy(product)} 
           product={product}
+          departmentHref={departmentHref}
+          sub_department={sub_department}
           />
         }
           </li>

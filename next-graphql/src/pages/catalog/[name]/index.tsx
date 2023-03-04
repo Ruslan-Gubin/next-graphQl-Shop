@@ -1,14 +1,23 @@
-import { GetStaticProps } from 'next'
+import { useRouter } from 'next/router';
+import { GetStaticProps } from 'next';
 import { CatalogStartPage, ShopLayout } from "../../../widgets";
 import { graphQlFetch, sortCategoryFromCatalog, sortProductDepartment } from "../../../apps/api";
 import { OPTIONS_DEPARTMENT } from "../../../apps/constants";
+import { Error, LoaderShop } from '../../../shared';
 
 
-const CatalogName = ({catalog, newProduct, popularProduct, categoryData}) => {
+const CatalogName = ({erroCode, catalog, newProduct, popularProduct, categoryData}) => {
+  const router = useRouter()
 
+  if (erroCode) {
+    return <Error statusCode={erroCode}/>
+  }
 
   return (
     <ShopLayout title={catalog.value} keywords={catalog.value}>
+      {router.isFallback ?
+      <LoaderShop />
+      :
        <CatalogStartPage
           newSortProduct={newProduct}
           popularProduct={popularProduct}
@@ -17,6 +26,7 @@ const CatalogName = ({catalog, newProduct, popularProduct, categoryData}) => {
           title={catalog.value}
           navValueArray={catalog.subdepartment}
         />
+      }
     </ShopLayout>
   );
 };
@@ -45,6 +55,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
+    let erroCode: number | boolean = false;
     const { name } = context.params
     const catalog = OPTIONS_DEPARTMENT.find(item => item.department_href === name)
 
@@ -62,6 +73,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
     });
 
       if (errCategoryData || errNewProduct || errPopularProduct) {
+        erroCode = errCategoryData && errCategoryData
+        erroCode = errNewProduct && errNewProduct
+        erroCode = errPopularProduct && errPopularProduct
         return {
           notFound: true,
         };
@@ -69,6 +83,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
     return {
       props: { 
+      erroCode,
       catalog: catalog,
       categoryData: categoryData.data.sortCategoryFromCatalog,
       newProduct: newProduct.data.sortProductDepartment,
