@@ -12,11 +12,9 @@ import styles from './CatalogProductList.module.scss';
 interface ICatalogProductList {
   products: IProductType[];
   isDesktop: boolean | undefined;
-  departmentHref: string;
-  sub_department: string;
 }
 
-const CatalogProductList: FC<ICatalogProductList> = ({products, isDesktop, departmentHref, sub_department}) => {
+const CatalogProductList: FC<ICatalogProductList> = ({products, isDesktop}) => {
   const {page, perPage} = useSelector(selectCatalogPage)
   const { sizeCard } = useSelector(selectCatalogPage)
   const [quickMessage, setQueckMessage] = useState({status: false, text: ''})
@@ -86,16 +84,13 @@ const CatalogProductList: FC<ICatalogProductList> = ({products, isDesktop, depar
     return result
   }
 
-const handleRouterProduct = useCallback((id: string) => {
-  router.push({
-    pathname: `/catalog/[name]/[label]/${id}`,
-    // pathname: `/catalog/${departmentHref}/${sub_department}/${id}`,
-    query: {name: departmentHref, label: sub_department}
-  })
-  // console.log(`catalog/${departmentHref}/${sub_department}/${id}`);
-  // router.push(`/catalog/[${departmentHref}]/${sub_department}/${id}`)
-  // router.push(`${departmentHref}/${sub_department}/${id}`)
-}, [])
+const handleRouterProduct = useCallback((href: {name: string, label: string, id: string}) => {
+  console.log(href)
+  // router.push({
+  //   pathname: `/catalog/[name]/[label]/[id]`,
+  //   query: {name: departmentHref, label: sub_department, id}
+  // })
+}, [ router])
 
   return (
     <section className={styles.root}>
@@ -109,9 +104,7 @@ const handleRouterProduct = useCallback((id: string) => {
           removeFavorites={() => handleRemoveFavorites(product._id)}
           onClickBuy={() => handleClickBuy(product)} 
           product={product}
-          departmentHref={departmentHref}
           handleRouterProduct={handleRouterProduct}
-          sub_department={sub_department}
           />
           : 
           <ProductCategoryMobile
@@ -119,8 +112,6 @@ const handleRouterProduct = useCallback((id: string) => {
           removeFavorites={() => handleRemoveFavorites(product._id)}
           onClickBuy={() => handleClickBuy(product)} 
           product={product}
-          departmentHref={departmentHref}
-          sub_department={sub_department}
           />
         }
           </li>

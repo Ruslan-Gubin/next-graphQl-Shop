@@ -166,8 +166,6 @@ const CatalogPage: FC<ICatalogPage> = ({
         }
           <CatalogProductList
           isDesktop={isDesktop}
-          departmentHref={departmentHref}
-          sub_department={sub_department}
           products={sortProductFilter(
             productsFilter,
             categoryValue,

@@ -9,6 +9,8 @@ query($id: ID!) {
       _id
       name
       price
+      department
+      sub_department
       oldPrice
       discount
       count
@@ -45,6 +47,8 @@ const getOneBrandFetch = {
       name
       products{
         _id
+        department
+        sub_department
         name
         price
         oldPrice

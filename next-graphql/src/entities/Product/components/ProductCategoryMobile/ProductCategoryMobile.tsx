@@ -11,17 +11,16 @@ import { IProductType } from '../../../../apps/types';
 import { findMaxOpinion, Heart, StarsList } from '../../../../shared';
 
 import styles from './ProductCategoryMobile.module.scss';
+import { OPTIONS_DEPARTMENT } from '../../../../apps/constants';
 
 interface IProductCategoryMobile {
 product: IProductType
 onClickBuy: (value: IProductType) => void
 addFavorites: () => void
 removeFavorites: () => void
-departmentHref: string
-sub_department: string
 }
 
-const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({departmentHref, sub_department, product, onClickBuy, addFavorites, removeFavorites}) => {
+const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({ product, onClickBuy, addFavorites, removeFavorites }) => {
   const {basket, favorites} = useSelector(selectBasket)
   const [hoverCard, setHover] = useState(false)
   const [ref, isVisible] = useInView({ threshold: 0.5, triggerOnce: true });
@@ -38,7 +37,9 @@ const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({departmentHref, sub
       }
     })
   },[basket, product._id])
-  
+
+  const nameHref = OPTIONS_DEPARTMENT.find(item => item.label === product.department)
+  console.log(nameHref?.department_href)
   return (
     <article ref={cardRef} className={styles.root}>
       <header>
@@ -48,8 +49,8 @@ const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({departmentHref, sub
         <figure className={styles.image__container}>
         <Link 
           href={{
-          pathname: '/catalog/[name]/[label]/[id]',
-          query: {name: departmentHref, label: sub_department, id: product._id}
+            pathname: '/catalog/[name]/[label]/[id]',
+            query: {name: nameHref?.department_href, label: product.sub_department, id: product._id}
         }}>
 
           <Image

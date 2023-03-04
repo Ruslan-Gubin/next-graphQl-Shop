@@ -10,18 +10,17 @@ import { useSelector } from 'react-redux';
 import { selectBasket } from '../../../../features';
 import { checkFavorite } from '../../lib/helpers/checkFavorite';
 import styles from './ProductCategory.module.scss';
+import { OPTIONS_DEPARTMENT } from '../../../../apps/constants';
 
 interface IProductCategory {
 product: IProductType
 onClickBuy: (value: IProductType) => void
 addFavorites: () => void
 removeFavorites: () => void
-departmentHref: string;
-sub_department: string;
-handleRouterProduct: (id: string) => void
+handleRouterProduct: (href: {name: string, label: string, id: string}) => void
 }
 
-const ProductCategoryF: FC<IProductCategory> = ({handleRouterProduct,sub_department, departmentHref, product, onClickBuy, addFavorites,removeFavorites}) => {
+const ProductCategoryF: FC<IProductCategory> = ({handleRouterProduct, product, onClickBuy, addFavorites,removeFavorites}) => {
   const {basket, favorites} = useSelector(selectBasket)
   const [hoverCard, setHover] = useState(false)
   const [buttonActive, setButtonActive] = useState(false)
@@ -54,7 +53,9 @@ const ProductCategoryF: FC<IProductCategory> = ({handleRouterProduct,sub_departm
       }
     })
   },[basket, product._id])
-  
+
+  const nameHref = OPTIONS_DEPARTMENT.find(item => item.label === product.department)
+
   return (
     <article ref={cardRef} className={styles.root}>
       <header>
@@ -65,11 +66,11 @@ const ProductCategoryF: FC<IProductCategory> = ({handleRouterProduct,sub_departm
           <Link 
           href={{
             pathname: '/catalog/[name]/[label]/[id]',
-            query: {name: departmentHref, label: sub_department, id: product._id}
+            query: {name: nameHref?.department_href, label: product.sub_department, id: product._id}
         }}>
       
           <Image
-          // onClick={() => handleRouterProduct(product._id)}
+          // onClick={() => handleRouterProduct({name: nameHref.department_href, label: product.sub_department, id: product._id})}
           width={500}
           height={500}
           ref={ref}

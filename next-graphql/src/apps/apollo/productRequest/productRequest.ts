@@ -288,6 +288,8 @@ const SORT_PRODUCT_CATALOG = gql`
       sortProperty: $sortProperty
     ) {
       _id
+      department
+      sub_department
       name
       price
       oldPrice
