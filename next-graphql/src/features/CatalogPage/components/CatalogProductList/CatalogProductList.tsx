@@ -86,10 +86,10 @@ const CatalogProductList: FC<ICatalogProductList> = ({products, isDesktop}) => {
 
 const handleRouterProduct = useCallback((href: {name: string, label: string, id: string}) => {
   console.log(href)
-  // router.push({
-  //   pathname: `/catalog/[name]/[label]/[id]`,
-  //   query: {name: departmentHref, label: sub_department, id}
-  // })
+  router.push({
+    pathname: `/catalog/[name]/[label]/[id]`,
+    query: href
+  })
 }, [ router])
 
   return (
@@ -112,6 +112,7 @@ const handleRouterProduct = useCallback((href: {name: string, label: string, id:
           removeFavorites={() => handleRemoveFavorites(product._id)}
           onClickBuy={() => handleClickBuy(product)} 
           product={product}
+          handleRouterProduct={handleRouterProduct}
           />
         }
           </li>

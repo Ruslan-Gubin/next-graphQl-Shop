@@ -18,9 +18,10 @@ product: IProductType
 onClickBuy: (value: IProductType) => void
 addFavorites: () => void
 removeFavorites: () => void
+handleRouterProduct: (href: {name: string, label: string, id: string}) => void
 }
 
-const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({ product, onClickBuy, addFavorites, removeFavorites }) => {
+const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({handleRouterProduct, product, onClickBuy, addFavorites, removeFavorites }) => {
   const {basket, favorites} = useSelector(selectBasket)
   const [hoverCard, setHover] = useState(false)
   const [ref, isVisible] = useInView({ threshold: 0.5, triggerOnce: true });
@@ -47,13 +48,14 @@ const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({ product, onClickBu
         <Heart active={checkFavorite(favorites, product)} handleAddFavorite={addFavorites} removeFavorites={removeFavorites}/>
         </div>
         <figure className={styles.image__container}>
-        <Link 
+        {/* <Link 
           href={{
             pathname: '/catalog/[name]/[label]/[id]',
             query: {name: nameHref?.department_href, label: product.sub_department, id: product._id}
-        }}>
+        }}> */}
 
           <Image
+          onClick={() => handleRouterProduct({name: nameHref.department_href, label: product.sub_department, id: product._id})}
           width={500}
           height={500}
           ref={ref}
@@ -63,7 +65,7 @@ const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({ product, onClickBu
           {/* <img ref={ref}
            className={styles.img} src={isVisible ? product.photo.images[0].url : ''} 
             alt="Product imag" /> */}
-      </Link>
+      {/* </Link> */}
           <figcaption style={hoverCard ? { backgroundColor: 'white'}: {backgroundColor: ''}} className={styles.info__container}>
             <span className={styles.discount}>{product.discount}%</span>
             <div className={styles.price__container}>

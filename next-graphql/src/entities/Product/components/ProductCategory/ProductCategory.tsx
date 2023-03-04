@@ -63,14 +63,14 @@ const ProductCategoryF: FC<IProductCategory> = ({handleRouterProduct, product, o
         <Heart active={checkFavorite(favorites, product)} handleAddFavorite={addFavorites} removeFavorites={removeFavorites}/>
         </div>
         <figure className={styles.image__container}>
-          <Link 
+          {/* <Link 
           href={{
             pathname: '/catalog/[name]/[label]/[id]',
             query: {name: nameHref?.department_href, label: product.sub_department, id: product._id}
-        }}>
+        }}> */}
       
           <Image
-          // onClick={() => handleRouterProduct({name: nameHref.department_href, label: product.sub_department, id: product._id})}
+          onClick={() => handleRouterProduct({name: nameHref.department_href, label: product.sub_department, id: product._id})}
           width={500}
           height={500}
           ref={ref}
@@ -83,7 +83,7 @@ const ProductCategoryF: FC<IProductCategory> = ({handleRouterProduct, product, o
           className={styles.img}
           src={isVisible ? product.photo.images[0].url : ''} 
           alt="Product imag" /> */}
-      </Link>
+      {/* </Link> */}
           <figcaption style={hoverCard ? { backgroundColor: 'white'}: {backgroundColor: ''}} className={styles.info__container}>
           {hoverCard ? 
            <div className={styles.viewing}>
