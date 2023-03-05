@@ -1,11 +1,10 @@
 import { useRouter } from 'next/router';
-import { GetStaticProps } from "next";
-import { getAllProductId,  getOneProductUpdateViews,  graphQlFetch, sortProductSimilar } from "../../../../../apps/api";
-import { OPTIONS_DEPARTMENT } from "../../../../../apps/constants";
-import { Error, LoaderShop } from "../../../../../shared";
-import { ProductDetailsPage, ShopLayout } from "../../../../../widgets";
-import { GetStaticPaths } from 'next';
-import { IDetailsProductPaths } from '../../../../../apps/types';
+import { getOneProductUpdateViews,  graphQlFetch, sortProductSimilar } from "../../../../apps/api";
+import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
+import { Error, LoaderShop } from "../../../../shared";
+import { ProductDetailsPage, ShopLayout } from "../../../../widgets";
+import { NextPageContext } from "next";
+
 
 const ProductDetails = ({erroCode, product, department, subDepartment, similarProduct, product_id, departmentHrefName}) => {
 const router = useRouter()
@@ -25,32 +24,11 @@ const router = useRouter()
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async (): Promise<{paths: IDetailsProductPaths[] | null, fallback: boolean}> => {
+
+
+export const getServerSideProps = async ({query}:NextPageContext) => {
   try {
-    const { data: products } = await graphQlFetch({
-      ...getAllProductId
-    });
-
-const paths: IDetailsProductPaths[] = products.data.products.map(item => {
-  const findName = OPTIONS_DEPARTMENT.find(dep => dep.label === item.department)
- return {params: {id: item._id, label: item.sub_department, name: findName.department_href}}
-})
-
-    return {
-      paths,
-      fallback: false,
-    };
-  } catch {
-    return {
-      paths: null,
-      fallback: true,
-    };
-  }
-};
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  try {
-    const { id, label, name } = context.params
+    const { name, label, id } = query
     let erroCode: number | boolean = false;
     const { data: product, error: errProduct } = await graphQlFetch({
       ...getOneProductUpdateViews,

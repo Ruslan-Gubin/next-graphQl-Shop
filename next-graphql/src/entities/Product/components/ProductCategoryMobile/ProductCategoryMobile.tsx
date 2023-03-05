@@ -50,7 +50,9 @@ const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({ product, onClickBu
           href={{
             pathname: '/catalog/[name]/[label]/[id]',
             query: {name: nameHref?.department_href, label: product.sub_department, id: product._id}
-        }}>
+        }}
+        prefetch={false}
+        >
           <picture>
           <img ref={ref}
            className={styles.img} src={isVisible ? product.photo.images[0].url : ''} 
