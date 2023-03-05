@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
 import { getOneProductUpdateViews,  graphQlFetch, sortProductSimilar } from "../../../../apps/api";
-import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
 import { Error, LoaderShop } from "../../../../shared";
 import { ProductDetailsPage, ShopLayout } from "../../../../widgets";
 import { NextPageContext } from "next";
+import { OPTIONS_DEPARTMENT } from '../../../../apps/constants';
 
 
 const ProductDetails = ({erroCode, product, department, subDepartment, similarProduct, product_id, departmentHrefName}) => {

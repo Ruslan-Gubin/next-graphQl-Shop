@@ -1,12 +1,13 @@
 import { useRouter } from 'next/router';
 import { GetStaticProps } from "next";
-import { graphQlFetch,  sortProductsCatalog } from "../../../../apps/api";
-import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
-import { Ioption } from "../../../../apps/constants/optionsMenu";
-import { IProductType } from "../../../../apps/types";
-import { CatalogPage } from "../../../../features";
-import { ShopLayout } from "../../../../widgets";
-import { Error, LoaderShop } from '../../../../shared';
+import { graphQlFetch,  sortProductsCatalog } from "../../../apps/api";
+import { OPTIONS_DEPARTMENT } from "../../../apps/constants";
+import { Ioption } from "../../../apps/constants/optionsMenu";
+import { IProductType } from "../../../apps/types";
+import { CatalogPage } from "../../../features";
+import { ShopLayout } from "../../../widgets";
+import { Error, LoaderShop } from '../../../shared';
+
 
 const subPagesLabels = () => { 
   const result = []
