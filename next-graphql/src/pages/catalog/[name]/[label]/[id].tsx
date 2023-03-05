@@ -9,7 +9,7 @@ import { NextPageContext } from "next";
 const ProductDetails = ({erroCode, product, department, subDepartment, similarProduct, product_id, departmentHrefName}) => {
 const router = useRouter()
 
-  if (erroCode) {
+  if (erroCode || !product) {
     return <Error statusCode={erroCode}/>
   }
   
@@ -35,12 +35,6 @@ export const getServerSideProps = async ({query}:NextPageContext) => {
       variables: { id },
     });
 
-    if ( errProduct ) {
-      erroCode = errProduct
-      return {
-        notFound: true,
-      };
-    }
 
     const productDetails = product.data.productDetail
 
@@ -54,8 +48,9 @@ export const getServerSideProps = async ({query}:NextPageContext) => {
        },
     });
 
-    if ( errSimilarProduct ) {
-      erroCode = errSimilarProduct
+    if ( errSimilarProduct || errProduct ) {
+      erroCode = errSimilarProduct && errSimilarProduct
+      erroCode = errProduct && errProduct
       return {
         notFound: true,
       };
