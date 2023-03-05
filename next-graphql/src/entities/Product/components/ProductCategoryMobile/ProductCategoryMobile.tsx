@@ -47,11 +47,12 @@ const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({ product, onClickBu
         </div>
         <figure className={styles.image__container}>
         <Link 
-          href={{
-            pathname: `/catalog/${nameHref?.department_href}/${product.sub_department}/${product._id}`,
-            // pathname: `/catalog/[name]/[label]/${product._id}`,
-            // query: {name: nameHref?.department_href, label: product.sub_department}
-        }}
+        href={`/catalog/${nameHref?.department_href}/${product.sub_department}/${product._id}`}
+        //   href={{
+        //     pathname: `/catalog/${nameHref?.department_href}/${product.sub_department}/${product._id}`,
+        //     // pathname: `/catalog/[name]/[label]/${product._id}`,
+        //     // query: {name: nameHref?.department_href, label: product.sub_department}
+        // }}
         prefetch={false}
         >
           <picture>
