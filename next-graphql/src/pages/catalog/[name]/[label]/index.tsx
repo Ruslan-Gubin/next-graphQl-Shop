@@ -1,13 +1,12 @@
 import { useRouter } from 'next/router';
-import { GetStaticProps } from "next";
-import { graphQlFetch,  sortProductsCatalog } from "../../../apps/api";
-import { OPTIONS_DEPARTMENT } from "../../../apps/constants";
-import { Ioption } from "../../../apps/constants/optionsMenu";
-import { IProductType } from "../../../apps/types";
-import { CatalogPage } from "../../../features";
-import { ShopLayout } from "../../../widgets";
-import { Error, LoaderShop } from '../../../shared';
-
+import { graphQlFetch,  sortProductsCatalog } from "../../../../apps/api";
+import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
+import { Ioption } from "../../../../apps/constants/optionsMenu";
+import { IProductType } from "../../../../apps/types";
+import { CatalogPage } from "../../../../features";
+import { ShopLayout } from "../../../../widgets";
+import { Error, LoaderShop } from '../../../../shared';
+import { NextPageContext } from "next";
 
 const subPagesLabels = () => { 
   const result = []
@@ -34,15 +33,19 @@ interface IStationeryProps {
 
 
 
+
 const NavOptionSubdepartment = ({ erroCode, href, sub_departmentName, value, label, products, sub_department, optionDepartment}: IStationeryProps) => {
   const router = useRouter()
 
+  console.log(router.query)
+
   if (erroCode) {
+    router.push('/404')
     return <Error statusCode={erroCode}/>
   }
 
   return (
-    <ShopLayout title={value} keywords={value}>
+    <ShopLayout title={'value'} keywords={'value'}>
       {router.isFallback ?
       <LoaderShop />
       :
@@ -60,25 +63,11 @@ const NavOptionSubdepartment = ({ erroCode, href, sub_departmentName, value, lab
   );
 };
 
-export const getStaticPaths = async () => {
-  try {
 
-    return {
-      paths: subPagesLabels(),
-      fallback: false,
-    };
-  } catch {
-    return {
-      patch: null,
-      fallback: true,
-    };
-  }
-};
-
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps = async ({query}: NextPageContext) => {
   try {
     let erroCode: number | boolean = false;
-    const { label, name } = context.params;
+    const { label, name } = query;
     const findCategory = OPTIONS_DEPARTMENT.find(item => item.department_href === name)
 
     const { data: products, error: errProducts } = await graphQlFetch({
@@ -112,6 +101,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   } catch {
     return {
       props: {
+      erroCode: 'patch',
       products: null, 
       value: null,
       label: null,
@@ -123,3 +113,5 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export default NavOptionSubdepartment;
+
+
