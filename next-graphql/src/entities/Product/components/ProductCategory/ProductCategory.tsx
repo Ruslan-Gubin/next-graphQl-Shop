@@ -65,7 +65,7 @@ const ProductCategoryF: FC<IProductCategory> = ({ product, onClickBuy, addFavori
           href={{
             pathname: `/catalog/${nameHref?.department_href}/${product.sub_department}/${product._id}`,
             // pathname: `/catalog/[name]/[label]/${product._id}`,
-            query: {name: nameHref?.department_href, label: product.sub_department}
+            // query: {name: nameHref?.department_href, label: product.sub_department}
         }}
         prefetch={false}
         >
