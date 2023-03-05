@@ -8,7 +8,7 @@ import { NextPageContext } from "next";
 
 const ProductDetails = ({erroCode, product, department, subDepartment, similarProduct, product_id, departmentHrefName}) => {
 const router = useRouter()
-  console.log(product);
+
   if (erroCode) {
     return <Error statusCode={erroCode}/>
   }
@@ -24,7 +24,7 @@ const router = useRouter()
   );
 };
 
-export const getServerSideProps = async ({query}) => {
+export const getServerSideProps = async ({query}: NextPageContext) => {
    try {
     const {id, label, name } = query
 
