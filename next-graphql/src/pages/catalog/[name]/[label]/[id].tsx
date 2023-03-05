@@ -8,18 +8,18 @@ import { NextPageContext } from "next";
 
 const ProductDetails = ({erroCode, product, department, subDepartment, similarProduct, product_id, departmentHrefName}) => {
 const router = useRouter()
-
+console.log(product)
   if (erroCode || !product) {
     return <Error statusCode={erroCode}/>
   }
   
   return (
     <ShopLayout title='ProductDetail' keywords='ProductDetail'>
-      {router.isFallback ?
+      {/* {router.isFallback ?
       <LoaderShop />
       :
       <ProductDetailsPage departmentHrefName={departmentHrefName} product={product} department={department} subDepartment={subDepartment} similarProduct={similarProduct} product_id={product_id} />
-      }
+      } */}
     </ShopLayout>
   );
 };
