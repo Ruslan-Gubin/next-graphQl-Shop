@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
 import { GetStaticProps } from 'next';
-import { CatalogStartPage, ShopLayout } from "../../../widgets";
-import { graphQlFetch, sortCategoryFromCatalog, sortProductDepartment } from "../../../apps/api";
-import { OPTIONS_DEPARTMENT } from "../../../apps/constants";
-import { Error, LoaderShop } from '../../../shared';
+import { CatalogStartPage, ShopLayout } from "../../widgets";
+import { graphQlFetch, sortCategoryFromCatalog, sortProductDepartment } from "../../apps/api";
+import { OPTIONS_DEPARTMENT } from "../../apps/constants";
+import { Error, LoaderShop } from '../../shared';
 import { NextPageContext } from "next";
 
 const CatalogName = ({catalogName, erroCode, catalog, newProduct, popularProduct, categoryData}) => {
