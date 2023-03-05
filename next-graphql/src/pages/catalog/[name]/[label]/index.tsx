@@ -37,7 +37,7 @@ interface IStationeryProps {
 const NavOptionSubdepartment = ({ erroCode, href, sub_departmentName, value, label, products, sub_department, optionDepartment}: IStationeryProps) => {
   const router = useRouter()
 
-  console.log(router.query)
+
 
   if (erroCode) {
     router.push('/404')
