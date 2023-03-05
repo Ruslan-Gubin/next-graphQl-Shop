@@ -1,15 +1,15 @@
 import { useRouter } from 'next/router';
-import { getOneProductUpdateViews,  graphQlFetch, sortProductSimilar } from "../../../../../apps/api";
-import { OPTIONS_DEPARTMENT } from "../../../../../apps/constants";
-import { Error, LoaderShop } from "../../../../../shared";
-import { ProductDetailsPage, ShopLayout } from "../../../../../widgets";
+import { getOneProductUpdateViews,  graphQlFetch, sortProductSimilar } from "../../../../apps/api";
+import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
+import { Error, LoaderShop } from "../../../../shared";
+import { ProductDetailsPage, ShopLayout } from "../../../../widgets";
 import { NextPageContext } from "next";
 
 
 const ProductDetails = ({erroCode, product, department, subDepartment, similarProduct, product_id, departmentHrefName}) => {
 const router = useRouter()
-console.log(product)
-  if (erroCode || !product) {
+  console.log(product);
+  if (erroCode) {
     return <Error statusCode={erroCode}/>
   }
   
@@ -24,17 +24,22 @@ console.log(product)
   );
 };
 
+export const getServerSideProps = async ({query}) => {
+   try {
+    const {id, label, name } = query
 
-
-export const getServerSideProps = async ({query}:NextPageContext) => {
-  try {
-    const { name, label, id } = query
     let erroCode: number | boolean = false;
     const { data: product, error: errProduct } = await graphQlFetch({
       ...getOneProductUpdateViews,
       variables: { id },
     });
 
+    if ( errProduct ) {
+      erroCode = errProduct
+      return {
+        notFound: true,
+      };
+    }
 
     const productDetails = product.data.productDetail
 
@@ -48,9 +53,8 @@ export const getServerSideProps = async ({query}:NextPageContext) => {
        },
     });
 
-    if ( errSimilarProduct || errProduct ) {
-      erroCode = errSimilarProduct && errSimilarProduct
-      erroCode = errProduct && errProduct
+    if ( errSimilarProduct ) {
+      erroCode = errSimilarProduct
       return {
         notFound: true,
       };
@@ -87,5 +91,6 @@ export const getServerSideProps = async ({query}:NextPageContext) => {
     };
   }
 };
+
 
 export default ProductDetails;
