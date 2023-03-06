@@ -4,6 +4,7 @@ const ALL_BRENDS = gql`
   query{
   brands{
     _id
+    name
   }
 }
 `;

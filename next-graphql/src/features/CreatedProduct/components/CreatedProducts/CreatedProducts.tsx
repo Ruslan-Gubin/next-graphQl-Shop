@@ -1,5 +1,6 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
+import { useDispatch, useSelector } from "react-redux";
 import {
   CREATED_BRAND,
   CREATED_CATEGORY,
@@ -7,7 +8,6 @@ import {
   CREATED_PRODUCT,
   SORT_CATEGORY,
 } from "../../../../apps/apollo";
-import { useDispatch, useSelector } from "react-redux";
 import { createdProductImagesAction, selectCreatedProductImages } from "../../libs/store/createdProductImagesSlice";
 import {
   createdProductAction,
@@ -41,6 +41,14 @@ const CreatedProducts: FC = () => {
   const [download, setDownload] = useState(true);
   const dispatch = useDispatch();
 
+ 
+  useEffect(() => {
+    if (createdProductState.basicValue.price) {
+      return setDownload(true)
+    } else {
+      return setDownload(false)
+    }
+  },[createdProductState.basicValue])
 
   const handleCreatedProduct = async () => {
     setDownload(false);

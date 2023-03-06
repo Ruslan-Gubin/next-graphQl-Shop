@@ -1,5 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/dist/client/router";
 import {
   UPDATE_PHOTO,
   UPDATE_PRODUCT_BASIC,
@@ -10,10 +12,9 @@ import { AdminUpdateProductFooter } from "../AdminUpdateProductFooter";
 import { AdminUpdateProductHeader } from "../AdminUpdateProductHeader";
 import { IProductType } from "../../../../apps/types";
 import { useAddImage } from "../../../../shared";
-import { useDispatch, useSelector } from "react-redux";
 import { selectUpdateOption, updateOptionAction } from "../../libs/store";
+
 import styles from "./AdminUpdateProduct.module.scss";
-import { useRouter } from "next/dist/client/router";
 
 const AdminUpdateProduct: FC = () => {
   const { optionValue, addImage, updateProductId } =

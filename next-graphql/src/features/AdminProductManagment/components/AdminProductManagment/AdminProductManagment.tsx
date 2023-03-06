@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUpdateProduct } from "../../libs/store/updateProductSlice";
@@ -10,20 +10,18 @@ import {
   GET_PRODUCT_UPDATE,
   SORT_CATEGORY,
 } from "../../model/productRequest";
-
 import { selectAdminNavHeader } from "../../../../features/AdminNavHeader";
 import { AdminProductSceleton } from "../AdminProductSceleton";
 import { IProductType } from "../../../../apps/types";
-import styles from "./AdminProductManagment.module.scss";
 import { AdminModal } from "../AdminModal";
 import {  updateOptionAction } from "../../../../features/AdminUpdateProduct";
 import { useRouter } from "next/router";
 import { useOutside } from "../../../../widgets/ShopLayout/lib/hooks/useOutside";
 
-interface IAdminProductManagment {
-}
+import styles from "./AdminProductManagment.module.scss";
 
-const AdminProductManagment: FC<IAdminProductManagment> = () => {
+
+const AdminProductManagment: FC = () => {
   const { searchValue } = useSelector(selectAdminNavHeader);
   const updateProductState = useSelector(selectUpdateProduct);
   const {

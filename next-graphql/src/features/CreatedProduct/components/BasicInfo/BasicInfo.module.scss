@@ -30,21 +30,17 @@
 }
 
 .categoryImag {
-  width: auto;
+  width: 70px;
   height: auto;
   border-radius: 15px;
 }
 
 .category__imag_container {
-  // position: relative;
-  // top: 0;
-  // right: 40px;
   padding: 15px 0;
   display: flex;
 
   & .category__imag_block {
     padding: 10px;
-    // border: 1px solid rgba(122, 122, 122, 0.298);
     background-image: linear-gradient(
       to top,
       (rgb(97, 97, 97), rgb(254, 254, 254))

@@ -31,21 +31,23 @@
         max-width: 150px;
       }
     }
-
+    
     & .images__container {
       display: flex;
       padding: 20px 0;
       & .images__item {
         border-radius: 10px;
-        width: auto;
-        height: auto;
+        width: 100px;
+        height: 100px;
         margin-right: 20px;
+        cursor: pointer;
       }
 
       & .img {
         border-radius: 10px;
-        width: auto;
-        height: auto;
+        width: 100px;
+        height: 100px;
+        cursor: pointer;
       }
     }
   }

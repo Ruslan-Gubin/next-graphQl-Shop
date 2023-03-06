@@ -1,9 +1,9 @@
 import { FC, memo } from "react";
-import { IProductType } from "../../../../apps/types";
+import { useDispatch, useSelector } from "react-redux";
 import Image from 'next/image';
+import { IProductType } from "../../../../apps/types";
 import { AdminTexteria, CustomAdminInput } from "../../../../shared/components";
 import { addImageIcon } from "../../constants/icons";
-import { useDispatch, useSelector } from "react-redux";
 import { selectUpdateOption, updateOptionAction } from "../../libs/store";
 
 import styles from "./AdminUpdateProductMain.module.scss";
@@ -110,8 +110,8 @@ const dispatch = useDispatch()
           {productInfo.photo.images.length + addImage.length < 5 &&
            <>
            <Image
-           width={80}
-           height={80}
+           width={100}
+           height={100}
            onClick={() => fileRef.current?.click()}
            src={addImageIcon} 
            alt="icon add image" 

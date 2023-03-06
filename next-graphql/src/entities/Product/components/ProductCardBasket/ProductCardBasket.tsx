@@ -29,13 +29,13 @@ const ProductCardBasket = ({
     <article className={styles.root}>
       <figure className={styles.product__info_container}>
       <Link href={`/catalog/${findDepartmentName.department_href}/${product.sub_department}/${product.id}`}>
-        <Image
-          width={96}
-          height={128}
+        <picture>
+        <img
           className={styles.product__info_img}
           src={product.img}
           alt="Product Image"
-          />{" "}
+          />
+          </picture>
           </Link>
         <figcaption className={styles.product__description_container}>
           <p className={styles.product__info_description}>
