@@ -6,11 +6,11 @@ import { NextPageContext } from "next";
 import { OPTIONS_DEPARTMENT } from '../../../../../apps/constants';
 
 
-const ProductDetails = ({erroCode, product, department, subDepartment, similarProduct, product_id, departmentHrefName}) => {
+const ProductDetails = ({ product, department, subDepartment, similarProduct, product_id, departmentHrefName}) => {
 const router = useRouter()
 
-  if (erroCode) {
-    return <Error statusCode={erroCode}/>
+  if (!product) {
+    return <Error statusCode={'product id'}/>
   }
   
   return (
@@ -24,18 +24,16 @@ const router = useRouter()
   );
 };
 
-export const getServerSideProps = async ({query}: NextPageContext) => {
+ProductDetails.getInitialProps = async ({query}: NextPageContext) => {
    try {
     const {id, label, name } = query
 
-    let erroCode: number | boolean = false;
     const { data: product, error: errProduct } = await graphQlFetch({
       ...getOneProductUpdateViews,
       variables: { id },
     });
 
     if ( errProduct ) {
-      erroCode = errProduct
       return {
         notFound: true,
       };
@@ -54,7 +52,6 @@ export const getServerSideProps = async ({query}: NextPageContext) => {
     });
 
     if ( errSimilarProduct ) {
-      erroCode = errSimilarProduct
       return {
         notFound: true,
       };
@@ -64,8 +61,6 @@ export const getServerSideProps = async ({query}: NextPageContext) => {
     const subDepartment = findDepartment?.subdepartment.find(item => item.label === productDetails.sub_department)
 
     return {
-      props: { 
-        erroCode,
         product: productDetails,
         departmentHrefName: name,
         similarProduct: similarProduct.data.sortSimilarProduct,
@@ -78,16 +73,12 @@ export const getServerSideProps = async ({query}: NextPageContext) => {
           href: label
         },
         product_id: id,
-    },
-    // revalidate: 1,
     };
   } catch {
     return {
-      props: {
         product: null,
         similarProduct: null,
         product_id: null,
-      },
     };
   }
 };
