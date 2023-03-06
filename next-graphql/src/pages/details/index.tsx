@@ -69,7 +69,6 @@ export const getServerSideProps = async ({query}: NextPageContext) => {
     return {
       props: { 
         erroCode,
-        id
         // product: productDetails,
         // departmentHrefName: name,
         // similarProduct: similarProduct.data.sortSimilarProduct,
