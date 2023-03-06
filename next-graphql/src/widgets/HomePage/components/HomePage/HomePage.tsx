@@ -62,10 +62,6 @@ const HomePage = ({ categoryData , maxWievsProducts, newProducts, maxDiscountPro
             key={brand.name}
             onClick={() => {
               router.push(`/brands/${brand.id}`)
-              // router.push({
-              //   pathname: '/brands/[id]',
-              //   query: { id: brand.id}
-              // })
             }}
             >
             <Image

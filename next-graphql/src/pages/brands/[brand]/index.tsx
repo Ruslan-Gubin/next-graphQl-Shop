@@ -1,20 +1,27 @@
 import { useQuery } from "@apollo/client";
-import { allBrandsId } from "../../apps/apollo/BrandRequest";
-import { IBrandType } from "../../apps/types";
-import { BrandPage } from "../../widgets";
-import { GET__ONE_BRAND } from "../../widgets/BrandPage";
-import { ShopLayout } from "../../widgets/ShopLayout";
-import { graphQlFetch } from "../../apps/api";
-import { getOneBrandFetch } from "../../widgets/BrandPage/models/brandRequest";
+import { allBrandsId } from "../../../apps/apollo/BrandRequest";
+import { IBrandType } from "../../../apps/types";
+import { BrandPage } from "../../../widgets";
+import { GET__ONE_BRAND } from "../../../widgets/BrandPage";
+import { ShopLayout } from "../../../widgets/ShopLayout";
+import { graphQlFetch } from "../../../apps/api";
+import { getOneBrandFetch } from "../../../widgets/BrandPage/models/brandRequest";
 import { NextPageContext } from "next";
+import { useRouter } from "next/router";
 
 const Brands = ({ brand, brandId }: { brand: IBrandType, brandId: string }) => {
+  const router = useRouter()
+  console.log(router.query.brand);
   const { data: reserveBrand, loading } = useQuery(GET__ONE_BRAND, {
-    variables: { brandId },
+    variables: { id: router.query.brand },
+    // variables: { brandId },
     skip: Boolean(brand),
   });
 
   console.log(brandId)
+  if (reserveBrand) {
+    console.log(reserveBrand)
+  }
 
   return (
     <ShopLayout title="Бренд" keywords="Бренд">
