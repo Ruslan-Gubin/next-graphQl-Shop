@@ -14,13 +14,12 @@ const Brands = ({ brand, brandId }: { brand: IBrandType, brandId: string }) => {
   console.log(router.query.brand);
   const { data: reserveBrand, loading } = useQuery(GET__ONE_BRAND, {
     variables: { id: router.query.brand },
-    // variables: { brandId },
     skip: Boolean(brand),
   });
-
-  console.log(brandId)
+console.log('initial Data', brand);
+  console.log('brandId initial', brandId)
   if (reserveBrand) {
-    console.log(reserveBrand)
+    console.log('graph ql brand',reserveBrand)
   }
 
   return (
@@ -56,10 +55,9 @@ const Brands = ({ brand, brandId }: { brand: IBrandType, brandId: string }) => {
 //   }
 // };
 
-export const getServerSideProps = async ({query}: NextPageContext) => {
+Brands.getInitialProps = async ({query}) => {
   try {
     const { brand } = query;
-
     const { data: brandData, error: errBrand } = await graphQlFetch({
       ...getOneBrandFetch,
       variables: { id: brand },
@@ -72,17 +70,17 @@ export const getServerSideProps = async ({query}: NextPageContext) => {
     }
 
     return {
-      props: { 
+      
         brand: brandData.data.brand,
         brandId: brand
-      },
+      
     };
   } catch (error) {
     return {
-      props: {
+      
         brand: null,
         brandId: null,
-      },
+    
     };
   }
 };
