@@ -42,10 +42,11 @@ const HomePage = ({ categoryData , maxWievsProducts, newProducts, maxDiscountPro
       (item) => item.label === catalog.department
     );
 
-    router.push({
-      pathname: '/catalog/[name]/[label]',
-      query: { name: findHref.department_href, label: catalog.sub_department }
-    });
+    router.push(`/catalog/${findHref.department_href}/${catalog.sub_department}`);
+    // router.push({
+    //   pathname: '/catalog/[name]/[label]',
+    //   query: { name: findHref.department_href, label: catalog.sub_department }
+    // });
   };
 
   return (
@@ -60,10 +61,11 @@ const HomePage = ({ categoryData , maxWievsProducts, newProducts, maxDiscountPro
             className={styles.brand__item}
             key={brand.name}
             onClick={() => {
-              router.push({
-                pathname: '/brands/[id]',
-                query: { id: brand.id}
-              })
+              router.push(`/brands/${brand.id}`)
+              // router.push({
+              //   pathname: '/brands/[id]',
+              //   query: { id: brand.id}
+              // })
             }}
             >
             <Image
