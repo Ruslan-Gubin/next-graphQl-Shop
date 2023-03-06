@@ -1,5 +1,4 @@
-import { FC, useState } from 'react';
-import { useQuery } from '@apollo/client';
+import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { ProductDetails, selectProductDetails } from '../../../../entities';
 import { ProductDetailsHeader } from '../ProductDetailsHeader';
