@@ -6,9 +6,10 @@ import { NextPageContext } from "next";
 import { OPTIONS_DEPARTMENT } from '../../apps/constants';
 
 
-const ProductDetails = ({erroCode, product, department, subDepartment, similarProduct, product_id, departmentHrefName}) => {
+const ProductDetails = ({erroCode, id}) => {
+// const ProductDetails = ({erroCode, product, department, subDepartment, similarProduct, product_id, departmentHrefName}) => {
 const router = useRouter()
-
+console.log(id)
   if (erroCode) {
     return <Error statusCode={erroCode}/>
   }
@@ -68,6 +69,7 @@ export const getServerSideProps = async ({query}: NextPageContext) => {
     return {
       props: { 
         erroCode,
+        id
         // product: productDetails,
         // departmentHrefName: name,
         // similarProduct: similarProduct.data.sortSimilarProduct,

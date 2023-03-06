@@ -61,7 +61,7 @@ export default function Home({
   if (error) {
     return <Error statusCode={error} />;
   }
-console.log(moreCategoryData)
+
   return (
     <ShopLayout title="OnlineShop" keywords="Start project in home page">
       <section data-testid="test-root-home" className={styles.root}>
