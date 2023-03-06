@@ -2,11 +2,12 @@ import { Dispatch, FC, SetStateAction,  useState } from 'react';
 import { SEARCH_PRODUCTS } from '../../../../apps/apollo/productRequest';
 import { CloseProductButton, LoaderShop } from '../../../../shared';
 import { useQuery } from '@apollo/client';
-import { ISearchProduct } from '../../../../apps/types';
+import { IProductType, ISearchProduct } from '../../../../apps/types';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
 import styles from './LayoutSearchMobile.module.scss';
+import { OPTIONS_DEPARTMENT } from '../../../../apps/constants';
 
 
 interface ILayoutSearchMobile {
@@ -22,8 +23,9 @@ const LayoutSearchMobile: FC<ILayoutSearchMobile> = ({setSearchMobileModal}) => 
   })
   const router = useRouter()
 
-  const handleNavClick = (id: string) => {
-    router.push(`/catalog/${id}`)
+  const handleNavClick = (product: ISearchProduct) => {
+    const findDepartmentName = OPTIONS_DEPARTMENT.find(item => item.label === product.department)
+    router.push(`/catalog/${findDepartmentName.department_href}/${product.sub_department}/${product._id}`)
     setSearchMobileModal(false)
   } 
 
@@ -43,7 +45,7 @@ const LayoutSearchMobile: FC<ILayoutSearchMobile> = ({setSearchMobileModal}) => 
 
       <ul className={styles.search__container}>
         {data && data.searchProducts.map(item => (
-          <li onClick={() => handleNavClick(item._id)} key={item._id} className={styles.search__item}>
+          <li onClick={() => handleNavClick(item)} key={item._id} className={styles.search__item}>
             <p>{item.name}</p>
             <Image width={40} height={40} src={item.photo.images[0].url} alt="img product" />
         </li>

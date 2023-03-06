@@ -1,18 +1,18 @@
 import { FC, useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { ProductListImag } from '../ProductListImag';
-import styles from './ImagesProductDetails.module.scss';
 import { useDetailsContext } from '../../../widgets/ProductDetailsPage/libs/context/detailsContext';
 
-interface IImagesProductDetails {
+import styles from './ImagesProductDetails.module.scss';
 
-}
 
-const ImagesProductDetails: FC<IImagesProductDetails> = ({}) => {
+const ImagesProductDetails: FC = ({}) => {
   const {product} = useDetailsContext()
   const [photoActive, setPhotoActive] = useState<string>(product.photo.images[0].url)
 
-
+useEffect(() => {
+  setPhotoActive(product.photo.images[0].url)
+},[product])
 
   const handleChanceImage = useCallback((img: string) => {
     setPhotoActive(img)

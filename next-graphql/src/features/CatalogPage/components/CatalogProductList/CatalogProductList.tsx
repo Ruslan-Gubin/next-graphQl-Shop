@@ -29,7 +29,9 @@ const CatalogProductList: FC<ICatalogProductList> = ({products, isDesktop}) => {
       price: product.price,
       oldPrice: product.oldPrice,
       id: product._id,
-      brandName: product.brand.name, 
+      brandName: product.brand.name,
+      department: product.department,
+      sub_department: product.sub_department, 
     }}))
     setQueckMessage(() => ({status: true, text: 'Товар добавлен в корзину'}))
     setTimeout(() => {
@@ -47,6 +49,8 @@ const CatalogProductList: FC<ICatalogProductList> = ({products, isDesktop}) => {
       oldPrice: product.oldPrice,
       id: product._id,
       brandName: product.brand.name,
+      department: product.department,
+      sub_department: product.sub_department,
     }
 
     dispatch(

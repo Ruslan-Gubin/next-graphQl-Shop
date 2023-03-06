@@ -18,6 +18,8 @@ const SEARCH_PRODUCTS = gql`
     searchProducts(searchValue: $searchValue) {
       _id
     name
+    department
+    sub_department
     photo{
       images{
         url

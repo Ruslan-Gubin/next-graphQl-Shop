@@ -4,9 +4,9 @@ import { ImagesProductDetails, ProductDetailsButton, ProductDetailsDescription, 
 import { basketAction } from '../../../../features';
 import { ProductDetailsMobile } from '../ProductDetailsMobile';
 import { productDetailsAction } from '../../lib/store';
-import styles from './ProductDetails.module.scss';
 import { useDetailsContext } from '../../../../widgets/ProductDetailsPage/libs/context/detailsContext';
 
+import styles from './ProductDetails.module.scss';
 
 
 const ProductDetails: FC = () => {
@@ -29,6 +29,8 @@ const ProductDetails: FC = () => {
     oldPrice: product.oldPrice,
     id: product._id,
     brandName: product.brand.name,
+    department: product.department,
+    sub_department: product.sub_department,
   }
 
   const handleAddBasket = () => {

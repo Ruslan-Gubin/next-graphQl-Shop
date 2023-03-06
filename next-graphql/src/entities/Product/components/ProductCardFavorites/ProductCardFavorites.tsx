@@ -7,6 +7,7 @@ import { CloseProductButton } from '../../../../shared';
 
 
 import styles from './ProductCardFavorites.module.scss';
+import { OPTIONS_DEPARTMENT } from '../../../../apps/constants';
 
 interface IProductCardFavorites {
   product: IBasketProduct
@@ -18,13 +19,16 @@ const ProductCardFavorites: FC<IProductCardFavorites> = ({product, removeFavorit
 
 const discount = Math.ceil(((product.price - product.oldPrice) / product.oldPrice) * 100);
 
+const findDepartmentName = OPTIONS_DEPARTMENT.find((item) => item.label === product.department);
 
   return (
     <article className={styles.root}>
       <div className={styles.close__btn}><CloseProductButton onClick={removeFavorites} /></div>
-        <Link href={`/catalog/${product.id}`}>
+        <Link href={`/catalog/${findDepartmentName.department_href}/${product.sub_department}/${product.id}`}>
           <figure className={styles.product__img}>
-        <Image width={240} height={340} src={product.img} alt="Product imag" />
+            <picture>
+        <img  src={product.img} alt="Product imag" />
+            </picture>
           </figure>
    
       <div className={styles.discount__container}>

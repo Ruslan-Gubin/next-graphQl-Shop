@@ -1,5 +1,6 @@
 import { ImageSearch } from '../ImageSearch';
 import Image from 'next/image';
+import { ISearchProduct } from '../../../apps/types';
 
 import styles from './SearchItemAutocomplete.module.scss';
 
@@ -7,14 +8,12 @@ interface ISearchItemAutocomplete {
   text: string
   productImg: string
   id: string
-  onClick: (value: string) => void
 }
 
-const SearchItemAutocomplete = ({text, productImg, id, onClick}: ISearchItemAutocomplete) => {
+const SearchItemAutocomplete = ({text, productImg, id}: ISearchItemAutocomplete) => {
 
   return (
     <div onClick={() => console.log(id)} className={styles.root}>
-    {/* <div onClick={() => onClick(id)} className={styles.root}> */}
       <div className={styles.imag}>
       <ImageSearch active={true}/>
       </div>

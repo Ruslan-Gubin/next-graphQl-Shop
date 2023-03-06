@@ -6,7 +6,9 @@ interface IBasketProduct {
   price: number;
   oldPrice: number;
   id: string;
-  brandName: string
+  brandName: string;
+  department: string;
+  sub_department: string;
 }
 interface IAddress {
   street: string;

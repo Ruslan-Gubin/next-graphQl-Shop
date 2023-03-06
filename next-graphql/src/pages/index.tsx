@@ -83,5 +83,3 @@ Home.getInitialProps = async ({}: NextPageContext) => {
     };
   }
 };
-
-//API_HOST=https://online-shop-bf1a.onrender.com/react-graphql
