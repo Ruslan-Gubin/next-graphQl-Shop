@@ -1,11 +1,10 @@
-import { useRouter } from 'next/router';
 import { graphQlFetch,  sortProductsCatalog } from "../../../../apps/api";
 import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
 import { Ioption } from "../../../../apps/constants/optionsMenu";
 import { IProductType } from "../../../../apps/types";
 import { CatalogPage } from "../../../../features";
 import { ShopLayout } from "../../../../widgets";
-import { Error, LoaderShop } from '../../../../shared';
+import { Error } from '../../../../shared';
 import { NextPageContext } from "next";
 
 const subPagesLabels = () => { 
@@ -28,27 +27,16 @@ interface IStationeryProps {
   optionDepartment: Ioption[]
   sub_departmentName: string;
   href: string;
-  erroCode: boolean | number;
 }
 
+const NavOptionSubdepartment = ({ href, sub_departmentName, value, label, products, sub_department, optionDepartment}: IStationeryProps) => {
 
-
-
-const NavOptionSubdepartment = ({ erroCode, href, sub_departmentName, value, label, products, sub_department, optionDepartment}: IStationeryProps) => {
-  const router = useRouter()
-
-
-
-  if (erroCode) {
-    router.push('/404')
-    return <Error statusCode={erroCode}/>
+  if (!products) {
+    return <Error statusCode={'sub department name'}/>
   }
 
   return (
     <ShopLayout title={'value'} keywords={'value'}>
-      {router.isFallback ?
-      <LoaderShop />
-      :
     <CatalogPage
         href={href}
         sub_departmentName={sub_departmentName}
@@ -58,7 +46,6 @@ const NavOptionSubdepartment = ({ erroCode, href, sub_departmentName, value, lab
         department={label}
         sub_department={sub_department}
       />
-      }
     </ShopLayout>
   );
 };
@@ -66,7 +53,6 @@ const NavOptionSubdepartment = ({ erroCode, href, sub_departmentName, value, lab
 
 export const getServerSideProps = async ({query}: NextPageContext) => {
   try {
-    let erroCode: number | boolean = false;
     const { label, name } = query;
     const findCategory = OPTIONS_DEPARTMENT.find(item => item.department_href === name)
 
@@ -80,7 +66,6 @@ export const getServerSideProps = async ({query}: NextPageContext) => {
     });
 
     if (!products.data.sortProductCatalog.length || errProducts) {
-      erroCode = errProducts
       return {
         notFound: true,
       };
@@ -88,7 +73,6 @@ export const getServerSideProps = async ({query}: NextPageContext) => {
 
     return {
       props: {
-       erroCode,
        sub_department:  label,
        products: products.data.sortProductCatalog, 
        value: findCategory.value,
@@ -101,7 +85,6 @@ export const getServerSideProps = async ({query}: NextPageContext) => {
   } catch {
     return {
       props: {
-      erroCode: 'patch',
       products: null, 
       value: null,
       label: null,
