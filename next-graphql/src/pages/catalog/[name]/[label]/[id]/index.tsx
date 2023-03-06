@@ -1,13 +1,11 @@
-import { useRouter } from 'next/router';
 import { getOneProductUpdateViews,  graphQlFetch, sortProductSimilar } from "../../../../../apps/api";
-import { Error, LoaderShop } from "../../../../../shared";
+import { Error,  } from "../../../../../shared";
 import { ProductDetailsPage, ShopLayout } from "../../../../../widgets";
 import { NextPageContext } from "next";
 import { OPTIONS_DEPARTMENT } from '../../../../../apps/constants';
 
 
 const ProductDetails = ({ product, department, subDepartment, similarProduct, product_id, departmentHrefName}) => {
-const router = useRouter()
 
   if (!product) {
     return <Error statusCode={'product id'}/>
@@ -15,11 +13,7 @@ const router = useRouter()
   
   return (
     <ShopLayout title='ProductDetail' keywords='ProductDetail'>
-      {router.isFallback ?
-      <LoaderShop />
-      :
       <ProductDetailsPage departmentHrefName={departmentHrefName} product={product} department={department} subDepartment={subDepartment} similarProduct={similarProduct} product_id={product_id} />
-      }
     </ShopLayout>
   );
 };

@@ -9,7 +9,7 @@ import { useDetailsContext } from "../../../ProductDetailsPage/libs/context/deta
 import styles from "./FeedbackList.module.scss";
 
 const FeedbackList: FC = () => {
-  const { product, subDepartment, product_id, departmentHrefName } = useDetailsContext();
+  const { product } = useDetailsContext();
   const [removeFeedback] = useMutation(REMOVE_FEEDBACK);
   const [page, setPage] = useState(0);
   const [perPage] = useState(3);

@@ -2,7 +2,6 @@ import { createContext, useContext } from "react"
 import { IProductType } from "../../../../apps/types"
 
 interface IProductDetails {
-  refetch: () => void
   product_id: string
   product: IProductType
   similarProduct: IProductType[] 
