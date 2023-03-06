@@ -1,16 +1,15 @@
-import { GetStaticProps } from 'next';
 import { CatalogStartPage, ShopLayout } from "../../../widgets";
 import { graphQlFetch, sortCategoryFromCatalog, sortProductDepartment } from "../../../apps/api";
 import { OPTIONS_DEPARTMENT } from "../../../apps/constants";
-import { Error, LoaderShop } from '../../../shared';
+import { Error } from '../../../shared';
 import { NextPageContext } from "next";
 
 
-const CatalogName = ({catalogName, erroCode, catalog, newProduct, popularProduct, categoryData}) => {
+const CatalogName = ({catalogName, catalog, newProduct, popularProduct, categoryData}) => {
 
 
-    if (erroCode) {
-    return <Error statusCode={'catalog id'}/>
+    if (!categoryData || !popularProduct || !newProduct) {
+    return <Error statusCode={'catalog name'}/>
   }
  
 
@@ -30,8 +29,7 @@ const CatalogName = ({catalogName, erroCode, catalog, newProduct, popularProduct
 
 export default CatalogName;
 
-export const getServerSideProps = async ({query}: NextPageContext) => {
-  let erroCode: number | boolean = false;
+CatalogName.getInitialProps = async ({query}: NextPageContext) => {
    try {
     const { name } = query
 
@@ -52,34 +50,24 @@ export const getServerSideProps = async ({query}: NextPageContext) => {
     
 
       if (errCategoryData || errNewProduct || errPopularProduct) {
-        erroCode = errCategoryData && errCategoryData
-        erroCode = errNewProduct && errNewProduct
-        erroCode = errPopularProduct && errPopularProduct
-       
         return {
           notFound: true,
         };
       }
 
     return {
-      props: { 
-      erroCode,
       catalog: catalog,
       catalogName: name,
       categoryData: categoryData.data.sortCategoryFromCatalog,
       newProduct: newProduct.data.sortProductDepartment,
       popularProduct: popularProduct.data.sortProductDepartment,
-    },
     };
   } catch  {
     return {
-      props: {
-        erroCode: 'href',
         catalog: [],
         categoryData: [],
         newProduct: [],
         popularProduct: [],
-      },
     };
   }
 };

@@ -24,10 +24,7 @@ const HomePageSwiper: FC<IHomePageSwiper> = ({ imgArr }) => {
         id: "",
       })
     );
-    router.push({
-      pathname: '/catalog/[name]',
-      query: {name: imageActive.href}
-    });
+    router.push(`/catalog/${imageActive.href}`);
   };
 
   const handleButtonArray = (value: string) => {

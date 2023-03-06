@@ -41,12 +41,7 @@ const HomePage = ({ categoryData , maxWievsProducts, newProducts, maxDiscountPro
     const findHref = OPTIONS_DEPARTMENT.find(
       (item) => item.label === catalog.department
     );
-
     router.push(`/catalog/${findHref.department_href}/${catalog.sub_department}`);
-    // router.push({
-    //   pathname: '/catalog/[name]/[label]',
-    //   query: { name: findHref.department_href, label: catalog.sub_department }
-    // });
   };
 
   return (
