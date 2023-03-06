@@ -7,17 +7,6 @@ import { ShopLayout } from "../../../../widgets";
 import { Error } from '../../../../shared';
 import { NextPageContext } from "next";
 
-const subPagesLabels = () => { 
-  const result = []
-
- OPTIONS_DEPARTMENT.forEach(item => {
-  item.subdepartment.forEach(subItem => {
-    result.push({params: {label: subItem.label, name: item.department_href}})
-  })
-})
-
-return result
-}
 
 interface IStationeryProps {
   value: string
@@ -51,9 +40,10 @@ const NavOptionSubdepartment = ({ href, sub_departmentName, value, label, produc
 };
 
 
-export const getServerSideProps = async ({query}: NextPageContext) => {
+NavOptionSubdepartment.getInitialProps = async ({query}: NextPageContext) => {
   try {
     const { label, name } = query;
+
     const findCategory = OPTIONS_DEPARTMENT.find(item => item.department_href === name)
 
     const { data: products, error: errProducts } = await graphQlFetch({
@@ -72,7 +62,6 @@ export const getServerSideProps = async ({query}: NextPageContext) => {
     }
 
     return {
-      props: {
        sub_department:  label,
        products: products.data.sortProductCatalog, 
        value: findCategory.value,
@@ -80,17 +69,14 @@ export const getServerSideProps = async ({query}: NextPageContext) => {
        optionDepartment: findCategory.subdepartment,
        sub_departmentName: findCategory.value,
        href: name 
-      },
     };
   } catch {
     return {
-      props: {
       products: null, 
       value: null,
       label: null,
       sub_department: null,
       optionDepartment: null,
-      },
     };
   }
 };
