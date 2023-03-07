@@ -50,6 +50,9 @@
 
   & .headerSearch {
     position: relative;
+    @media (max-width: 940px) {
+      display: none;
+    }
 
     input {
       color: rgb(71, 70, 70);

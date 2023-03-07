@@ -56,3 +56,4 @@ export { LoginPage, selectUser, userAction, userReducer } from "./LoginPage";
 export { UserDetails } from "./UserDetails";
 export { UserFavorites } from "./UserFavorites";
 export { AdminOrder } from "./AdminOrder";
+export { AdminStartPage } from "./AdminStartPage";

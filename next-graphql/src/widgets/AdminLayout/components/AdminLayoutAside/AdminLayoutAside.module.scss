@@ -16,6 +16,10 @@
   & img {
     width: 40px;
     height: 40px;
+    @media (max-width: 850px) {
+     position: relative;
+     left: 20px;
+    }
   }
 
   & .nameLink {
@@ -25,6 +29,15 @@
     color: rgb(215, 215, 215);
     font-size: large;
     font-weight: 600;
+    @media (max-width: 1024px) {
+      left: 23%;
+    }
+    @media (max-width: 850px) {
+      left: 24%;
+    }
+    @media (max-width: 850px) {
+      display: none;
+    }
   }
 }
 
@@ -69,6 +82,7 @@
     padding: 20px;
     padding-left: 10px;
     cursor: pointer;
+    
 
     & .navItem {
       @extend %navItem;

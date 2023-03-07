@@ -47,11 +47,6 @@ const AdminLayoutAside: FC = () => {
                     src={link.icon}
                     alt="link icon"
                   />
-                  {/* <img
-                    className={styles.navIcon}
-                    src={link.icon}
-                    alt="link icon"
-                  /> */}
                   <span className={styles.nameLink}>{link.value}</span>
                 </li>
               </Link>
