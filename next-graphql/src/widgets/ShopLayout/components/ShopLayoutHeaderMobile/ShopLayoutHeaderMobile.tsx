@@ -14,7 +14,6 @@ interface IShopLayoutHeaderMobile {
 
 const ShopLayoutHeaderMobile: FC<IShopLayoutHeaderMobile> = ({setSearchMobileModal}) => {
   const { asideLayoutStatus } = useSelector(selectLayoutShop)
-  const {isMobile} = useMatchMedia()
   const dispatch = useDispatch()
   const router = useRouter()
 
@@ -25,9 +24,7 @@ const ShopLayoutHeaderMobile: FC<IShopLayoutHeaderMobile> = ({setSearchMobileMod
     router.push(`${href}`)
   }
 
-  if (isMobile) {
-    return <></>
-  }
+  
 
   return (
     <header className={styles.root}>

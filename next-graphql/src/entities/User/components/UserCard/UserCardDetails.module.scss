@@ -10,6 +10,9 @@
     display: flex;
     align-items: center;
     margin-bottom: 40px;
+    @media (max-width: 400px) {
+      display: block;
+    }
     & .user__image {
       width: 80px;
       height: 80px;
@@ -23,12 +26,19 @@
       font-weight: 600;
       color: var.$color-black-hover;
       margin-left: 40px;
+      @media (max-width: 400px) {
+        margin-left: 0px;
+      }
     }
   }
 
   & .card__footer {
     display: flex;
     align-items: center;
+    
+    @media (max-width: 585px) {
+      display: block;
+    }
 
     & .card__footer_email {
       position: relative;
