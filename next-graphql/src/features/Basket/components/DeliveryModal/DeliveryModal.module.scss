@@ -5,6 +5,10 @@
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
+  @media (max-width: 400px) {
+    height: 100%;
+  }
+  
   & .header__button {
     color: var.$color-shop-button;
     font-weight: 600;
@@ -16,11 +20,18 @@
     padding-left: 15px;
     padding-right: 30%;
     margin-bottom: 20px;
+
+   
+
   }
 
 
 & .street__container {
 display: flex;
+
+@media (max-width: 400px) {
+  display: block;
+}
 
 
 & .shecked {
@@ -30,6 +41,12 @@ display: flex;
   left: 60px;
   font-size: var.$font-size-button;
   color: var.$color-header-bg-dark;
+
+  @media (max-width: 400px) {
+    top: 0px;
+    left: 30px;
+  }
+
   &::after {
     content: '';
     position: absolute;
@@ -48,6 +65,11 @@ display: flex;
   left: 60px;
   font-size: var.$font-size-button;
   color: var.$color-header-bg-dark;
+
+  @media (max-width: 400px) {
+    top: 0px;
+    left: 30px;
+  }
   &::after {
     content: '';
     position: absolute;
@@ -91,10 +113,17 @@ display: flex;
   & h3 {
     font-size: 1.3rem;
     margin-bottom: 15px;
+    @media (max-width: 400px) {
+      position: relative;
+      top: 10px;
+    }
   }
   & .sub__info_container {
     display: flex;
     justify-content: space-between;
+    @media (max-width: 400px) {
+      display: block;
+    }
   } 
 
 }

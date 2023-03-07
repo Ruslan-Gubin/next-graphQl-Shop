@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { BasketFooterCard, RemoveIcon } from '../../../../shared';
 import { useBasketContext } from '../../libs/context/BasketContext';
 import { basketAction } from '../../store/basketSlice';
+import { formattedPhone } from '../../../CatalogPage/libs/helper/formattedPhone';
 
 import styles from './BasketFooter.module.scss';
 
@@ -88,7 +89,7 @@ const BasketFooter = () => {
         {user.name ?
         <div className={styles.user__data}>
           <p className={styles.user__name}><span>Имя: </span>{user.name}</p>
-          <p className={styles.user__phone}><span>Телефон: </span>{user.phone}</p>
+          <p className={styles.user__phone}><span>Телефон: </span>{formattedPhone(user.phone)}</p>
           <Link href={'/lk/details'}>
            <p className={styles.update__user}>Изменить</p>
           </Link>

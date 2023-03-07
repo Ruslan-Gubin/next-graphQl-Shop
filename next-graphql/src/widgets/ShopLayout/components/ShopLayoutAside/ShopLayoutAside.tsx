@@ -27,7 +27,6 @@ const ShopLayoutAside = () => {
     if (asideLayoutStatus) {
       document.body.style.position = "fixed";
       document.body.style.top = `-${window.scrollY}px`;
-      document.body.style.top = `-${window.scrollY}px`;
     }
 
     return () => {

@@ -1,14 +1,15 @@
 import { FC, memo, useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
-import { IProductType } from '../../../../apps/types';
-import { formatterRub } from '../../../../features/CatalogPage/libs/helper';
-import { findMaxOpinion, Heart, StarsList } from '../../../../shared';
+import { useSelector } from 'react-redux';
 import { useInView } from "react-intersection-observer";
 import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
+import Link from 'next/link';
+import { IProductType } from '../../../../apps/types';
+import { findMaxOpinion, Heart, StarsList } from '../../../../shared';
+import { formatterRub } from '../../../../features/CatalogPage/libs/helper';
 import { selectBasket } from '../../../../features';
 import { checkFavorite } from '../../lib/helpers/checkFavorite';
 import { OPTIONS_DEPARTMENT } from '../../../../apps/constants';
+
 import styles from './ProductCategory.module.scss';
 
 interface IProductCategory {
@@ -64,8 +65,6 @@ const ProductCategoryF: FC<IProductCategory> = ({ product, onClickBuy, addFavori
           <Link 
           href={{
             pathname: `/catalog/${nameHref?.department_href}/${product.sub_department}/${product._id}`,
-            // pathname: `/catalog/[name]/[label]/${product._id}`,
-            // query: {name: nameHref?.department_href, label: product.sub_department}
         }}
         prefetch={false}
         >
@@ -73,7 +72,7 @@ const ProductCategoryF: FC<IProductCategory> = ({ product, onClickBuy, addFavori
           <img
           ref={ref}
           className={styles.img}
-          src={isVisible ? product.photo.images[0].url : ''} 
+          src={ isVisible ? product.photo.images[0].url : './loader.png'} 
           alt="Product imag" />
           </picture>
       </Link>

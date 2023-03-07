@@ -1,6 +1,6 @@
 import { FormEventHandler, useState } from "react";
-import { basketAction } from "../../store/basketSlice";
 import { useDispatch } from "react-redux";
+import { basketAction } from "../../store/basketSlice";
 import { useBasketContext } from "../../libs/context/BasketContext";
 import { ModalInput } from "../../../../shared";
 

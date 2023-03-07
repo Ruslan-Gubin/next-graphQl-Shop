@@ -72,12 +72,15 @@ const ShopLayout: FC<IShopLayout> = ({ children, title, keywords }) => {
           </div>
         </main>
 
+{!asideLayoutStatus && 
+
         <section className={styles.footer__wrapper}>
       <div className={styles.footer__container}>
       <FooterNavigation />
       <FooterCopyrights />
       </div>
     </section>
+}
         <features.FooterButtonHelpers />
       </section>
        
