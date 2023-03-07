@@ -45,7 +45,9 @@ const ProductDetailsMobile: FC<IProductDetailsMobile> = ({
           {product.photo.images.map(imag => (
             <li key={imag.url} className={styles.imag}>
               <Image width={500} height={500} src={imag.url} alt="images" />
-              {/* <img src={imag.url} alt="images" /> */}
+              {/* <picture>
+              <img src={imag.url} alt="images" />
+              </picture> */}
           </li>
             ))}
         </ul>
@@ -61,7 +63,7 @@ const ProductDetailsMobile: FC<IProductDetailsMobile> = ({
       </div>
       </div>
             <div className={styles.sub__info}>
-            <Link href={`/brands/${product.brand_id}`} className={styles.link__brand}>
+            <Link href={`/brands/${product.brand._id}`} className={styles.link__brand}>
               {product.brand.name}
             </Link>
               <ul className={styles.product__history}>

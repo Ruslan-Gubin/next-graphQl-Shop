@@ -59,9 +59,9 @@ const CatalogStartPage: FC<ICatalogStartPage> = ({
           <h2>Категории</h2>
           <h3>{title}</h3>
           <ul>
-            {navValueArray.map((nav) => (
+            {navValueArray.map((nav, index) => (
               <Link 
-              key={nav.value}
+              key={index}
               href={{
                   pathname: '/catalog/[name]/[label]',
                   query: {name: catalogName, label: nav.label}
@@ -83,9 +83,9 @@ const CatalogStartPage: FC<ICatalogStartPage> = ({
         <section className={styles.content}>
        
           <ul className={styles.categori__container_mobile}>
-            {navValueArray.map((nav) => (
+            {navValueArray.map((nav, index) => (
               <Link 
-              key={nav.value}
+              key={index}
               href={{
                   pathname: '/catalog/[name]/[label]',
                   query: {name: catalogName, label: nav.label}
@@ -106,10 +106,10 @@ const CatalogStartPage: FC<ICatalogStartPage> = ({
           />
           }
           <ul className={styles.category__container}>
-            {catalogData.length > 0 && catalogData.map((catalog: any) => (
+            {catalogData.length > 0 && catalogData.map((catalog: any, index) => (
               <li 
               onClick={() => handleClickCategory(catalog)}
-              key={catalog.name} className={styles.category__item}>
+              key={index} className={styles.category__item}>
                   <CategoryCard img={catalog.image.url} name={catalog.name} />
               </li>
             ))}

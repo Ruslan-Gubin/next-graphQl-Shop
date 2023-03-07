@@ -54,7 +54,7 @@ const HomePage = ({ categoryData , maxWievsProducts, newProducts, maxDiscountPro
         {brandLendingList.map((brand) => (
           <li
             className={styles.brand__item}
-            key={brand.name}
+            key={brand.id}
             onClick={() => {
               router.push(`/brands/${brand.id}`)
             }}
@@ -73,10 +73,10 @@ const HomePage = ({ categoryData , maxWievsProducts, newProducts, maxDiscountPro
       <h2 className={styles.sub__department}>Категории</h2>
       <ul className={styles.categori__container}>
         {categoryData.length > 0 &&
-          categoryData.map((catalog: any) => (
+          categoryData.map((catalog) => (
             <li
               onClick={() => handleClickCategory(catalog)}
-              key={catalog.name}
+              key={catalog._id} 
               className={styles.category__item}
             >
               <CategoryCard img={catalog.image.url} name={catalog.name} />

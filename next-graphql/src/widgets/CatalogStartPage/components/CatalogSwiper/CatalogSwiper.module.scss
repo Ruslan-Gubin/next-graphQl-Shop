@@ -73,13 +73,13 @@
     & img {
       width: 80vw;
       border-radius: 20px;
-      height: 18vw;
+      height: 25vw;
 
       @media (max-width: 1025px) {
         position: relative;
         left: -20px;
         width: 90vw;
-        height: 25vw;
+        height: 55vw;
       }
     }
 

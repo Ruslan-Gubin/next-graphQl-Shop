@@ -108,6 +108,7 @@
       flex-wrap: wrap;
       margin-top: 20px;
       text-align: center;
+     
 
       & .category__item {
         width: 31%;
@@ -115,6 +116,10 @@
         margin-bottom: 20px;
         border-radius: 20px;
         cursor: pointer;
+        @media (max-width: 767px) {
+          width: 48%;
+          margin-bottom: 100px;
+        }
       }
     }
   }
