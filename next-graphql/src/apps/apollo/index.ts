@@ -22,7 +22,7 @@ export {
   SORT_PRODUCT_CATALOG,
   SORT_PRODUCT_DEPARTMENT,
 } from "./productRequest/";
-export { CREATED_CATEGORY, SORT_CATEGORY } from "./CategoryRequest";
+export { CREATED_CATEGORY, SORT_CATEGORY,GET_CATEGORYES,SORT_CATEGORY_FROM_CATALOG } from "./CategoryRequest";
 export { CREATED_BRAND } from "./BrandRequest";
 export { CREATED_PHOTOS } from "./photoRequest/";
 export { GET__ONE__USER } from "./userRequest/";
