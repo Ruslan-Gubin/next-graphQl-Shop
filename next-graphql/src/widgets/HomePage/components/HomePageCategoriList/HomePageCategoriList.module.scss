@@ -1,0 +1,14 @@
+.root {
+  .categori__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  
+    & .category__item {
+      width: 24%;
+      @media (max-width: 767px) {
+        width: 49%;
+      }
+    }
+  }
+}

@@ -1,26 +1,37 @@
 import { useDispatch, useSelector } from "react-redux"; 
 import { useRouter } from "next/router";
-import Image from 'next/image';
 import { selectProductDetails } from "../../../../entities";
 import { CatatlogProductList } from "../../../../widgets/CatalogStartPage/components/CatatlogProductList";
 import { swiperHomeData } from "../../libs";
-import { brandLendingList } from "../../libs/data/brandLendingList";
 import { HomePageSwiper } from "../HomePageSwiper";
 import { ICategoryType, IProductType } from "../../../../apps/types";
 import { CategoryCard } from "../../../../widgets/CatalogStartPage/components/CategoryCard";
 import { catalogPageAction } from "../../../../features";
 import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
 import { HomePageFooter } from "../HomePageFooter";
+import { HomePageBrandsList } from "../HomePageBrandsList";
+import { HomePageCategoriList } from "../HomePageCategoriList";
+import { useQuery } from "@apollo/client";
+import { GET_CATEGORYES } from "../../../../apps/apollo";
+import { LoaderShop } from "../../../../shared";
+import { GET__MAXDISCOUNT__ALLPRODUCT, GET__MAXVIEWS__ALLPRODUCT, GET__NEW__ALLPRODUCT } from "../../../../apps/apollo/productRequest";
+
 import styles from "./HomePage.module.scss";
 
-interface IHomePage {
-  categoryData: ICategoryType[];
-  maxWievsProducts: IProductType[];
-  newProducts: IProductType[];
-  maxDiscountProducts: IProductType[];
-}
 
-const HomePage = ({ categoryData , maxWievsProducts, newProducts, maxDiscountProducts}: IHomePage) => {
+
+const HomePage = () => {
+  const {data: CategoryData, loading: loadCategory} = useQuery(GET_CATEGORYES)
+  const {data: maxViewsProduct, loading: loadMaxViewsProduct} = useQuery(GET__MAXVIEWS__ALLPRODUCT, {
+    variables: {limit: 5},
+  })
+  const {data: newProduct, loading: loadNewProduct} = useQuery(GET__NEW__ALLPRODUCT, {
+    variables: {limit: 5},
+  })
+  const {data: maxDiscountProduct, loading: loadMaxDiscountProduct} = useQuery(GET__MAXDISCOUNT__ALLPRODUCT, {
+    variables: {limit: 5},
+  })
+
   const { watchedProduct } = useSelector(selectProductDetails);
   const router = useRouter();
   const dispatch = useDispatch();
@@ -49,59 +60,33 @@ const HomePage = ({ categoryData , maxWievsProducts, newProducts, maxDiscountPro
       <section className={styles.swiper}>
         <HomePageSwiper imgArr={swiperHomeData} />
       </section>
-      <h2 className={styles.sub__department}>Бренды</h2>
-      <ul className={styles.brand__container}>
-        {brandLendingList.map((brand) => (
-          <li
-            className={styles.brand__item}
-            key={brand.id}
-            onClick={() => {
-              router.push(`/brands/${brand.id}`)
-            }}
-            >
-            <Image
-              width={400}
-              height={300}
-              className={styles.brand__img}
-              title={brand.name}
-              src={brand.img}
-              alt="brand img"
-              />
-          </li>
-        ))}
-      </ul>
-      <h2 className={styles.sub__department}>Категории</h2>
-      <ul className={styles.categori__container}>
-        {categoryData.length > 0 &&
-          categoryData.map((catalog) => (
-            <li
-              onClick={() => handleClickCategory(catalog)}
-              key={catalog._id} 
-              className={styles.category__item}
-            >
-              <CategoryCard img={catalog.image.url} name={catalog.name} />
-            </li>
-          ))}
-      </ul>
-
-      {newProducts.length > 0 && (
-        <CatatlogProductList
+      <HomePageBrandsList />
+      
+      {loadCategory ? 
+      <LoaderShop/>
+      :  
+      <HomePageCategoriList  CategoryList={CategoryData.categorys} handleClickCategory={handleClickCategory} /> 
+    }
+    
+    {!loadNewProduct &&
+      <CatatlogProductList
         title="Новинки"
-        productList={newProducts}
+        productList={newProduct.getNewProducts}
         />
-        )}
-      {maxDiscountProducts.length > 0 && (
+        }
+
+      {!loadMaxDiscountProduct && 
         <CatatlogProductList
         title="Выгодные"
-        productList={maxDiscountProducts}
+        productList={maxDiscountProduct.getMaxDiscountProducts}
         />
-        )}
-      {maxWievsProducts.length > 0 && (
+        }
+      {!loadMaxViewsProduct && 
         <CatatlogProductList
         title="Популярное"
-        productList={maxWievsProducts}
+        productList={maxViewsProduct.getMaxViewsProducts}
         />
-        )}
+        }
         {watchedProduct.length > 0 && (
           <CatatlogProductList
             title="Вы недавно смотрели"
