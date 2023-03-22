@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { memo, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
-import { basketAction, favoritesAction, selectBasket, selectFavorites } from "../../../../features";
+import { basketAction, favoritesAction,  selectFavorites } from "../../../../features";
 import { IBasketProduct } from "../../../../features/Basket/libs/types/IBasketSlice";
 import { formatterRub } from "../../../../features/CatalogPage/libs/helper";
 import { Heart, RemoveIcon } from "../../../../shared";
@@ -11,52 +11,37 @@ import styles from "./ProductCardBasket.module.scss";
 
 interface IProductCardBasket {
   product: IBasketProduct;
-  // decrement: (value: string) => void;
-  // increment: (value: string) => void;
-  // removeProduct: (value: string) => void;
-  // addFavorite: () => void;
 }
 
 const ProductCardBasketF = ({
   product,
-  // addFavorite,
-  // decrement,
-  // increment,
-  // removeProduct,
 }: IProductCardBasket) => {
   const dispatch = useDispatch()
   const router = useRouter()
-  const { favorites } = useSelector(selectFavorites)
-
 
 
   const handleLinkProduct = useCallback((product: IBasketProduct) => {
     const findDepartmentName =  OPTIONS_DEPARTMENT.find((item) => item.label === product.department);
 
     router.push(`/catalog/${findDepartmentName.department_href}/${product.sub_department}/${product.id}`)
-  }, [OPTIONS_DEPARTMENT])
+  }, [router])
 
   const handleAddFavoritesRemoveBasket = useCallback(() => {
     dispatch(basketAction.removeProduct({id: product.id}))
+    dispatch(favoritesAction.addFavorites({product}))
+  }, [ product, dispatch ])
 
-    const checkFavorites = favorites.some(item => item.id === product.id)
-    
-    if (!checkFavorites) {
-      dispatch(favoritesAction.addFavorites({product}))
-    }
-  }, [ favorites ])
-
-  const handleIncrementProduct = useCallback((id: string) => {
+  const handleIncrementProduct = (id: string) => {
     dispatch(basketAction.increment({id}))
-  }, [product])
+  }
 
-  const handleDecrementProduct = useCallback((id: string) => {
+  const handleDecrementProduct = (id: string) => {
     dispatch(basketAction.decrement({id}))
-  }, [product])
+  }
 
-  const handleRemoveProduct = useCallback((id: string) => {
+  const handleRemoveProduct = (id: string) => {
     dispatch(basketAction.removeProduct({id}))
-  }, [product])
+  }
 
   return (
     <article className={styles.root}>
@@ -81,7 +66,6 @@ const ProductCardBasketF = ({
           {product.count !== 1 ? (
             <button
               onClick={() => handleDecrementProduct(product.id)}
-              // onClick={() => decrement(product.id)}
               className={styles.product__btn}
             >
               -
@@ -92,7 +76,6 @@ const ProductCardBasketF = ({
           <span>{product.count}</span>
           <button
             onClick={() => handleIncrementProduct(product.id)}
-            // onClick={() => increment(product.id)}
             className={styles.product__btn}
           >
             +
@@ -112,14 +95,11 @@ const ProductCardBasketF = ({
                 active={false}
                 handleAddFavorite={handleAddFavoritesRemoveBasket}
                 removeFavorites={handleAddFavoritesRemoveBasket}
-                // handleAddFavorite={addFavorite}
-                // removeFavorites={addFavorite}
               />
             </div>
             <div style={{ width: "24px" }}>
               <RemoveIcon
               onClick={() => handleRemoveProduct(product.id)} 
-              // onClick={() => removeProduct(product.id)} 
               />
             </div>
           </section>

@@ -20,7 +20,7 @@ const BasketList = () => {
     if (basket.length === 0) {
       setNoContentActive(true)
     }
-  }, [basket])
+  }, [basket, setNoContentActive])
 
   const totalCount =  basket.reduce((acc, item) => acc + item.price * item.count ,0)
 

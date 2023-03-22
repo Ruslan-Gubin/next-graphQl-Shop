@@ -22,7 +22,7 @@ const BasketAsideF = () => {
   const [queckModal, setqueckModal] = useState({state: false, message: ''})
   const dispatch = useDispatch()
   const router = useRouter()
-console.log('render Aside')
+
   const handleSubmitOrders =  async() => {
     if (disable) {
       return

@@ -14,7 +14,11 @@ const favoritesSlice = createSlice({
   reducers: {
 
     addFavorites(state, action: PayloadAction<{ product: IBasketProduct }>) {
-      state.favorites = [action.payload.product, ...state.favorites];
+      const checkFavorites = state.favorites.some(item => item.id === action.payload.product.id)
+
+      if (!checkFavorites) {
+        state.favorites = [action.payload.product, ...state.favorites];
+      }
     },
 
     removeFavorites(state, action: PayloadAction<{ id: string }>) {

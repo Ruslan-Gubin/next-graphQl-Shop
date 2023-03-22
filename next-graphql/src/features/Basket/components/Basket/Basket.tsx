@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { BasketContext } from '../../libs/context/BasketContext';
 import { BasketAside } from '../BasketAside';
 import { BasketFooter } from '../BasketFooter';
@@ -14,7 +15,7 @@ const Basket = () => {
   const [modalActive, setModalActive] = useState(false)
   const [noContentActive, setNoContentActive] = useState(false)
 
-console.log('reender Basket')
+
 
   if (noContentActive) {
     return <BasketNoContent /> 
