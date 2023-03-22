@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 
 import styles from "./BurgerButton.module.scss";
 
@@ -6,7 +6,7 @@ interface IBurgerButton {
   onClick: () => void;
 }
 
-const BurgerButton: FC<IBurgerButton> = ({ onClick }) => {
+const BurgerButtonF: FC<IBurgerButton> = ({ onClick }) => {
   return (
     <button onClick={onClick} className={styles.root}>
       <div className={styles.container}>
@@ -15,5 +15,7 @@ const BurgerButton: FC<IBurgerButton> = ({ onClick }) => {
     </button>
   );
 };
+
+const BurgerButton = memo(BurgerButtonF)
 
 export { BurgerButton };

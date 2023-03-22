@@ -1,4 +1,4 @@
-import { FC, useEffect,  useState } from "react";
+import { FC,  useEffect,   useState } from "react";
 import { Ioption } from "../../../../apps/constants/optionsMenu";
 import { CatalogPageFooter } from "../CatalogPageFooter";
 import { CatalogPageHeader } from "../CatalogPageHeader";
@@ -19,7 +19,9 @@ import { CatalogPageHeaderMobile } from "../CatalogPageHeaderMobile";
 import { LoaderShop } from "../../../../shared";
 import { selectProductDetails } from "../../../../entities";
 import { CatatlogProductList } from "../../../../widgets/CatalogStartPage/components/CatatlogProductList";
+
 import styles from "./CatalogPage.module.scss";
+
 
 interface ICatalogPage {
   href: string;
@@ -47,7 +49,7 @@ const CatalogPage: FC<ICatalogPage> = ({
     value: value,
     label: label,
   });
-  const { sortProduct, categoryValue: category } = useSelector(selectCatalogPage);
+  const { sortProduct, categoryValue: category } = useSelector(selectCatalogPage); 
   const [categoryValue, setCategoryValue] = useState<IOptionsDropDownType>({
     value: "Категория",
     label: "Категория",
@@ -122,6 +124,8 @@ const CatalogPage: FC<ICatalogPage> = ({
     return <LoaderShop />
   }
 
+const productList = sortProductFilter( productsFilter, categoryValue,  brandValue,  priceFilter )
+
   return (
     <div className={styles.root}>
       {productsFilter && !loading && products && (
@@ -167,12 +171,7 @@ const CatalogPage: FC<ICatalogPage> = ({
         }
           <CatalogProductList
           isDesktop={isDesktop}
-          products={sortProductFilter(
-            productsFilter,
-            categoryValue,
-            brandValue,
-            priceFilter
-            )}
+          products={productList}
             />
         {perPage < productsFilter.length && 
           <CatalogPageFooter 

@@ -1,4 +1,13 @@
 .root {
+  .sub__department {
+    font-size: 1.8rem;
+    font-weight: 700;
+    padding: 30px 0;
+    color: rgb(85, 85, 85);
+    @media (max-width: 1024px) {
+      font-size: 1.3rem;
+    }
+  }
   .categori__container {
     display: flex;
     flex-wrap: wrap;

@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { ImagesProductDetails, ProductDetailsButton, ProductDetailsDescription, ProductDetailsSubInfo, QueckMessage } from '../../../../shared';
-import { basketAction } from '../../../../features';
+import { basketAction, favoritesAction } from '../../../../features';
 import { ProductDetailsMobile } from '../ProductDetailsMobile';
 import { productDetailsAction } from '../../lib/store';
 import { useDetailsContext } from '../../../../widgets/ProductDetailsPage/libs/context/detailsContext';
@@ -47,7 +47,7 @@ const ProductDetails: FC = () => {
 
   const handleAddFavorites = () => {
     dispatch(
-      basketAction.addFavorites({
+      favoritesAction.addFavorites({
         product: productOptions,
       })
     );
@@ -59,7 +59,7 @@ const ProductDetails: FC = () => {
 
   const handleRemoveFavorites = () => {
     dispatch(
-      basketAction.removeFavorites({ id: product._id })
+      favoritesAction.removeFavorites({ id: product._id })
     );
     setQueckMessage(() => ({status: true, text: 'Товар удален из избранного'}))
     setTimeout(() => {

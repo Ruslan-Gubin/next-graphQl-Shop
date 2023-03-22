@@ -1,12 +1,13 @@
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import Image from 'next/image';
-import { selectBasket } from '../../../../features/Basket';
+import { selectFavorites } from '../../../UserFavorites';
 
 import styles from './UserDetailsFavorites.module.scss';
 
+
 const UserDetailsFavorites = () => {
-  const { favorites } = useSelector(selectBasket)
+  const { favorites } = useSelector(selectFavorites)
   const router = useRouter()
 
   const filterFavorites = () => {
@@ -26,7 +27,6 @@ const UserDetailsFavorites = () => {
       {filterFavorites().map(item => (
         <li key={item.id} className={styles.img} >
     <Image width={60} height={60} src={item.img} alt="Favorites img" />
-    {/* <img src={item.img} alt="Favorites img" /> */}
       </li>
         ))}
         {favorites.length > 7 && 

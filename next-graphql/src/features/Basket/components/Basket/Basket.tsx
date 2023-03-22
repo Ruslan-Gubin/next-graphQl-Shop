@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMutation } from '@apollo/client';
 import { BasketContext } from '../../libs/context/BasketContext';
@@ -25,8 +25,9 @@ const Basket = () => {
   const dispatch = useDispatch()
   const router = useRouter()
 
-  const totalCount = basket.reduce((acc, item) => acc + item.price * item.count ,0)
+  const products = useMemo(() => basket,[basket]) 
 
+console.log('reender Basket')
 
   const handleSubmitOrders = async () => {
     if (disable) {
@@ -55,7 +56,7 @@ const Basket = () => {
       entrance: clientAddress.entrance,
       intercom: clientAddress.intercom,
       privateHome: clientAddress.privateHome,
-      products: basket,
+      products,
     }
   }).then(() => {
     router.push('/lk/myorders')
@@ -68,7 +69,7 @@ const Basket = () => {
 
   }
 
-  if (basket.length === 0) {
+  if (products.length === 0) {
     return <BasketNoContent /> 
   }
 
@@ -79,7 +80,6 @@ const Basket = () => {
       handleSubmitOrders,
       setModalActive,
       modalActive,
-      totalCount,
       address,
       user,
     }}>

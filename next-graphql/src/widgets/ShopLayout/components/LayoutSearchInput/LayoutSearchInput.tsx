@@ -1,6 +1,8 @@
 import { FC } from "react";
 import { CustomClose, ImageSearch } from "../../../../shared";
+
 import styles from "./LayoutSearchInput.module.scss";
+
 
 interface ILayoutSearchInput {
   value: string;

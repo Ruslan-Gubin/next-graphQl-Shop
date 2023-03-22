@@ -1,30 +1,30 @@
-import { FC, memo, useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useInView } from "react-intersection-observer";
+import  { FC, memo, useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { useInView } from "react-intersection-observer";
 import { IProductType } from '../../../../apps/types';
-import { findMaxOpinion, Heart, StarsList } from '../../../../shared';
+import { findMaxOpinion, Heart, QueckMessage, StarsList } from '../../../../shared';
 import { formatterRub } from '../../../../features/CatalogPage/libs/helper';
-import { selectBasket } from '../../../../features';
-import { checkFavorite } from '../../lib/helpers/checkFavorite';
 import { OPTIONS_DEPARTMENT } from '../../../../apps/constants';
+import { getPropertyProduct } from '../../../../features/CatalogPage/libs/helper/getPropertyProduct';
+import { basketAction, favoritesAction } from '../../../../features';
 
 import styles from './ProductCategory.module.scss';
 
+
 interface IProductCategory {
 product: IProductType
-onClickBuy: (value: IProductType) => void
-addFavorites: () => void
-removeFavorites: () => void
+activeFavorites: boolean
+activeBasket: boolean
 }
 
-const ProductCategoryF: FC<IProductCategory> = ({ product, onClickBuy, addFavorites,removeFavorites }) => {
-  const {basket, favorites} = useSelector(selectBasket)
+const ProductCategoryF: FC<IProductCategory> = ({ product, activeBasket, activeFavorites }) => {
+  const [quickMessage, setQueckMessage] = useState({status: false, text: ''})
   const [hoverCard, setHover] = useState(false)
-  const [buttonActive, setButtonActive] = useState(false)
   const [ref, isVisible] = useInView({ threshold: 0.5, triggerOnce: true });
   const cardRef = useRef<HTMLElement>(null)
+  const dispatch = useDispatch()
   const router = useRouter()
 
   const hoverOn = () => setHover(true)
@@ -45,21 +45,42 @@ const ProductCategoryF: FC<IProductCategory> = ({ product, onClickBuy, addFavori
     }
   },[])
 
-  useEffect(() => {
-    basket.forEach(basketProduct => {
-      if (basketProduct.id === product._id) {
-        setButtonActive(true)
-      }
-    })
-  },[basket, product._id])
+  const handleClickBuy = (product: IProductType) => {
+    dispatch(basketAction.addProduct({product: getPropertyProduct(product)}))
+    setQueckMessage(() => ({status: true, text: 'Товар добавлен в корзину'}))
+    setTimeout(() => {
+      setQueckMessage(() => ({status: false, text: ''}))
+    }, 3000);
+  }
+
+  const handleAddFavorite = (product: IProductType) => {
+    dispatch(favoritesAction.addFavorites({ product: getPropertyProduct(product) }));
+    setQueckMessage(() => ({status: true, text: 'Товар добавлен в избранное'}))
+    setTimeout(() => {
+      setQueckMessage(() => ({status: false, text: ''}))
+    }, 3000);
+  }
+
+  const handleRemoveFavorite = (id: string) => {
+    dispatch( favoritesAction.removeFavorites({ id: id }) );
+    setQueckMessage(() => ({status: true, text: 'Товар удален из избранного'}))
+    setTimeout(() => {
+      setQueckMessage(() => ({status: false, text: ''}))
+    }, 3000);
+  }
 
   const nameHref = OPTIONS_DEPARTMENT.find(item => item.label === product.department)
 
   return (
     <article ref={cardRef} className={styles.root}>
+      <QueckMessage active={quickMessage.status} message={quickMessage.text}/>
       <header>
         <div className={styles.heart__container}>
-        <Heart active={checkFavorite(favorites, product)} handleAddFavorite={addFavorites} removeFavorites={removeFavorites}/>
+        <Heart
+        active={activeFavorites}
+        handleAddFavorite={() => handleAddFavorite(product)} 
+        removeFavorites={() => handleRemoveFavorite(product._id)}
+        />
         </div>
         <figure className={styles.image__container}>
           <Link 
@@ -93,8 +114,8 @@ const ProductCategoryF: FC<IProductCategory> = ({ product, onClickBuy, addFavori
   
     {hoverCard && 
     <>
-    {!buttonActive ?
-    <button onClick={() => onClickBuy(product)} className={styles.btn}>В корзину</button>
+    {!activeBasket ?
+    <button onClick={() => handleClickBuy(product)} className={styles.btn}>В корзину</button>
     :
     <button onClick={() => router.push(`/basket`)} className={styles.btn__active}>В корзине</button>
   }
@@ -107,4 +128,4 @@ const ProductCategoryF: FC<IProductCategory> = ({ product, onClickBuy, addFavori
   );
 };
 
-export const ProductCategory =  memo(ProductCategoryF) ;
+export const ProductCategory =  memo(ProductCategoryF);

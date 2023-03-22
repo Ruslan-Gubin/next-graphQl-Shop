@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import Image from 'next/image';
@@ -9,7 +9,7 @@ import { AsideCatehoryItem } from "../AsideCatehoryItem";
 
 import styles from "./ShopLayoutAside.module.scss";
 
-const ShopLayoutAside = () => {
+const ShopLayoutAsideF = () => {
   const { asideLayoutStatus } = useSelector(selectLayoutShop);
   const [activeDepartment, setActiveDepartment] = useState<string>("");
   const [subDepartmentArray, setSubDepartmentArray] =
@@ -129,5 +129,7 @@ const ShopLayoutAside = () => {
     </div>
   );
 };
+
+const ShopLayoutAside = memo(ShopLayoutAsideF)
 
 export { ShopLayoutAside };

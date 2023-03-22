@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction, useEffect, useRef, useState } from 'react';
+import { Dispatch, FC, memo, SetStateAction, useEffect, useRef, useState } from 'react';
 
 import styles from './Modal.module.scss';
 
@@ -10,7 +10,7 @@ interface IModal {
   toggleActive: Dispatch<SetStateAction<boolean>>
 }
 
-const Modal:FC<IModal> = ({children, title, width, active, toggleActive}) => {
+const ModalF :FC<IModal> = ({children, title, width, active, toggleActive}) => {
 
   const close = () => toggleActive(false)
 
@@ -34,5 +34,7 @@ const Modal:FC<IModal> = ({children, title, width, active, toggleActive}) => {
     </div>
   );
 };
+
+const Modal = memo(ModalF)
 
 export { Modal };

@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, memo, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { useSelector } from "react-redux";
@@ -21,12 +21,12 @@ interface IShopLayout {
   keywords: string;
 }
 
-const ShopLayout: FC<IShopLayout> = ({ children, title, keywords }) => {
+const ShopLayoutF: FC<IShopLayout> = ({ children, title, keywords }) => {
   const { asideLayoutStatus } = useSelector(selectLayoutShop);
   const [searchMobileModal, setSearchMobileModal] = useState<boolean>(false)
   const { isDesktop } = useMatchMedia()
 
- 
+  
   return (
     <>
       <Head>
@@ -88,5 +88,7 @@ const ShopLayout: FC<IShopLayout> = ({ children, title, keywords }) => {
     </>
   );
 };
+
+const ShopLayout = memo(ShopLayoutF)
 
 export { ShopLayout };

@@ -1,7 +1,7 @@
-import Link from "next/link";
+import { memo, useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { HeaderStoreNavbar } from "../../../../entities/HeaderStoreNavbar";
-import {  selectBasket } from "../../../../features";
+import {  selectBasket, selectUser } from "../../../../features";
 import { BurgerButton } from "../../../../shared";
 import { layoutShopAction } from "../../lib/store";
 import { LayoutHeaderSearch } from "../LayoutHeaderSearch";
@@ -10,14 +10,17 @@ import { ShopHeaderLogo } from "../ShopHeaderLogo";
 import styles from './ShopLayoutHeader.module.scss';
 import { useMatchMedia } from "../../../../features/CatalogPage/libs/hooks/use-match-media";
 
-const ShopLayoutHeader = () => {
-  const {basket} = useSelector(selectBasket)
+const ShopLayoutHeaderF = () => {
+  const { user } = useSelector(selectUser);
   const {isMobile} = useMatchMedia()
   const dispatch = useDispatch()
 
-  const handleBurgerClick = () => {
+  const handleBurgerClick = useCallback(() => {
     dispatch(layoutShopAction.asideLayoutToggle())
-  }
+  }, [dispatch])
+
+
+  const checkUserName = useMemo(() => user.name ? true : false, [user])
 
   if (isMobile) {
     return <></>
@@ -29,20 +32,14 @@ const ShopLayoutHeader = () => {
               <div className={styles.headerBurger}>
               <BurgerButton onClick={handleBurgerClick}/>
               </div>
-              <div className={styles.headerLogo}>
-                <nav>
-                  <Link href={"/"}>
                     <ShopHeaderLogo />
-                  </Link>
-                </nav>
-              </div>
             </div>
               <LayoutHeaderSearch />
-            <nav className={styles.headerNavbar}> 
-              <HeaderStoreNavbar shopingCount={basket.length} />
-            </nav>
+              <HeaderStoreNavbar  checkUserName={checkUserName} />
           </header>
   );
 };
+
+const  ShopLayoutHeader = memo(ShopLayoutHeaderF)
 
 export { ShopLayoutHeader };

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Heart } from '../Heart';
 import { useSelector } from 'react-redux';
-import { selectBasket } from '../../../features';
+import { selectBasket, selectFavorites } from '../../../features';
 import styles from './ProductDetailsSubInfo.module.scss';
 import { checkFavorite } from '../../../entities/Product/lib/helpers/checkFavorite';
 import { checkBasket } from '../../../entities/Product/lib/helpers/checkBasket';
@@ -18,7 +18,8 @@ interface IProductDetailsSubInfo {
 }
 
 const ProductDetailsSubInfo: FC<IProductDetailsSubInfo> = ({handleRemoveFavorites, handleAddFavorites, handleAddBasket}) => {
-  const { basket, favorites } = useSelector(selectBasket);
+  const { basket } = useSelector(selectBasket);
+  const { favorites } = useSelector(selectFavorites)
   const {product} = useDetailsContext()
   const router = useRouter();
 

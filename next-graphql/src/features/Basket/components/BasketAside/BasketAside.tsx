@@ -1,12 +1,15 @@
+import { memo } from 'react';
 import { formatterRub } from '../../../../features/CatalogPage/libs/helper';
 import { useBasketContext } from '../../libs/context/BasketContext';
 
 import styles from './BasketAside.module.scss';
 
-const BasketAside = () => {
-  const {basket, setModalActive, totalCount, address, handleSubmitOrders} = useBasketContext()
+const BasketAsideF = () => {
+  const {basket, setModalActive,  address, handleSubmitOrders} = useBasketContext()
 
   const countProduct = basket.reduce((acc, product) => acc + product.count ,0)
+
+  const totalCount =  basket.reduce((acc, item) => acc + item.price * item.count ,0)
 
   const checkAddress = () => {
     const check = address.some(item => item.selected === true)
@@ -34,5 +37,7 @@ const BasketAside = () => {
     </aside>
   );
 };
+
+const BasketAside = memo(BasketAsideF)
 
 export { BasketAside };

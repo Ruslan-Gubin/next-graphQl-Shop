@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useRouter } from "next/router";
-import { selectBasket } from "../../../features";
+import { selectBasket, selectFavorites } from "../../../features";
 import { formatterRub } from "../../../features/CatalogPage/libs/helper";
 import { useSelector } from "react-redux";
 import { Heart } from "../Heart";
@@ -17,7 +17,8 @@ interface IProductDetailsButton {
 }
 
 const ProductDetailsButton: FC<IProductDetailsButton> = ({handleAddBasket, handleAddFavorites, handleRemoveFavorites}) => {
-  const { basket, favorites } = useSelector(selectBasket);
+  const { basket } = useSelector(selectBasket);
+  const { favorites } = useSelector(selectFavorites) 
   const { product } = useDetailsContext();
   const router = useRouter();
 

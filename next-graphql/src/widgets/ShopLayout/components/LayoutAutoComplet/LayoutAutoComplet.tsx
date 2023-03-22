@@ -37,8 +37,7 @@ const LayoutAutoComplet: FC<ILayoutAutoComplet> = ({
   };
 
   return (
-    <div className={styles.root}>
-      {loading && <LoaderShop />}
+    <div className={styles.root}>     
       <ul className={styles.container}>
         {data?.searchProducts.map((item) => (
           <li onClick={() => handlerNavRouter(item)} key={item._id}>

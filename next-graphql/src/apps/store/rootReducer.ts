@@ -6,6 +6,7 @@ import { layoutShopReducer } from "../../widgets";
 import { productDetailsReducer } from "../../entities";
 
 
+
 const rootReducer = combineReducers({
   layoutShop: layoutShopReducer,
   questions: redusers.questionsReducer,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   updateOption: redusers.updateOptionReducer,
   catalogPage: redusers.catalogPageReducer,
   basket: redusers.basketReducer,
+  favorites: redusers.favoritesReducer,
   User: redusers.userReducer,
   productDetails: productDetailsReducer,
   // [rtkQuery.productsApi.reducerPath]: rtkQuery.productsApi.reducer,

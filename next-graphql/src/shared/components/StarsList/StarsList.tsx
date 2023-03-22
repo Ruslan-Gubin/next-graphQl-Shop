@@ -1,4 +1,4 @@
-import { FC } from "react";
+import  { FC, memo } from "react";
 import Image from "next/image";
 
 import styles from "./StarsList.module.scss";
@@ -7,7 +7,7 @@ interface IStarsList {
   count: number;
 }
 
-const StarsList: FC<IStarsList> = ({ count }) => {
+const StarsListF: FC<IStarsList> = ({ count }) => {
   const countStars = [];
   for (let i = 0; i < count; i++) {
     countStars.push(i);
@@ -28,5 +28,7 @@ const StarsList: FC<IStarsList> = ({ count }) => {
     </ul>
   );
 };
+
+const StarsList = memo(StarsListF)
 
 export { StarsList };

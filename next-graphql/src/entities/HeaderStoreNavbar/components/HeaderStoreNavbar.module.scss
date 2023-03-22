@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 210px;
   & .linkItem {
     display: flex;
     flex-direction: column;
@@ -19,20 +20,5 @@
     }
 
   }
- & .orderCouter {
-  position: absolute;
-  top: -6px;
-  left: 30px;
-    width: 16px;
-    height: 16px;
-    background-color: rgb(255, 85, 0);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    & span {
-      color: white;
-      font-size: 13px;
-    }
-  }
+
 }

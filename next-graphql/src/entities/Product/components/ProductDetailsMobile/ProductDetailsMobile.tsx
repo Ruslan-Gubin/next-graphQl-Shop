@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Array, findMaxOpinion, Heart, StarsList } from '../../../../shared';
 import { formatterRub } from '../../../../features/CatalogPage/libs/helper';
-import { selectBasket } from '../../../../features';
+import { selectBasket, selectFavorites } from '../../../../features';
 import { useSelector } from 'react-redux';
 import { checkFavorite } from '../../lib/helpers/checkFavorite';
 import { checkBasket } from '../../lib/helpers/checkBasket';
@@ -31,7 +31,8 @@ const ProductDetailsMobile: FC<IProductDetailsMobile> = ({
   handleAddFavorites,
   handleRemoveFavorites
 }) => {
-  const { basket, favorites } = useSelector(selectBasket);
+  const { basket } = useSelector(selectBasket);
+  const { favorites } = useSelector(selectFavorites)
   const {product} = useDetailsContext()
   const router = useRouter()
 

@@ -4,11 +4,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import { UserFavoritesNoContent } from '../UserFavoritesNoContent';
 
 import styles from './UserFavorites.module.scss';
+import { favoritesAction, selectFavorites } from '../../store/favoritesSlice';
+import { IBasketProduct } from '../../../Basket/libs/types/IBasketSlice';
 
 
 const UserFavorites = () => {
-  const { favorites } = useSelector(selectBasket)
+  const { favorites } = useSelector(selectFavorites)
+  const { basket } = useSelector(selectBasket)
   const dispath = useDispatch()
+
+  const handleAddBasketRemoveFavorites = (product:IBasketProduct) =>  {
+    dispath(favoritesAction.removeFavorites({id: product.id}))
+
+    const checkBasketProduct = basket.some(item => item.id === product.id)
+
+    if (!checkBasketProduct) {
+      dispath(basketAction.addProduct({product}))
+    }
+
+  }
 
   return (
     <div className={styles.root}>
@@ -17,8 +31,8 @@ const UserFavorites = () => {
         {favorites.map(product => (
           <li className={styles.product__item} key={product.id}>
         <ProductCardFavorites 
-        addBasket={() => dispath(basketAction.addBasketAndRemoveFavorites({product}))}
-        removeFavorites={() => dispath(basketAction.removeFavorites({id: product.id}))}
+        addBasket={() => handleAddBasketRemoveFavorites(product)}
+        removeFavorites={() => dispath(favoritesAction.removeFavorites({id: product.id}))}
         product={product}
         />
         </li>

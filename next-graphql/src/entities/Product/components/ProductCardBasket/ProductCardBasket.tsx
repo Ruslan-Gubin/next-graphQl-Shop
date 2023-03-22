@@ -1,6 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import { memo } from "react";
+import { useDispatch } from "react-redux";
 import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
+import { basketAction } from "../../../../features";
 import { IBasketProduct } from "../../../../features/Basket/libs/types/IBasketSlice";
 import { formatterRub } from "../../../../features/CatalogPage/libs/helper";
 import { Heart, RemoveIcon } from "../../../../shared";
@@ -15,13 +18,18 @@ interface IProductCardBasket {
   addFavorite: () => void;
 }
 
-const ProductCardBasket = ({
+const ProductCardBasketF = ({
   product,
   addFavorite,
   decrement,
   increment,
   removeProduct,
 }: IProductCardBasket) => {
+  const dispatch = useDispatch()
+
+  const handleIncrementProductn = (id: string) => {
+    dispatch(basketAction.increment({id}))
+  }
 
   const findDepartmentName = OPTIONS_DEPARTMENT.find((item) => item.label === product.department);
 
@@ -59,7 +67,7 @@ const ProductCardBasket = ({
           )}
           <span>{product.count}</span>
           <button
-            onClick={() => increment(product.id)}
+            onClick={() => handleIncrementProductn(product.id)}
             className={styles.product__btn}
           >
             +
@@ -90,5 +98,7 @@ const ProductCardBasket = ({
     </article>
   );
 };
+
+const ProductCardBasket = memo(ProductCardBasketF)
 
 export { ProductCardBasket };

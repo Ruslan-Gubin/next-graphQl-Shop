@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import Image from 'next/image';
 
 import styles from './Heart.module.scss';
@@ -16,7 +16,7 @@ interface IHeart {
   active: boolean
 }
 
-const Heart = ({active, handleAddFavorite, removeFavorites}: IHeart) => {
+const HeartF = ({active, handleAddFavorite, removeFavorites}: IHeart) => {
   const [image, setImage] = useState(heartIcon)
 
   const ref = useRef<HTMLImageElement>(null)
@@ -47,5 +47,7 @@ const Heart = ({active, handleAddFavorite, removeFavorites}: IHeart) => {
     </figure>
   );
 };
+
+const Heart = memo(HeartF)
 
 export { Heart };

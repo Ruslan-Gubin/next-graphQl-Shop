@@ -7,7 +7,6 @@ interface IBasketContext {
   basket: IBasketProduct[]
   setModalActive: Dispatch<SetStateAction<boolean>>
   modalActive: boolean
-  totalCount: number
   address: IAddress[];
   user: IUser
 }

@@ -14,7 +14,7 @@ const BasketFooter = () => {
   const [activeAddressList, setActiveAddressList] = useState(false)
   const dispatch = useDispatch()
 
-
+console.log('render footer')
   const filterActiveAddress = () => {
     if (!activeAddressList) {
     return address.filter(item => item.selected)

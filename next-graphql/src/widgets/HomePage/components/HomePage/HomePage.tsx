@@ -62,11 +62,9 @@ const HomePage = () => {
       </section>
       <HomePageBrandsList />
       
-      {loadCategory ? 
-      <LoaderShop/>
-      :  
+      {!loadCategory &&  
       <HomePageCategoriList  CategoryList={CategoryData.categorys} handleClickCategory={handleClickCategory} /> 
-    }
+      }
     
     {!loadNewProduct &&
       <CatatlogProductList

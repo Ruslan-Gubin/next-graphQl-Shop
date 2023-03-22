@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 import styles from './QueckMessage.module.scss';
 
@@ -7,7 +7,7 @@ interface IQueckMessage {
   message: string
 }
 
-const QueckMessage: FC<IQueckMessage> = ({active, message}) => {
+const QueckMessageF: FC<IQueckMessage> = ({active, message}) => {
 
   return (
     <div style={!active ? { top: -1000} : {top: '10vw'}} className={styles.modalMessage}>
@@ -15,5 +15,7 @@ const QueckMessage: FC<IQueckMessage> = ({active, message}) => {
       </div>
   );
 };
+
+const QueckMessage = memo(QueckMessageF)
 
 export { QueckMessage };

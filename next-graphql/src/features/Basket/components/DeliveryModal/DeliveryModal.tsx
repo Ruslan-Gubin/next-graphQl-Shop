@@ -1,4 +1,4 @@
-import { FormEventHandler, useState } from "react";
+import { FormEventHandler, memo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { basketAction } from "../../store/basketSlice";
 import { useBasketContext } from "../../libs/context/BasketContext";
@@ -6,7 +6,7 @@ import { ModalInput } from "../../../../shared";
 
 import styles from "./DeliveryModal.module.scss";
 
-const DeliveryModal = () => {
+const DeliveryModalF = () => {
   const {  setModalActive } = useBasketContext();
   const dispatch = useDispatch()
   const [formValue, setFormValue] = useState({
@@ -125,5 +125,7 @@ const DeliveryModal = () => {
     </section>
   );
 };
+
+const DeliveryModal = memo(DeliveryModalF)
 
 export { DeliveryModal };

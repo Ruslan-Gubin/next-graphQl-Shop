@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction } from 'react';
+import { Dispatch, FC, memo, SetStateAction } from 'react';
 import { AccordionBird } from '../AccordionBird';
 
 import styles from './BasketFooterCard.module.scss';
@@ -11,7 +11,7 @@ interface IBasketFooterCard {
   visionToggle: boolean
 }
 
-const BasketFooterCard: FC<IBasketFooterCard> = ({visionToggle, title, children, activeList, setActiveList}) => {
+const BasketFooterCardF: FC<IBasketFooterCard> = ({visionToggle, title, children, activeList, setActiveList}) => {
   return (
     <section className={styles.root}>
       <header className={styles.header}>
@@ -27,5 +27,7 @@ const BasketFooterCard: FC<IBasketFooterCard> = ({visionToggle, title, children,
     </section>
   );
 };
+
+const BasketFooterCard = memo(BasketFooterCardF)
 
 export { BasketFooterCard };

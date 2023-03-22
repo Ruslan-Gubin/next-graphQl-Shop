@@ -23,7 +23,6 @@ interface IAddress {
 
 interface IBasketSlice {
   basket: IBasketProduct[];
-  favorites: IBasketProduct[];
   address: IAddress[];
 }
 
