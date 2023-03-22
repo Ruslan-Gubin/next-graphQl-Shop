@@ -1,10 +1,11 @@
 import { FormEventHandler, memo, useState } from "react";
 import { useDispatch } from "react-redux";
-import { basketAction } from "../../store/basketSlice";
 import { useBasketContext } from "../../libs/context/BasketContext";
 import { ModalInput } from "../../../../shared";
+import { addressAction } from "../../store/addressSlice";
 
 import styles from "./DeliveryModal.module.scss";
+
 
 const DeliveryModalF = () => {
   const {  setModalActive } = useBasketContext();
@@ -20,7 +21,7 @@ const DeliveryModalF = () => {
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    dispatch(basketAction.setAddressBuyer({value: formValue}))
+    dispatch(addressAction.setAddressBuyer({value: formValue}))
     setFormValue(() => ({
     street: "",
     flat: "",

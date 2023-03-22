@@ -19,6 +19,7 @@ const rootReducer = combineReducers({
   updateOption: redusers.updateOptionReducer,
   catalogPage: redusers.catalogPageReducer,
   basket: redusers.basketReducer,
+  address: redusers.addressReducer,
   favorites: redusers.favoritesReducer,
   User: redusers.userReducer,
   productDetails: productDetailsReducer,

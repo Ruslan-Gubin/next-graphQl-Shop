@@ -10,20 +10,10 @@ interface IBasketProduct {
   department: string;
   sub_department: string;
 }
-interface IAddress {
-  street: string;
-  flat: string;
-  privateHome: boolean;
-  entrance: string;
-  intercom: string;
-  floor: string;
-  selected?: boolean;
-  id?: string;
-}
+
 
 interface IBasketSlice {
   basket: IBasketProduct[];
-  address: IAddress[];
 }
 
-export type { IBasketSlice, IBasketProduct, IAddress };
+export type { IBasketSlice, IBasketProduct };

@@ -51,10 +51,23 @@ export {
   catalogPageReducer,
   selectCatalogPage,
 } from "./CatalogPage";
-export { Basket, basketAction, basketReducer, selectBasket } from "./Basket";
+export {
+  Basket,
+  basketAction,
+  basketReducer,
+  selectBasket,
+  addressAction,
+  addressReducer,
+  selectAddress,
+} from "./Basket";
 export { LoginPage, selectUser, userAction, userReducer } from "./LoginPage";
 export { UserDetails } from "./UserDetails";
-export { UserFavorites, favoritesAction, favoritesReducer, selectFavorites } from "./UserFavorites";
+export {
+  UserFavorites,
+  favoritesAction,
+  favoritesReducer,
+  selectFavorites,
+} from "./UserFavorites";
 
 export { AdminOrder } from "./AdminOrder";
 export { AdminStartPage } from "./AdminStartPage";

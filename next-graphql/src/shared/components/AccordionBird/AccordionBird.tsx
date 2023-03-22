@@ -1,5 +1,5 @@
 
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, memo, SetStateAction } from 'react';
 import styles from './AccordionBird.module.scss';
 
 interface IAccordionBird {
@@ -7,12 +7,14 @@ interface IAccordionBird {
   handleActive: Dispatch<SetStateAction<boolean>>
 }
 
-const AccordionBird = ({active, handleActive}: IAccordionBird) => {
+const AccordionBirdF = ({active, handleActive}: IAccordionBird) => {
   return (
     <div onClick={() => handleActive(!active)} className={active ? `${styles.header__bird_container} ${styles.active}` : styles.header__bird_container}>
     <div className={styles.header__bird}></div>
     </div>
   );
 };
+
+const AccordionBird = memo(AccordionBirdF)
 
 export { AccordionBird };

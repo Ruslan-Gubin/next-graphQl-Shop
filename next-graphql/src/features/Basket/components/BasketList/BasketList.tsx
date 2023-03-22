@@ -1,38 +1,28 @@
-import { useCallback, useMemo, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import {  useEffect,  useState } from 'react';
+import {  useSelector } from 'react-redux';
+
 import { ProductCardBasket } from '../../../../entities';
 import { formatterRub } from '../../../../features/CatalogPage/libs/helper';
 import { AccordionBird } from '../../../../shared';
 import { useBasketContext } from '../../libs/context/BasketContext';
-import { basketAction } from '../../store/basketSlice';
-import { IBasketProduct } from '../../libs/types/IBasketSlice';
-import { favoritesAction, selectFavorites } from '../../../UserFavorites';
+import {  selectBasket } from '../../store/basketSlice';
 
 import styles from './BasketList.module.scss';
 
 
 const BasketList = () => {
   const [listActive, setListActive] = useState(true)
-  const {basket} = useBasketContext()
-  const { favorites } = useSelector(selectFavorites)
-  const dispatch = useDispatch()
+  const {basket} = useSelector(selectBasket)
+  const { setNoContentActive } = useBasketContext()
 
-  const handleAddFavoritesRemoveBasket = useCallback((product: IBasketProduct) => {
-    dispatch(basketAction.removeProduct({id: product.id}))
 
-    const checkFavorites = favorites.some(item => item.id === product.id)
-    
-    if (!checkFavorites) {
-      dispatch(favoritesAction.addFavorites({product}))
+  useEffect(() => {
+    if (basket.length === 0) {
+      setNoContentActive(true)
     }
-  }, [basket, favorites])
+  }, [basket])
 
   const totalCount =  basket.reduce((acc, item) => acc + item.price * item.count ,0)
-
-
-  const handleIncrementProductn = useCallback((id: string) => {
-    dispatch(basketAction.increment({id}))
-  }, [])
 
   return (
     <section className={styles.root}>
@@ -53,11 +43,7 @@ const BasketList = () => {
      {basket.map(product => (
        <li key={product.id} className={styles.product__list_item}>
         <ProductCardBasket 
-        product={product} 
-        decrement={(value) => dispatch(basketAction.decrement({id: value}))}
-        increment={(value) => handleIncrementProductn(value)}
-        removeProduct={(value) => dispatch(basketAction.removeProduct({id: value}))}
-        addFavorite={() => handleAddFavoritesRemoveBasket(product)}
+        product={product}
          />
       </li>
         ))}

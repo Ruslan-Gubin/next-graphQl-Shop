@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import Image from 'next/image';
 
 import styles from './RemoveIcon.module.scss';
 
-const RemoveIcon = ({onClick}: {onClick: () => void}) => {
+const RemoveIconF = ({onClick}: {onClick: () => void}) => {
   const [hover, setHover] = useState(false)
   const ref = useRef<HTMLImageElement>(null)
 
@@ -34,5 +34,7 @@ const RemoveIcon = ({onClick}: {onClick: () => void}) => {
     </figure>
   );
 };
+
+const RemoveIcon = memo(RemoveIconF)
 
 export { RemoveIcon };
