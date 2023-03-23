@@ -1,8 +1,6 @@
 import { Dispatch, FC, SetStateAction } from 'react';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
-import { useMatchMedia } from '../../../../features/CatalogPage/libs/hooks/use-match-media';
 import { layoutShopAction, selectLayoutShop } from '../../lib/store';
 import { ShopLayoutNavMobile } from '../ShopLayoutNavMobile';
 
@@ -29,9 +27,7 @@ const ShopLayoutHeaderMobile: FC<IShopLayoutHeaderMobile> = ({setSearchMobileMod
   return (
     <header className={styles.root}>
       <section className={styles.header}>
-<Link href={'/'}>
-<h1 className={styles.logo}> ONLINESHOP </h1>
-</Link>
+<h1 onClick={() => router.push('/')} className={styles.logo}> ONLINESHOP </h1>
 <button title='Поиск' onClick={() => setSearchMobileModal(true)} className={styles.search__icon_container}>
 <div className={styles.search__icon}></div>
 </button>

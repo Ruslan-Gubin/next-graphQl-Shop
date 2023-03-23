@@ -1,19 +1,18 @@
 import { memo } from "react";
-import Link from "next/link";
+import { useRouter } from "next/dist/client/router";
 
 import styles from "./ShopHeaderLogo.module.scss";
 
 
 const ShopHeaderLogoF = () => {
+  const router = useRouter()
+
   return (
-     <Link href={"/"}>
-      <div className={styles.root} data-testid='logo-testid'>
+      <div onClick={() => router.push('/')} className={styles.root} data-testid='logo-testid'>
     <div className={styles.container}>
       <span className={styles.nameLogo}>onlineshop</span>
-      
     </div>
       </div>
-      </Link>
   );
 };
 

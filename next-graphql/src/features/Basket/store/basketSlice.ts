@@ -13,7 +13,13 @@ const basketSlice = createSlice({
   reducers: {
     
     addProduct(state, action: PayloadAction<{product: IBasketProduct}>) {
-      state.basket = [action.payload.product, ...state.basket]
+      const checkBasketProduct = state.basket.some(item => item.id === action.payload.product.id)
+
+      if (!checkBasketProduct) {
+        state.basket = [action.payload.product, ...state.basket]
+      } else {
+        return
+      }
     },
 
     removeProduct(state, action: PayloadAction<{id: string}>) {

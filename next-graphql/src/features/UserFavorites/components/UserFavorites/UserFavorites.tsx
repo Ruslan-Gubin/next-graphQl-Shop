@@ -1,28 +1,26 @@
-import { ProductCardFavorites } from '../../../../entities';
-import { basketAction, selectBasket } from '../../../../features/Basket';
+import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { ProductCardFavorites } from '../../../../entities';
+import { basketAction } from '../../../../features/Basket';
 import { UserFavoritesNoContent } from '../UserFavoritesNoContent';
-
-import styles from './UserFavorites.module.scss';
 import { favoritesAction, selectFavorites } from '../../store/favoritesSlice';
 import { IBasketProduct } from '../../../Basket/libs/types/IBasketSlice';
+
+import styles from './UserFavorites.module.scss';
 
 
 const UserFavorites = () => {
   const { favorites } = useSelector(selectFavorites)
-  const { basket } = useSelector(selectBasket)
   const dispath = useDispatch()
 
-  const handleAddBasketRemoveFavorites = (product:IBasketProduct) =>  {
+  const handleAddBasketRemoveFavorites = useCallback((product: IBasketProduct) =>  {
     dispath(favoritesAction.removeFavorites({id: product.id}))
+    dispath(basketAction.addProduct({product}))
+  }, [dispath])
 
-    const checkBasketProduct = basket.some(item => item.id === product.id)
-
-    if (!checkBasketProduct) {
-      dispath(basketAction.addProduct({product}))
-    }
-
-  }
+  const handleRemoveFavorites = useCallback((id: string) => {
+    dispath(favoritesAction.removeFavorites({id}))
+  }, [dispath])
 
   return (
     <div className={styles.root}>
@@ -31,8 +29,8 @@ const UserFavorites = () => {
         {favorites.map(product => (
           <li className={styles.product__item} key={product.id}>
         <ProductCardFavorites 
-        addBasket={() => handleAddBasketRemoveFavorites(product)}
-        removeFavorites={() => dispath(favoritesAction.removeFavorites({id: product.id}))}
+        addBasket={handleAddBasketRemoveFavorites}
+        removeFavorites={handleRemoveFavorites}
         product={product}
         />
         </li>

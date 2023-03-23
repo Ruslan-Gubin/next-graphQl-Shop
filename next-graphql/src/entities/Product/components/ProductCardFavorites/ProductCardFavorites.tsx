@@ -1,30 +1,32 @@
-import { FC } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
+import { FC, memo } from 'react';
+import { useRouter } from 'next/router';
 import { IBasketProduct } from '../../../../features/Basket/libs/types/IBasketSlice';
 import { formatterRub } from '../../../../features/CatalogPage/libs/helper';
 import { CloseProductButton } from '../../../../shared';
-
+import { OPTIONS_DEPARTMENT } from '../../../../apps/constants';
 
 import styles from './ProductCardFavorites.module.scss';
-import { OPTIONS_DEPARTMENT } from '../../../../apps/constants';
+
 
 interface IProductCardFavorites {
   product: IBasketProduct
-  removeFavorites: () => void
-  addBasket: () => void
+  removeFavorites: (id: string) => void
+  addBasket: (value: IBasketProduct) => void
 }
 
-const ProductCardFavorites: FC<IProductCardFavorites> = ({product, removeFavorites, addBasket}) => {
+const ProductCardFavoritesF: FC<IProductCardFavorites> = ({product, removeFavorites, addBasket}) => {
+  const router = useRouter()
 
-const discount = Math.ceil(((product.price - product.oldPrice) / product.oldPrice) * 100);
+const discount =  Math.ceil(((product.price - product.oldPrice) / product.oldPrice) * 100);
 
-const findDepartmentName = OPTIONS_DEPARTMENT.find((item) => item.label === product.department);
+const findDepartmentName =  OPTIONS_DEPARTMENT.find((item) => item.label === product.department);
+
+const href =  (`/catalog/${findDepartmentName.department_href}/${product.sub_department}/${product.id}`);
 
   return (
     <article className={styles.root}>
-      <div className={styles.close__btn}><CloseProductButton onClick={removeFavorites} /></div>
-        <Link href={`/catalog/${findDepartmentName.department_href}/${product.sub_department}/${product.id}`}>
+      <div className={styles.close__btn}><CloseProductButton onClick={() => removeFavorites(product.id)} /></div>
+        <div onClick={() => router.push(href)} >
           <figure className={styles.product__img}>
             <picture>
         <img  src={product.img} alt="Product imag" />
@@ -39,12 +41,14 @@ const findDepartmentName = OPTIONS_DEPARTMENT.find((item) => item.label === prod
     <dd  className={styles.price__old_price}>{formatterRub.format(product.oldPrice)}</dd>
       </dl>
       <p className={styles.description}>{product.name}</p>
-        </Link>
+        </div>
 
-      <button onClick={addBasket} className={styles.footer__btn}>В корзину</button>
+      <button onClick={() => addBasket(product)} className={styles.footer__btn}>В корзину</button>
      
     </article>
   );
 };
+
+const ProductCardFavorites = memo(ProductCardFavoritesF)
 
 export { ProductCardFavorites };

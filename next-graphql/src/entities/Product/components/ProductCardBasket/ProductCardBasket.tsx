@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import { memo, useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
-import { basketAction, favoritesAction,  selectFavorites } from "../../../../features";
+import { basketAction, favoritesAction  } from "../../../../features";
 import { IBasketProduct } from "../../../../features/Basket/libs/types/IBasketSlice";
 import { formatterRub } from "../../../../features/CatalogPage/libs/helper";
 import { Heart, RemoveIcon } from "../../../../shared";

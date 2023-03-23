@@ -1,32 +1,29 @@
-import { memo } from "react";
-import Link from "next/link";
+import { memo, useMemo } from "react";
+import { useRouter } from "next/dist/client/router";
 import Image from 'next/image';
+import { useSelector } from "react-redux";
 
-
-// const addressIcon =
-//   "https://res.cloudinary.com/ds289tkqj/image/upload/v1674831921/Hits/addressIcon_jgsuc2.png";
-const loginIcon =
-  "https://res.cloudinary.com/ds289tkqj/image/upload/v1674832099/Hits/user-60_lfvy7k.png";
-
+import { HeaderStoreNavbarBasket } from "./HeaderStoreNavbarBasket";
+import { selectUser } from "../../../features";
+import { loginIcon } from "../lib/data/headerIcon";
 
 import styles from "./HeaderStoreNavbar.module.scss";
-import { HeaderStoreNavbarBasket } from "./HeaderStoreNavbarBasket";
 
-interface IHeaderStoreNavbar {
 
-   checkUserName: boolean
-}
+const HeaderStoreNavbarF = () => {
+  const { user } = useSelector(selectUser);
+  const router = useRouter()
 
-const HeaderStoreNavbarF = ({  checkUserName  }: IHeaderStoreNavbar) => {
- 
+  const checkUserName = useMemo(() => user.name ? true : false, [user])
+  const href = checkUserName ? '/lk/details' : "/security/login"
 
   return (
     <ul className={styles.root}>
       <li>
-      <Link className={styles.linkItem} href={checkUserName ? '/lk/details' : "/security/login"}>
+      <div onClick={() => router.push(href)} className={styles.linkItem} >
         <Image width={27} height={27} src={loginIcon} alt="address icon" />
         {checkUserName ? <span> Профиль </span> : <span> Войти </span>}
-      </Link>
+      </div>
       </li>
       <HeaderStoreNavbarBasket  />
     </ul>
