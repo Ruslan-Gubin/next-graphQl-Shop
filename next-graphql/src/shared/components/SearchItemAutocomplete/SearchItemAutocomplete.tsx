@@ -13,7 +13,7 @@ interface ISearchItemAutocomplete {
 const SearchItemAutocomplete = ({text, productImg, id}: ISearchItemAutocomplete) => {
 
   return (
-    <div onClick={() => console.log(id)} className={styles.root}>
+    <div onClick={() => {}} className={styles.root}>
       <div className={styles.imag}>
       <ImageSearch active={true}/>
       </div>

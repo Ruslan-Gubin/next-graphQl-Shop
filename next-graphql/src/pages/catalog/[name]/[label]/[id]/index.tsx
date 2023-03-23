@@ -13,7 +13,14 @@ const ProductDetails = ({ product, department, subDepartment, similarProduct, pr
   
   return (
     <ShopLayout title='ProductDetail' keywords='ProductDetail'>
-      <ProductDetailsPage departmentHrefName={departmentHrefName} product={product} department={department} subDepartment={subDepartment} similarProduct={similarProduct} product_id={product_id} />
+      <ProductDetailsPage
+       departmentHrefName={departmentHrefName}
+       product={product}
+       department={department}
+       subDepartment={subDepartment}
+       similarProduct={similarProduct}
+       product_id={product_id}
+      />
     </ShopLayout>
   );
 };

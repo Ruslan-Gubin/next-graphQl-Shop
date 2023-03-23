@@ -27,6 +27,8 @@ export {
   Error,
 } from "./components";
 
+export { queckMessageFn } from "./utils";
+
 export { queckMessage, findMaxOpinion } from "./lib";
 
-export { useAddImage, useHover } from "./lib/hooks";
+export { useAddImage, useHover, useQuickMessage } from "./lib/hooks";

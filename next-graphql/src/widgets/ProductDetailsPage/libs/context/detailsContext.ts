@@ -1,17 +1,8 @@
 import { createContext, useContext } from "react"
-import { IProductType } from "../../../../apps/types"
+import { IProductDetailsContext } from "../types/IProductDetailsContext"
 
-interface IProductDetails {
-  product_id: string
-  product: IProductType
-  similarProduct: IProductType[] 
-  department: {name: string, href: string}
-  subDepartment: {name: string, href: string}
-  media: {isDesktop: boolean | undefined, isMobile: boolean | undefined, isTablet: boolean | undefined}
-  departmentHrefName: string;
-}
 
-export const DetailsContext = createContext<IProductDetails | null>(null)
+export const DetailsContext = createContext<IProductDetailsContext | null>(null)
 
 export const useDetailsContext = () => {
   const data = useContext(DetailsContext)

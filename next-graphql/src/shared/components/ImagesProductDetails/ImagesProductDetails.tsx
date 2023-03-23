@@ -28,7 +28,7 @@ useEffect(() => {
     setPhotoActive(product.photo.images[prevImag + 1].url)
   }
 
-  const checkLastImage = () =>  {
+const checkLastImage = () =>  {
 const length = product.photo.images.length
 const imagId = product.photo.images.findIndex(item => item.url === photoActive)
 if (imagId + 1 === length) {
@@ -51,9 +51,7 @@ if (imagId + 1 === length) {
           <div className={styles.arrow__up_white}></div>
             </div>
         }
-
             <ul>
-
           {product.photo.images.map((imag) => (
             <li className={imag.url === photoActive ? styles.foto__small_active : styles.foto__small} key={imag.url}>
               <ProductListImag url={imag.url} handleChanceImage={handleChanceImage} />
@@ -75,8 +73,6 @@ if (imagId + 1 === length) {
         </ul>
         <figure className={styles.foto__big}>
         <Image width={520} height={660}  src={photoActive} alt="Product Image" />
-        {/* <Image width={520} height={660}  src={photoActive} alt="Product Image" /> */}
-        {/* <img  src={photoActive} alt="Product Image" /> */}
         </figure>
       </section>
   );

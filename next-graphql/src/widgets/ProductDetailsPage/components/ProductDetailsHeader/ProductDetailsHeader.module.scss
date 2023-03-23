@@ -13,6 +13,9 @@ padding-bottom: 5px;
   margin-right: 15px;
   padding-bottom: 5px;
   border-bottom: 1px  solid rgba(0, 0, 0, 0);
+  &:hover {
+    cursor: pointer;
+  }
 
   &::after{
     content: '/';
@@ -37,6 +40,7 @@ padding-bottom: 5px;
   &:hover {
     color: black;
     border-bottom: 1px  solid black;
+    cursor: pointer;
   }
  } 
 }

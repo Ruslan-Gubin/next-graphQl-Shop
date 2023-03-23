@@ -1,4 +1,4 @@
-import { Dispatch, FC, memo, SetStateAction, useEffect, useRef, useState } from 'react';
+import { Dispatch, FC, memo, SetStateAction } from 'react';
 
 import styles from './Modal.module.scss';
 

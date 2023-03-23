@@ -1,13 +1,10 @@
 .wrapper {
   background-color: rgba(69, 69, 69, 0.432);
   width: 100%;
-
-  
   top: 0;
   left: 0px;
   z-index: 4;
   transition: all 0s ease;
-  // overflow: scroll;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -58,14 +55,15 @@
         color: rgb(7, 7, 7);
         padding: 10px 0;
         transition: all 0.5s ease;
-
         &:hover {
+          cursor: pointer;
           color: rgb(182, 31, 179);
         }
       }
       & .sub_category__item {
         min-width: 240px;
         padding: 10px 0;
+        cursor: pointer;
         & p {
           color: rgb(126, 126, 126);
           font-size: 1.1rem;
@@ -114,4 +112,10 @@
       }
     }
   }
+}
+
+.category__item_active {
+   background-color: rgba(199, 41, 188, 0.902);
+   border-radius: 10px ;
+   color: white !important;
 }

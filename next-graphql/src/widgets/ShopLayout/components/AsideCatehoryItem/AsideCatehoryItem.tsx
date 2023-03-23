@@ -1,48 +1,46 @@
-import  { Dispatch, FC, SetStateAction, useCallback, useEffect, useRef } from 'react';
-import Image from 'next/image';
+import  { FC, memo,  useCallback,  useEffect, useRef, useState } from 'react';
 
 import styles from './AsideCatehoryItem.module.scss';
 
+
 interface IAsideCatehoryItem {
   department: {href: string, value: string, label: string, img: string}
-  setActiveDepartment:  Dispatch<SetStateAction<string>>
-  activeDepartment: string
   handleActiveCategory: (value: string) => void
 }
 
-const AsideCatehoryItem: FC<IAsideCatehoryItem> = ({handleActiveCategory ,department, activeDepartment}) => {
-  const ref = useRef<HTMLLIElement>(null)
+const AsideCatehoryItemF: FC<IAsideCatehoryItem> = ({handleActiveCategory ,department}) => {
+  const ref = useRef<HTMLDivElement>(null)
 
-  const handlerClick = useCallback(() => {
+  
+  const handlerChangeCategory = useCallback(() => {
     handleActiveCategory(department.label)
-  },[department.label, handleActiveCategory])
-
+  }, [department.label, handleActiveCategory])
+  
+  
   useEffect(() => {
-    if (!ref.current) {
-      return
-    }
+    if (!ref.current) return;
+    
     const node = ref.current
     
-    node.addEventListener('mouseenter', handlerClick)
-    node.addEventListener('mousemove', handlerClick)
-   
-
+    node.addEventListener('mouseenter', handlerChangeCategory)
+    
     return () => {
-      node.removeEventListener('mouseenter', handlerClick)
-      node.removeEventListener('mousemove', handlerClick)
+      node.removeEventListener('mouseenter', handlerChangeCategory)
     }
-  },[handlerClick])
+  },[handlerChangeCategory])
 
   return (
-    <li 
+    <div  
     ref={ref} 
     id={department.label} 
-    className={activeDepartment === department.label ? styles.category__item_active : styles.category__item}
+    className={styles.category__item}
     >
-    <Image width={25} height={25} src={department.img} alt="category imag" />
+      <picture>
+    <img width={25} height={25} src={department.img} alt="category imag" />
+      </picture>
     <p >{department.value}</p>
-    </li>
+    </div>
   );
 };
 
-export {AsideCatehoryItem};
+export const AsideCatehoryItem = memo(AsideCatehoryItemF);

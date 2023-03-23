@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import { useSelector } from "react-redux";
 import Image from 'next/image';
 import { IFeedbackType } from "../../../../apps/types/IFeedbackType";
@@ -15,7 +15,7 @@ interface IFeedbackProductCard {
 
 const userNoimage = '/user__mobile_gray.png'
 
-const FeedbackProductCard:FC<IFeedbackProductCard> = ({feedback, removeFeedback}) => {
+const FeedbackProductCardF :FC<IFeedbackProductCard> = ({feedback, removeFeedback}) => {
   const { user } = useSelector(selectUser)
   
   
@@ -40,7 +40,6 @@ const FeedbackProductCard:FC<IFeedbackProductCard> = ({feedback, removeFeedback}
     <figure className={styles.content__img}>
       {feedback.img?.url && 
     <Image width={50} height={50} src={feedback.img?.url ? feedback.img?.url : ''} alt="feedback img" />
-    // <img src={feedback.img?.url ? feedback.img?.url : ''} alt="feedback img" />
   }
     </figure>
     </section>
@@ -55,4 +54,4 @@ const FeedbackProductCard:FC<IFeedbackProductCard> = ({feedback, removeFeedback}
   );
 };
 
-export { FeedbackProductCard };
+export const FeedbackProductCard = memo(FeedbackProductCardF);

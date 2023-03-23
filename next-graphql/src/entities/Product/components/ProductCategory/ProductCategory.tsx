@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useInView } from "react-intersection-observer";
 import { IProductType } from '../../../../apps/types';
-import { findMaxOpinion, Heart, QueckMessage, StarsList } from '../../../../shared';
+import { findMaxOpinion, Heart, QueckMessage, StarsList, useQuickMessage } from '../../../../shared';
 import { formatterRub } from '../../../../features/CatalogPage/libs/helper';
 import { OPTIONS_DEPARTMENT } from '../../../../apps/constants';
 import { getPropertyProduct } from '../../../../features/CatalogPage/libs/helper/getPropertyProduct';
@@ -20,7 +20,7 @@ activeBasket: boolean
 }
 
 const ProductCategoryF: FC<IProductCategory> = ({ product, activeBasket, activeFavorites }) => {
-  const [quickMessage, setQueckMessage] = useState({status: false, text: ''})
+  const { handleChangeState, status, text } = useQuickMessage()
   const [hoverCard, setHover] = useState(false)
   const [ref, isVisible] = useInView({ threshold: 0.5, triggerOnce: true });
   const cardRef = useRef<HTMLElement>(null)
@@ -47,33 +47,24 @@ const ProductCategoryF: FC<IProductCategory> = ({ product, activeBasket, activeF
 
   const handleClickBuy = (product: IProductType) => {
     dispatch(basketAction.addProduct({product: getPropertyProduct(product)}))
-    setQueckMessage(() => ({status: true, text: 'Товар добавлен в корзину'}))
-    setTimeout(() => {
-      setQueckMessage(() => ({status: false, text: ''}))
-    }, 3000);
+    handleChangeState('Товар добавлен в корзину')
   }
 
   const handleAddFavorite = (product: IProductType) => {
     dispatch(favoritesAction.addFavorites({ product: getPropertyProduct(product) }));
-    setQueckMessage(() => ({status: true, text: 'Товар добавлен в избранное'}))
-    setTimeout(() => {
-      setQueckMessage(() => ({status: false, text: ''}))
-    }, 3000);
+    handleChangeState('Товар добавлен в избранное')
   }
 
   const handleRemoveFavorite = (id: string) => {
     dispatch( favoritesAction.removeFavorites({ id: id }) );
-    setQueckMessage(() => ({status: true, text: 'Товар удален из избранного'}))
-    setTimeout(() => {
-      setQueckMessage(() => ({status: false, text: ''}))
-    }, 3000);
+    handleChangeState('Товар удален из избранного')
   }
 
   const nameHref = OPTIONS_DEPARTMENT.find(item => item.label === product.department)
 
   return (
     <article ref={cardRef} className={styles.root}>
-      <QueckMessage active={quickMessage.status} message={quickMessage.text}/>
+      <QueckMessage active={status} message={text} />
       <header>
         <div className={styles.heart__container}>
         <Heart

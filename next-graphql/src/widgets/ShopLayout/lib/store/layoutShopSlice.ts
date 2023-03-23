@@ -32,7 +32,7 @@ const layoutShopSlice = createSlice({
       if (state.asideLayoutStatus) {
         state.asideLayoutStatus = false
       }
-    }
+    },
 
   }
 });

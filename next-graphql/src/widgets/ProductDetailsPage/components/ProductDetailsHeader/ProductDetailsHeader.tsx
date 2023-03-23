@@ -1,11 +1,11 @@
 import { FC } from 'react';
-import Link from 'next/link'
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import { catalogPageAction } from '../../../../features';
 import { Array, findMaxOpinion, StarsList } from '../../../../shared';
-import styles from './ProductDetailsHeader.module.scss';
 import { useDetailsContext } from '../../libs/context/detailsContext';
+
+import styles from './ProductDetailsHeader.module.scss';
 
 
 const ProductDetailsHeader: FC = () => {
@@ -13,28 +13,25 @@ const ProductDetailsHeader: FC = () => {
   const dispatch = useDispatch()
   const router = useRouter()
 
+  const handleLink = (href: string) => {
+    router.push(href)
+  }
+
   return (
     <section className={styles.root}>
       <nav>
         <ul className={styles.nav__container}>
           <Array onClick={() => router.back()} derection='left'/>
-          <Link href={'/'}>
-          <li className={styles.link}>Главная</li>
-          </Link>
-          <Link href={`${department.href}`}>
-          <li className={styles.link}>{department.name}</li>
-          </Link>
-          <Link href={`${department.href}/${subDepartment.href}`}>
+          <li onClick={() => handleLink('/')} className={styles.link}>Главная</li>
+          <li onClick={() => handleLink(`${department.href}`)} className={styles.link}>{department.name}</li>
         <li 
         className={styles.link}
-        onClick={() => dispatch(catalogPageAction.setCategoryValue({
-          value: "Категория", label: "Категория", id: ""
-        }))}
+        onClick={() => {
+          dispatch(catalogPageAction.setCategoryValue({ value: "Категория", label: "Категория", id: "" }))
+          handleLink(`${department.href}/${subDepartment.href}`)
+        }}
         >{subDepartment.name}</li>
-          </Link>
-          <Link href={`/brands/${product.brand._id}`}>
-         <li className={styles.last__link}>{product.brand.name}</li>
-          </Link>
+         <li onClick={() => handleLink(`/brands/${product.brand._id}`)} className={styles.last__link}>{product.brand.name}</li>
         </ul>
       </nav>
       <h1 className={styles.title}>{product.brand.name} / {product.name}</h1>

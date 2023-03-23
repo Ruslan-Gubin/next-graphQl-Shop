@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 import styles from './Array.module.scss';
 
@@ -7,7 +7,7 @@ interface IArray {
   derection: 'left' | 'right' | 'up' | 'down'
 }
 
-const Array: FC<IArray> = ({onClick, derection}) => {
+const ArrayF: FC<IArray> = ({onClick, derection}) => {
 
   const directionObj = {
     left: '0deg',
@@ -18,10 +18,10 @@ const Array: FC<IArray> = ({onClick, derection}) => {
 
 
   return (
-    <div style={{rotate: (`${directionObj[derection]}`)}} onClick={() => onClick()} className={styles.array__container}> 
+    <div style={{rotate: (`${directionObj[derection]}`)}} onClick={onClick} className={styles.array__container}> 
           <div className={styles.array__back}></div>
           </div>
   );
 };
 
-export { Array };
+export const Array = memo(ArrayF);

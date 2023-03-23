@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import Image from 'next/image';
@@ -10,9 +11,9 @@ const UserDetailsFavorites = () => {
   const { favorites } = useSelector(selectFavorites)
   const router = useRouter()
 
-  const filterFavorites = () => {
+  const filterFavorites = useMemo(() => {
   return  favorites.filter((_, ind) => ind < 7)
-  }
+  }, [favorites])
 
   const sumMoreFavorites = favorites.length - 7
 
@@ -21,10 +22,10 @@ const UserDetailsFavorites = () => {
     <h2 className={styles.card__remove_title}>Избранное</h2>
 
     <div className={styles.content__container}>
-      {favorites.length > 0 ?
+      {filterFavorites.length > 0 ?
       <>
     <ul className={styles.images}>
-      {filterFavorites().map(item => (
+      {filterFavorites.map(item => (
         <li key={item.id} className={styles.img} >
     <Image width={60} height={60} src={item.img} alt="Favorites img" />
       </li>

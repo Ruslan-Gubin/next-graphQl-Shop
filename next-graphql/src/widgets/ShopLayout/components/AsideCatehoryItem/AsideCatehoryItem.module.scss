@@ -18,24 +18,3 @@ align-items: center;
 
 }
 
-.category__item_active {
-  cursor: pointer;
-  padding: 6px 10px;
-  min-width: 240px;
-color: white;
-   background-color: rgba(199, 41, 188, 0.902);
-   border-radius: 10px;
- 
-display: flex;
-align-items: center;
-
-& p {
-  font-size: 1.3rem;
-}
-& img {
-
-  margin-right: 10px;
-}
-
-
-}

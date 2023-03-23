@@ -1,30 +1,43 @@
-import { FC } from 'react';
+import { FC, memo, } from 'react';
+import { useSelector } from 'react-redux';
 import { formatterRub } from '../../../features/CatalogPage/libs/helper';
 import { useRouter } from "next/router";
-import Link from 'next/link';
-import Image from 'next/image';
 import { Heart } from '../Heart';
-import { useSelector } from 'react-redux';
 import { selectBasket, selectFavorites } from '../../../features';
-import styles from './ProductDetailsSubInfo.module.scss';
 import { checkFavorite } from '../../../entities/Product/lib/helpers/checkFavorite';
 import { checkBasket } from '../../../entities/Product/lib/helpers/checkBasket';
 import { useDetailsContext } from '../../../widgets/ProductDetailsPage/libs/context/detailsContext';
+import { QueckMessage } from '../QueckMessage';
+import { useQuickMessage } from '../../lib';
 
-interface IProductDetailsSubInfo {
-  handleAddBasket: () => void
-  handleAddFavorites: () => void
-  handleRemoveFavorites: () => void
-}
+import styles from './ProductDetailsSubInfo.module.scss';
 
-const ProductDetailsSubInfo: FC<IProductDetailsSubInfo> = ({handleRemoveFavorites, handleAddFavorites, handleAddBasket}) => {
+
+const ProductDetailsSubInfoF: FC = () => {
   const { basket } = useSelector(selectBasket);
   const { favorites } = useSelector(selectFavorites)
-  const {product} = useDetailsContext()
+  const { handleChangeState, status, text } = useQuickMessage()
+  const {product, handleAddBasket, handleAddFavorites, handleRemoveFavorites} = useDetailsContext()
   const router = useRouter();
+
+  const addBasket = () => {
+    handleAddBasket()
+    handleChangeState('Товар добавлен в корзину')
+  };
+
+  const addFavorites = () => {
+    handleAddFavorites()
+    handleChangeState('Товар добавлен в избранное')
+  };
+
+  const removeFavorites = () => {
+    handleRemoveFavorites()
+    handleChangeState('Товар удален из избранного')
+  };
 
   return (
     <section className={styles.root}>
+      <QueckMessage active={status} message={text} />
       <div className={styles.prices}>
       <h2 className={styles.price}>{formatterRub.format(product.price)}</h2>
       <span className={styles.old__price}>{formatterRub.format(product.oldPrice)}</span>
@@ -43,11 +56,11 @@ const ProductDetailsSubInfo: FC<IProductDetailsSubInfo> = ({handleRemoveFavorite
             Перейти в корзину
           </button>
         ) : (
-          <button onClick={() => handleAddBasket()} className={styles.btn}>
+          <button onClick={() => addBasket()} className={styles.btn}>
             Добавить в корзину
           </button>
         )}
-      <Heart active={checkFavorite(favorites, product)} removeFavorites={handleRemoveFavorites} handleAddFavorite={handleAddFavorites} />
+      <Heart active={checkFavorite(favorites, product)} removeFavorites={removeFavorites} handleAddFavorite={addFavorites} />
       
     </div>
 
@@ -65,20 +78,19 @@ const ProductDetailsSubInfo: FC<IProductDetailsSubInfo> = ({handleRemoveFavorite
           <a className={styles.all__additional} href="#all-additation">Все характеристики</a>
         </ul>
 
-        <Link href={`/brands/${product.brand._id}`} className={styles.all__product_brand}>
+        <div onClick={() => router.push(`/brands/${product.brand._id}`)}  className={styles.all__product_brand}>
         <p>Все товары {product.brand.name}</p>
 <span className={styles.array}></span>
-        </Link>
+        </div>
 
         <figure>
-          <Link href={`/brands/${product.brand._id}`}>
-          <Image width={150} height={50} className={styles.brand__image} src={product.brand.image.url} alt="Brand imag" />
-          {/* <img className={styles.brand__image} src={product.brand.image.url} alt="Brand imag" /> */}
-          </Link>
+          <picture>
+            <img onClick={() => router.push(`/brands/${product.brand._id}`)} width={150} height={50} className={styles.brand__image} src={product.brand.image.url} alt="Brand imag" />
+          </picture>
         </figure>
       
     </section>
   );
 };
 
-export { ProductDetailsSubInfo };
+export const ProductDetailsSubInfo = memo(ProductDetailsSubInfoF);

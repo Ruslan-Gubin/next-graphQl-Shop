@@ -1,0 +1,1 @@
+export { FeedbacModal } from "./FeedbacModal";

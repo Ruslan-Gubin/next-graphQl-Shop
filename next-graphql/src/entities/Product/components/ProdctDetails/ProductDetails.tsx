@@ -1,10 +1,10 @@
-import { FC, useEffect, useState } from 'react';
+import { FC,  useEffect,  useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { ImagesProductDetails, ProductDetailsButton, ProductDetailsDescription, ProductDetailsSubInfo, QueckMessage } from '../../../../shared';
-import { basketAction, favoritesAction } from '../../../../features';
+import { ImagesProductDetails, ProductDetailsButton, ProductDetailsDescription, ProductDetailsSubInfo } from '../../../../shared';
 import { ProductDetailsMobile } from '../ProductDetailsMobile';
 import { productDetailsAction } from '../../lib/store';
 import { useDetailsContext } from '../../../../widgets/ProductDetailsPage/libs/context/detailsContext';
+
 
 import styles from './ProductDetails.module.scss';
 
@@ -13,70 +13,21 @@ const ProductDetails: FC = () => {
   const {product, media} = useDetailsContext()
   const [characteristic, setCharacteristic] = useState(false)
   const [description, setDescription] = useState(false)
-  const [quickMessage, setQueckMessage] = useState({status: false, text: ''})
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(productDetailsAction.addProduct({product}))
   },[product, dispatch])
 
-  const productOptions = {
-    img: product.photo.images[0].url,
-    name: product.name,
-    count: 1,
-    color: product.colors_names,
-    price: product.price,
-    oldPrice: product.oldPrice,
-    id: product._id,
-    brandName: product.brand.name,
-    department: product.department,
-    sub_department: product.sub_department,
-  }
-
-  const handleAddBasket = () => {
-    dispatch(
-      basketAction.addProduct({
-        product: productOptions,
-      })
-    );
-    setQueckMessage(() => ({status: true, text: 'Товар добавлен в корзину'}))
-    setTimeout(() => {
-      setQueckMessage(() => ({status: false, text: ''}))
-    }, 3000);
-  };
-
-  const handleAddFavorites = () => {
-    dispatch(
-      favoritesAction.addFavorites({
-        product: productOptions,
-      })
-    );
-    setQueckMessage(() => ({status: true, text: 'Товар добавлен в избранное'}))
-    setTimeout(() => {
-      setQueckMessage(() => ({status: false, text: ''}))
-    }, 3000);
-  };
-
-  const handleRemoveFavorites = () => {
-    dispatch(
-      favoritesAction.removeFavorites({ id: product._id })
-    );
-    setQueckMessage(() => ({status: true, text: 'Товар удален из избранного'}))
-    setTimeout(() => {
-      setQueckMessage(() => ({status: false, text: ''}))
-    }, 3000);
-  };
-
 
   return (
     <article>
-       <QueckMessage active={quickMessage.status} message={quickMessage.text} />
       {media.isDesktop ? 
      <>
       <section className={styles.header__container_desktop}>
         <ImagesProductDetails />
-        <ProductDetailsSubInfo handleRemoveFavorites={handleRemoveFavorites} handleAddFavorites={handleAddFavorites} handleAddBasket={handleAddBasket} />
-        <ProductDetailsButton handleAddBasket={handleAddBasket} handleRemoveFavorites={handleRemoveFavorites} handleAddFavorites={handleAddFavorites} />
+        <ProductDetailsSubInfo />
+        <ProductDetailsButton  />
       </section>
 
         <ProductDetailsDescription 
@@ -88,9 +39,6 @@ const ProductDetails: FC = () => {
      </>
      : 
      <ProductDetailsMobile 
-    handleRemoveFavorites={handleRemoveFavorites}
-    handleAddFavorites={handleAddFavorites}
-     handleAddBasket={handleAddBasket}
      characteristic={characteristic}
      setCharacteristic={setCharacteristic}
      description={description}

@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useMemo, useState } from 'react';
+import { FC, memo, useCallback } from 'react';
 import {  useSelector } from 'react-redux';
 import { selectCatalogPage } from '../../store';
 import { IProductType } from '../../../../apps/types';

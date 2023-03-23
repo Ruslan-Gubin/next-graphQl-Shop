@@ -1,25 +1,21 @@
-import { Dispatch, FC, SetStateAction } from 'react';
-import {useRouter} from 'next/router';
-import Link from 'next/link';
-import Image from 'next/image';
-import { Array, findMaxOpinion, Heart, StarsList } from '../../../../shared';
-import { formatterRub } from '../../../../features/CatalogPage/libs/helper';
-import { selectBasket, selectFavorites } from '../../../../features';
+import { Dispatch, FC, SetStateAction, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { checkFavorite } from '../../lib/helpers/checkFavorite';
+import {useRouter} from 'next/router';
+import { Array, findMaxOpinion, QueckMessage, StarsList, useQuickMessage } from '../../../../shared';
+import { formatterRub } from '../../../../features/CatalogPage/libs/helper';
+import { selectBasket } from '../../../../features';
 import { checkBasket } from '../../lib/helpers/checkBasket';
+import { useDetailsContext } from '../../../../widgets/ProductDetailsPage/libs/context/detailsContext';
+import { ProductCardMobileHeards } from '../ProductCardMobileHeards';
 
 import styles from './ProductDetailsMobile.module.scss';
-import { useDetailsContext } from '../../../../widgets/ProductDetailsPage/libs/context/detailsContext';
+
 
 interface IProductDetailsMobile {
   characteristic: boolean;
   setCharacteristic: Dispatch<SetStateAction<boolean>>;
   description: boolean;
   setDescription: Dispatch<SetStateAction<boolean>>;
-  handleAddBasket: () => void
-  handleAddFavorites: () => void
-  handleRemoveFavorites: () => void
 }
 
 const ProductDetailsMobile: FC<IProductDetailsMobile> = ({
@@ -27,28 +23,34 @@ const ProductDetailsMobile: FC<IProductDetailsMobile> = ({
   setDescription,
   characteristic,
   setCharacteristic,
-  handleAddBasket,
-  handleAddFavorites,
-  handleRemoveFavorites
 }) => {
   const { basket } = useSelector(selectBasket);
-  const { favorites } = useSelector(selectFavorites)
-  const {product} = useDetailsContext()
+  const {product, handleAddBasket } = useDetailsContext()
+  const { handleChangeState, status, text } = useQuickMessage()
   const router = useRouter()
+
+  const handleRouterBack = useCallback(() => {
+    router.back()
+  }, [router])
+
+  const addBasket = () => {
+    handleAddBasket()
+    handleChangeState('Товар добавлен в корзину')
+  }
 
   return (
     <div className={styles.root}>
+      <QueckMessage active={status} message={text} />
       <div className={styles.array}>
-          <Array onClick={() => router.back()} derection='left' />
+          <Array onClick={handleRouterBack} derection='left' />
       </div>
       <figure>
         <ul className={styles.header__images}>
           {product.photo.images.map(imag => (
             <li key={imag.url} className={styles.imag}>
-              <Image width={500} height={500} src={imag.url} alt="images" />
-              {/* <picture>
+              <picture>
               <img src={imag.url} alt="images" />
-              </picture> */}
+              </picture>
           </li>
             ))}
         </ul>
@@ -59,14 +61,12 @@ const ProductDetailsMobile: FC<IProductDetailsMobile> = ({
       </div>
       <div className={styles.color__container}>
             <p>Цвет: <span className={styles.color__name}>{product.colors_names}</span></p>
-      <div className={styles.heards}>
-      <Heart active={checkFavorite(favorites, product)} removeFavorites={handleRemoveFavorites} handleAddFavorite={handleAddFavorites} />
-      </div>
+            <ProductCardMobileHeards />
       </div>
             <div className={styles.sub__info}>
-            <Link href={`/brands/${product.brand._id}`} className={styles.link__brand}>
+            <h2 onClick={() => router.push(`/brands/${product.brand._id}`)} className={styles.link__brand}>
               {product.brand.name}
-            </Link>
+            </h2>
               <ul className={styles.product__history}>
                 <li className={styles.product__stars}> <StarsList count={findMaxOpinion(product.feedbacks)}/></li>
                 <li className={styles.reviews}><a href="#feedback-header">{product.feedbacks.length} отзыва</a>  </li>
@@ -107,15 +107,13 @@ const ProductDetailsMobile: FC<IProductDetailsMobile> = ({
          </section>
    {!checkBasket(basket, product) ?
     <button 
-    onClick={() => handleAddBasket()}
+    onClick={() => addBasket()}
     className={styles.btn__buy}>
       <span>Добавить в корзину</span>
      
       </button>
   :  
-  <Link href={'/basket'}>
-  <button className={styles.btn__buy_active}>Перейти в корзину</button>
-  </Link>
+  <button onClick={() => router.push('/basket')} className={styles.btn__buy_active}>Перейти в корзину</button>
   }
     </div>
   );

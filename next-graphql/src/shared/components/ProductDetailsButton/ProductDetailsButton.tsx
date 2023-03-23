@@ -1,30 +1,45 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import { useRouter } from "next/router";
-import { selectBasket, selectFavorites } from "../../../features";
+import {  selectBasket, selectFavorites } from "../../../features";
 import { formatterRub } from "../../../features/CatalogPage/libs/helper";
-import { useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import { Heart } from "../Heart";
 import { checkFavorite } from "../../../entities/Product/lib/helpers/checkFavorite";
 import { checkBasket } from "../../../entities/Product/lib/helpers/checkBasket";
-import styles from "./ProductDetailsButton.module.scss";
 import { useDetailsContext } from "../../../widgets/ProductDetailsPage/libs/context/detailsContext";
+import { QueckMessage } from "../QueckMessage";
+import { useQuickMessage } from "../../lib";
 
-interface IProductDetailsButton {
-  handleAddBasket: () => void
-  handleAddFavorites: () => void
-  handleRemoveFavorites: () => void
+import styles from "./ProductDetailsButton.module.scss";
 
-}
 
-const ProductDetailsButton: FC<IProductDetailsButton> = ({handleAddBasket, handleAddFavorites, handleRemoveFavorites}) => {
+const ProductDetailsButtonF: FC = () => {
+  const {product, handleAddBasket, handleAddFavorites, handleRemoveFavorites} = useDetailsContext()
   const { basket } = useSelector(selectBasket);
   const { favorites } = useSelector(selectFavorites) 
-  const { product } = useDetailsContext();
+  const { handleChangeState, status, text } = useQuickMessage()
   const router = useRouter();
+
+
+  const addBasket = () => {
+    handleAddBasket()
+    handleChangeState('Товар добавлен в корзину')
+  };
+
+  const addFavorites = () => {
+    handleAddFavorites()
+    handleChangeState('Товар добавлен в избранное')
+  };
+
+  const removeFavorites = () => {
+    handleRemoveFavorites()
+    handleChangeState('Товар удален из избранного')
+  };
 
   return (
     <>
       <aside className={styles.root}>
+      <QueckMessage active={status} message={text} />
         <section className={styles.header}>
           <div className={styles.prices}>
             <p className={styles.price}>{formatterRub.format(product.price)}</p>
@@ -33,7 +48,11 @@ const ProductDetailsButton: FC<IProductDetailsButton> = ({handleAddBasket, handl
             </p>
           </div>
           <div className={styles.likes}>
-            <Heart active={checkFavorite(favorites, product)} removeFavorites={handleRemoveFavorites} handleAddFavorite={handleAddFavorites} />
+            <Heart 
+            active={checkFavorite(favorites, product)}
+            removeFavorites={removeFavorites}
+            handleAddFavorite={addFavorites}
+             />
           </div>
         </section>
 
@@ -45,7 +64,7 @@ const ProductDetailsButton: FC<IProductDetailsButton> = ({handleAddBasket, handl
             Перейти в корзину
           </button>
         ) : (
-          <button onClick={() => handleAddBasket()} className={styles.btn}>
+          <button onClick={() => addBasket()} className={styles.btn}>
             Добавить в корзину
           </button>
         )}
@@ -54,4 +73,4 @@ const ProductDetailsButton: FC<IProductDetailsButton> = ({handleAddBasket, handl
   );
 };
 
-export { ProductDetailsButton };
+export const ProductDetailsButton  = memo(ProductDetailsButtonF);

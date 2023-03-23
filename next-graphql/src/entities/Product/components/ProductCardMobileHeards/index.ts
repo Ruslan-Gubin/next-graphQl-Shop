@@ -1,0 +1,1 @@
+export { ProductCardMobileHeards } from "./ProductCardMobileHeards";

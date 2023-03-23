@@ -1,4 +1,4 @@
-import  { FC, useCallback, useEffect, useRef } from 'react';
+import  { FC, memo, useCallback, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
 import styles from './ProductListImag.module.scss';
@@ -8,7 +8,7 @@ interface IProductListImag {
   handleChanceImage: (value: string) => void
 }
 
-const ProductListImag: FC<IProductListImag> = ({url, handleChanceImage}) => {
+const ProductListImagF: FC<IProductListImag> = ({url, handleChanceImage}) => {
  const refImage = useRef<HTMLImageElement>(null)
 
   const hoverImage = useCallback(() => {
@@ -37,4 +37,4 @@ const ProductListImag: FC<IProductListImag> = ({url, handleChanceImage}) => {
   );
 };
 
-export { ProductListImag };
+export const ProductListImag  = memo(ProductListImagF);

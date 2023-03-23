@@ -1,9 +1,9 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from 'next/router';
 import { REMOVE_FEEDBACK } from "../../models/feedbackRequest";
 import { FeedbackProductCard } from "../../../../entities/Feedback";
-import { Array, queckMessage, QueckMessage } from "../../../../shared";
+import { Array,  QueckMessage, useQuickMessage } from "../../../../shared";
 import { useDetailsContext } from "../../../ProductDetailsPage/libs/context/detailsContext";
 
 import styles from "./FeedbackList.module.scss";
@@ -16,34 +16,40 @@ const FeedbackList: FC = () => {
   const [feedbackArr, setFeedbackArr] = useState(
     product && product.feedbacks.slice(page, perPage)
   );
-  const [queckModal, setQueckModal] = useState({ state: false, message: "" });
+  const { handleChangeState, status, text } = useQuickMessage()
   const router = useRouter()
 
   useEffect(() => {
     setFeedbackArr(product && product.feedbacks.slice(page, perPage + page));
   }, [page, product, perPage]);
 
-  const handleRemoveFeedback = async (id: string) => {
+  const handleRemoveFeedback = useCallback(async (id: string) => {
     await removeFeedback({
       variables: { id },
     })
       .then(async (data) => {
-        queckMessage(
-          setQueckModal,
-          `Отзыв удален ${data.data.removeFeedback._id}`
-          );
+        handleChangeState(`Отзыв удален ${data.data.removeFeedback._id}`)
          await router.push({ 
           query: router.query
           },'', { scroll: false })
       })
       .catch((error) => {
-        queckMessage(setQueckModal, `${error.message}`);
+        handleChangeState(`${error.message}`)
       });
-  };
+  }, [removeFeedback, router, handleChangeState]);
+
+  const handlePrev = useCallback(() => {
+    setPage((prev) => prev - 1)
+  }, [])
+
+  const handleNext = useCallback(() => {
+    setPage((prev) => prev + 1)
+  }, [])
+
 
   return (
     <section className={styles.root}>
-      <QueckMessage active={queckModal.state} message={queckModal.message} />
+      <QueckMessage active={status} message={text} />
       <ul className={styles.feedback__container}>
         <div
           className={
@@ -52,7 +58,7 @@ const FeedbackList: FC = () => {
               : styles.array__left
           }
         >
-          <Array onClick={() => setPage((prev) => prev - 1)} derection="left" />
+          <Array onClick={() => handlePrev()} derection="left" />
         </div>
         {feedbackArr &&
           feedbackArr.map((feedback) => (
@@ -70,10 +76,7 @@ const FeedbackList: FC = () => {
               : styles.array__right
           }
         >
-          <Array
-            onClick={() => setPage((prev) => prev + 1)}
-            derection="right"
-          />
+          <Array onClick={() => handleNext()} derection="right" />
         </div>
       </ul>
     </section>

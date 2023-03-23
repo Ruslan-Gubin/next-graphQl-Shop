@@ -1,0 +1,1 @@
+export { queckMessageFn } from "./queckMessageFn";

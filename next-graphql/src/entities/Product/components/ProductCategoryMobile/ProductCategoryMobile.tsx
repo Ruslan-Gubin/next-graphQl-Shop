@@ -10,6 +10,7 @@ import {
   Heart,
   QueckMessage,
   StarsList,
+  useQuickMessage,
 } from "../../../../shared";
 import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
 import { basketAction, favoritesAction } from "../../../../features";
@@ -32,7 +33,8 @@ const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({
   const [ref, isVisible] = useInView({ threshold: 0.5, triggerOnce: true });
   const cardRef = useRef<HTMLElement>(null);
   const router = useRouter();
-  const [quickMessage, setQueckMessage] = useState({ status: false, text: "" });
+  const { handleChangeState, status, text } = useQuickMessage()
+
   const dispatch = useDispatch();
 
   const handleClickBuy = useCallback(
@@ -40,39 +42,21 @@ const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({
       dispatch(
         basketAction.addProduct({ product: getPropertyProduct(product) })
       );
-      setQueckMessage(() => ({
-        status: true,
-        text: "Товар добавлен в корзину",
-      }));
-      setTimeout(() => {
-        setQueckMessage(() => ({ status: false, text: "" }));
-      }, 3000);
+      handleChangeState('Товар добавлен в корзину')
     },
-    [dispatch]
+    [dispatch, handleChangeState]
   );
 
   const handleAddFavorite = (product: IProductType) => {
     dispatch(
       favoritesAction.addFavorites({ product: getPropertyProduct(product) })
     );
-    setQueckMessage(() => ({
-      status: true,
-      text: "Товар добавлен в избранное",
-    }));
-    setTimeout(() => {
-      setQueckMessage(() => ({ status: false, text: "" }));
-    }, 3000);
+    handleChangeState('Товар добавлен в избранное')
   };
 
   const handleRemoveFavorite = (id: string) => {
     dispatch(favoritesAction.removeFavorites({ id: id }));
-    setQueckMessage(() => ({
-      status: true,
-      text: "Товар удален из избранного",
-    }));
-    setTimeout(() => {
-      setQueckMessage(() => ({ status: false, text: "" }));
-    }, 3000);
+    handleChangeState('Товар удален из избранного')
   };
 
   const nameHref = OPTIONS_DEPARTMENT.find(
@@ -81,7 +65,7 @@ const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({
 
   return (
     <article ref={cardRef} className={styles.root}>
-      <QueckMessage active={quickMessage.status} message={quickMessage.text} />
+      <QueckMessage active={status} message={text} />
       <header>
         <div className={styles.heart__container}>
           <Heart
