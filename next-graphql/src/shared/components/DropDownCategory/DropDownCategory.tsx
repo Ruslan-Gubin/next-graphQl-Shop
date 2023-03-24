@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, memo, useEffect, useRef, useState } from "react";
 
 
 import styles from "./DropDownCategory.module.scss";
@@ -18,7 +18,7 @@ interface IDropDownCategory {
   value: Ioption;
 }
 
-const DropDownCategory: FC<IDropDownCategory> = ({
+const DropDownCategoryF: FC<IDropDownCategory> = ({
   options,
   onChange,
   value,
@@ -86,4 +86,4 @@ const DropDownCategory: FC<IDropDownCategory> = ({
   );
 };
 
-export { DropDownCategory };
+export const DropDownCategory = memo(DropDownCategoryF);

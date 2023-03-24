@@ -2,37 +2,26 @@
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 80px;
-
   background-color: white;
 
-  & .heart__container {
-    display: block;
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    width: 25px;
-  }
-  
-  
-  
   & .image__container {
     & .img {
       width: auto;
       height: auto;
       border-radius: 10px;
     }
-    
+
     & .info__container {
       position: absolute;
-     
+
       left: 0px;
       width: 100%;
       z-index: 1;
       padding: 15px 10px;
-      border-radius: 10px;    
+      border-radius: 10px;
       background-color: rgba(255, 255, 255, 0);
       background-color: white;
-      
+
       & .discount {
         position: absolute;
         top: -25px;
@@ -44,26 +33,25 @@
         font-weight: 600;
         font-size: 0.9rem;
       }
-      
+
       & .price__container {
         padding: 10px 0;
         display: flex;
         align-items: flex-end;
         & .price {
           font-size: 1.5rem;
-          font-weight:400;
-          text-shadow: 1px 1px 1px  black;
+          font-weight: 400;
+          text-shadow: 1px 1px 1px black;
           margin-right: 10px;
         }
         & .oldPrice {
           font-size: 1rem;
-          font-weight:700;
+          font-weight: 700;
           color: rgb(136, 136, 136);
           text-decoration: line-through;
         }
       }
-      
-      
+
       & .product__name {
         padding: 10px 0;
         padding-top: 0;
@@ -95,7 +83,7 @@
           font-weight: 600;
         }
       }
-      
+
       & .btn {
         margin-top: 15px;
         padding: 10px 25px;
@@ -104,7 +92,7 @@
         font-weight: 600;
         background-color: rgb(206, 46, 206);
         border: 2px solid rgb(206, 46, 206);
-        &:hover{
+        &:hover {
           border: 2px solid rgb(221, 62, 221);
           background-color: rgb(221, 62, 221);
         }
@@ -117,18 +105,14 @@
         font-weight: 600;
         background-color: rgb(255, 255, 255);
         border: 2px solid rgb(206, 46, 206);
-        &:hover{
+        &:hover {
           border: 2px solid rgb(221, 62, 221);
         }
       }
-      
     }
-    
-  }
-  
-  &:hover {
-    background-color: rgb(255, 255, 255);
-  
   }
 
+  &:hover {
+    background-color: rgb(255, 255, 255);
+  }
 }

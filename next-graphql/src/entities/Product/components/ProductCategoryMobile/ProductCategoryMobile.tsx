@@ -1,93 +1,66 @@
-import { FC, memo, useCallback, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { FC, memo, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { useInView } from "react-intersection-observer";
 import { formatterRub } from "../../../../features/CatalogPage/libs/helper";
 import { IProductType } from "../../../../apps/types";
-import {
-  findMaxOpinion,
-  Heart,
-  QueckMessage,
-  StarsList,
-  useQuickMessage,
-} from "../../../../shared";
+import { findMaxOpinion, StarsList } from "../../../../shared";
 import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
-import { basketAction, favoritesAction } from "../../../../features";
-import { getPropertyProduct } from "../../../../features/CatalogPage/libs/helper/getPropertyProduct";
+import { ProductCategoryHeard } from "../ProductCategoryHeard";
 
 import styles from "./ProductCategoryMobile.module.scss";
+
 
 interface IProductCategoryMobile {
   product: IProductType;
   activeFavorites: boolean;
   activeBasket: boolean;
+  handleClickBuy: (product: IProductType) => void
+  handleAddFavorite: (product: IProductType) => void
+  handleRemoveFavorite: (id: string) => void
 }
 
 const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({
   product,
   activeFavorites,
   activeBasket,
+  handleClickBuy,
+  handleAddFavorite,
+  handleRemoveFavorite
 }) => {
   const [hoverCard] = useState(false);
   const [ref, isVisible] = useInView({ threshold: 0.5, triggerOnce: true });
   const cardRef = useRef<HTMLElement>(null);
   const router = useRouter();
-  const { handleChangeState, status, text } = useQuickMessage()
 
-  const dispatch = useDispatch();
-
-  const handleClickBuy = useCallback(
-    (product: IProductType) => {
-      dispatch(
-        basketAction.addProduct({ product: getPropertyProduct(product) })
-      );
-      handleChangeState('Товар добавлен в корзину')
-    },
-    [dispatch, handleChangeState]
-  );
-
-  const handleAddFavorite = (product: IProductType) => {
-    dispatch(
-      favoritesAction.addFavorites({ product: getPropertyProduct(product) })
-    );
-    handleChangeState('Товар добавлен в избранное')
-  };
-
-  const handleRemoveFavorite = (id: string) => {
-    dispatch(favoritesAction.removeFavorites({ id: id }));
-    handleChangeState('Товар удален из избранного')
-  };
-
-  const nameHref = OPTIONS_DEPARTMENT.find(
-    (item) => item.label === product.department
+  const nameHref = useMemo(
+    () => OPTIONS_DEPARTMENT.find((item) => item.label === product.department),
+    [OPTIONS_DEPARTMENT]
   );
 
   return (
     <article ref={cardRef} className={styles.root}>
-      <QueckMessage active={status} message={text} />
       <header>
-        <div className={styles.heart__container}>
-          <Heart
-            active={activeFavorites}
-            handleAddFavorite={() => handleAddFavorite(product)}
-            removeFavorites={() => handleRemoveFavorite(product._id)}
-          />
-        </div>
+        <ProductCategoryHeard
+          handleAddFavorite={handleAddFavorite}
+          handleRemoveFavorite={handleRemoveFavorite}
+          product={product}
+          activeFavorites={activeFavorites}
+        />
         <figure className={styles.image__container}>
-          <Link
-            href={`/catalog/${nameHref?.department_href}/${product.sub_department}/${product._id}`}
-            prefetch={false}
+          <picture
+            onClick={() =>
+              router.push(
+                `/catalog/${nameHref.department_href}/${product.sub_department}/${product._id}`
+              )
+            }
           >
-            <picture>
-              <img
-                ref={ref}
-                className={styles.img}
-                src={isVisible ? product.photo.images[0].url : ""}
-                alt="Product imag"
-              />
-            </picture>
-          </Link>
+            <img
+              ref={ref}
+              className={styles.img}
+              src={isVisible ? product.photo.images[0].url : ""}
+              alt="Product imag"
+            />
+          </picture>
           <figcaption
             style={
               hoverCard ? { backgroundColor: "white" } : { backgroundColor: "" }

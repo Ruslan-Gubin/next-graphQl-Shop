@@ -11,11 +11,13 @@
       color: rgb(121, 121, 121);
       font-size: 1rem;
       margin-left: 5px;
+      cursor: pointer;
     }
 
     & p {
       color: rgb(121, 121, 121);
       font-size: 1rem;
+      cursor: pointer;
     }
   }
 
@@ -62,6 +64,7 @@
       font-size: 1.1rem;
       margin-bottom: 18px;
       &:hover {
+        cursor: pointer;
         color: black;
       }
     }
@@ -81,6 +84,9 @@
       border-radius: 5px;
       padding: 10px;
       color: black;
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 

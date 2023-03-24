@@ -11,3 +11,7 @@ export {
   productDetailsReducer,
   selectProductDetails,
 } from "./lib/store";
+export {
+  CatalogProductPageContext,
+  useCatalogProductPageContext,
+} from "./lib/context/useCatalogPageContext";

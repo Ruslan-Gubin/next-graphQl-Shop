@@ -10,12 +10,14 @@
       color: rgb(150, 150, 150);
       font-size: 1rem;
       font-weight: 500;
+      border-bottom: 1px solid rgba(87, 87, 87, 0);
       &::after {
         position: relative;
         left: 5px;
         content: "/";
       }
       &:hover {
+        cursor: pointer;
         border-bottom: 1px solid rgb(87, 87, 87);
         color: rgb(60, 60, 60);
       }

@@ -1,19 +1,17 @@
-import { Dispatch, FC, SetStateAction } from "react";
-import Link from "next/link";
+import { Dispatch, FC, memo, SetStateAction, useCallback } from "react";
+import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { DropDownCategory } from "../../../../shared/components";
 import { sortProductOption } from "../../constants/sortProductOption";
 import { catalogPageAction, selectCatalogPage } from "../../store";
 import { IOptionsDropDownType } from "../../../../apps/types";
 import { PriceFilter } from "../PriceFilter";
+import { useCatalogProductPageContext } from "../../../../entities/Product/lib/context/useCatalogPageContext";
+
 import styles from "./CatalogPageHeader.module.scss";
 
 interface ICatalogPageHeader {
-  value: string;
-  href: string;
   countProduct: number;
-  optionDepartment: IOptionsDropDownType[];
-  label: string;
   categoryOption: IOptionsDropDownType[];
   categoryValue: IOptionsDropDownType;
   setCategoryValue: Dispatch<SetStateAction<IOptionsDropDownType>>;
@@ -26,12 +24,13 @@ interface ICatalogPageHeader {
   setPriceFilter: Dispatch<
     SetStateAction<{ minPrice: number; maxPrice: number }>
   >;
-  sub_departmentName: string
 }
 
-const CatalogPageHeader: FC<ICatalogPageHeader> = (props) => {
+const CatalogPageHeaderF: FC<ICatalogPageHeader> = (props) => {
+  const { href, sub_departmentName, value,  optionDepartment } = useCatalogProductPageContext()
   const { sortProduct, sizeCard } = useSelector(selectCatalogPage);
   const dispatch = useDispatch();
+  const router = useRouter()
 
   const handleCategoryDropDown = (value: IOptionsDropDownType) => {
     if (value.id === props.categoryValue.id) {
@@ -50,7 +49,7 @@ const CatalogPageHeader: FC<ICatalogPageHeader> = (props) => {
     props.setBrandValue(() => ({ value: "Бренд", label: "Бренд", id: "" }));
   };
 
-  const handleBrend = (value: IOptionsDropDownType) => {
+  const handleBrend = useCallback((value: IOptionsDropDownType) => {
     if (value.id === props.brandValue.id) {
       props.setBrandValue(() => ({ value: "Бренд", label: "Бренд", id: "" }));
     } else {
@@ -60,28 +59,24 @@ const CatalogPageHeader: FC<ICatalogPageHeader> = (props) => {
         id: value.id,
       }));
     }
-  };
+  }, [props]);
 
   return (
     <section className={styles.root}>
       <nav>
         <ul className={styles.nav__container}>
-          <li>
-            <Link href={"/"} className={styles.nav__item}>
+          <li onClick={() => router.push('/')} className={styles.nav__item}>
               Главная
-            </Link>
+          </li>
+          <li onClick={() => router.push(`/catalog/${href}`)} className={styles.nav__item}>
+              {sub_departmentName} 
           </li>
           <li>
-            <Link href={`/catalog/${props.href}`} className={styles.nav__item}>
-              {props.sub_departmentName}
-            </Link>
-          </li>
-          <li>
-            <p>{props.value}</p>
+            <p>{value}</p>
           </li>
         </ul>
         <div className={styles.title__container}>
-          <h1 className={styles.title}>{props.value}</h1>
+          <h1 className={styles.title}>{value}</h1>
           <small>{props.countProduct} товаров</small>
         </div>
       </nav>
@@ -89,7 +84,7 @@ const CatalogPageHeader: FC<ICatalogPageHeader> = (props) => {
         <div className={styles.filter__container}>
           <DropDownCategory
             onChange={(value) => props.handleLinkCategory(value)}
-            options={props.optionDepartment}
+            options={optionDepartment}
             value={props.subDepartmentValue}
           />
           <DropDownCategory
@@ -174,4 +169,4 @@ const CatalogPageHeader: FC<ICatalogPageHeader> = (props) => {
   );
 };
 
-export { CatalogPageHeader };
+export const CatalogPageHeader = memo(CatalogPageHeaderF);

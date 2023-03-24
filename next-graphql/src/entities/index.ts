@@ -9,5 +9,7 @@ export {
   productDetailsAction,
   productDetailsReducer,
   selectProductDetails,
+  CatalogProductPageContext,
+  useCatalogProductPageContext
 } from "./Product";
 export { UserCardDetails } from "./User";

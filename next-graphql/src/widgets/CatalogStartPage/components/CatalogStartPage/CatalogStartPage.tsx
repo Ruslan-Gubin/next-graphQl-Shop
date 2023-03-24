@@ -1,6 +1,5 @@
-import { FC } from "react";
+import { FC, useCallback } from "react";
 import { useRouter } from 'next/router';
-import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { CatalogSwiper } from "../CatalogSwiper";
 import { CategoryCard } from "../CategoryCard";
@@ -33,22 +32,23 @@ const CatalogStartPage: FC<ICatalogStartPage> = ({
   const dispatch = useDispatch()
   const router = useRouter()
 
+
   const handleClickCategory = (catalog: {name: string, _id: string, sub_department: string, department: string}) => {
     const nameHref = OPTIONS_DEPARTMENT.find(item => item.label === catalog.department)
     dispatch(catalogPageAction.setCategoryValue({value: catalog.name, label: catalog.name, id: catalog._id}))
-    router.push({
-      pathname: '/catalog/[name]/[label]',
-      query: {name: nameHref?.department_href, label: catalog.sub_department}
-    })
+    router.push(`/catalog/${nameHref?.department_href}/${catalog.sub_department}`)
   }
+
+  const handleClickCatalog = useCallback((href: string) => {
+    dispatch(catalogPageAction.setCategoryValue({ value: "Категория", label: "Категория", id: ""}))
+    router.push(href)
+  },[dispatch, router])
 
   return (
     <>
       <section className={styles.header}>
         <nav className={styles.header__navigation}>
-          <Link href={"/"}>
-            <p>Главная</p>
-          </Link>
+            <p onClick={() => router.push('/')}>Главная</p>
           <small>/ {title}</small>
         </nav>
         <h1>{title}</h1>
@@ -60,43 +60,22 @@ const CatalogStartPage: FC<ICatalogStartPage> = ({
           <h3>{title}</h3>
           <ul>
             {navValueArray.map((nav, index) => (
-              <Link 
-              key={index}
-              href={{
-                  pathname: '/catalog/[name]/[label]',
-                  query: {name: catalogName, label: nav.label}
-                }}
-                >
               <li
-                onClick={() => {
-                  dispatch(catalogPageAction.setCategoryValue({ value: "Категория", label: "Категория", id: ""}))
-                }}
+                key={index}
+                onClick={() => handleClickCatalog(`/catalog/${catalogName}/${nav.label}`)}
               className={styles.nav__item}>
                   {nav.value}
                   </li>
-               </Link>
             ))}
           </ul>
         </nav>
-
-
         <section className={styles.content}>
-       
           <ul className={styles.categori__container_mobile}>
             {navValueArray.map((nav, index) => (
-              <Link 
-              key={index}
-              href={{
-                  pathname: '/catalog/[name]/[label]',
-                  query: {name: catalogName, label: nav.label}
-                }}
-                >
                 <li
-                onClick={() => dispatch(catalogPageAction.setCategoryValue({
-                  value: "Категория", label: "Категория", id: ""
-                }))}
+                  key={index}
+                  onClick={() => handleClickCatalog(`/catalog/${catalogName}/${nav.label}`)}
                 className={styles.nav__item_mobile}>{nav.value}</li>
-              </Link>
             ))}
           </ul>
           {navValueArray.length &&
