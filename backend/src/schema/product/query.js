@@ -108,23 +108,62 @@ const productsMethods = {
           ).sort({createdAt: -1}).limit(5)
     }
   },
+
   sortProductCatalog: {
     type: new GraphQLList(ProductType),
     args: {
       department: {type : new GraphQLNonNull(GraphQLString)},
+      category: {type : new GraphQLNonNull(GraphQLString)},
+      sub_department: { type : new GraphQLNonNull(GraphQLString) },
+      sortProperty: { type : sortPropertyScale },
+      page: { type: new GraphQLNonNull(GraphQLInt) },
+      perPage: { type: new GraphQLNonNull(GraphQLInt) },
+    }, 
+    resolve(parent, args) {
+      const sort = {}
+      sort[args.sortProperty.name] = args.sortProperty.value
+
+      const perPage = args.perPage;
+      const page = args.page;
+      const skips = (page - 1) * perPage;
+      
+       return ProductModel.find({ 
+        $and: [
+          { department: args.department },
+          { sub_department: args.sub_department },
+          { category_id:  { $regex: `${args.category}` } }, 
+        ], 
+          })
+          .sort(sort)
+          .skip(skips)
+          .limit(perPage) 
+    }
+  },
+
+  sortProductLenght: {
+    type: new GraphQLList(ProductType),
+    args: {
+      department: {type : new GraphQLNonNull(GraphQLString)},
+      category: {type : new GraphQLNonNull(GraphQLString)},
       sub_department: { type : new GraphQLNonNull(GraphQLString) },
       sortProperty: { type : sortPropertyScale },
     }, 
     resolve(parent, args) {
       const sort = {}
       sort[args.sortProperty.name] = args.sortProperty.value
-       return ProductModel.find(
-          {
-            department: args.department,
-            sub_department: args.sub_department,
-          }).sort(sort).limit(0)
+
+      
+       return ProductModel.find({ 
+        $and: [
+          { department: args.department },
+          { sub_department: args.sub_department },
+          { category_id:  { $regex: `${args.category}` } }, 
+        ], 
+          })
+          .sort(sort)
     }
   },
+
   searchProducts: {
     type: new GraphQLList(ProductType),
     args: {
