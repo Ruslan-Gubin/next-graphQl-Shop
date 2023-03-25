@@ -1,12 +1,11 @@
 import { FC, memo, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
-import { useInView } from "react-intersection-observer";
 import { IProductType } from "../../../../apps/types";
 import { findMaxOpinion, Heart, StarsList } from "../../../../shared";
 import { formatterRub } from "../../../../features/CatalogPage/libs/helper";
-import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
 
 import styles from "./ProductCategory.module.scss";
+import { useCatalogProductPageContext } from "../../lib/context/useCatalogPageContext";
 
 interface IProductCategory {
   product: IProductType;
@@ -25,8 +24,8 @@ const ProductCategoryF: FC<IProductCategory> = ({
   handleAddFavorite,
   handleRemoveFavorite
 }) => {
+  const { href } = useCatalogProductPageContext()
   const [hoverCard, setHover] = useState(false);
-  const [ref, isVisible] = useInView({ threshold: 0.5, triggerOnce: true });
   const cardRef = useRef<HTMLElement>(null);
   const router = useRouter();
 
@@ -48,12 +47,10 @@ const ProductCategoryF: FC<IProductCategory> = ({
     };
   }, []);
 
-  const nameHref = OPTIONS_DEPARTMENT.find(
-    (item) => item.label === product.department
-  );
-
   return (
-    <article ref={cardRef} className={styles.root}>
+    <article 
+    ref={cardRef} 
+    className={styles.root}>
       <header>
         <div className={styles.heart__container}>
           <Heart
@@ -66,14 +63,13 @@ const ProductCategoryF: FC<IProductCategory> = ({
           <picture
             onClick={() =>
               router.push(
-                `/catalog/${nameHref?.department_href}/${product.sub_department}/${product._id}`
+                `/catalog/${href}/${product.sub_department}/${product._id}`
               )
             }
           >
             <img
-              ref={ref}
               className={styles.img}
-              src={isVisible ? product.photo.images[0].url : "./loader.png"}
+              src={ product.photo.images[0].url}
               alt="Product imag"
             />
           </picture>

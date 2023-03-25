@@ -1,4 +1,4 @@
-import { FC, FormEvent, useEffect, useRef, useState } from "react";
+import { FC, FormEvent, memo, useEffect, useRef, useState } from "react";
 
 import styles from "./PriceFilter.module.scss";
 
@@ -8,7 +8,7 @@ interface IPriceFilter {
   priceFilter: { minPrice: number; maxPrice: number }
 }
 
-const PriceFilter: FC<IPriceFilter> = ({priceFilter, onChange, value }) => {
+const PriceFilterF: FC<IPriceFilter> = ({priceFilter, onChange, value }) => {
   const [dropActive, setDropActive] = useState(false);
   const [minPrice, setMinPrice] = useState<string>(String(priceFilter.minPrice));
   const [maxPrice, setMaxPrice] = useState<string>(String(priceFilter.maxPrice));
@@ -78,7 +78,10 @@ const PriceFilter: FC<IPriceFilter> = ({priceFilter, onChange, value }) => {
                   type={"string"}
                   id="min-price"
                   value={minPrice}
-                  onChange={(e) => setMinPrice(e.target.value)}
+                  onChange={(e) => {
+                    if (Number.isNaN(+e.target.value)) return;
+                      setMinPrice(e.target.value)
+                  }}
                 />
               </section>
               <section className={styles.input}>
@@ -87,7 +90,10 @@ const PriceFilter: FC<IPriceFilter> = ({priceFilter, onChange, value }) => {
                   type={'string'}
                   id="max-price"
                   value={maxPrice}
-                  onChange={(e) => setMaxPrice(e.target.value)}
+                  onChange={(e) => {
+                    if (Number.isNaN(+e.target.value)) return;
+                    setMaxPrice(e.target.value)
+                  }}
                 />
               </section>
             </header>
@@ -108,4 +114,4 @@ const PriceFilter: FC<IPriceFilter> = ({priceFilter, onChange, value }) => {
   );
 };
 
-export { PriceFilter };
+export const PriceFilter = memo(PriceFilterF);

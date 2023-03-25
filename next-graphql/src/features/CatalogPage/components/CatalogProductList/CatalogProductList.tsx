@@ -1,38 +1,50 @@
-import { FC, memo, useCallback, useMemo } from 'react';
+import { FC, memo, useCallback, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectCatalogPage } from '../../store';
+import { useQuery } from '@apollo/client';
 import { IProductType } from '../../../../apps/types';
-import { ProductCategory } from '../../../../entities';
+import { ProductCategory, useCatalogProductPageContext } from '../../../../entities';
 import { ProductCategoryMobile } from '../../../../entities/Product/components';
-import { basketAction, favoritesAction, selectBasket, selectFavorites } from '../../../../features';
+import { basketAction, catalogPageAction, favoritesAction, selectBasket, selectCatalogPage, selectFavorites } from '../../../../features';
 import { getPropertyProduct } from '../../libs/helper/getPropertyProduct';
-import { QueckMessage, useQuickMessage } from '../../../../shared';
+import { LoaderShop, QueckMessage, useQuickMessage } from '../../../../shared';
+import { selectSizeCatalogCard } from '../../../../widgets';
+import { SORT_PRODUCT_CATALOG } from '../../../../apps/apollo';
+import { sortOptionsBrand } from '../../libs/helper';
+import { filterBrandAndPrice } from '../../libs/helper/filterBrandAndPrice';
 
 import styles from './CatalogProductList.module.scss';
 
+
 interface ICatalogProductList {
-  products: IProductType[];
   isDesktop: boolean | undefined;
 }
 
-const CatalogProductListF: FC<ICatalogProductList> = ({products, isDesktop}) => {
+const CatalogProductListF: FC<ICatalogProductList> = ({ isDesktop }) => {
+  const {page, perPage, selected } = useSelector(selectCatalogPage); 
+  const { department } = useCatalogProductPageContext()
+  const { data: products, loading } = useQuery<{sortProductCatalog: IProductType[]}>(SORT_PRODUCT_CATALOG, {
+    variables: {
+      department,
+      sub_department: selected.subDepartmen.label,
+      sortProperty: selected.sort.property,
+      category: selected.category.id,
+      perPage,
+      page,
+    },
+  });
   const { basket } = useSelector(selectBasket)
   const { favorites } = useSelector(selectFavorites) 
-  const { page, perPage, sizeCard } = useSelector(selectCatalogPage) 
+  const { sizeCard } = useSelector(selectSizeCatalogCard)
   const { handleChangeState, status, text } = useQuickMessage()
   const dispatch = useDispatch();
 
-  const filterPage = useCallback((arr: IProductType[]) => {
-    const result = []
-    const skips = (page ) * perPage;
-    for (let i = (page - 1) * perPage; i < skips; i++) {
-      if (arr[i]) {
-        result.push(arr[i])
-      }
+  useEffect(() => {
+    if (products && !loading) {
+      dispatch(catalogPageAction.setBrandOptions(sortOptionsBrand(products.sortProductCatalog)))
+      dispatch(catalogPageAction.setProductsCount({count: filterBrandAndPrice(products.sortProductCatalog, selected).length}))
     }
-    return result
-  }, [page, perPage])
-
+  }, [selected.category, selected.subDepartmen, selected.brand, selected.price, products, loading])
+  
 
   const handleClickBuy = useCallback((product: IProductType) => {
     dispatch( basketAction.addProduct({ product: getPropertyProduct(product) }) );
@@ -57,12 +69,16 @@ const handleRemoveFavorite = useCallback((id: string) => {
   const checkFavorites = useMemo(() => (id: string) => {
   return  favorites.some(item => item.id === id)
   }, [favorites])
+
+  if (!products ||  loading) {
+    return <LoaderShop />
+  }
   
   return (
     <section className={styles.root}>
       <ul className={styles.product__list_container}>
- <QueckMessage active={status} message={text} />
-        {products && filterPage(products).map(product => (
+          <QueckMessage active={status} message={text} />
+        {products && filterBrandAndPrice(products.sortProductCatalog, selected).map(product => (
           <li className={sizeCard === 'small' ? styles.product__item_small : styles.product__item_big} key={product._id}>
           {isDesktop ?
           <ProductCategory
@@ -78,7 +94,6 @@ const handleRemoveFavorite = useCallback((id: string) => {
           handleClickBuy={handleClickBuy}
           handleAddFavorite={handleAddFavorite}
           handleRemoveFavorite={handleRemoveFavorite}
-
           activeBasket={checkBasket(product._id)}
           activeFavorites={checkFavorites(product._id)}
           product={product}

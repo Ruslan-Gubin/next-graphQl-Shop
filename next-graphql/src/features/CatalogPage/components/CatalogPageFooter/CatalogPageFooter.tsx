@@ -1,26 +1,48 @@
-import { FC } from 'react';
+import { useQuery } from '@apollo/client';
+import { FC, memo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { SORT_PRODUCT_LENGHT } from '../../../../apps/apollo/productRequest/productRequest';
+import { useCatalogProductPageContext } from '../../../../entities';
 import { catalogPageAction, selectCatalogPage } from '../../store';
 
 import styles from './CatalogPageFooter.module.scss';
 
-interface ICatalogPageFooter {
-  totalCountries: number ;
-}
 
-const CatalogPageFooter: FC<ICatalogPageFooter> = ({
-  totalCountries,
-}) => {
-  const {page, perPage} = useSelector(selectCatalogPage)
+const CatalogPageFooterF: FC = () => {
+  const {page, perPage, selected, totalLength} = useSelector(selectCatalogPage)
+  const { department } = useCatalogProductPageContext()
+  const { data: length, loading: loadLength } = useQuery(SORT_PRODUCT_LENGHT, {
+    variables: {
+      department,
+      sub_department: selected.subDepartmen.label,
+      sortProperty: selected.sort.property,
+      category: selected.category.id,
+    },
+  });
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (length && !loadLength) {
+    dispatch(catalogPageAction.setTotalLength({count: length.sortProductLenght.length}))
+    }
+  }, [length])
+
+
+  if (totalLength < perPage) {
+    return <></>
+  }
   
   const pageNumbers = [];
 
-  if (totalCountries) {
-  for (let i = 1; i <= Math.ceil(totalCountries / perPage); i++) {
+  if (totalLength) {
+  for (let i = 1; i <= Math.ceil(totalLength / perPage); i++) {
     pageNumbers.push(i);
   }
 }
+
+ const handleChangePage = (page: number) => {
+    dispatch(catalogPageAction.setPageValue({page}))
+  }
 
 
   return (
@@ -28,7 +50,7 @@ const CatalogPageFooter: FC<ICatalogPageFooter> = ({
       <div className={styles.pagination__container}>
         {page !== 1 && 
     <div 
-    onClick={() => dispatch(catalogPageAction.setPageValue({page: page - 1}))}
+    onClick={() => handleChangePage( page - 1 )}
     className={styles.prev__container}>
       <div className={styles.arrow__prev}></div>
       <button className={styles.prev__text}>Предыдущая страница</button>
@@ -38,7 +60,7 @@ const CatalogPageFooter: FC<ICatalogPageFooter> = ({
 <ul className={styles.number__container}>
     {pageNumbers.map((pageNumber, ind) => (
       <li key={ind}
-      onClick={() => dispatch(catalogPageAction.setPageValue({page: pageNumber}))}
+      onClick={() => handleChangePage(pageNumber)}
       className={page == pageNumber ? styles.current__page : styles.page}
       >
            {pageNumber}
@@ -48,7 +70,7 @@ const CatalogPageFooter: FC<ICatalogPageFooter> = ({
 
       {pageNumbers.length !== page &&
       <div
-      onClick={() => dispatch(catalogPageAction.setPageValue({page: page + 1}))}
+      onClick={() => handleChangePage( page + 1 )}
       className={styles.next__container}>
       <button className={styles.next__text}>Следующая страница</button>
       <div className={styles.arrow__next}></div>
@@ -60,4 +82,4 @@ const CatalogPageFooter: FC<ICatalogPageFooter> = ({
   );
 };
 
-export { CatalogPageFooter };
+export const CatalogPageFooter = memo(CatalogPageFooterF);

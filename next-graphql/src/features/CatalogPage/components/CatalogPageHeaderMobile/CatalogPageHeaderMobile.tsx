@@ -1,32 +1,24 @@
-import { Dispatch, FC, memo, SetStateAction } from "react";
+import { FC, memo } from "react";
 import {useRouter} from 'next/router';
+import { useCatalogProductPageContext } from "../../../../entities/Product/lib/context/useCatalogPageContext";
+import { SizeCardCatalog } from "../../../../widgets";
 import { useDispatch, useSelector } from "react-redux";
 import { catalogPageAction, selectCatalogPage } from "../../store";
-import { IOptionsDropDownType } from "../../../../apps/types";
-import { useCatalogProductPageContext } from "../../../../entities/Product/lib/context/useCatalogPageContext";
 
 import styles from "./CatalogPageHeaderMobile.module.scss";
 
 
-interface ICatalogPageHeaderMobile {
-  countProduct: number;
-  setCategoryValue: Dispatch<SetStateAction<IOptionsDropDownType>>;
-}
-
-const CatalogPageHeaderMobileF: FC<ICatalogPageHeaderMobile> = ({countProduct, setCategoryValue}) => {
+const CatalogPageHeaderMobileF: FC = () => {
+  const { productCount } = useSelector(selectCatalogPage)
   const { href, sub_departmentName, value,  optionDepartment } = useCatalogProductPageContext()
-  const { sizeCard } = useSelector(selectCatalogPage);
-  const dispatch = useDispatch();
   const router = useRouter()
+  const dispatch = useDispatch()
 
 
-  const routerLinknavigation = (label: string) => {
-    setCategoryValue(() => ({
-      value: "Категория",
-      label: "Категория",
-      id: "",
-    }));
-    router.push(`/catalog/${href}/${label}`)
+  const routerLinknavigation = (value: {value: string, label: string, img: string}) => {
+    dispatch(catalogPageAction.setSubDepartment({value: value.value, label: value.label, }))
+    dispatch(catalogPageAction.setCategoryValue({value: "Категория", label: "Категория", id: ""}))
+    router.push(`/catalog/${href}/${value.label}`)
   }
 
   return (
@@ -48,7 +40,7 @@ const CatalogPageHeaderMobileF: FC<ICatalogPageHeaderMobile> = ({countProduct, s
         </ul>
         <div className={styles.title__container}>
           <h1 className={styles.title}>{value}</h1>
-          <small>{countProduct} товаров</small>
+          <small>{productCount} товаров</small>
         </div>
       </nav>
      
@@ -56,29 +48,13 @@ const CatalogPageHeaderMobileF: FC<ICatalogPageHeaderMobile> = ({countProduct, s
         {optionDepartment.map((department, ind) => (
           <li key={ind} className={styles.link}>
           <p 
-          onClick={() => routerLinknavigation(department.label)}  
+          onClick={() => routerLinknavigation(department)}  
           className={styles.link__name}>{department.value}
           </p>
         </li>
           ))}
       </ul>
-
-        <div className={styles.size__container}>
-          {sizeCard === 'small' ? 
-          <div
-          onClick={() => dispatch(catalogPageAction.setSizeCard({ value: "big" }))}
-          className={styles.size__big_card}
-          >
-            <div className={ styles.size__big_itemActive}></div>
-            <div className={ styles.size__big_itemActive} ></div>
-          </div>
-        :
-        <div 
-        onClick={() => dispatch(catalogPageAction.setSizeCard({ value: "small" }))}
-        className={styles.desctop}></div>  
-        }
-        </div>
-     
+          <SizeCardCatalog />
     </section>
   );
 };

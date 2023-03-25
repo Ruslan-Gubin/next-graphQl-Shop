@@ -1,11 +1,11 @@
-import { FC, memo, useMemo, useRef, useState } from "react";
+import { FC, memo,  useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { useInView } from "react-intersection-observer";
 import { formatterRub } from "../../../../features/CatalogPage/libs/helper";
 import { IProductType } from "../../../../apps/types";
 import { findMaxOpinion, StarsList } from "../../../../shared";
-import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
 import { ProductCategoryHeard } from "../ProductCategoryHeard";
+import { useCatalogProductPageContext } from "../../lib/context/useCatalogPageContext";
 
 import styles from "./ProductCategoryMobile.module.scss";
 
@@ -27,15 +27,12 @@ const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({
   handleAddFavorite,
   handleRemoveFavorite
 }) => {
+  const { href } = useCatalogProductPageContext()
   const [hoverCard] = useState(false);
   const [ref, isVisible] = useInView({ threshold: 0.5, triggerOnce: true });
   const cardRef = useRef<HTMLElement>(null);
   const router = useRouter();
 
-  const nameHref = useMemo(
-    () => OPTIONS_DEPARTMENT.find((item) => item.label === product.department),
-    [OPTIONS_DEPARTMENT]
-  );
 
   return (
     <article ref={cardRef} className={styles.root}>
@@ -50,7 +47,7 @@ const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({
           <picture
             onClick={() =>
               router.push(
-                `/catalog/${nameHref.department_href}/${product.sub_department}/${product._id}`
+                `/catalog/${href}/${product.sub_department}/${product._id}`
               )
             }
           >

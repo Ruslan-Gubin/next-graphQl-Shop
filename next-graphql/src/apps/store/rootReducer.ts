@@ -2,7 +2,7 @@ import { combineReducers } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { getPersistConfig } from "redux-deep-persist";
 import * as redusers from "../../features";
-import { layoutShopReducer } from "../../widgets";
+import { layoutShopReducer, sizeCatalogCardReducer } from "../../widgets";
 import { productDetailsReducer } from "../../entities";
 
 
@@ -23,6 +23,7 @@ const rootReducer = combineReducers({
   favorites: redusers.favoritesReducer,
   User: redusers.userReducer,
   productDetails: productDetailsReducer,
+  catalogSizeCard: sizeCatalogCardReducer,
   // [rtkQuery.productsApi.reducerPath]: rtkQuery.productsApi.reducer,
 });
 

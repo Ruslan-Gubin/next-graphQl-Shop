@@ -1,8 +1,8 @@
-import { FC, memo, useEffect, useRef, useState } from "react";
-
+import { FC, memo, useCallback, useEffect, useRef, useState } from "react";
+import { IPropertyType } from "../../../features/CatalogPage/model/ICatalogPageSlice";
 
 import styles from "./DropDownCategory.module.scss";
-import { IPropertyType } from "../../../features/CatalogPage/model/ICatalogPageSlice";
+
 
 interface Ioption {
   value: string;
@@ -26,10 +26,10 @@ const DropDownCategoryF: FC<IDropDownCategory> = ({
   const [dropActive, setDropActive] = useState(false);
   const dropRef = useRef<HTMLDivElement>(null);
 
-  const handlerChangeInitial = (value: Ioption) => {
+  const handlerChangeInitial = useCallback((value: Ioption) => {
     onChange(value);
     setDropActive(false);
-  };
+  }, [onChange, setDropActive]);
 
   useEffect(() => {
     const checkIfClickedOutside = (e: any) => {

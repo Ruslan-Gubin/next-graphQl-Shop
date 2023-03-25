@@ -3,6 +3,11 @@
   align-items: center;
   justify-content: space-between;
   width: 210px;
+  @media (max-width: 1200px) {
+    justify-content: space-around;
+    position: relative;
+    top: -30px;
+  }
   & .linkItem {
     display: flex;
     flex-direction: column;

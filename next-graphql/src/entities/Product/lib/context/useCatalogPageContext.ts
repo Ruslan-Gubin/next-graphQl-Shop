@@ -1,16 +1,6 @@
 import { createContext, useContext } from "react";
-import { Ioption } from "../../../../apps/constants/optionsMenu";
+import { ICatalogProductPageContext } from "../types/ICatalogProductPageContext";
 
-
-interface ICatalogProductPageContext {
-  href: string;
-  value: string;
-  optionDepartment: Ioption[];
-  label: string;
-  department: string;
-  sub_department: string;
-  sub_departmentName:string;
-}
 
 const CatalogProductPageContext = createContext<ICatalogProductPageContext | null>(null)
 

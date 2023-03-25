@@ -21,7 +21,9 @@ const CatatlogProductList: FC<ICatatlogProductList> = ({
     return nameHref?.department_href
   }
 
-
+  if (!productList) {
+    return <></>
+  }
 
   return (
     <section className={styles.root}>

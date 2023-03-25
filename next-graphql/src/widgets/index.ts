@@ -1,5 +1,4 @@
-
-export {  } from "./FooterShop";
+export {} from "./FooterShop";
 export { AdminLayout } from "./AdminLayout";
 export {
   ShopLayout,
@@ -12,4 +11,10 @@ export { CatalogStartPage } from "./CatalogStartPage";
 export { ProductDetailsPage } from "./ProductDetailsPage";
 export { ProductFeedback } from "./ProductFeedback";
 export { HomePage } from "./HomePage";
-export { BrandPage } from './BrandPage'
+export { BrandPage } from "./BrandPage";
+export {
+  SizeCardCatalog,
+  selectSizeCatalogCard,
+  sizeCatalogCardAction,
+  sizeCatalogCardReducer,
+} from "./SizeCardCatalog";

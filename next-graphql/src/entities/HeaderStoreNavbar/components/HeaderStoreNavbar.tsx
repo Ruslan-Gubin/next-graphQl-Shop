@@ -2,7 +2,6 @@ import { memo, useMemo } from "react";
 import { useRouter } from "next/dist/client/router";
 import Image from 'next/image';
 import { useSelector } from "react-redux";
-
 import { HeaderStoreNavbarBasket } from "./HeaderStoreNavbarBasket";
 import { selectUser } from "../../../features";
 import { loginIcon } from "../lib/data/headerIcon";

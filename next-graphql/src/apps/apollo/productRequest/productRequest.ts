@@ -281,11 +281,17 @@ const SORT_PRODUCT_SIMILAR = gql`
 const SORT_PRODUCT_CATALOG = gql`
   query (
     $department: String!
+    $category: String!
     $sub_department: String!
     $sortProperty: sortPropertyScale
+    $page: Int!
+    $perPage: Int!
   ) {
     sortProductCatalog(
+      page: $page
+      perPage: $perPage
       department: $department
+      category: $category
       sub_department: $sub_department
       sortProperty: $sortProperty
     ) {
@@ -321,6 +327,24 @@ const SORT_PRODUCT_CATALOG = gql`
     }
   }
 `;
+const SORT_PRODUCT_LENGHT = gql`
+  query (
+    $department: String!
+    $category: String!
+    $sub_department: String!
+    $sortProperty: sortPropertyScale
+  ) {
+    sortProductLenght(
+      department: $department
+      category: $category
+      sub_department: $sub_department
+      sortProperty: $sortProperty
+    ) {
+      _id 
+    }
+  }
+`;
+
 
 const GET__MAXVIEWS__ALLPRODUCT = gql`
 query($limit: Int){
@@ -390,4 +414,5 @@ export {
   SORT_PRODUCT_CATALOG,
   SORT_PRODUCT_SIMILAR,
   SEARCH_PRODUCTS,
+  SORT_PRODUCT_LENGHT,
 };

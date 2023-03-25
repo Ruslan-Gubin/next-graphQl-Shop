@@ -6,6 +6,7 @@ import { CatalogPage } from "../../../../features";
 import { ShopLayout } from "../../../../widgets";
 import { Error } from '../../../../shared';
 import { NextPageContext } from "next";
+import { sortOptionsBrand, sortOptionsDropDown } from "../../../../features/CatalogPage/libs/helper";
 
 
 interface IStationeryProps {
@@ -14,11 +15,13 @@ interface IStationeryProps {
   products:  IProductType[]
   sub_department: string
   optionDepartment: Ioption[]
-  sub_departmentName: string;
+  sub_departmentName: string; 
   href: string;
+  categoryOptions: { value: string; label: string; id: string }[]
+  brandOptions: { value: string; label: string; id: string }[]
 }
 
-const NavOptionSubdepartment = ({ href, sub_departmentName, value, label, products, sub_department, optionDepartment}: IStationeryProps) => {
+const NavOptionSubdepartment = ({brandOptions, categoryOptions, href, sub_departmentName, value, label, products, sub_department, optionDepartment}: IStationeryProps) => {
 
   if (!products) {
     return <Error statusCode={'sub department name'}/>
@@ -27,6 +30,8 @@ const NavOptionSubdepartment = ({ href, sub_departmentName, value, label, produc
   return (
     <ShopLayout title={'value'} keywords={'value'}>
     <CatalogPage
+        brandOptions={brandOptions}
+        categoryOptions={categoryOptions}
         href={href}
         sub_departmentName={sub_departmentName}
         value={value}
@@ -60,18 +65,25 @@ NavOptionSubdepartment.getInitialProps = async ({query}: NextPageContext) => {
         notFound: true,
       };
     }
+    const subDepartmentName = findCategory.subdepartment.find(item => item.label === label)
+    const categoryOptions = sortOptionsDropDown(products.data.sortProductCatalog)
+    const brandOptions = sortOptionsBrand(products.data.sortProductCatalog)
 
     return {
+       brandOptions,
+       categoryOptions,
        sub_department:  label,
        products: products.data.sortProductCatalog, 
        value: findCategory.value,
        label: findCategory.label,
        optionDepartment: findCategory.subdepartment,
-       sub_departmentName: findCategory.value,
+       sub_departmentName: subDepartmentName.value,
        href: name 
     };
   } catch {
     return {
+      brandOptions: null,
+      categoryOptions: null,
       products: null, 
       value: null,
       label: null,
@@ -82,5 +94,3 @@ NavOptionSubdepartment.getInitialProps = async ({query}: NextPageContext) => {
 };
 
 export default NavOptionSubdepartment;
-
-

@@ -1,66 +1,52 @@
-import { Dispatch, FC, memo, SetStateAction, useCallback } from "react";
+import {  FC, memo,  useCallback, useEffect,  } from "react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { DropDownCategory } from "../../../../shared/components";
-import { sortProductOption } from "../../constants/sortProductOption";
 import { catalogPageAction, selectCatalogPage } from "../../store";
 import { IOptionsDropDownType } from "../../../../apps/types";
 import { PriceFilter } from "../PriceFilter";
 import { useCatalogProductPageContext } from "../../../../entities/Product/lib/context/useCatalogPageContext";
+import { SizeCardCatalog } from "../../../../widgets";
+import { Ioption } from "../../../../apps/constants/optionsMenu";
 
 import styles from "./CatalogPageHeader.module.scss";
 
-interface ICatalogPageHeader {
-  countProduct: number;
-  categoryOption: IOptionsDropDownType[];
-  categoryValue: IOptionsDropDownType;
-  setCategoryValue: Dispatch<SetStateAction<IOptionsDropDownType>>;
-  subDepartmentValue: any;
-  handleLinkCategory: any;
-  brandOption: IOptionsDropDownType[];
-  brandValue: IOptionsDropDownType;
-  setBrandValue: Dispatch<SetStateAction<IOptionsDropDownType>>;
-  priceFilter: { minPrice: number; maxPrice: number };
-  setPriceFilter: Dispatch<
-    SetStateAction<{ minPrice: number; maxPrice: number }>
-  >;
-}
 
-const CatalogPageHeaderF: FC<ICatalogPageHeader> = (props) => {
-  const { href, sub_departmentName, value,  optionDepartment } = useCatalogProductPageContext()
-  const { sortProduct, sizeCard } = useSelector(selectCatalogPage);
+const CatalogPageHeaderF: FC = () => {
+  const { selected, optionsArr, productCount } = useSelector(selectCatalogPage)
+  const { categoryOptions, sub_departmentName, value: initDepartment, optionDepartment , sub_department } = useCatalogProductPageContext()
   const dispatch = useDispatch();
   const router = useRouter()
 
-  const handleCategoryDropDown = (value: IOptionsDropDownType) => {
-    if (value.id === props.categoryValue.id) {
-      props.setCategoryValue(() => ({
-        value: "Категория",
-        label: "Категория",
-        id: "",
-      }));
-    } else {
-      props.setCategoryValue(() => ({
-        value: value.value,
-        label: value.label,
-        id: value.id,
-      }));
-    }
-    props.setBrandValue(() => ({ value: "Бренд", label: "Бренд", id: "" }));
-  };
+  useEffect(() => {
+    dispatch(catalogPageAction.setSubDepartment({value: sub_departmentName, label: sub_department }))
+  }, [])
+  
 
+  const handleSubDepartmentDropDown = async (value: Ioption) => {
+  if (value.label === selected.subDepartmen.label)  return;
+  await  router.push(`/catalog/${router.query.name}/${value.label}`)
+  dispatch(catalogPageAction.setSubDepartment(value))
+  dispatch(catalogPageAction.setCategoryValue({value: "Категория", label: "Категория", id: ""}))
+  }
+ 
+  const handleCategoryDropDown = useCallback((value: IOptionsDropDownType) => {
+    if (value.id === selected.category.id) {
+      dispatch(catalogPageAction.setCategoryValue( {value: "Категория", label: "Категория", id: ""} ))
+    } else {
+      dispatch(catalogPageAction.setCategoryValue( {value: value.label, label: value.label, id: value.id} ))
+    }
+    dispatch(catalogPageAction.setBrandValue( { value: "Бренд", label: "Бренд", id: "" } ))
+  }, [selected.category]);
+  
   const handleBrend = useCallback((value: IOptionsDropDownType) => {
-    if (value.id === props.brandValue.id) {
-      props.setBrandValue(() => ({ value: "Бренд", label: "Бренд", id: "" }));
+    if (value.id === selected.brand.id) {
+      dispatch(catalogPageAction.setBrandValue( { value: "Бренд", label: "Бренд", id: "" } ))
     } else {
-      props.setBrandValue(() => ({
-        value: value.value,
-        label: value.label,
-        id: value.id,
-      }));
+      dispatch(catalogPageAction.setBrandValue( { value: value.value, label: value.label, id: value.id, } ))
     }
-  }, [props]);
-
+  }, [selected.brand]);
+ 
   return (
     <section className={styles.root}>
       <nav>
@@ -68,102 +54,49 @@ const CatalogPageHeaderF: FC<ICatalogPageHeader> = (props) => {
           <li onClick={() => router.push('/')} className={styles.nav__item}>
               Главная
           </li>
-          <li onClick={() => router.push(`/catalog/${href}`)} className={styles.nav__item}>
-              {sub_departmentName} 
+          <li onClick={() => router.push(`/catalog/${router.query.name}`)} className={styles.nav__item}>
+            {initDepartment}
           </li>
           <li>
-            <p>{value}</p>
+              <p>{sub_departmentName}</p> 
           </li>
         </ul>
         <div className={styles.title__container}>
-          <h1 className={styles.title}>{value}</h1>
-          <small>{props.countProduct} товаров</small>
+          <h1 className={styles.title}>{initDepartment}</h1>
+          <small>{productCount} товаров</small>
         </div>
       </nav>
       <div className={styles.filter}>
         <div className={styles.filter__container}>
+
+
           <DropDownCategory
-            onChange={(value) => props.handleLinkCategory(value)}
+            onChange={(value) => handleSubDepartmentDropDown(value as Ioption)}
             options={optionDepartment}
-            value={props.subDepartmentValue}
+            value={selected.subDepartmen}
           />
           <DropDownCategory
-            onChange={(value) =>
-              dispatch(catalogPageAction.getSortProductValue({ value }))
-            }
-            options={sortProductOption}
-            value={sortProduct}
+            onChange={(value) => dispatch(catalogPageAction.setSortValue({ value })) }
+            options={optionsArr.sort}
+            value={selected.sort}
           />
           <DropDownCategory
             onChange={(value) => handleCategoryDropDown(value)}
-            options={props.categoryOption}
-            value={props.categoryValue}
+            options={categoryOptions}
+            value={selected.category}
           />
-          {props.brandOption.length > 0 && (
             <DropDownCategory
               onChange={(value) => handleBrend(value)}
-              options={props.brandOption}
-              value={props.brandValue}
+              options={optionsArr.brand}
+              value={selected.brand}
             />
-          )}
           <PriceFilter
-            priceFilter={props.priceFilter}
+            priceFilter={selected.price}
             value="Цена"
-            onChange={(value) => props.setPriceFilter(value)}
+            onChange={(value) => dispatch(catalogPageAction.setPrice({minPrice: value.minPrice, maxPrice: value.maxPrice}))}
           />
         </div>
-
-        <div className={styles.size__container}>
-          <div
-            onClick={() =>
-              dispatch(catalogPageAction.setSizeCard({ value: "big" }))
-            }
-            className={styles.size__big_card}
-          >
-            <div
-              className={
-                sizeCard === "big"
-                  ? styles.size__big_itemActive
-                  : styles.size__big_item
-              }
-            ></div>
-            <div
-              className={
-                sizeCard === "big"
-                  ? styles.size__big_itemActive
-                  : styles.size__big_item
-              }
-            ></div>
-          </div>
-          <div
-            onClick={() =>
-              dispatch(catalogPageAction.setSizeCard({ value: "small" }))
-            }
-            className={styles.size__small_card}
-          >
-            <div
-              className={
-                sizeCard === "small"
-                  ? styles.size__small_itemActive
-                  : styles.size__small_item
-              }
-            ></div>
-            <div
-              className={
-                sizeCard === "small"
-                  ? styles.size__small_itemActive
-                  : styles.size__small_item
-              }
-            ></div>
-            <div
-              className={
-                sizeCard === "small"
-                  ? styles.size__small_itemActive
-                  : styles.size__small_item
-              }
-            ></div>
-          </div>
-        </div>
+            <SizeCardCatalog />
       </div>
     </section>
   );

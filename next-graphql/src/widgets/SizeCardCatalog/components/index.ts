@@ -1,0 +1,1 @@
+export { SizeCardCatalog } from './SizeCardCatalog'
