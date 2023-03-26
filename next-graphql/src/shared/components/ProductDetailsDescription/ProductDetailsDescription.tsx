@@ -1,27 +1,25 @@
-import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { useDetailsContext } from "../../../widgets/ProductDetailsPage/libs/context/detailsContext";
-
 
 import styles from "./ProductDetailsDescription.module.scss";
 
-interface IProductDetailsDescription {
-  characteristic: boolean;
-  setCharacteristic: Dispatch<SetStateAction<boolean>>;
-  description: boolean;
-  setDescription: Dispatch<SetStateAction<boolean>>;
-}
 
-const ProductDetailsDescription: FC<IProductDetailsDescription> = ({
-  description,
-  setDescription,
-  characteristic,
-  setCharacteristic,
-}) => {
+const ProductDetailsDescription: FC = () => {
+  const [characteristic, setCharacteristic] = useState(false)
+  const [description, setDescription] = useState(false)
   const { product } = useDetailsContext();
 
   let characteristicArr = characteristic
     ? product.options
     : product.options.filter((_, ind) => ind! > 3);
+
+    const toggleCharacteristic = () => {
+      setCharacteristic(() => !characteristic)
+    }
+  
+    const toggleDescription = () => {
+      setDescription(() => !description)
+    }
 
   return (
     <section id={"all-additation"} className={styles.root}>
@@ -40,7 +38,7 @@ const ProductDetailsDescription: FC<IProductDetailsDescription> = ({
             ))}
             <button
               className={styles.info__toggle}
-              onClick={() => setCharacteristic(!characteristic)}
+              onClick={toggleCharacteristic}
             >
               Развернуть характеристики
             </button>
@@ -54,7 +52,7 @@ const ProductDetailsDescription: FC<IProductDetailsDescription> = ({
            {product.description.length > 315 && 
             <button
             className={styles.info__toggle}
-            onClick={() => setDescription(!description)}
+            onClick={toggleDescription}
             >
               Развернуть описание
             </button>
@@ -65,4 +63,4 @@ const ProductDetailsDescription: FC<IProductDetailsDescription> = ({
   );
 };
 
-export { ProductDetailsDescription };
+export  { ProductDetailsDescription };

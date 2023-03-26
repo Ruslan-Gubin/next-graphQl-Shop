@@ -136,6 +136,24 @@ const getAllProductId = {
   `,
 };
 
+const getSearchProducts = {
+  query: `
+  query($searchValue: String!) {
+    searchProducts(searchValue: $searchValue) {
+    _id
+    name
+    department
+    sub_department
+    photo{
+      images{
+        url
+      }
+    }   
+    }
+  }
+  `,
+};
+
 const getOneProductUpdateViews = {
   query: `mutation($id: ID!) {
     productDetail(id: $id) {
@@ -235,6 +253,7 @@ const sortProductSimilar = {
 
 
 export {
+  getSearchProducts,
   getAllProductId,
   sortProductsCatalog,
   maxViewsAllProduct,

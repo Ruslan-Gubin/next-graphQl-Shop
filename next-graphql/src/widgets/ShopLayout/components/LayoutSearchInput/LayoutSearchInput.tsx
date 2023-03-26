@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { ChangeEvent, ChangeEventHandler, FC } from "react";
 import { CustomClose, ImageSearch } from "../../../../shared";
 
 import styles from "./LayoutSearchInput.module.scss";
@@ -19,8 +19,13 @@ const LayoutSearchInput: FC<ILayoutSearchInput> = ({
   active,
   focusRef,
 }) => {
+  
+  const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+    onChange(e.target.value)
+  }
+  
+  
   return (
-    
     <div
       style={{ backgroundColor: active ? "white" : "" }}
       data-testid="root-testid"
@@ -35,7 +40,7 @@ const LayoutSearchInput: FC<ILayoutSearchInput> = ({
         placeholder="Я ищу..."
         aria-label="input-search"
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => handleChangeInput(e)}
       />
 
       <div className={styles.imageClose}>

@@ -1,56 +1,35 @@
-import { Dispatch, FC, SetStateAction } from "react";
-import { useRouter } from "next/router";
-import { useQuery } from "@apollo/client";
-import { SEARCH_PRODUCTS } from "../../../../apps/apollo/productRequest";
+import { FC, memo } from "react";
 import { ISearchProduct } from "../../../../apps/types";
-import { LoaderShop, SearchItemAutocomplete } from "../../../../shared";
-import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
+import { SearchItemAutocomplete } from "../../../../shared";
 
 import styles from "./LayoutAutoComplet.module.scss";
 
 interface ILayoutAutoComplet {
-  searchValue: string;
-  setModalActive: Dispatch<SetStateAction<boolean>>;
-  setValue: Dispatch<SetStateAction<string>>;
+  handlerNavRouter: (value: ISearchProduct) => void;
+  searchData: ISearchProduct[];
 }
 
-const LayoutAutoComplet: FC<ILayoutAutoComplet> = ({
-  searchValue,
-  setModalActive,
-  setValue,
+const LayoutAutoCompletF: FC<ILayoutAutoComplet> = ({
+  searchData,
+  handlerNavRouter,
 }) => {
-  const { data, loading } = useQuery<{ searchProducts: ISearchProduct[] }>(
-    SEARCH_PRODUCTS,
-    {
-      variables: {
-        searchValue: searchValue.length > 2 ? searchValue : "adfsfeasdfg",
-      },
-    }
-  );
-  const router = useRouter();
-
-  const handlerNavRouter = (product: ISearchProduct) => {
-    setValue("");
-    setModalActive(false);
-    const findDepartmentName = OPTIONS_DEPARTMENT.find((item) => item.label === product.department);
-    router.push(`/catalog/${findDepartmentName.department_href}/${product.sub_department}/${product._id}`);
-  };
 
   return (
-    <div className={styles.root}>     
+    <div className={styles.root}>
       <ul className={styles.container}>
-        {data?.searchProducts.map((item) => (
-          <li onClick={() => handlerNavRouter(item)} key={item._id}>
-            <SearchItemAutocomplete
-              id={item._id} 
-              productImg={item.photo.images[0].url}
-              text={item.name}
-            />
-          </li>
-        ))}
+        {searchData &&
+          searchData.map((item) => (
+            <li onClick={() => handlerNavRouter(item)} key={item._id}>
+              <SearchItemAutocomplete
+                id={item._id}
+                productImg={item.photo.images[0].url}
+                text={item.name}
+              />
+            </li>
+          ))}
       </ul>
     </div>
   );
 };
 
-export { LayoutAutoComplet };
+export const LayoutAutoComplet = memo(LayoutAutoCompletF);

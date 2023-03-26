@@ -9,7 +9,6 @@ import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
 
 import styles from "./ProductCategoryMobile.module.scss";
 
-
 interface IProductCategoryMobile {
   product: IProductType;
   activeFavorites: boolean;
@@ -35,8 +34,7 @@ const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({
   const nameHref = OPTIONS_DEPARTMENT.find(
     (item) => item.label === product.department
     );
-
-    
+      
     return (
       <article ref={cardRef} className={styles.root}>
       <header>

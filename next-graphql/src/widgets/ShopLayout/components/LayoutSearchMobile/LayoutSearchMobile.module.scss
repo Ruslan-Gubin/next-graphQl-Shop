@@ -44,17 +44,15 @@ position: relative;
 
   & .search__container {
     padding: 15px;
-    overflow: scroll;
-    &::-webkit-scrollbar {
-      width: 0;
-      height: 0;
-    }
-
-
-
-    & .search__item {
-      padding: 5px 15px ;
-      transition: all 0.2s ease;
+      overflow: scroll;
+      &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
+       
+      & .search__item {
+        padding: 5px 15px ;
+        transition: all 0.2s ease;
       color: var.$color-black-hover;
       font-size: 1.1rem;
       font-weight: 600;
@@ -77,11 +75,6 @@ position: relative;
         border-radius: 5px;
         margin-left: 10px;
       }
-
-
-
-
-
     }
 
   }

@@ -12,4 +12,5 @@ export {
   getAllProductId,
   getOneProductUpdateViews,
   sortProductSimilar,
+  getSearchProducts,
 } from "./product-api/product-api";

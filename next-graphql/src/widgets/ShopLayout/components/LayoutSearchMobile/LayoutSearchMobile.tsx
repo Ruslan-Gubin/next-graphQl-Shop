@@ -1,13 +1,12 @@
-import { Dispatch, FC, SetStateAction,  useState } from 'react';
-import { SEARCH_PRODUCTS } from '../../../../apps/apollo/productRequest';
+import { Dispatch, FC, SetStateAction,  useCallback,  useEffect,  useState } from 'react';
 import { CloseProductButton, LoaderShop } from '../../../../shared';
-import { useQuery } from '@apollo/client';
-import { IProductType, ISearchProduct } from '../../../../apps/types';
+import { ISearchProduct } from '../../../../apps/types';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
+import { OPTIONS_DEPARTMENT } from '../../../../apps/constants';
+import { useDebounce } from '../../../../shared/lib/hooks/useDebounce/useDebounce';
+import { getSearchProducts, graphQlFetch } from '../../../../apps/api';
 
 import styles from './LayoutSearchMobile.module.scss';
-import { OPTIONS_DEPARTMENT } from '../../../../apps/constants';
 
 
 interface ILayoutSearchMobile {
@@ -16,12 +15,27 @@ interface ILayoutSearchMobile {
 
 const LayoutSearchMobile: FC<ILayoutSearchMobile> = ({setSearchMobileModal}) => {
   const [input, setInput] = useState<string>('')
-  const {data, loading} = useQuery<{searchProducts:ISearchProduct[]}>(SEARCH_PRODUCTS, {
-    variables: {
-      searchValue: input.length > 2 ? input : 'adfsfeasdfg'
-    }
-  })
+  const [searchData, setSearchData] = useState<ISearchProduct[]>([])
+  const debouncedSearch: string = useDebounce<string>(input, 700);
   const router = useRouter()
+
+  const fetchRequest = useCallback( async() => {
+    const { data: products, error: errProducts } = await graphQlFetch({
+      ...getSearchProducts,
+      variables: { searchValue: input.length > 2 ? input : "adfsfeasdfg", },
+    });
+    setSearchData(() => products.data.searchProducts)
+   return products.data.searchProducts
+  }, [debouncedSearch])
+
+  useEffect( () => {
+    if (debouncedSearch) {
+      fetchRequest()
+    } else {
+      setSearchData([]);
+    }
+  }, [debouncedSearch, fetchRequest] );
+
 
   const handleNavClick = (product: ISearchProduct) => {
     const findDepartmentName = OPTIONS_DEPARTMENT.find(item => item.label === product.department)
@@ -31,7 +45,7 @@ const LayoutSearchMobile: FC<ILayoutSearchMobile> = ({setSearchMobileModal}) => 
 
   return (
     <div className={styles.root}>
-      {loading && 
+      {!searchData && 
       <LoaderShop />
       }
       <>
@@ -44,12 +58,17 @@ const LayoutSearchMobile: FC<ILayoutSearchMobile> = ({setSearchMobileModal}) => 
       </section>
 
       <ul className={styles.search__container}>
-        {data && data.searchProducts.map(item => (
+        <div className={styles.scroll}>
+
+        {searchData && searchData.map(item => (
           <li onClick={() => handleNavClick(item)} key={item._id} className={styles.search__item}>
             <p>{item.name}</p>
-            <Image width={40} height={40} src={item.photo.images[0].url} alt="img product" />
+            <picture>
+            <img width={40} height={40} src={item.photo.images[0].url} alt="img product" />
+            </picture>
         </li>
           ))}
+          </div>
         </ul>
 
         </>

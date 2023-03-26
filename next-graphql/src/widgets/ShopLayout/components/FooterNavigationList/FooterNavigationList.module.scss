@@ -36,6 +36,7 @@
       margin-bottom: 15px;
     }
     & .link {
+      cursor: pointer;
       line-height: 24px;
       padding-bottom: 13px;
       color: rgba(255,255,255,.7);
@@ -64,8 +65,9 @@
       }
     }
   }
-
+  
   & .active {
+    cursor: pointer;
     transition: all 0.4s ease;
     opacity: 1;
     height: 100%;

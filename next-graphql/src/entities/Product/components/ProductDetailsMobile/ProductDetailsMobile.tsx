@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction, useCallback } from 'react';
+import { FC, useState } from 'react';
 import { useSelector } from 'react-redux';
 import {useRouter} from 'next/router';
 import { Array, findMaxOpinion, QueckMessage, StarsList, useQuickMessage } from '../../../../shared';
@@ -11,27 +11,25 @@ import { ProductCardMobileHeards } from '../ProductCardMobileHeards';
 import styles from './ProductDetailsMobile.module.scss';
 
 
-interface IProductDetailsMobile {
-  characteristic: boolean;
-  setCharacteristic: Dispatch<SetStateAction<boolean>>;
-  description: boolean;
-  setDescription: Dispatch<SetStateAction<boolean>>;
-}
-
-const ProductDetailsMobile: FC<IProductDetailsMobile> = ({
-  description,
-  setDescription,
-  characteristic,
-  setCharacteristic,
-}) => {
+const ProductDetailsMobile: FC = () => {
+  const [characteristic, setCharacteristic] = useState(false)
+  const [description, setDescription] = useState(false)
   const { basket } = useSelector(selectBasket);
   const {product, handleAddBasket } = useDetailsContext()
   const { handleChangeState, status, text } = useQuickMessage()
   const router = useRouter()
 
-  const handleRouterBack = useCallback(() => {
+  const handleRouterBack = () => {
     router.back()
-  }, [router])
+  }
+
+  const toggleCharacteristic = () => {
+    setCharacteristic(() => !characteristic)
+  }
+
+  const toggleDescription = () => {
+    setDescription(() => !description)
+  }
 
   const addBasket = () => {
     handleAddBasket()
@@ -79,10 +77,10 @@ const ProductDetailsMobile: FC<IProductDetailsMobile> = ({
           <h2 className={styles.description__title}>О товаре</h2>
           <p className={description ? styles.description__text_active : styles.description__text}>{product.description}</p>
           {!description && product.description.length > 499 && 
-          <button onClick={() => setDescription(!description)} className={styles.description__btn}>Развернуть описание</button>
+          <button onClick={toggleDescription} className={styles.description__btn}>Развернуть описание</button>
         }
         {description && 
-          <button onClick={() => setDescription(!description)} className={styles.description__btn}>Свернуть описание</button>
+          <button onClick={toggleDescription} className={styles.description__btn}>Свернуть описание</button>
         }
          </section>
          
@@ -99,10 +97,10 @@ const ProductDetailsMobile: FC<IProductDetailsMobile> = ({
          </ul>
 
           {!characteristic && product.options.length > 2 && 
-          <button onClick={() => setCharacteristic(!characteristic)} className={styles.description__btn}>Развернуть описание</button>
+          <button onClick={toggleCharacteristic} className={styles.description__btn}>Развернуть описание</button>
         }
         {characteristic && 
-          <button onClick={() => setCharacteristic(!characteristic)} className={styles.description__btn}>Свернуть описание</button>
+          <button onClick={toggleCharacteristic} className={styles.description__btn}>Свернуть описание</button>
         }
          </section>
    {!checkBasket(basket, product) ?
@@ -119,4 +117,4 @@ const ProductDetailsMobile: FC<IProductDetailsMobile> = ({
   );
 };
 
-export { ProductDetailsMobile };
+export  { ProductDetailsMobile };

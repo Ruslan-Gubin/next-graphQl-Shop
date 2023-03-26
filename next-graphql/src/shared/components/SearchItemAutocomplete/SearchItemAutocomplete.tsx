@@ -1,6 +1,4 @@
 import { ImageSearch } from '../ImageSearch';
-import Image from 'next/image';
-import { ISearchProduct } from '../../../apps/types';
 
 import styles from './SearchItemAutocomplete.module.scss';
 
@@ -18,7 +16,9 @@ const SearchItemAutocomplete = ({text, productImg, id}: ISearchItemAutocomplete)
       <ImageSearch active={true}/>
       </div>
       <p>{text}</p>
-      <Image width={30} height={30} src={productImg} alt="Product img" />
+      <picture>
+      <img width={30} height={30} src={productImg} alt="Product img" />
+      </picture>
     </div>
   );
 };

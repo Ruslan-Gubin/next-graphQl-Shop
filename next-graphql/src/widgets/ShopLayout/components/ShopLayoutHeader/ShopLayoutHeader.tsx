@@ -9,6 +9,7 @@ import { useMatchMedia } from "../../../../features/CatalogPage/libs/hooks/use-m
 
 import styles from "./ShopLayoutHeader.module.scss";
 
+
 const ShopLayoutHeaderF = () => {
   const { isMobile } = useMatchMedia();
   const dispatch = useDispatch();

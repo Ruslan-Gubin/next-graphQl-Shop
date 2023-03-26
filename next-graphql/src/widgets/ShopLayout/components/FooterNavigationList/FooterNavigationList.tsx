@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import Link from 'next/link';
+import { useRouter } from 'next/dist/client/router';
 import { AccordionBird } from '../../../../shared';
 import { INavListArray } from '../../lib/types/INavListArray';
 
@@ -11,6 +11,7 @@ interface IFooterNavigationList {
 
 const FooterNavigationList: FC<IFooterNavigationList> = ({group}) => {
   const [active, setActive] = useState(false)
+  const router = useRouter()
 
   return (
     <div className={styles.root}>
@@ -25,21 +26,22 @@ const FooterNavigationList: FC<IFooterNavigationList> = ({group}) => {
       <ul className={styles.link__container}>
     {group.links.map(link => (
       <li key={link.name} className={styles.linkItem}>
-      <Link href={link.href} className={styles.link}>
-        <span>{link.name}</span>
-      </Link>
+      <div className={styles.link}>
+        <span onClick={() => {}}>{link.name}</span>
+        {/* <span onClick={() => router.push(`${link.href}`)}>{link.name}</span> */}
+      </div>
 </li>
   ))}
       </ul>
 
 
       <ul className={active ? `${styles.link__container_mobile} ${styles.active}`  : styles.link__container_mobile}>
-      {/* <ul className={styles.link__container_mobile}> */}
     {group.links.map(link => (
       <li key={link.name} className={styles.linkItem_mobile}>
-      <Link href={link.href} className={styles.link_mobile}>
-        <span>{link.name}</span>
-      </Link>
+      <div  className={styles.link_mobile}>
+        <span onClick={() => {}}>{link.name}</span>
+        {/* <span onClick={() => router.push(`${link.href}`)}>{link.name}</span> */}
+      </div>
 </li>
   ))}
       </ul>
