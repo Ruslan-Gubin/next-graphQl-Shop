@@ -8,7 +8,7 @@ import { selectProductDetails } from "../../../../entities";
 import { CatatlogProductList } from "../../../../widgets/CatalogStartPage/components/CatatlogProductList";
 
 interface IBrandPage {
-  brand: IBrandType;
+  brand: IBrandType
 }
 
 const BrandPage: FC<IBrandPage> = ({ brand }) => {

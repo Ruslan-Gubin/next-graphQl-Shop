@@ -25,7 +25,7 @@ const CatalogPageFooterF: FC = () => {
     if (length && !loadLength) {
     dispatch(catalogPageAction.setTotalLength({count: length.sortProductLenght.length}))
     }
-  }, [length])
+  }, [length, dispatch, loadLength])
 
 
   if (totalLength < perPage) {

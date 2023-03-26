@@ -20,7 +20,7 @@ const CatalogPageHeaderF: FC = () => {
 
   useEffect(() => {
     dispatch(catalogPageAction.setSubDepartment({value: sub_departmentName, label: sub_department }))
-  }, [])
+  }, [dispatch, sub_department, sub_departmentName])
   
 
   const handleSubDepartmentDropDown = async (value: Ioption) => {
@@ -37,7 +37,7 @@ const CatalogPageHeaderF: FC = () => {
       dispatch(catalogPageAction.setCategoryValue( {value: value.label, label: value.label, id: value.id} ))
     }
     dispatch(catalogPageAction.setBrandValue( { value: "Бренд", label: "Бренд", id: "" } ))
-  }, [selected.category]);
+  }, [selected.category, dispatch]);
   
   const handleBrend = useCallback((value: IOptionsDropDownType) => {
     if (value.id === selected.brand.id) {
@@ -45,7 +45,7 @@ const CatalogPageHeaderF: FC = () => {
     } else {
       dispatch(catalogPageAction.setBrandValue( { value: value.value, label: value.label, id: value.id, } ))
     }
-  }, [selected.brand]);
+  }, [selected.brand, dispatch]);
  
   return (
     <section className={styles.root}>

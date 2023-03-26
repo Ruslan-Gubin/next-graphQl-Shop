@@ -50,13 +50,16 @@ NavOptionSubdepartment.getInitialProps = async ({query}: NextPageContext) => {
     const { label, name } = query;
 
     const findCategory = OPTIONS_DEPARTMENT.find(item => item.department_href === name)
-
+   
     const { data: products, error: errProducts } = await graphQlFetch({
       ...sortProductsCatalog,
       variables: { 
         department: findCategory.label,
         sub_department: label,
-        sortProperty: 'any'
+        sortProperty: 'any',
+        category: '',
+        perPage: 50,
+        page: 1,
       },
     });
 

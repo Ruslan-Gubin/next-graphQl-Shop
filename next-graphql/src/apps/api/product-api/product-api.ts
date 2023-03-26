@@ -78,11 +78,17 @@ const sortProductDepartment = {
 const sortProductsCatalog = {
   query: ` query (
     $department: String!
+    $category: String!
     $sub_department: String!
     $sortProperty: sortPropertyScale
+    $page: Int!
+    $perPage: Int!
   ) {
     sortProductCatalog(
+      page: $page
+      perPage: $perPage
       department: $department
+      category: $category
       sub_department: $sub_department
       sortProperty: $sortProperty
     ) {

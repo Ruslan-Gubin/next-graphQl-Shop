@@ -1,15 +1,12 @@
-import { FC, memo, useCallback, useEffect, useMemo } from 'react';
+import { FC, memo, useCallback,  useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useQuery } from '@apollo/client';
 import { IProductType } from '../../../../apps/types';
-import { ProductCategory, useCatalogProductPageContext } from '../../../../entities';
+import { ProductCategory } from '../../../../entities';
 import { ProductCategoryMobile } from '../../../../entities/Product/components';
-import { basketAction, catalogPageAction, favoritesAction, selectBasket, selectCatalogPage, selectFavorites } from '../../../../features';
+import { basketAction, favoritesAction, selectBasket, selectCatalogPage, selectFavorites } from '../../../../features';
 import { getPropertyProduct } from '../../libs/helper/getPropertyProduct';
-import { LoaderShop, QueckMessage, useQuickMessage } from '../../../../shared';
+import { LoaderShop} from '../../../../shared';
 import { selectSizeCatalogCard } from '../../../../widgets';
-import { SORT_PRODUCT_CATALOG } from '../../../../apps/apollo';
-import { sortOptionsBrand } from '../../libs/helper';
 import { filterBrandAndPrice } from '../../libs/helper/filterBrandAndPrice';
 
 import styles from './CatalogProductList.module.scss';
@@ -17,49 +14,27 @@ import styles from './CatalogProductList.module.scss';
 
 interface ICatalogProductList {
   isDesktop: boolean | undefined;
+  products: IProductType[]
 }
 
-const CatalogProductListF: FC<ICatalogProductList> = ({ isDesktop }) => {
-  const {page, perPage, selected } = useSelector(selectCatalogPage); 
-  const { department } = useCatalogProductPageContext()
-  const { data: products, loading } = useQuery<{sortProductCatalog: IProductType[]}>(SORT_PRODUCT_CATALOG, {
-    variables: {
-      department,
-      sub_department: selected.subDepartmen.label,
-      sortProperty: selected.sort.property,
-      category: selected.category.id,
-      perPage,
-      page,
-    },
-  });
+const CatalogProductListF: FC<ICatalogProductList> = ({ isDesktop, products }) => {
   const { basket } = useSelector(selectBasket)
   const { favorites } = useSelector(selectFavorites) 
   const { sizeCard } = useSelector(selectSizeCatalogCard)
-  const { handleChangeState, status, text } = useQuickMessage()
+  const { selected } = useSelector(selectCatalogPage);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (products && !loading) {
-      dispatch(catalogPageAction.setBrandOptions(sortOptionsBrand(products.sortProductCatalog)))
-      dispatch(catalogPageAction.setProductsCount({count: filterBrandAndPrice(products.sortProductCatalog, selected).length}))
-    }
-  }, [selected.category, selected.subDepartmen, selected.brand, selected.price, products, loading])
-  
 
   const handleClickBuy = useCallback((product: IProductType) => {
     dispatch( basketAction.addProduct({ product: getPropertyProduct(product) }) );
-      handleChangeState('Товар добавлен в корзину')
   }, [dispatch, ]);
 
 const handleAddFavorite = useCallback((product: IProductType) => {
   dispatch( favoritesAction.addFavorites({ product: getPropertyProduct(product) }));
-  handleChangeState('Товар добавлен в избранное')
-},[dispatch, ]);
+},[dispatch,  ]);
 
 const handleRemoveFavorite = useCallback((id: string) => {
   dispatch(favoritesAction.removeFavorites({ id: id }));
-    handleChangeState('Товар удален из избранного')
-}, [dispatch, ]);
+}, [dispatch,  ]);
 
 
   const checkBasket = useMemo(() => (id: string) => {
@@ -70,15 +45,14 @@ const handleRemoveFavorite = useCallback((id: string) => {
   return  favorites.some(item => item.id === id)
   }, [favorites])
 
-  if (!products ||  loading) {
+  if (!products ) {
     return <LoaderShop />
   }
   
   return (
     <section className={styles.root}>
       <ul className={styles.product__list_container}>
-          <QueckMessage active={status} message={text} />
-        {products && filterBrandAndPrice(products.sortProductCatalog, selected).map(product => (
+        {products && filterBrandAndPrice(products, selected).map(product => (
           <li className={sizeCard === 'small' ? styles.product__item_small : styles.product__item_big} key={product._id}>
           {isDesktop ?
           <ProductCategory

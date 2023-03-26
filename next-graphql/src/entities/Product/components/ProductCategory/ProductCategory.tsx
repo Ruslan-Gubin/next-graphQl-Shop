@@ -3,9 +3,9 @@ import { useRouter } from "next/router";
 import { IProductType } from "../../../../apps/types";
 import { findMaxOpinion, Heart, StarsList } from "../../../../shared";
 import { formatterRub } from "../../../../features/CatalogPage/libs/helper";
+import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
 
 import styles from "./ProductCategory.module.scss";
-import { useCatalogProductPageContext } from "../../lib/context/useCatalogPageContext";
 
 interface IProductCategory {
   product: IProductType;
@@ -24,7 +24,6 @@ const ProductCategoryF: FC<IProductCategory> = ({
   handleAddFavorite,
   handleRemoveFavorite
 }) => {
-  const { href } = useCatalogProductPageContext()
   const [hoverCard, setHover] = useState(false);
   const cardRef = useRef<HTMLElement>(null);
   const router = useRouter();
@@ -47,6 +46,10 @@ const ProductCategoryF: FC<IProductCategory> = ({
     };
   }, []);
 
+  const nameHref = OPTIONS_DEPARTMENT.find(
+    (item) => item.label === product.department
+    );
+
   return (
     <article 
     ref={cardRef} 
@@ -63,7 +66,7 @@ const ProductCategoryF: FC<IProductCategory> = ({
           <picture
             onClick={() =>
               router.push(
-                `/catalog/${href}/${product.sub_department}/${product._id}`
+                `/catalog/${nameHref?.label}/${product.sub_department}/${product._id}`
               )
             }
           >

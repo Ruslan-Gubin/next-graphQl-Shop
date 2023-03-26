@@ -13,7 +13,7 @@ const SizeCardCatalog = () => {
 
   const handleChangeSize = useCallback((size: string) => {
     dispatch(sizeCatalogCardAction.setSizeCard({ value: size }))
-  }, [sizeCard])
+  }, [ dispatch ])
 
   return (
     <>

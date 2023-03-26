@@ -5,7 +5,7 @@ import { formatterRub } from "../../../../features/CatalogPage/libs/helper";
 import { IProductType } from "../../../../apps/types";
 import { findMaxOpinion, StarsList } from "../../../../shared";
 import { ProductCategoryHeard } from "../ProductCategoryHeard";
-import { useCatalogProductPageContext } from "../../lib/context/useCatalogPageContext";
+import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
 
 import styles from "./ProductCategoryMobile.module.scss";
 
@@ -27,15 +27,18 @@ const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({
   handleAddFavorite,
   handleRemoveFavorite
 }) => {
-  const { href } = useCatalogProductPageContext()
   const [hoverCard] = useState(false);
   const [ref, isVisible] = useInView({ threshold: 0.5, triggerOnce: true });
   const cardRef = useRef<HTMLElement>(null);
   const router = useRouter();
+  
+  const nameHref = OPTIONS_DEPARTMENT.find(
+    (item) => item.label === product.department
+    );
 
-
-  return (
-    <article ref={cardRef} className={styles.root}>
+    
+    return (
+      <article ref={cardRef} className={styles.root}>
       <header>
         <ProductCategoryHeard
           handleAddFavorite={handleAddFavorite}
@@ -47,7 +50,7 @@ const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({
           <picture
             onClick={() =>
               router.push(
-                `/catalog/${href}/${product.sub_department}/${product._id}`
+                `/catalog/${nameHref?.label}/${product.sub_department}/${product._id}`
               )
             }
           >
