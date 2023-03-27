@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, memo, useCallback, useEffect, useRef, useState } from "react";
 import { IOptionDepartment } from "../../../features/CreatedProduct/libs/types/IOptionsMenu";
 
 import styles from "./DropDownMenu.module.scss";
@@ -16,14 +16,14 @@ interface IDropDownMenu {
   value: Ioption;
 }
 
-const DropDownMenu: FC<IDropDownMenu> = ({ options, onChange, value }) => {
+const DropDownMenuF: FC<IDropDownMenu> = ({ options, onChange, value }) => {
   const [dropActive, setDropActive] = useState(false);
   const dropRef = useRef<HTMLDivElement>(null);
 
-  const handlerChangeInitial = (value: Ioption) => {
+  const handlerChangeInitial = useCallback((value: Ioption) => {
     onChange(value);
     setDropActive(false);
-  };
+  }, [dropActive, setDropActive, onChange]);
 
   useEffect(() => {
     const checkIfClickedOutside = (e: any) => {
@@ -80,4 +80,4 @@ const DropDownMenu: FC<IDropDownMenu> = ({ options, onChange, value }) => {
   );
 };
 
-export { DropDownMenu };
+export const DropDownMenu = memo(DropDownMenuF);

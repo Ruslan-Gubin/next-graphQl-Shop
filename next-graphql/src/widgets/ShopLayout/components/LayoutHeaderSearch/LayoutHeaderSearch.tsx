@@ -1,49 +1,25 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useRouter } from "next/router";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { useFocusInput } from "../../lib/hooks/useFocusInput";
 import { LayoutSearchInput } from "../LayoutSearchInput";
 import { LayoutAutoComplet } from "../LayoutAutoComplet";
 import { ISearchProduct } from "../../../../apps/types";
-import { getSearchProducts, graphQlFetch } from "../../../../apps/api";
 import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
-import { useDebounce } from "../../../../shared/lib/hooks/useDebounce/useDebounce";
 
 import styles from "./LayoutHeaderSearch.module.scss";
 
 
-const LayoutHeaderSearch = () => {
+const LayoutHeaderSearchF = ({handleRouter}: {handleRouter: (value: string) => void}) => {
   const [value, setValue] = useState<string>("");
   const { focus, focusRef } = useFocusInput();
   const [modalActive, setModalActive] = useState(false);
   const dropRef = useRef<HTMLDivElement>(null);
-  const [searchData, setSearchData] = useState<ISearchProduct[]>([])
-  const debouncedSearch: string = useDebounce<string>(value, 700);
-  const router = useRouter();
-
-   const fetchRequest = useCallback( async() => {
-       const { data: products, error: errProducts } = await graphQlFetch({
-         ...getSearchProducts,
-         variables: { searchValue: value.length > 2 ? value : "adfsfeasdfg", },
-       });
-       setSearchData(() => products.data.searchProducts)
-      return products.data.searchProducts
-     }, [debouncedSearch])
-
-    useEffect( () => {
-      if (debouncedSearch) {
-        fetchRequest()
-      } else {
-        setSearchData([]);
-      }
-    }, [debouncedSearch, fetchRequest] );
-
 
     const handlerNavRouter = useCallback((product: ISearchProduct) => {
       setValue("");
       setModalActive(false);
       const findDepartmentName = OPTIONS_DEPARTMENT.find((item) => item.label === product.department);
-      router.push(`/catalog/${findDepartmentName.department_href}/${product.sub_department}/${product._id}`);
-    }, [router]);
+      handleRouter(`/catalog/${findDepartmentName.department_href}/${product.sub_department}/${product._id}`)
+    }, []);
 
 
   useEffect(() => {
@@ -74,14 +50,14 @@ const LayoutHeaderSearch = () => {
         onChange={setValue}
         cancel={() => setValue("")}
       />
-      {modalActive && (
+      {modalActive && value.length > 2 && (
         <LayoutAutoComplet
+        query={value}
         handlerNavRouter={handlerNavRouter}
-        searchData={searchData}
         />
       )}
     </div>
   );
 };
 
-export { LayoutHeaderSearch };
+export const LayoutHeaderSearch = memo(LayoutHeaderSearchF);

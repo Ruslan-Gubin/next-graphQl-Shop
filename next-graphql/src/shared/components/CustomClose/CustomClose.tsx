@@ -1,3 +1,4 @@
+import { memo } from "react";
 import styles from "./CustomClose.module.scss";
 
 interface ICustomClose {
@@ -5,7 +6,7 @@ interface ICustomClose {
   active: boolean;
 }
 
-const CustomClose = ({ onClick, active }: ICustomClose) => {
+const CustomCloseF = ({ onClick, active }: ICustomClose) => {
   return (
     <div onClick={onClick} className={styles.root}>
       {active && <div className={styles.line}></div>}
@@ -13,4 +14,4 @@ const CustomClose = ({ onClick, active }: ICustomClose) => {
   );
 };
 
-export { CustomClose };
+export const CustomClose = memo(CustomCloseF);

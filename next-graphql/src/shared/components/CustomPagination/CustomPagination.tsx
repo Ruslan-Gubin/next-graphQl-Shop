@@ -1,4 +1,5 @@
-import React, { FC } from "react";
+import { FC } from "react";
+
 import styles from "./CustomPagination.module.scss";
 
 interface IPagination {
@@ -19,7 +20,7 @@ const CustomPagination: FC<IPagination> =
     prevPage,
     nextPage,
   }) => {
-  
+
     const pageNumbers = [];
 
       if (totalCountries && counterPerPage) {

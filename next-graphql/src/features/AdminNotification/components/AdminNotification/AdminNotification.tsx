@@ -1,27 +1,26 @@
-import { FC, useEffect, useState } from "react";
-import Link from "next/link";
+import { FC, useMemo } from "react";
+import { useDispatch } from "react-redux";
 import { useQuery } from "@apollo/client";
 import { ALL_QUESTIONS } from "../../../../apps/apollo";
 import { notificationIcons } from "../../lib/assets/linkNotificationIcons";
-import Image from 'next/image';
-import { useDispatch } from "react-redux";
 import { adminQuestionAction } from "../../../../features/AdminQuestionsContent";
 import { GET_NEW_ORDERS_LENGTH } from "../../../../apps/apollo/orderRequest";
+import { useAdminLayoutContext } from "../../../../widgets/AdminLayout/lib/context/useAdminLayoutContext";
 
 import styles from "./AdminNotification.module.scss";
 
+
 const AdminNotification: FC = () => {
+  const { handleRouterLink } = useAdminLayoutContext()
   const { data, loading } = useQuery(ALL_QUESTIONS);
   const {data: allOrders} = useQuery(GET_NEW_ORDERS_LENGTH)
-  const [lengthViewed, setLengthViewed] = useState(0);
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    if (!loading) {
-      const filterArr = data.questions.filter((item: any) => !item.viewed);
-      setLengthViewed(filterArr.length);
+  const viewsLenght = useMemo(() => {
+    if (data && !loading) {
+      return data.questions.filter((item: any) => !item.viewed).length
     }
-  }, [data, loading]);
+  }, [data, loading])
 
   return (
     <>
@@ -29,26 +28,26 @@ const AdminNotification: FC = () => {
         <div
         onClick={() => dispatch(adminQuestionAction.setMenuSortQuestions({ value: "vieweds" }))}
          className={styles.notificationItem}>
-          <Link href={"/admin/questions"}>
-            <Image width={25} height={25}  src={notificationIcons.message} alt="message icon" />
-            {lengthViewed > 0 && <small>{lengthViewed}</small>}
-          </Link>
+            <picture onClick={() => handleRouterLink("/admin/questions")}>
+            <img width={25} height={25}  src={notificationIcons.message} alt="message icon" />
+            </picture>
+            {viewsLenght > 0 && <small>{viewsLenght}</small>}
         </div>
         <div className={styles.notificationItem}>
-          <Link href={"/admin/notification"}>
-            <Image width={25} height={25} src={notificationIcons.notification} alt="notification icon" />
+          <picture onClick={() => handleRouterLink("/admin/notification")}>
+            <img width={25} height={25} src={notificationIcons.notification} alt="notification icon" />
+          </picture>
             {allOrders && allOrders?.getNewLength.length > 0 && <small>{allOrders?.getNewLength.length}</small>}
-          </Link>
         </div>
 
         <div className={styles.menugrid}>
-          <Image width={25} height={25} src={notificationIcons.menuGrid} alt="menu grid icon" />
+        <picture >
+          <img width={25} height={25} src={notificationIcons.menuGrid} alt="menu grid icon" />
+        </picture>
         </div>
-        <Link href={"/"}>
-          <div className={styles.exit}>
+          <div className={styles.exit} onClick={() => handleRouterLink("/")}>
             <span>exit</span>
           </div>
-        </Link>
       </div>
     </>
   );

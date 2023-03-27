@@ -1,15 +1,14 @@
 import { FC } from "react";
-import Link from "next/link";
-import Image from 'next/image';
 import { useSelector } from "react-redux";
-import {
-  adminImage,
-  adminMenuAsideArr,
-} from "../../lib/data/adminMenuAsideArr";
+import { adminImage, adminMenuAsideArr } from "../../lib/data/adminMenuAsideArr";
 import { selectAdminNavHeader } from "../../../../features";
+import { useAdminLayoutContext } from "../../lib/context/useAdminLayoutContext";
+
 import styles from "./AdminLayoutAside.module.scss";
 
+
 const AdminLayoutAside: FC = () => {
+  const { handleRouterLink } = useAdminLayoutContext()
   const { burgerStatus } = useSelector(selectAdminNavHeader);
   const { pathname } = window.location;
 
@@ -20,13 +19,17 @@ const AdminLayoutAside: FC = () => {
           <header className={styles.header}>
             <div className={styles.headerItem}>
               <div className={styles.logo}>
-                <Image width={40} height={40} src={adminImage.logo} alt="logo image" />
+                <picture>
+                <img width={40} height={40} src={adminImage.logo} alt="logo image" />
+                </picture>
               </div>
               <h2>OnlineShop</h2>
             </div>
             <div className={styles.headerItem}>
               <div className={styles.logo}>
-                <Image width={40} height={40} src={adminImage.photo} alt="admin photo" />
+                <picture>
+                <img width={40} height={40} src={adminImage.photo} alt="admin photo" />
+                </picture>
               </div>
               <h2>Ruslan Gubin</h2>
             </div>
@@ -34,22 +37,22 @@ const AdminLayoutAside: FC = () => {
 
           <ul className={styles.navContainer}>
             {adminMenuAsideArr.map((link) => (
-              <Link href={link.patch} key={link.label}>
                 <li
-                  className={
-                    pathname === link.patch ? styles.active : styles.navItem
-                  }
+                key={link.label}
+                onClick={() => handleRouterLink(link.patch)}
+                className={ pathname === link.patch ? styles.active : styles.navItem }
                 >
-                  <Image
+                  <picture>
+                  <img
                     width={50}
                     height={50}
                     className={styles.navIcon}
                     src={link.icon}
                     alt="link icon"
-                  />
+                    />
+                    </picture>
                   <span className={styles.nameLink}>{link.value}</span>
                 </li>
-              </Link>
             ))}
           </ul>
         </aside>
@@ -57,22 +60,18 @@ const AdminLayoutAside: FC = () => {
         <div className={styles.smallAside}>
           <ul className={styles.navContainer}>
             {adminMenuAsideArr.map((link) => (
-              <Link href={link.patch} key={link.label}>
-                <li className={styles.logo}>
-                  <Image
-                  height={50}
-                    width={50}
+                <li 
+                key={link.label}
+                onClick={() => handleRouterLink(link.patch)}
+                className={styles.logo}>
+                  <picture>
+                  <img
                     className={styles.navIcon}
                     src={link.icon}
                     alt="link icon"
                   />
-                  {/* <img
-                    className={styles.navIcon}
-                    src={link.icon}
-                    alt="link icon"
-                  /> */}
+                  </picture>
                 </li>
-              </Link>
             ))}
           </ul>
         </div>

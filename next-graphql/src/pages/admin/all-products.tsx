@@ -1,4 +1,4 @@
-import { AdminProductManagment, AdminUpdateProduct } from "../../features";
+import { AdminProductManagment } from "../../features";
 import { AdminLayout } from "../../widgets/AdminLayout/components/AdminLayout";
 
 const AllProducts = () => {

@@ -30,7 +30,7 @@ const AdminOrderCard: FC<IUserOrderCard> = ({handleUpdateStatus, order, removeOr
 
   const statusProduct = statusOptions[`${order.status}`]
 
-  const formatPhone = order.user.phone ? formattedPhone(order.user.phone) : ''
+  const formatPhone = order.user?.phone ? formattedPhone(order.user.phone) : ''
 
   return (
     <section className={styles.root}>
@@ -81,9 +81,9 @@ const AdminOrderCard: FC<IUserOrderCard> = ({handleUpdateStatus, order, removeOr
     {userInfo && 
     <ul className={styles.user__info_container}>
       <li className={styles.user__info}>
-        <p>{order.user.name}</p>
+        <p>{order.user?.name}</p>
         <p>{formatPhone}</p>
-      {order.user.email &&  <p>{order.user.email}</p>}
+      {order.user?.email &&  <p>{order.user.email}</p>}
       </li>
 
       <li className={styles.user__address}>

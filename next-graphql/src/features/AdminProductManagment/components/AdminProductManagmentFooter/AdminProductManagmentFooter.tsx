@@ -4,9 +4,10 @@ import { selectAdminNavHeader } from '../../../../features/AdminNavHeader';
 import { CustomPagination } from '../../../../shared/components/CustomPagination';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUpdateProduct, updateProductAction } from '../../libs/store/updateProductSlice';
-import { GET_PRODUCTS_LENGTH } from '../../model/productRequest';
+import { GET_PRODUCTS_LENGTH } from '../../model/productRequest/productRequest';
 
 import styles from './AdminProductManagmentFooter.module.scss';
+
 
 interface IAdminProductManagmentFooter {
 

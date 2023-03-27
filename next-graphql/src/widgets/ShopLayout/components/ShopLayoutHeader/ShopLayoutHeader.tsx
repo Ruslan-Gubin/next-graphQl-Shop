@@ -6,6 +6,7 @@ import { layoutShopAction } from "../../lib/store";
 import { LayoutHeaderSearch } from "../LayoutHeaderSearch";
 import { ShopHeaderLogo } from "../ShopHeaderLogo";
 import { useMatchMedia } from "../../../../features/CatalogPage/libs/hooks/use-match-media";
+import { useRouter } from "next/router";
 
 import styles from "./ShopLayoutHeader.module.scss";
 
@@ -13,11 +14,17 @@ import styles from "./ShopLayoutHeader.module.scss";
 const ShopLayoutHeaderF = () => {
   const { isMobile } = useMatchMedia();
   const dispatch = useDispatch();
+  const router = useRouter()
 
   const handleBurgerClick = useCallback(() => {
     dispatch(layoutShopAction.asideLayoutToggle());
   }, [dispatch]);
 
+  const handleRouter = useCallback((href: string) => {
+    if (href === '/' && router.pathname === '/') return;
+    router.push(href)
+  }, [router.pathname]);
+  
   if (isMobile) {
     return <></>;
   }
@@ -28,10 +35,10 @@ const ShopLayoutHeaderF = () => {
         <div className={styles.headerBurger}>
           <BurgerButton onClick={handleBurgerClick} />
         </div>
-        <ShopHeaderLogo />
+        <ShopHeaderLogo handleClickHome={handleRouter} />
       </div>
-      <LayoutHeaderSearch />
-      <HeaderStoreNavbar />
+      <LayoutHeaderSearch handleRouter={handleRouter} />
+      <HeaderStoreNavbar handleRouter={handleRouter} />
     </header>
   );
 };

@@ -1,5 +1,4 @@
 import { FC, memo,  useRef, useState } from "react";
-import { useRouter } from "next/router";
 import { useInView } from "react-intersection-observer";
 import { formatterRub } from "../../../../features/CatalogPage/libs/helper";
 import { IProductType } from "../../../../apps/types";
@@ -10,6 +9,7 @@ import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
 import styles from "./ProductCategoryMobile.module.scss";
 
 interface IProductCategoryMobile {
+  handlerRouterProduct: (href: string) => void
   product: IProductType;
   activeFavorites: boolean;
   activeBasket: boolean;
@@ -24,12 +24,12 @@ const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({
   activeBasket,
   handleClickBuy,
   handleAddFavorite,
-  handleRemoveFavorite
+  handleRemoveFavorite,
+  handlerRouterProduct
 }) => {
   const [hoverCard] = useState(false);
   const [ref, isVisible] = useInView({ threshold: 0.5, triggerOnce: true });
   const cardRef = useRef<HTMLElement>(null);
-  const router = useRouter();
   
   const nameHref = OPTIONS_DEPARTMENT.find(
     (item) => item.label === product.department
@@ -47,7 +47,7 @@ const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({
         <figure className={styles.image__container}>
           <picture
             onClick={() =>
-              router.push(
+              handlerRouterProduct(
                 `/catalog/${nameHref?.label}/${product.sub_department}/${product._id}`
               )
             }
@@ -100,7 +100,7 @@ const ProductCategoryMobileF: FC<IProductCategoryMobile> = ({
                 </button>
               ) : (
                 <button
-                  onClick={() => router.push(`/basket`)}
+                  onClick={() => handlerRouterProduct(`/basket`)}
                   className={styles.btn__active}
                 >
                   В корзине

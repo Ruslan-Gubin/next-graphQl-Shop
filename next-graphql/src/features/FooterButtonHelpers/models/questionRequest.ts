@@ -34,19 +34,7 @@ const ADD_QUESTIONS = gql`
   }
 `;
 
-const ADD_COMMENT_QUESTION = gql`
-  mutation ($id: ID!, $text: String!, $name: String!, $viewed: Boolean!) {
-    addCommentDialog(id: $id, text: $text, name: $name, viewed: $viewed) {
-      viewed
-      _id
-      dialog {
-        text
-        name
-        time
-      }
-    }
-  }
-`;
+
 
 const DELETE_QUESTION = gql`
   mutation ($id: ID!) {
@@ -57,7 +45,6 @@ const DELETE_QUESTION = gql`
 `;
 
 export {
-  ADD_COMMENT_QUESTION,
   ADD_QUESTIONS,
   ALL_QUESTIONS,
   DELETE_QUESTION,

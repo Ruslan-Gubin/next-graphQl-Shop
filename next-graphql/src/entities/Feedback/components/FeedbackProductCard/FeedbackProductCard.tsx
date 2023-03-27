@@ -1,6 +1,5 @@
 import { FC, memo } from "react";
 import { useSelector } from "react-redux";
-import Image from 'next/image';
 import { IFeedbackType } from "../../../../apps/types/IFeedbackType";
 import { StarsList } from "../../../../shared";
 import { formatterRuTime } from "../../../../features/CatalogPage/libs/helper";
@@ -24,7 +23,9 @@ const FeedbackProductCardF :FC<IFeedbackProductCard> = ({feedback, removeFeedbac
     <article className={styles.root}>
       <section className={styles.header}>
     <figure className={styles.header__user_img}>
-      <Image width={50} height={50} src={feedback.user?.image?.url ? feedback.user.image.url : userNoimage} alt="User img" />
+      <picture>
+      <img width={50} height={50} src={feedback.user?.image?.url ? feedback.user.image.url : userNoimage} alt="User img" />
+      </picture>
      </figure>
     <div className={styles.header__info_container}>
       <div className={styles.header__info}>
@@ -39,7 +40,9 @@ const FeedbackProductCardF :FC<IFeedbackProductCard> = ({feedback, removeFeedbac
       <p className={styles.content}>{feedback.text}</p>
     <figure className={styles.content__img}>
       {feedback.img?.url && 
-    <Image width={50} height={50} src={feedback.img?.url ? feedback.img?.url : ''} alt="feedback img" />
+      <picture>
+    <img width={50} height={50} src={feedback.img?.url ? feedback.img?.url : ''} alt="feedback img" />
+      </picture>
   }
     </figure>
     </section>

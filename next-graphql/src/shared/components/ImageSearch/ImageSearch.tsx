@@ -1,7 +1,8 @@
+import { memo } from "react";
 import styles from "./ImageSearch.module.scss";
 
-const ImageSearch = ({ active }: { active: boolean }) => {
+const ImageSearchF = ({ active }: { active: boolean }) => {
   return <div className={active ? styles.active : styles.image}></div>;
 };
 
-export { ImageSearch };
+export const  ImageSearch = memo(ImageSearchF);

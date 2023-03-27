@@ -70,11 +70,13 @@ const CatalogPage: FC<ICatalogPage> = ({
         { isDesktop  ? <CatalogPageHeader /> : <CatalogPageHeaderMobile /> }
         {!products || loading ? 
         <LoaderShop />
-        : 
+        :
+        <>
         <CatalogProductList isDesktop={isDesktop} products={products.sortProductCatalog} />
-        }
         <CatalogPageFooter />
         <CatatlogProductList title="Вы недавно смотрели" productList={watchedProduct} /> 
+        </> 
+        }
 
     </div>
 

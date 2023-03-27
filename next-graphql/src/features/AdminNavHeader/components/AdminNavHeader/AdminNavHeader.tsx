@@ -1,13 +1,14 @@
 import { FC } from "react";
-import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { ImageSearch } from "../../../../shared";
 import { adminNavHeaderAction, selectAdminNavHeader } from "../../lib/store";
+import { useAdminLayoutContext } from "../../../../widgets/AdminLayout/lib/context/useAdminLayoutContext";
 
 import styles from "./AdminNavHeader.module.scss";
 
 
 const AdminNavHeader: FC = () => {
+  const { handleRouterLink } = useAdminLayoutContext()
   const { searchValue } = useSelector(selectAdminNavHeader);
   const dispatch = useDispatch();
 
@@ -20,12 +21,12 @@ const AdminNavHeader: FC = () => {
         <div className={styles.burger}></div>
       </div>
       <nav>
-        <Link className={styles.navLink} href={"/admin"}>
+        <span className={styles.navLink} onClick={() => handleRouterLink("/admin")}>
           Home
-        </Link>
-        <Link className={styles.navLink} href={"/admin/contact"}>
+        </span>
+        <span className={styles.navLink} onClick={() => handleRouterLink("/admin/contact")}>
           Contact
-        </Link>
+        </span>
       </nav>
       <div className={styles.headerSearch}>
         <input

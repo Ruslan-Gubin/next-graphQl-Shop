@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useCallback } from "react";
 import { useRouter } from "next/router";
 import { IProductType } from "../../../../apps/types";
 import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
@@ -21,6 +21,10 @@ const CatatlogProductList: FC<ICatatlogProductList> = ({
     return nameHref?.department_href
   }
 
+  const handleRouterLink = useCallback((href: string) => {
+    router.push(href)
+  }, [router])
+
   if (!productList) {
     return <></>
   }
@@ -32,7 +36,7 @@ const CatatlogProductList: FC<ICatatlogProductList> = ({
       <ul className={styles.card__wrapper}>
       {productList.map(product => (
         <li 
-        onClick={() => router.push(`/catalog/${findDepartmentName(product.department)}/${product.sub_department}/${product._id}`)} 
+        onClick={() => handleRouterLink(`/catalog/${findDepartmentName(product.department)}/${product.sub_department}/${product._id}`)} 
         key={product._id} 
         className={styles.card__container}
         >

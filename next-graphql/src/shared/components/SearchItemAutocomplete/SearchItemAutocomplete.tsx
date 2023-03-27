@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { ImageSearch } from '../ImageSearch';
 
 import styles from './SearchItemAutocomplete.module.scss';
@@ -8,7 +9,7 @@ interface ISearchItemAutocomplete {
   id: string
 }
 
-const SearchItemAutocomplete = ({text, productImg, id}: ISearchItemAutocomplete) => {
+const SearchItemAutocompleteF = ({text, productImg, id}: ISearchItemAutocomplete) => {
 
   return (
     <div onClick={() => {}} className={styles.root}>
@@ -23,4 +24,4 @@ const SearchItemAutocomplete = ({text, productImg, id}: ISearchItemAutocomplete)
   );
 };
 
-export { SearchItemAutocomplete };
+export const SearchItemAutocomplete = memo(SearchItemAutocompleteF);

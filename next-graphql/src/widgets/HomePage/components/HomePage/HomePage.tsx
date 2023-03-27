@@ -4,8 +4,6 @@ import { selectProductDetails } from "../../../../entities";
 import { CatatlogProductList } from "../../../../widgets/CatalogStartPage/components/CatatlogProductList";
 import { swiperHomeData } from "../../libs";
 import { HomePageSwiper } from "../HomePageSwiper";
-import { ICategoryType, IProductType } from "../../../../apps/types";
-import { CategoryCard } from "../../../../widgets/CatalogStartPage/components/CategoryCard";
 import { catalogPageAction } from "../../../../features";
 import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
 import { HomePageFooter } from "../HomePageFooter";
@@ -13,7 +11,6 @@ import { HomePageBrandsList } from "../HomePageBrandsList";
 import { HomePageCategoriList } from "../HomePageCategoriList";
 import { useQuery } from "@apollo/client";
 import { GET_CATEGORYES } from "../../../../apps/apollo";
-import { LoaderShop } from "../../../../shared";
 import { GET__MAXDISCOUNT__ALLPRODUCT, GET__MAXVIEWS__ALLPRODUCT, GET__NEW__ALLPRODUCT } from "../../../../apps/apollo/productRequest";
 
 import styles from "./HomePage.module.scss";

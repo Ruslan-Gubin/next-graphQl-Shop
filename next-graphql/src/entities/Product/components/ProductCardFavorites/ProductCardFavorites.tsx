@@ -1,5 +1,4 @@
 import { FC, memo } from 'react';
-import { useRouter } from 'next/router';
 import { IBasketProduct } from '../../../../features/Basket/libs/types/IBasketSlice';
 import { formatterRub } from '../../../../features/CatalogPage/libs/helper';
 import { CloseProductButton } from '../../../../shared';
@@ -9,13 +8,13 @@ import styles from './ProductCardFavorites.module.scss';
 
 
 interface IProductCardFavorites {
+  handleRouterLink: (href: string) => void
   product: IBasketProduct
   removeFavorites: (id: string) => void
   addBasket: (value: IBasketProduct) => void
 }
 
-const ProductCardFavoritesF: FC<IProductCardFavorites> = ({product, removeFavorites, addBasket}) => {
-  const router = useRouter()
+const ProductCardFavoritesF: FC<IProductCardFavorites> = ({product, removeFavorites, addBasket, handleRouterLink}) => {
 
 const discount =  Math.ceil(((product.price - product.oldPrice) / product.oldPrice) * 100);
 
@@ -26,7 +25,7 @@ const href =  (`/catalog/${findDepartmentName.department_href}/${product.sub_dep
   return (
     <article className={styles.root}>
       <div className={styles.close__btn}><CloseProductButton onClick={() => removeFavorites(product.id)} /></div>
-        <div onClick={() => router.push(href)} >
+        <div onClick={() => handleRouterLink(href)} >
           <figure className={styles.product__img}>
             <picture>
         <img  src={product.img} alt="Product imag" />

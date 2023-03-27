@@ -1,4 +1,4 @@
-import { ChangeEvent, ChangeEventHandler, FC } from "react";
+import { ChangeEvent, FC, memo } from "react";
 import { CustomClose, ImageSearch } from "../../../../shared";
 
 import styles from "./LayoutSearchInput.module.scss";
@@ -12,7 +12,7 @@ interface ILayoutSearchInput {
   focusRef: React.RefObject<HTMLInputElement>;
 }
 
-const LayoutSearchInput: FC<ILayoutSearchInput> = ({
+const LayoutSearchInputF: FC<ILayoutSearchInput> = ({
   value,
   onChange,
   cancel,
@@ -50,4 +50,4 @@ const LayoutSearchInput: FC<ILayoutSearchInput> = ({
   );
 };
 
-export { LayoutSearchInput };
+export const LayoutSearchInput = memo(LayoutSearchInputF);

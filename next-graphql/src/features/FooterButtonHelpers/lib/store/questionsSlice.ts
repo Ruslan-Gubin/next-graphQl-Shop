@@ -1,6 +1,7 @@
 import { TypeRootState } from "../../../../apps/store/srote";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+
 interface IInitialState {
   textQuestion: string;
   questionsId: string | '';
@@ -16,8 +17,8 @@ const questionsSlice = createSlice({
   initialState,
   reducers: {
 
-    getValueInput(state, action: PayloadAction<{value: string}>) {
-      state.textQuestion = action.payload.value
+    getValueInput(state, action) {
+      state.textQuestion = action.payload
     },
 
     textValueClear(state) {
@@ -27,8 +28,6 @@ const questionsSlice = createSlice({
     setNewQuestionId(state, action: PayloadAction<{id: string}>) {
       state.questionsId = action.payload.id
     }
-
-
 
   },
 });

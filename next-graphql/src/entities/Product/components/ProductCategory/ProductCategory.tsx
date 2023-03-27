@@ -1,5 +1,4 @@
 import { FC, memo, useEffect, useRef, useState } from "react";
-import { useRouter } from "next/router";
 import { IProductType } from "../../../../apps/types";
 import { findMaxOpinion, Heart, StarsList } from "../../../../shared";
 import { formatterRub } from "../../../../features/CatalogPage/libs/helper";
@@ -8,6 +7,7 @@ import { OPTIONS_DEPARTMENT } from "../../../../apps/constants";
 import styles from "./ProductCategory.module.scss";
 
 interface IProductCategory {
+  handlerRouterProduct: (href: string) => void
   product: IProductType;
   activeFavorites: boolean;
   activeBasket: boolean;
@@ -22,11 +22,11 @@ const ProductCategoryF: FC<IProductCategory> = ({
   activeFavorites,
   handleClickBuy,
   handleAddFavorite,
-  handleRemoveFavorite
+  handleRemoveFavorite,
+  handlerRouterProduct
 }) => {
   const [hoverCard, setHover] = useState(false);
   const cardRef = useRef<HTMLElement>(null);
-  const router = useRouter();
 
   const hoverOn = () => setHover(true);
   const hoverOff = () => setHover(false);
@@ -65,7 +65,7 @@ const ProductCategoryF: FC<IProductCategory> = ({
         <figure className={styles.image__container}>
           <picture
             onClick={() =>
-              router.push(
+              handlerRouterProduct(
                 `/catalog/${nameHref?.label}/${product.sub_department}/${product._id}`
               )
             }
@@ -124,7 +124,7 @@ const ProductCategoryF: FC<IProductCategory> = ({
                   </button>
                 ) : (
                   <button
-                    onClick={() => router.push(`/basket`)}
+                    onClick={() => handlerRouterProduct(`/basket`)}
                     className={styles.btn__active}
                   >
                     В корзине

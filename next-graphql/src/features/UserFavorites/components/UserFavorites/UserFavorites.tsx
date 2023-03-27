@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { ProductCardFavorites } from '../../../../entities';
 import { basketAction } from '../../../../features/Basket';
@@ -12,6 +13,7 @@ import styles from './UserFavorites.module.scss';
 const UserFavorites = () => {
   const { favorites } = useSelector(selectFavorites)
   const dispath = useDispatch()
+  const router = useRouter()
 
   const handleAddBasketRemoveFavorites = useCallback((product: IBasketProduct) =>  {
     dispath(favoritesAction.removeFavorites({id: product.id}))
@@ -22,6 +24,10 @@ const UserFavorites = () => {
     dispath(favoritesAction.removeFavorites({id}))
   }, [dispath])
 
+  const handleRouterLink = useCallback((href: string) => {
+    router.push(href)
+  }, [router])
+
   return (
     <div className={styles.root}>
       {favorites.length > 0 ? 
@@ -29,6 +35,7 @@ const UserFavorites = () => {
         {favorites.map(product => (
           <li className={styles.product__item} key={product.id}>
         <ProductCardFavorites 
+        handleRouterLink={handleRouterLink}
         addBasket={handleAddBasketRemoveFavorites}
         removeFavorites={handleRemoveFavorites}
         product={product}

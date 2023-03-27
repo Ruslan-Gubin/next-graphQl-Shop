@@ -1,14 +1,13 @@
 import { memo } from "react";
-import { useRouter } from "next/dist/client/router";
+
 
 import styles from "./ShopHeaderLogo.module.scss";
 
 
-const ShopHeaderLogoF = () => {
-  const router = useRouter()
+const ShopHeaderLogoF = ({handleClickHome}: {handleClickHome: (href: string) => void}) => {
 
   return (
-      <div onClick={() => router.push('/')} className={styles.root} data-testid='logo-testid'>
+      <div onClick={() => handleClickHome('/')} className={styles.root} data-testid='logo-testid'>
     <div className={styles.container}>
       <span className={styles.nameLogo}>onlineshop</span>
     </div>
@@ -16,6 +15,4 @@ const ShopHeaderLogoF = () => {
   );
 };
 
-const ShopHeaderLogo = memo(ShopHeaderLogoF)
-
-export { ShopHeaderLogo };
+export const ShopHeaderLogo = memo(ShopHeaderLogoF)

@@ -1,5 +1,6 @@
-import { FC, memo, useCallback,  useMemo } from 'react';
+import { FC, memo, useCallback,  useDeferredValue,  useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/dist/client/router';
 import { IProductType } from '../../../../apps/types';
 import { ProductCategory } from '../../../../entities';
 import { ProductCategoryMobile } from '../../../../entities/Product/components';
@@ -17,11 +18,13 @@ interface ICatalogProductList {
   products: IProductType[]
 }
 
-const CatalogProductListF: FC<ICatalogProductList> = ({ isDesktop, products }) => {
+const CatalogProductListF: FC<ICatalogProductList> = ({ isDesktop, products=[] }) => {
   const { basket } = useSelector(selectBasket)
   const { favorites } = useSelector(selectFavorites) 
   const { sizeCard } = useSelector(selectSizeCatalogCard)
   const { selected } = useSelector(selectCatalogPage);
+  const deferProducts = useDeferredValue(filterBrandAndPrice(products, selected))
+  const router = useRouter()
   const dispatch = useDispatch();
 
   const handleClickBuy = useCallback((product: IProductType) => {
@@ -45,17 +48,22 @@ const handleRemoveFavorite = useCallback((id: string) => {
   return  favorites.some(item => item.id === id)
   }, [favorites])
 
-  if (!products ) {
+  const handlerRouterProduct = useCallback((href: string) => {
+    router.push(href)
+  }, [router])
+
+  if (!deferProducts ) {
     return <LoaderShop />
   }
   
   return (
     <section className={styles.root}>
       <ul className={styles.product__list_container}>
-        {products && filterBrandAndPrice(products, selected).map(product => (
+        {deferProducts && deferProducts.map(product => (
           <li className={sizeCard === 'small' ? styles.product__item_small : styles.product__item_big} key={product._id}>
           {isDesktop ?
           <ProductCategory
+          handlerRouterProduct={handlerRouterProduct}
           handleClickBuy={handleClickBuy}
           handleAddFavorite={handleAddFavorite}
           handleRemoveFavorite={handleRemoveFavorite}
@@ -65,6 +73,7 @@ const handleRemoveFavorite = useCallback((id: string) => {
           />
           :
           <ProductCategoryMobile
+          handlerRouterProduct={handlerRouterProduct}
           handleClickBuy={handleClickBuy}
           handleAddFavorite={handleAddFavorite}
           handleRemoveFavorite={handleRemoveFavorite}

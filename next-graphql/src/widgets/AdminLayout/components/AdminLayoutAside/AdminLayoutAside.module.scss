@@ -10,6 +10,7 @@
   border: 1px solid rgba(255, 255, 255, 0.059);
   padding-left: 8px;
   position: relative;
+  
   &:hover {
     background-color: rgb(41, 77, 92);
   }
@@ -18,7 +19,7 @@
     height: 40px;
     @media (max-width: 850px) {
      position: relative;
-     left: 20px;
+     left: 40px;
     }
   }
 
@@ -29,11 +30,16 @@
     color: rgb(215, 215, 215);
     font-size: large;
     font-weight: 600;
+    margin-left: 5px;
     @media (max-width: 1024px) {
       left: 23%;
     }
-    @media (max-width: 850px) {
+    @media (max-width: 924px) {
+      font-size: 1rem;
       left: 24%;
+    }
+    @media (max-width: 900px) {
+      left: 34%;
     }
     @media (max-width: 850px) {
       display: none;

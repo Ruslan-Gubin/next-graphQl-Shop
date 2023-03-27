@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { IProductType } from '../../../../apps/types';
-import Image from 'next/image';
 
 import styles from './UpdateProductCard.module.scss';
+
 
 interface IUpdateProductCard {
   product: IProductType
@@ -16,7 +16,9 @@ const UpdateProductCard: FC<IUpdateProductCard> = ({product, handleRemove, handl
   return (
     <article className={styles.root}>
       <div className={styles.count}>
-    <Image className={styles.img} width={50} height={50} src={product.photo.images[0].url} alt="Image product" />
+        <picture>
+    <img className={styles.img}  src={product.photo.images[0].url} alt="Image product" />
+        </picture>
       </div>
      <span className={styles.count}>{product.name ? product.name : ''}</span>
      <p className={styles.count}>{product.colors_names}</p>
