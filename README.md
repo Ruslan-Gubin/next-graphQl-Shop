@@ -26,15 +26,17 @@ apps /
 
 _________________________________________________________
 
-## entities:
+## entities
 
 Product / 
+
          components / ProductCategory,ProdctDetails,ProductCardFavorites,ProductCardBasket,
          ProductCategoryHeard,ProductCategoryMobile,ProductDetailsMobile
 
          lib / assets, context, data, helpers, hooks, store, types
 
-User / 
+User /  
+
          components / UserCard,ProdctDetails,UserInfo,UserSettingsInfo
 
          lib / assets, context, data, helpers, hooks, store, types
@@ -148,40 +150,58 @@ UserOrders /
             
 ________________________________________________________________________________
 
-## pages /
+## pages 
 
-_app, 404, index
+       _app, 404, index
 
-admin / add-warehouse, all-products, contact, created-product,ended-products, 
-notification, questions, statistics-products, update-product, index
+admin / 
 
-basket / index
+         add-warehouse, all-products, contact, created-product,ended-products, 
+          notification, questions, statistics-products, update-product, index
+
+basket / 
+
+         index
             
-brands/[brand]/index           
+brands/
+
+         [brand]/index           
             
-catalog/[name]index/[label]index/[id]index           
+catalog/
 
-lk/details, favorites, myorders
+        [name]index/[label]index/[id]index           
 
-security/login
+lk/
 
-services/dostavka
+         details, favorites, myorders
+
+security/
+
+         login
+
+services/
+
+          dostavka
 
 _____________________________________________________________________________________
 
 ## shared
 
-assets, config, constant, styles, types, utils
+components / 
 
-components/ AccordionBird, AdminOptionButton, AdminTexteria, Array, BasketFooterCard, BurgerButton
-ButtonFooterHelper, CloseProductButton, CustomAdminInput, CustomClose, CustomLink, CustomPagination,
-DropDownCategory, DropDownMenu, Error, Heart, ImageSearch, ImagesProductDetails, LKHeader, Loader, 
-LoaderShop, Modal, ModalInput, NoContentAdmin, ProductDetailsButton, ProductDetailsSubInfo, ProductListImag,
-QueckMessage, RemoveIcon, SearchItemAutocomplete, Skeleton, StarsList, UserIconActive
+             AccordionBird, AdminOptionButton, AdminTexteria, Array, BasketFooterCard, BurgerButton
+             ButtonFooterHelper, CloseProductButton, CustomAdminInput, CustomClose, CustomLink, CustomPagination,
+             DropDownCategory, DropDownMenu, Error, Heart, ImageSearch, ImagesProductDetails, LKHeader, Loader, 
+             LoaderShop, Modal, ModalInput, NoContentAdmin, ProductDetailsButton, ProductDetailsSubInfo, ProductListImag,
+             QueckMessage, RemoveIcon, SearchItemAutocomplete, Skeleton, StarsList, UserIconActive
 
-lib / assets, context, data, helpers, hooks, store, types, tests
+lib / 
 
-hooks/ useAddImage, useAppDispatch, useDebounce, useHover, useInfinitiScroll, useQuickMessage 
+           assets, context, data, helpers, hooks, store, types, tests,  config, constant, styles,  utils
+
+hooks/
+
+          useAddImage, useAppDispatch, useDebounce, useHover, useInfinitiScroll, useQuickMessage 
 
 ________________________________________________________________________________________
 
