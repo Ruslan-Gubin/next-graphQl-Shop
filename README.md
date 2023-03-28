@@ -10,23 +10,23 @@ LocaleStorage - redux-persist
 https://online-shop-beta-seven.vercel.app
 
 
-## Project:
+## Project structure:
 
-##apps:
+apps /
 
-apollo global request/response apollo/client
+       apollo global request/response apollo/client
 
-store/rootReducer store project, 
+       store/rootReducer store project, 
 
-styles/global styles
+       styles/global styles
 
-types/global types
+       types/global types
 
-api fetch request/response
+       api fetch request/response
 
 _________________________________________________________
 
-##entities:
+## entities:
 
 Product / 
          components / ProductCategory,ProdctDetails,ProductCardFavorites,ProductCardBasket,
@@ -46,7 +46,7 @@ Feedback /
            
 __________________________________________________________________           
 
-##features 
+## features 
 
 
 AdminNavHeader /
@@ -148,7 +148,7 @@ UserOrders /
             
 ________________________________________________________________________________
 
-##pages
+## pages /
 
 _app, 404, index
 
@@ -169,7 +169,7 @@ services/dostavka
 
 _____________________________________________________________________________________
 
-##shared
+## shared
 
 assets, config, constant, styles, types, utils
 
@@ -185,7 +185,7 @@ hooks/ useAddImage, useAppDispatch, useDebounce, useHover, useInfinitiScroll, us
 
 ________________________________________________________________________________________
 
-##widgets
+## widgets
 
 AdminLayout / 
 
