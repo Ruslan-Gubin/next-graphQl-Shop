@@ -164,7 +164,7 @@ const productsMethods = {
     }
   },
 
-  searchProducts: {
+  searchProducts: { 
     type: new GraphQLList(ProductType),
     args: {
       searchValue: { type : new GraphQLNonNull(GraphQLString) },

@@ -16,6 +16,7 @@ const QuestionType = new GraphQLObjectType({
     dialog: {type: new GraphQLList(MessageType)},
     viewed: { type: GraphQLBoolean },
     _id: {type: GraphQLString},
+    createdAt: { type: new GraphQLNonNull(GraphQLString) },
   }),
 });
 
