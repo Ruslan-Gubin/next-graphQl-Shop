@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from "react";
 import { useMutation, useQuery } from "@apollo/client";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import { ADD_COMMENT_QUESTION, ALL_QUESTIONS, DELETE_QUESTION } from "../../../../apps/apollo";
 import { selectAdminQuestion } from "../../libs/store/questionSlice";
 import { IQuestion } from "../../libs/types/IQueston";
@@ -16,7 +16,7 @@ const AdminQuestionsList = () => {
   const { data: allQuestions, loading: allLoading, refetch } = useQuery<{questions: IQuestion[]}>(ALL_QUESTIONS);
   const [removeQuestion] = useMutation(DELETE_QUESTION);
   const [addAnswer] = useMutation(ADD_COMMENT_QUESTION);
-  const dispatch = useDispatch();
+
   
   const handleRemoveQuestions = useCallback((id: string) => {
     removeQuestion({ variables: { id } });
