@@ -1,3 +1,4 @@
+import { ChangeEvent } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { useDispatch, useSelector } from "react-redux";
 import { modalQuestionsIcon } from "../../lib/assets/modalQuestionsIcon";
@@ -7,7 +8,6 @@ import { IDialogQuestion } from "../../model/types";
 import { ADD_COMMENT_QUESTION, ONE_QUESTIONS } from "../../../../apps/apollo";
 import { questionsAction, selectQuestions } from "../../../../features";
 import { LoaderShop } from "../../../../shared";
-import { ChangeEvent } from "react";
 
 import styles from "./ModalQuestionsMessage.module.scss";
 

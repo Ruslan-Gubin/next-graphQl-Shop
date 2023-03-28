@@ -1,4 +1,5 @@
 interface IQuestion {
+  createdAt: string
   viewed: boolean
   _id: string;
   dialog: {

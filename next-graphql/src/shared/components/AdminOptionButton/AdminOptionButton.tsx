@@ -1,23 +1,20 @@
-import { FC } from 'react';
+import { FC, memo } from "react";
 
-import styles from './AdminOptionButton.module.scss';
+import styles from "./AdminOptionButton.module.scss";
 
 interface IAdminOptionButton {
-  text: string
-  onClick: () => void
+  text: string;
+  onClick: () => void;
 }
 
-const AdminOptionButton: FC<IAdminOptionButton> = ({text, onClick}) => {
-
-
+const AdminOptionButtonF: FC<IAdminOptionButton> = ({ text, onClick }) => {
   return (
     <button onClick={onClick} className={styles.root}>
       <div className={styles.container}>
         <span>{text}</span>
-      
       </div>
     </button>
   );
 };
 
-export {AdminOptionButton};
+export const AdminOptionButton = memo(AdminOptionButtonF);

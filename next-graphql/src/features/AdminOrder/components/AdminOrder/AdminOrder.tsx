@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
-import { QueckMessage } from '../../../../shared/components';
+import { LoaderShop, QueckMessage } from '../../../../shared/components';
 import { AdminOrderNoContent } from '../AdminOrderNoContent';
 import {  IsortOrdersUser } from '../../../../apps/types';
 import { AdminOrderCard } from '../AdminOrderCard';
@@ -61,7 +61,7 @@ const AdminOrder = () => {
     }
 
     if (loadingOrders) {
-      return <div>Loading...</div>
+      return <LoaderShop />
     }
 
   return (

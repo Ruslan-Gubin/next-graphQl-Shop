@@ -17,7 +17,6 @@
   }
 }
 
-
 .dialogContainer {
   background-image: linear-gradient(to top, (rgb(201, 200, 200), white));
   box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.382);
@@ -25,29 +24,54 @@
   padding: 12px;
   padding-bottom: none;
   margin: 10px;
-  width: 360px;
-  height: 250px;
   overflow: scroll;
-  
-  &:hover {
-    min-height: 250px;
-    height: auto;
+
+  & .header__card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: rgb(68, 54, 54);
+    font-weight: 600;
+    & .header__card_date {
+      font-size: 1.3rem;
+    }
+    
+    & .header__card_text {
+      padding: 10px 0;
+      font-size: 1.3rem;
+      width: 60%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
-  
-  
-  & .item {
-    background-color: rgb(212, 37, 209);
-    @extend %textItem;
+
+  & .questions__container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    & .item {
+      align-self: flex-end;
+      min-width: 30%;
+      max-width: 80%;
+      background-color: rgb(212, 37, 209);
+      @extend %textItem;
+    }
+    & .itemAdmin {
+      min-width: 30%;
+      max-width: 80%;
+      align-self: flex-start;
+      background-image: linear-gradient(
+        to left,
+        (rgb(78, 41, 78), rgb(87, 81, 87))
+      );
+      @extend %textItem;
+    }
   }
-  & .itemAdmin {
-    background-color: rgb(84, 79, 84);
-    @extend %textItem;
-  }
-  
+
   & .btn {
     display: flex;
     align-items: flex-end;
-    justify-content: space-around;
+    justify-content: space-between;
   }
 }
-

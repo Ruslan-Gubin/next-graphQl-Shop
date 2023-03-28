@@ -5,6 +5,7 @@ const ALL_QUESTIONS = gql`
     questions {
       viewed
       _id
+      createdAt
       dialog {
         name
         text

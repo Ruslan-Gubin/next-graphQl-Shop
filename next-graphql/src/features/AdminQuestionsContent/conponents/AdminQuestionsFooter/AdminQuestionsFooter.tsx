@@ -1,34 +1,31 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  adminQuestionAction,
-  selectAdminQuestion,
-} from "../../libs/store/questionSlice";
+import  { forwardRef, useImperativeHandle,   useRef,   useState } from "react";
 
 import styles from "./AdminQuestionsFooter.module.scss";
 
-const AdminQuestionsFooter = () => {
-  const { valueAnswer } = useSelector(selectAdminQuestion);
-  const dispatch = useDispatch();
 
-  const handleInputValue = (value: string) => {
-    dispatch(adminQuestionAction.getValueInput({ value }));
-  };
+const AdminQuestionsFooterInner = (( props, ref) => {
+  const [message, setMessage] = useState('')
+
+useImperativeHandle(ref, () => {
+  return {
+    value: message,
+  }
+}, [message])
 
   return (
-    <div className={styles.root}>
+    <footer className={styles.root}>
       <div className={styles.container}>
-        <div className={styles.input}>
           <input
-            value={valueAnswer}
-            onChange={(e) => handleInputValue(e.target.value)}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
             type="text"
             placeholder="Answer"
           />
-        </div>
       </div>
-    </div>
+    </footer>
   );
-};
+});
 
-export { AdminQuestionsFooter };
+export const AdminQuestionsFooter = forwardRef(AdminQuestionsFooterInner)
+
+

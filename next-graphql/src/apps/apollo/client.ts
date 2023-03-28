@@ -1,10 +1,9 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { URL_CONNECT } from "../constants/apiUrl";
 
 
 const client = new ApolloClient({
-  // uri: `${process.env.API_RENDER}`,
-  // uri: 'http://localhost:3005/react-graphql',
-  uri: 'https://online-shop-bf1a.onrender.com/react-graphql',
+  uri: URL_CONNECT,
   cache: new InMemoryCache(),
 });
 
