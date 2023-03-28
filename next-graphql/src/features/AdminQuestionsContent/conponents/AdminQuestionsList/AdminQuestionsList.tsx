@@ -21,7 +21,7 @@ const AdminQuestionsList = () => {
   const handleRemoveQuestions = useCallback((id: string) => {
     removeQuestion({ variables: { id } });
     refetch()
-  }, [dispatch, removeQuestion]);
+  }, [ removeQuestion, refetch]);
 
   const filterQuestionsMemo = useMemo(() => {
     if (!allQuestions && allLoading) return;
@@ -43,7 +43,7 @@ const AdminQuestionsList = () => {
       viewed: true,
     };
     addAnswer({ variables });
-  }, [dispatch, addAnswer]);
+  }, [ addAnswer]);
 
   
 
