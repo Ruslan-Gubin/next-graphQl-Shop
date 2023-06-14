@@ -1,261 +1,82 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Vercel
 
-Next.js, TypeScript,
+[https://web-components-wine.vercel.app/](https://online-shop-beta-seven.vercel.app)
 
-State - Redux toolkit
+## Frontend
+ 
+<img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686751143/git-hub-img/typescript-min_brr6dq.png" width="40" height="40">  TypeScript  язык программирования, который добавляет статическую типизацию к JavaScript
 
-LocaleStorage - redux-persist
+<img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686751473/git-hub-img/i_ur7aye.webp" width="40" height="40">   Next.js - фреймворк для рендеринга серверной и клиентской частей приложения на базе React.
 
-## Deploy on Vercel
-https://online-shop-beta-seven.vercel.app
+<img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686751610/git-hub-img/1.nr-6ira2MlasKohWiviY23opMlwEiTPsDikw_alpans.webp" width="40" height="40">  Redux Toolkit - инструментарий для упрощения работы с Redux.
 
+<img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686751831/git-hub-img/visual_schema_ndg3zi.jpg" width="40" height="40">   Feature-Sliced Design - архитектурная методология для проектирования frontend-приложени
 
-## Project structure:
 
-apps /
 
-       apollo global request/response apollo/client
 
-       store/rootReducer store project, 
+Apollo - клиент для GraphQL API.
 
-       styles/global styles
+Styled-components - библиотека для написания CSS внутри компонентов.
 
-       types/global types
+## Backend
 
-       api fetch request/response
+NodeJS - серверная среда выполнения JavaScript.
 
-_________________________________________________________
+MongoDB - NoSQL база данных.
 
-## entities
+GraphQL - язык запросов для API и сервера.
 
-Product / 
+JWT - JSON Web Tokens для авторизации пользователей.
 
-         components / ProductCategory,ProdctDetails,ProductCardFavorites,ProductCardBasket,
-         ProductCategoryHeard,ProductCategoryMobile,ProductDetailsMobile
+## Описание
 
-         lib / assets, context, data, helpers, hooks, store, types
+Онлайн-сайт магазина, предоставляет множество возможностей для покупателей и администраторов
 
-User /  
+Данный проект  разработанный с использованием современных технологий.
+     
+## Особенности
 
-         components / UserCard,ProdctDetails,UserInfo,UserSettingsInfo
+Регистрация: пользователи могут зарегистрироваться на сайте, чтобы получить доступ к различным функциям, таким как добавление товаров в корзину и оставление комментариев к товарам.
 
-         lib / assets, context, data, helpers, hooks, store, types
+Задать вопрос онлайн оператору: пользователи могут связаться с оператором сайта через онлайн-чат и задать вопросы по любым вопросам.
 
+Получить ответ от оператора: операторы сайта могут быстро ответить на вопросы пользователей через чат, тем самым улучшая удобство пользования сайтом.
 
-Feedback / 
+Поиск товаров: пользователи могут найти товары на сайте через поисковую строку, выбор из категорий товаров, сортировки категорий товаров, последних просмотренных товаров или по названию бренда.
 
-           components / FeedbackProductCard
-           
-__________________________________________________________________           
+Топ 5 продаваемых товаров и топ 5 самых просматриваемых товаров: на сайте есть функции, которые отображают топ 5 продаваемых и самых просматриваемых товаров.
 
-## features 
+5 последних созданных и добавленных товаров в магазин: пользователи могут увидеть 5 последних созданных и добавленных товаров в магазин.
 
+Страница бренда: на сайте есть отдельная страница для брендов, которые предлагают свои товары.
 
-AdminNavHeader /
+Оставление комментария и оценки: зарегистрированные пользователи могут оставлять комментарии и оценки к определенным товарам.
 
-            components / AdminNavHeader
-            
-            lib / assets, context, data, helpers, hooks, store, types, tests
-             
-AdminNotification / 
+Отображение количества звезд: если товар оценен пользователем, то он будет отображать количество звезд в зависимости от средней оценки товара.
 
-            components / AdminNotification
-            
-            lib / assets, context, data, helpers, hooks, store, types, tests
-            
-AdminOrder / 
+Личный кабинет: пользователи имеют личный кабинет, где они могут просматривать свои заказы, информацию о себе и отобранные товары.
 
-            components / AdminOrderCard, AdminOrderNoContent, AdminOrder
-            
-            lib / assets, context, data, helpers, hooks, store, types, tests  
-            
-AdminProductManagment / 
+Добавление товара в корзину: пользователи могут добавлять товары в корзину, выбирать адрес доставки в нескольких вариантах и способ оплаты.
 
-            components / AdminProductManagment, AdminProductManagmentFooter, AdminModal,
-            AdminProductManagmentHeader, AdminProductManagmentMain, UpdateProductCard
-            
-            lib / assets, context, data, helpers, hooks, store, types, tests            
-            
-AdminQuestionsContent / 
+Административная панель: сайт имеет административную панель, где администраторы могут получать уведомления о вопросах от клиентов и заказах в виде списка заказов и информации о заказчиках.
 
-            components / AdminQuestionsCard, AdminQuestionsContent, AdminQuestionsFooter,
-            AdminQuestionsList, AdminQuestionsOptions, NoContentQuestion
-            
-            lib / assets, context, data, helpers, hooks, store, types, tests                
+Создание товара: в административной панели администраторы могут создавать товары с до 5 фото, настраивая описание товара, категорию, бренд и проверяя наличие на складе.
 
-AdminStartPage / 
+Изменение товара: в административной панели администраторы могут изменять товары, добавлять количество, изменять фото, подробное описание и бренд.
 
-            components / AdminStartPage
-            
-            lib / assets, context, data, helpers, hooks, store, types, tests 
+Удобная навигация: на сайте имеется удобная навигация для пользователей, где выбирается категория товаров, переходит в подкатегории и дальнейшая фильтрация товаров.
+          
+## Цель проекта
 
-AdminUpdateProduct / 
+JS Notes - отличный инструмент для всех, кто хочет сохранить и поделиться своим опытом работы с JavaScript. Сервис обеспечивает удобный способ хранения фотографий и кода в одном месте и позволяет пользователям легко получать к ним доступ при необходимости.         
 
-            components / AdminUpdateProduct, AdminUpdateProductFooter, AdminUpdateProductHeader,
-            AdminUpdateProductMain
-            
-            lib / assets, context, data, helpers, hooks, store, types, tests 
+## Установка
 
-Basket / 
+Клонируйте репозиторий.
 
-            components / Basket, BasketAside, BasketFooter, BasketFooterDelivery
-            BasketList, BasketNoContent, DeliveryModal
-            
-            lib / assets, context, data, helpers, hooks, store, types, tests
-            
-CatalogPage / 
+Выполните команду npm install для установки зависимостей.
 
-            components / CatalogPage, CatalogPageFooter, CatalogPageHeader, CatalogPageHeaderMobile
-            CatalogProductList, PriceFilter
-            
-            lib / assets, context, data, helpers, hooks, store, types, tests            
+Запустите приложение локально с помощью команды npm run dev.
 
-CreatedProduct / 
-
-            components / CreatedProduct, AditationInfo, BasicInfo, CreatedProductFooter
-            CreatedProductHeader, CreatedProducts
-            
-            lib / assets, context, data, helpers, hooks, store, types, tests 
-            
-            
- FooterButtonHelpers / 
-
-            components / FooterButtonHelpers
-                      
-LoginPage / 
-
-            components / LoginForm, LoginPage, LoginPageInput, LoginPageInputPhone
-            RegistationForm
-            
-            lib / assets, context, data, helpers, hooks, store, types, tests             
-            
-UserDetails / 
-
-            components / UserDetails, UserDetailsButtons, userDetailsData, UserDetailsFavorites
-            UserDetailsOrders
-            
-            lib / assets, context, data, helpers, hooks, store, types, tests           
-            
-UserFavorites / 
-
-            components / UserFavorites, UserFavoritesNoContent
-            
-            lib / assets, context, data, helpers, hooks, store, types, tests             
-            
-UserOrders / 
-
-            components / UserOrders, UserOrderCard, UserOrderNoContent
-            
-            lib / assets, context, data, helpers, hooks, store, types, tests
-            
-________________________________________________________________________________
-
-## pages 
-
-       _app, 404, index
-
-admin / 
-
-         add-warehouse, all-products, contact, created-product,ended-products, 
-          notification, questions, statistics-products, update-product, index
-
-basket / 
-
-         index
-            
-brands/
-
-         [brand]/index           
-            
-catalog/
-
-        [name]index/[label]index/[id]index           
-
-lk/
-
-         details, favorites, myorders
-
-security/
-
-         login
-
-services/
-
-          dostavka
-
-_____________________________________________________________________________________
-
-## shared
-
-components / 
-
-             AccordionBird, AdminOptionButton, AdminTexteria, Array, BasketFooterCard, BurgerButton
-             ButtonFooterHelper, CloseProductButton, CustomAdminInput, CustomClose, CustomLink, CustomPagination,
-             DropDownCategory, DropDownMenu, Error, Heart, ImageSearch, ImagesProductDetails, LKHeader, Loader, 
-             LoaderShop, Modal, ModalInput, NoContentAdmin, ProductDetailsButton, ProductDetailsSubInfo, ProductListImag,
-             QueckMessage, RemoveIcon, SearchItemAutocomplete, Skeleton, StarsList, UserIconActive
-
-lib / 
-
-           assets, context, data, helpers, hooks, store, types, tests,  config, constant, styles,  utils
-
-hooks/
-
-          useAddImage, useAppDispatch, useDebounce, useHover, useInfinitiScroll, useQuickMessage 
-
-________________________________________________________________________________________
-
-## widgets
-
-AdminLayout / 
-
-             components / AdminLayout, AdminLayoutAside, AdminLayoutHeader
-
-             lib / assets, context, data, helpers, hooks, store, types
-
-BrandPage / 
-
-              components / BrandPage, BrandPageHeader
-              lib / assets, context, data, helpers, hooks, store, types
-
-CatalogStartPage / 
-
-            components / CatalogStartPage, CatalogSwiper, CatatlogProductList, CategoryCard
-            
-            lib / assets, context, data, helpers, hooks, store, types, tests
-             
-HomePage / 
-
-            components / HomePage, HomePageBrandsList, HomePageCategoriList, HomePageFooter, HomePageSwiper
-            
-            lib / assets, context, data, helpers, hooks, store, types, tests             
-             
-ProductDetailsPage / 
-
-            components / ProductDetailsPage, ProductDetailsHeader
-            
-            lib / assets, context, data, helpers, hooks, store, types, tests             
-             
-ProductFeedback / 
-
-            components / FeedbackList, FeedbacModal, ProductFeedback, StarsOpinionFeedback
-            
-            lib / assets, context, data, helpers, hooks, store, types, tests              
-             
-ShopLayout / 
-
-            components / AsideCatehoryItem, FooterCopyrights, FooterNavigation, FooterNavigationList,
-            LayoutAutoComplet, LayoutHeaderSearch, LayoutSearchInput, LayoutSearchMobile, ShopHeaderLogo,
-            ShopLayout, ShopLayoutAside, ShopLayoutHeader, ShopLayoutHeaderMobile, ShopLayoutNavMobile
-            
-            lib / assets, context, data, helpers, hooks, store, types, tests              
-             
- SizeCardCatalog / 
-
-            components / SizeCardCatalog
-                       
-             
-___________________________________________________________________________________             
-            
-
-
+Откройте ваш браузер и перейдите по адресу http://localhost:3000.
