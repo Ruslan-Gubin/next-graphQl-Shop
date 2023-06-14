@@ -4,30 +4,28 @@
 
 ## Frontend
  
-<img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686751143/git-hub-img/typescript-min_brr6dq.png" width="40" height="40">  TypeScript  язык программирования, который добавляет статическую типизацию к JavaScript
+<img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686751143/git-hub-img/typescript-min_brr6dq.png" width="60" height="40">  TypeScript  язык программирования, который добавляет статическую типизацию к JavaScript.
 
-<img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686751473/git-hub-img/i_ur7aye.webp" width="40" height="40">   Next.js - фреймворк для рендеринга серверной и клиентской частей приложения на базе React.
+<img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686751473/git-hub-img/i_ur7aye.webp" width="60" height="40">   Next.js - фреймворк для рендеринга серверной и клиентской частей приложения на базе React.
 
-<img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686751610/git-hub-img/1.nr-6ira2MlasKohWiviY23opMlwEiTPsDikw_alpans.webp" width="40" height="40">  Redux Toolkit - инструментарий для упрощения работы с Redux.
+<img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686751610/git-hub-img/1.nr-6ira2MlasKohWiviY23opMlwEiTPsDikw_alpans.webp" width="60" height="40">  Redux Toolkit - инструментарий для упрощения работы с Redux.
 
-<img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686751831/git-hub-img/visual_schema_ndg3zi.jpg" width="40" height="40">   Feature-Sliced Design - архитектурная методология для проектирования frontend-приложени
+<img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686751831/git-hub-img/visual_schema_ndg3zi.jpg" width="60" height="40">   Feature-Sliced Design - архитектурная методология для проектирования frontend-приложени.
 
+<img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686752296/git-hub-img/38744c4059b2387f3a6ad56c8951c985_vxmvmo.jpg" width="60" height="40">  Apollo - клиент для GraphQL API.
 
-
-
-Apollo - клиент для GraphQL API.
-
-Styled-components - библиотека для написания CSS внутри компонентов.
+<img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686752467/git-hub-img/1jwk9rkgalxe89uftrha_xqaajc.webp" width="60" height="40"> Styled-components - библиотека для написания CSS внутри компонентов.
 
 ## Backend
 
-NodeJS - серверная среда выполнения JavaScript.
+<img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686752638/git-hub-img/aa338729c619d2f77820cf1903f542e7_f8wknh.jpg" width="60" height="40">  NodeJS - серверная среда выполнения JavaScript.
 
-MongoDB - NoSQL база данных.
+<img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686752714/git-hub-img/60854458c4d1acdf4e1c2f79c4137142d85d78e379bdafbd69bd34c85f5819ad_cteboh.jpg" width="60" height="40"> MongoDB - NoSQL база данных.
 
-GraphQL - язык запросов для API и сервера.
+<img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686752770/git-hub-img/selecionando_cores-1_pldhfi.png" width="60" height="40">  GraphQL - язык запросов для API и сервера.
 
-JWT - JSON Web Tokens для авторизации пользователей.
+<img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686752822/git-hub-img/jwt-header_ighbb0.png" width="60" height="40"> JWT - JSON Web Tokens для авторизации пользователей.
+
 
 ## Описание
 
