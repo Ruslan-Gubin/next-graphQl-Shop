@@ -20,6 +20,8 @@
 
 <img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686752638/git-hub-img/aa338729c619d2f77820cf1903f542e7_f8wknh.jpg" width="60" height="40">  NodeJS - серверная среда выполнения JavaScript.
 
+<img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686753096/git-hub-img/i_peil13.webp" width="60" height="40"> Express - веб-фреймворк для приложений Node.js.
+
 <img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686752714/git-hub-img/60854458c4d1acdf4e1c2f79c4137142d85d78e379bdafbd69bd34c85f5819ad_cteboh.jpg" width="60" height="40"> MongoDB - NoSQL база данных.
 
 <img src="https://res.cloudinary.com/ds289tkqj/image/upload/v1686752770/git-hub-img/selecionando_cores-1_pldhfi.png" width="60" height="40">  GraphQL - язык запросов для API и сервера.
