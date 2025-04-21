@@ -17,8 +17,10 @@ const UpdateProductCard: FC<IUpdateProductCard> = ({product, handleRemove, handl
     <article className={styles.root}>
       <div className={styles.count}>
         <picture>
+          {product.photo && product.photo.images.length > 0 &&
     <img className={styles.img}  src={product.photo.images[0].url} alt="Image product" />
-        </picture>
+          }
+            </picture>
       </div>
      <span className={styles.count}>{product.name ? product.name : ''}</span>
      <p className={styles.count}>{product.colors_names}</p>
